@@ -57,10 +57,22 @@ export default {
       to: {type: 'location'}
     },
      {
-      name: 'price',
-      title: 'Price',
-      type: 'reference',
-      to: {type: 'price'}
+      name: 'prices',
+      title: 'Prices',
+      type: 'array',
+       of: [{
+              title: 'Price',
+              type: 'object',
+              fields: [
+                 {
+                   name: 'amount', type: 'string', title: 'Amount',
+
+                 },
+                {
+                  name: 'priceLabel', type: 'string', title: 'Price Label',
+                }]
+        }],
+
     },
     {
       name: 'deafInterpretation',
