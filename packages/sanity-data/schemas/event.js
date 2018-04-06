@@ -9,6 +9,35 @@ export default {
       type: 'string'
     },
     {
+      name: 'organizer',
+      title: 'Organizer',
+      type: 'string'
+    },
+     {
+      name: 'Date',
+      title: 'date',
+      type: 'datetime',
+      options: {
+         dateFormat: 'YYYY-MM-DD'
+      }
+    },
+    {
+      name: 'startingTime',
+      title: 'Starting time',
+      type: 'datetime',
+       options: {
+        timeFormat: 'HH:mm'
+      }
+    },
+      {
+      name: 'endingTime',
+      title: 'Ending time',
+      type: 'datetime',
+      options: {
+        timeFormat: 'HH:mm',
+      }
+    },
+    {
       name: 'description',
       title: 'Description',
       type: 'text'
@@ -22,20 +51,66 @@ export default {
       }
     },
     {
-      name: 'startDateTime',
-      title: 'Starttidspunkt',
-      type: 'datetime'
-    },
-    {
-      name: 'endDateTime',
-      title: 'Sluttidspunkt',
-      type: 'datetime'
-    },
-    {
       name: 'location',
       title: 'Location',
       type: 'reference',
       to: {type: 'location'}
+    },
+     {
+      name: 'price',
+      title: 'Price',
+      type: 'reference',
+      to: {type: 'price'}
+    },
+    {
+      name: 'deafInterpretation',
+      title: 'Deaf interpretation',
+      type: 'boolean',
+    },
+     {
+      name: 'accessible',
+      title: 'Accessible',
+      type: 'boolean',
+    },
+     {
+      name: 'free',
+      title: 'Free',
+      type: 'boolean',
+    },
+    {
+      name: 'organizerWebpage',
+      title: 'Organizer webpage',
+      type: 'url'
+    },
+     {
+      name: 'facebookEvent',
+      title: 'Facebook Event',
+      type: 'url'
+    },
+      {
+      name: 'eventWebpage',
+      title: 'Event webpage',
+      type: 'url'
+    },
+      {
+      name: 'ticketSaleWebpage',
+      title: 'Ticket Sale Webpage',
+      type: 'url'
+    },
+    {
+      name: 'contactPerson',
+      title: 'Contact Person',
+      type: 'string'
+    },
+     {
+      name: 'contactPersonEmail',
+      title: 'Contact Person Email',
+      type: 'string'
+    },
+      {
+      name: 'ageLimit',
+      title: 'Age Limit',
+      type: 'string'
     },
   ]
 }
