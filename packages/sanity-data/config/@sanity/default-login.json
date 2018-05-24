@@ -1,7 +1,13 @@
 {
-  "providers": {
-    "mode": "append",
-    "redirectOnSingle": false,
-    "entries": []
-  }
+    "providers": {
+      "mode": "replace",
+      "redirectOnSingle": true,
+      "entries": [
+        {
+          "name": "oslo-pride-auth0",
+          "title": "Oslo Pride",
+          "url": "https://festivalguide-staging.herokuapp.com"
+        }
+      ]
+    }
 }
