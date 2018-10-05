@@ -9,9 +9,10 @@ export default {
       type: 'string'
     },
     {
-      name: 'organizator',
-      title: 'Organizator',
-      type: 'string'
+      name: 'organizer',
+      title: 'Organizer',
+      type: 'reference',
+		to: {type: 'organizer'}
     },
      {
       name: 'Date',
@@ -40,10 +41,10 @@ export default {
     {
       name: 'description',
       title: 'Description',
-      type: 'text'
+      type: 'blockContent' // må gjøres om til blocktext-format-ting
     },
     {
-      name: 'image',
+      name: 'image', // Hovedbilde
       title: 'Image',
       type: 'image',
       options: {
@@ -51,15 +52,15 @@ export default {
       }
     },
     {
-      name: 'location',
-      title: 'Location',
+      name: 'venue',
+      title: 'Sted',
       type: 'reference',
-      to: {type: 'location'}
+		to: {type: 'venue'} 
     },
      {
       name: 'prices',
       title: 'Prices',
-      type: 'array',
+      type: 'array', 
        of: [{
               title: 'Price',
               type: 'object',
@@ -89,11 +90,7 @@ export default {
       title: 'Free',
       type: 'boolean',
     },
-    {
-      name: 'organizerWebpage',
-      title: 'Organizer webpage',
-      type: 'url'
-    },
+
      {
       name: 'facebookEvent',
       title: 'Facebook Event',
@@ -114,15 +111,44 @@ export default {
       title: 'Contact Person',
       type: 'string'
     },
-     {
-      name: 'contactPersonEmail',
-      title: 'Contact Person Email',
-      type: 'string'
-    },
       {
-      name: 'ageLimit',
-      title: 'Age Limit',
-      type: 'string'
+      name: 'ageLimit', // Sjekk om det er en dropdown-ting
+      title: 'Aldersgrense',
+	  type: 'string',
+ 	  options: {
+ 	    list: [
+			{value:"0"  ,title:"Fri aldersgrense"},
+			{value:"18" ,title:"18 år"},
+			{value:"19" ,title:"19 år"},
+			{value:"20" ,title:"20 år"},
+			{value:"21" ,title:"21 år"},
+			{value:"22" ,title:"22 år"},
+			{value:"23" ,title:"23 år"},
+			{value:"24" ,title:"24 år"},
+			{value:"25" ,title:"25 år"},
+			{value:"26" ,title:"26 år"},
+			{value:"99" ,title:"Aannet"}
+ 	    ]
+ 	  }
     },
+    {
+    name: 'weight', // Sjekk om det er en dropdown-ting
+    title: 'Vekting',
+    type: 'number',
+   	  options: {
+   	    list: [
+			{title: "Uviktig", 		value: 1},
+			{title: "Normal", 		value: 5},
+			{title: "Fremhevet", 	value: 10}
+   	    ]
+   	  }
+  },
+  {
+    name: 'feedbackFromEditor',
+    title: 'Tilbakemelding fra redaktør',
+    type: 'string'
+  }
+	
+	// prosess-status: ny, oppdatert, godkjent == publisert, avvist, trenger endringer
   ]
 }
