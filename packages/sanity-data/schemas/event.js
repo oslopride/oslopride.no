@@ -134,12 +134,12 @@ export default {
     {
     name: 'weight', // Sjekk om det er en dropdown-ting
     title: 'Vekting',
-    type: 'number',
+    type: 'string',
    	  options: {
    	    list: [
-			{title: "Uviktig", 		value: 1},
-			{title: "Normal", 		value: 5},
-			{title: "Fremhevet", 	value: 10}
+			{title: "Uviktig", 		value: "1"},
+			{title: "Normal", 		value: "5"},
+			{title: "Fremhevet", 	value: "10"}
    	    ]
    	  }
   },

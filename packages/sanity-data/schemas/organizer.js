@@ -25,17 +25,17 @@ export default {
       options: {
         hotspot: true
       }
-    },{
-  name: 'weight',
-  title: 'Vekting',
-  type: 'number',
- 	  options: {
- 	    list: [
-		{title: "Uviktig", 		value: 1},
-		{title: "Normal", 		value: 5},
-		{title: "Fremhevet", 	value: 10}
- 	    ]
- 	  }
-}
+    },    {
+    name: 'weight', // Sjekk om det er en dropdown-ting
+    title: 'Vekting',
+    type: 'string',
+   	  options: {
+   	    list: [
+			{title: "Uviktig", 		value: "1"},
+			{title: "Normal", 		value: "5"},
+			{title: "Fremhevet", 	value: "10"}
+   	    ]
+   	  }
+  },
   ]
 }
