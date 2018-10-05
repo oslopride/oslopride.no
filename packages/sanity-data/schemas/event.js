@@ -1,99 +1,112 @@
 export default {
   name: 'event',
-  title: 'Event',
+  title: 'Arrangement',
   type: 'document',
   fields: [
     {
       name: 'name',
-      title: 'Name',
-      type: 'string'
+      title: 'Navn',
+      type: 'string',
+	  validation: Rule => Rule.required()
     },
+	
     {
       name: 'organizer',
-      title: 'Organizer',
+      title: 'Arrangør',
+	  validation: Rule => Rule.required(),
       type: 'reference',
 		to: {type: 'organizer'}
     },
-     {
-      name: 'Date',
-      title: 'date',
-      type: 'datetime',
-      options: {
-         dateFormat: 'YYYY-MM-DD'
-      }
+    {
+      name: 'venue',
+      title: 'Sted',
+	  validation: Rule => Rule.required(),
+      type: 'reference',
+		to: {type: 'venue'} 
     },
     {
       name: 'startingTime',
-      title: 'Starting time',
+      title: 'Starter',
       type: 'datetime',
-       options: {
-        timeFormat: 'HH:mm'
-      }
+	  validation: Rule => Rule.required()
     },
       {
       name: 'endingTime',
-      title: 'Ending time',
+      title: 'Slutter',
       type: 'datetime',
-      options: {
-        timeFormat: 'HH:mm',
-      }
-    },
-    {
-      name: 'description',
-      title: 'Description',
-      type: 'blockContent' // må gjøres om til blocktext-format-ting
+  	  validation: Rule => Rule.required()
     },
     {
       name: 'image', // Hovedbilde
-      title: 'Image',
+      title: 'Hovedbilde',
       type: 'image',
       options: {
         hotspot: true
       }
     },
     {
-      name: 'venue',
-      title: 'Sted',
-      type: 'reference',
-		to: {type: 'venue'} 
+      name: 'description',
+      title: 'Beskrivelse',
+      type: 'blockContent' // må gjøres om til blocktext-format-ting
     },
+    {
+     name: 'free',
+     title: 'Gratis',
+     type: 'boolean',
+   },
+    
      {
       name: 'prices',
-      title: 'Prices',
+      title: 'Priser',
       type: 'array', 
        of: [{
-              title: 'Price',
+              title: 'Pris',
               type: 'object',
               fields: [
                  {
-                   name: 'amount', type: 'string', title: 'Amount',
-
+                   name: 'amount', type: 'number', title: 'Beløp', validation: Rule => Rule.required(),
                  },
                 {
-                  name: 'priceLabel', type: 'string', title: 'Price Label',
+                  name: 'priceLabel', type: 'string', title: 'Type', validation: Rule => Rule.required().min(1).max(20),
                 }]
         }],
-
     },
     {
+    name: 'ageLimit', // Sjekk om det er en dropdown-ting
+    title: 'Aldersgrense',
+  type: 'string',
+  validation: Rule => Rule.required(),
+  options: {
+    list: [
+		{value:"0"  ,title:"Fri aldersgrense"},
+		{value:"18" ,title:"18 år"},
+		{value:"19" ,title:"19 år"},
+		{value:"20" ,title:"20 år"},
+		{value:"21" ,title:"21 år"},
+		{value:"22" ,title:"22 år"},
+		{value:"23" ,title:"23 år"},
+		{value:"24" ,title:"24 år"},
+		{value:"25" ,title:"25 år"},
+		{value:"26" ,title:"26 år"},
+		{value:"99" ,title:"Aannet"}
+    ]
+  }
+  },
+    {
       name: 'deafInterpretation',
-      title: 'Deaf interpretation',
+      title: 'Tegnspråktolket',
       type: 'boolean',
     },
      {
       name: 'accessible',
-      title: 'Accessible',
+      title: 'Universell utforming',
       type: 'boolean',
     },
-     {
-      name: 'free',
-      title: 'Free',
-      type: 'boolean',
-    },
+     
 
      {
       name: 'facebookEvent',
-      title: 'Facebook Event',
+      title: 'Link til Facebook event',
       type: 'url'
     },
       {
@@ -111,26 +124,12 @@ export default {
       title: 'Contact Person',
       type: 'string'
     },
-      {
-      name: 'ageLimit', // Sjekk om det er en dropdown-ting
-      title: 'Aldersgrense',
-	  type: 'string',
- 	  options: {
- 	    list: [
-			{value:"0"  ,title:"Fri aldersgrense"},
-			{value:"18" ,title:"18 år"},
-			{value:"19" ,title:"19 år"},
-			{value:"20" ,title:"20 år"},
-			{value:"21" ,title:"21 år"},
-			{value:"22" ,title:"22 år"},
-			{value:"23" ,title:"23 år"},
-			{value:"24" ,title:"24 år"},
-			{value:"25" ,title:"25 år"},
-			{value:"26" ,title:"26 år"},
-			{value:"99" ,title:"Aannet"}
- 	    ]
- 	  }
+    {
+      name: 'contactPersonEmail',
+      title: 'Contact Person email',
+      type: 'string'
     },
+
     {
     name: 'weight', // Sjekk om det er en dropdown-ting
     title: 'Vekting',
