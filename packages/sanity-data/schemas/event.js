@@ -146,6 +146,18 @@ export default {
     name: 'feedbackFromEditor',
     title: 'Tilbakemelding fra redaktør',
     type: 'string'
+  },
+  {
+    name: "editorialState",
+    type: "string",
+    options: {
+      list: [
+        { title: "Needs review", value: "review" },
+        { title: "Awaiting publication", value: "awaiting" },
+        { title: "Published", value: "published" }
+      ],
+      layout: "radio"
+    }
   }
 	
 	// prosess-status: ny, oppdatert, godkjent == publisert, avvist, trenger endringer
