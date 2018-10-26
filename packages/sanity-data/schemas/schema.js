@@ -6,8 +6,10 @@ import venue from './venue'
 import organizer from './organizer'
 import event from './event'
 import menuItem from './menuItem'
+import article from './article'
+import partner from './partner'
 
 export default createSchema({
   name: 'default',
-  types: schemaTypes.concat([blockContent, venue, organizer, event, menuItem])
+  types: schemaTypes.concat([blockContent, venue, organizer, event, menuItem, article, partner])
 })
