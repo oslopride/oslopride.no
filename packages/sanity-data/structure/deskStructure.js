@@ -117,40 +117,39 @@ export default () =>
                 ),
 
             S.listItem()
-                .title('Nettsidestruktur')
+                .title('Menystruktur')
                 .child(
-                    S.list()
-                        .title("Nettsidestruktur")
-                        .items([
-                            S.listItem()
-                                .title('Menystruktur')
-                                .child(
-                                    S.documentList()
-                                        .title('Menystruktur')
-                                        .menuItems(S.documentTypeList('menuItem').getMenuItems())
-                                        .filter('_type == $type ')
-                                        .params({type: 'menuItem'})
-                                ),
-                            S.listItem()
-                                .title('Innhold')
-                                .child(
-                                    S.documentList()
-                                        .title('Innhold')
-                                        .menuItems(S.documentTypeList('article').getMenuItems())
-                                        .filter('_type == $type ')
-                                        .params({type: 'article'})
-                                ),
-                            S.listItem()
-                                .title('Partnere')
-                                .child(
-                                    S.documentList()
-                                        .title('Partnere')
-                                        .menuItems(S.documentTypeList('partner').getMenuItems())
-                                        .filter('_type == $type ')
-                                        .params({type: 'partner'})
-                                )
-                        ])
+                    S.documentList()
+                        .title('Menystruktur')
+                        .menuItems(S.documentTypeList('menuItem').getMenuItems())
+                        .filter('_type == $type ')
+                        .params({type: 'menuItem'})
+                ),
+            S.listItem()
+                .title("Forside")
+                .child(
+                    S.editor()
+                        .id('frontPage')
+                        .schemaType("frontPage")
+                        .documentId("global-front-page")
+                ),
+            S.listItem()
+                .title('Innhold')
+                .child(
+                    S.documentList()
+                        .title('Innhold')
+                        .menuItems(S.documentTypeList('article').getMenuItems())
+                        .filter('_type == $type ')
+                        .params({type: 'article'})
+                ),
+            S.listItem()
+                .title('Partnere')
+                .child(
+                    S.documentList()
+                        .title('Partnere')
+                        .menuItems(S.documentTypeList('partner').getMenuItems())
+                        .filter('_type == $type ')
+                        .params({type: 'partner'})
                 )
-
             // The rest of the structure
         ]);

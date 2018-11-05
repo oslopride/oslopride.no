@@ -8,8 +8,18 @@ import event from './event'
 import menuItem from './menuItem'
 import article from './article'
 import partner from './partner'
+import frontPage from "./frontPage"
 
 export default createSchema({
   name: 'default',
-  types: schemaTypes.concat([blockContent, venue, organizer, event, menuItem, article, partner])
+  types: schemaTypes.concat([
+      blockContent,
+      venue,
+      organizer,
+      event,
+      menuItem,
+      article,
+      partner,
+      frontPage
+  ])
 })
