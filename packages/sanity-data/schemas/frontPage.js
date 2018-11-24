@@ -23,6 +23,24 @@ export default {
             validation: Rule => Rule.required(),
         },
         {
+            name: 'permanentContent',
+            title: 'Fast innhold',
+            type: 'array',
+            of: [{
+                title: 'Spalte',
+                name: 'section',
+                type: 'object',
+                fields: [
+                    {
+                        name: 'title', type: 'string', title: 'Overskrift', validation: Rule => Rule.required()
+                    },
+                    {
+                        name: 'body', type: 'blockContent', title: 'Tekst', validation: Rule => Rule.required()
+                    }
+                ]
+            }]
+        },
+        {
             name: 'featuredDates',
             title: 'Hoveddatoer',
             type: 'array',
