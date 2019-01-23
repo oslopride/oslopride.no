@@ -4,56 +4,39 @@ export default {
   type: "document",
   fields: [
     {
-      name: "title",
-      title: "Tittel",
-      type: "string",
-      validation: Rule => Rule.required()
+      name: "name",
+      title: "Navn",
+      type: "string"
     },
     {
-      name: "slug",
-      title: "Adresse",
-      type: "slug",
-      options: {
-        source: "title",
-        maxLength: 200, // will be ignored if slugify is set
-        slugify: input =>
-          input
-            .toLowerCase()
-            .replace(/\s+/g, "-")
-            .slice(0, 200)
-      }
+      name: "description",
+      title: "Beskrivelse",
+      type: "array",
+      of: [{ type: "block" }]
+    },
+    {
+      name: "partnerUrl",
+      title: "Partners nettside",
+      type: "url"
     },
     {
       name: "image",
-      title: "Hovedbilde",
+      title: "Logo",
       type: "image",
       options: {
-        hotspot: true
+        hotspot: false
       }
     },
-
     {
-      name: "weight", // Sjekk om det er en dropdown-ting
-      title: "Vekting",
+      name: "type", // Sjekk om det er en dropdown-ting
+      title: "Partner type",
       type: "string",
       options: {
         list: [
-          { title: "Uviktig", value: "1" },
-          { title: "Normal", value: "5" },
-          { title: "Fremhevet", value: "10" }
+          { title: "Eier og arrangør", value: "owner" },
+          { title: "Hovedpartner", value: "mainpartner" },
+          { title: "Partner", value: "partner" }
         ]
-      }
-    },
-    {
-      name: "editorialState",
-      type: "string",
-      options: {
-        list: [
-          { title: "Needs review", value: "review" },
-          { title: "Awaiting publication", value: "awaiting" },
-          { title: "Published", value: "published" }
-        ],
-        layout: "radio"
       }
     }
   ]
