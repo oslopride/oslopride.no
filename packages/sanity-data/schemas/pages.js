@@ -1,6 +1,6 @@
 // Schema to collect all pages in one schema
 
-import frontPage from "./frontPage";
+import frontPage from "./pages/frontPage";
 
 export default {
   name: "pages",

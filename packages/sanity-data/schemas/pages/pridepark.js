@@ -1,6 +1,6 @@
 export default {
-  name: "article",
-  title: "Artikkel",
+  name: "pridepark",
+  title: "Pride Park",
   type: "document",
   fields: [
     {

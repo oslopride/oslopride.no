@@ -1,6 +1,6 @@
 export default {
-  name: "article",
-  title: "Artikkel",
+  name: "contact",
+  title: "Kontakt",
   type: "document",
   fields: [
     {

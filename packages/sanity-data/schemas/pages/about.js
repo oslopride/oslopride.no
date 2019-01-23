@@ -1,6 +1,6 @@
 export default {
-  name: "article",
-  title: "Artikkel",
+  name: "about",
+  title: "Om Oss",
   type: "document",
   fields: [
     {
