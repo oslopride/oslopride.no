@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "package.json",
-  "author": "Siddise Hirpa <siddise.hirpa@oslopride.no>",
-  "license": "UNLICENSED",
+  "author": "Oslo Pride <teknologi@oslopride.no>",
+  "license": "MPL-2.0",
   "scripts": {
     "start": "sanity start",
     "test": "sanity check"
