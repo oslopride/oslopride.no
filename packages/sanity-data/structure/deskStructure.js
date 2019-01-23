@@ -18,7 +18,7 @@ export default () =>
         .title("Sider")
         .child(
           S.list()
-            .title("pages")
+            .title("Sider")
             .items([
               S.listItem()
                 .title("Forsiden")
