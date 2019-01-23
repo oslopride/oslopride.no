@@ -1,10 +1,10 @@
 {
   "root": true,
   "project": {
-    "name": "oslopride-test"
+    "name": "oslopride"
   },
   "api": {
-    "projectId": "9qq9w0y0",
+    "projectId": "2ger3rla",
     "dataset": "production"
   },
   "plugins": [
