@@ -8,6 +8,10 @@ cache: yarn
 notifications:
   email: false
 
+branches:
+  only:
+  - master
+
 install:
   - yarn
   - yarn global add now
