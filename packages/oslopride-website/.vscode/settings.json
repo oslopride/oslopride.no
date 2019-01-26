@@ -1,0 +1,9 @@
+{
+	"[javascriptreact]": {
+		"editor.formatOnSave": true
+	},
+	"[javascript]": {
+		"editor.formatOnSave": true
+	},
+	"eslint.alwaysShowStatus": true,
+}

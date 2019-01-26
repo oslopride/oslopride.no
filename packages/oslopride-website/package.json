@@ -1,0 +1,39 @@
+{
+  "name": "oslopride-website",
+  "version": "0.0.1",
+  "description": "Oslo Pride's official website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslopride/oslopride-website.git"
+  },
+  "author": "Oslo Pride",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/oslopride/oslopride-website/issues"
+  },
+  "homepage": "https://oslopride.no",
+  "dependencies": {
+    "next": "^7.0.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-module-resolver": "^3.1.3",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.6.0",
+    "eslint-import-resolver-babel-module": "^5.0.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "prettier": "^1.16.1"
+  }
+}
