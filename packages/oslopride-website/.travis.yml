@@ -1,0 +1,22 @@
+language: node_js
+
+node_js: 
+  - "node"
+
+cache: yarn
+
+notifications:
+  email: false
+
+install:
+  - yarn
+  - yarn global add now
+
+script:
+  - yarn test
+  - yarn build
+
+after_success:
+  - source ./scripts/deploy-now.sh
+  - ./scripts/pridebot-comment.sh
+  - ./scripts/alias-now.sh

@@ -1,7 +1,8 @@
 {
   "version": 2,
-  "name": "oslopride.no",
+  "name": "oslopride-website",
   "builds": [
     { "src": "package.json", "use": "@now/next" }
-  ]
+  ],
+  "public": true
 }
