@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 
 import styled from "styled-components";
 import Link from "next/link";
@@ -51,15 +50,10 @@ const MenuText = styled.span`
   font-weight: bold;
 `;
 
-const Header = ({ currentPath }) => {
+const Header = () => {
   const [isOpen, setOpen] = useState(false);
-  const [path, setPath] = useState(currentPath);
 
-  if (currentPath !== path) {
-    // Close menue on page change
-    setOpen(false);
-    setPath(currentPath);
-  }
+  const close = () => setOpen(false);
 
   return (
     <Container>
@@ -75,13 +69,9 @@ const Header = ({ currentPath }) => {
           <FontAwesomeIcon icon={isOpen ? faChevronUp : faChevronDown} />
         </MenuButton>
       </TopHeader>
-      <Navigation visible={isOpen} />
+      <Navigation visible={isOpen} callback={close} />
     </Container>
   );
-};
-
-Header.propTypes = {
-  currentPath: PropTypes.string.isRequired
 };
 
 export default Header;

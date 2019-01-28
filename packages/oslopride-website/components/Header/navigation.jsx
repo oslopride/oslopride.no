@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import NextLink from "@/components/NextLink";
+import Link from "@/components/Link";
 
 const Container = styled.nav`
   display: ${({ visible }) => (visible ? "flex" : "none")};
@@ -20,7 +20,7 @@ const NavigationGroup = styled.div`
   }
 `;
 
-const NavigationLink = styled(NextLink)`
+const NavigationLink = styled(Link)`
   color: #000;
   font-weight: bold;
   text-transform: uppercase;
@@ -28,35 +28,56 @@ const NavigationLink = styled(NextLink)`
   margin: 5px 8px;
 `;
 
-const Navigation = ({ className, visible }) => (
+const Navigation = ({ className, visible, callback }) => (
   <Container className={className} visible={visible}>
     <NavigationGroup>
-      <NavigationLink href="/program">Program 2019</NavigationLink>
+      <NavigationLink href="/program" onClick={callback}>
+        Program 2019
+      </NavigationLink>
     </NavigationGroup>
 
     <NavigationGroup>
-      <NavigationLink href="/pride-parade">Pride Parade</NavigationLink>
-      <NavigationLink href="/pride-park">Pride Park</NavigationLink>
-      <NavigationLink href="/pride-house">Pride House</NavigationLink>
-      <NavigationLink href="/pride-art">Pride Art</NavigationLink>
+      <NavigationLink href="/pride-parade" onClick={callback}>
+        Pride Parade
+      </NavigationLink>
+      <NavigationLink href="/pride-park" onClick={callback}>
+        Pride Park
+      </NavigationLink>
+      <NavigationLink href="/pride-house" onClick={callback}>
+        Pride House
+      </NavigationLink>
+      <NavigationLink href="/pride-art" onClick={callback}>
+        Pride Art
+      </NavigationLink>
     </NavigationGroup>
 
     <NavigationGroup>
-      <NavigationLink href="/pride-store">Pridebutikken</NavigationLink>
+      <NavigationLink href="/pride-store" onClick={callback}>
+        Pridebutikken
+      </NavigationLink>
     </NavigationGroup>
 
     <NavigationGroup>
-      <NavigationLink href="/contact">Kontakt</NavigationLink>
-      <NavigationLink href="/about">Om Oss</NavigationLink>
-      <NavigationLink href="/partners">Partnere</NavigationLink>
-      <NavigationLink href="/become-partner">Bli Partner</NavigationLink>
+      <NavigationLink href="/contact" onClick={callback}>
+        Kontakt
+      </NavigationLink>
+      <NavigationLink href="/about" onClick={callback}>
+        Om Oss
+      </NavigationLink>
+      <NavigationLink href="/partners" onClick={callback}>
+        Partnere
+      </NavigationLink>
+      <NavigationLink href="/become-partner" onClick={callback}>
+        Bli Partner
+      </NavigationLink>
     </NavigationGroup>
   </Container>
 );
 
 Navigation.propTypes = {
   className: PropTypes.string,
-  visible: PropTypes.bool.isRequired
+  visible: PropTypes.bool.isRequired,
+  callback: PropTypes.func.isRequired
 };
 
 Navigation.defaultProps = {
