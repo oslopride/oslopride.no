@@ -6,6 +6,9 @@
         "alias": {
 					"@": "."
         }
+		}],
+		["styled-components", {
+			"ssr": true
 		}]
 	],
 }
