@@ -1,10 +1,18 @@
 import React from "react";
 import App, { Container } from "next/app";
 import Head from "next/head";
+import { createGlobalStyle } from "styled-components";
 
 import Header from "@/components/Header";
 
 import "normalize.css";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: "Open Sans", sans-serif;
+    background-color: #f1f4f9;
+  }
+`;
 
 class NextApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -22,6 +30,7 @@ class NextApp extends App {
 
     return (
       <Container>
+        <GlobalStyle />
         <Head>
           <title>Oslo Pride</title>
         </Head>

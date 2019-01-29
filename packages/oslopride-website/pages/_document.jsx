@@ -1,12 +1,7 @@
 import React from "react";
 
 import Document, { Head, Main, NextScript } from "next/document";
-import styled, { ServerStyleSheet } from "styled-components";
-
-const Body = styled.body`
-  font-family: "Open Sans", sans-serif;
-  background-color: #f1f4f9;
-`;
+import { ServerStyleSheet } from "styled-components";
 
 export default class NextDocument extends Document {
   static async getInitialProps(ctx) {
@@ -43,10 +38,10 @@ export default class NextDocument extends Document {
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
         </Head>
-        <Body>
+        <body>
           <Main />
           <NextScript />
-        </Body>
+        </body>
       </html>
     );
   }

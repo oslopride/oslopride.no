@@ -8,12 +8,12 @@ const gray = "rgba(190, 190, 190, 1)";
 
 export const A = styled.a`
   cursor: pointer;
-  box-shadow: inset 0 -5px 0 0 ${({ color }) => color || gray};
+  box-shadow: inset 0 -0.3em 0 0 ${({ color }) => color || gray};
   transition: box-shadow 0.2s;
 
   :hover,
   :focus {
-    box-shadow: inset 0 -25px 0 0 ${({ color }) => color || gray};
+    box-shadow: inset 0 -1.1em 0 0 ${({ color }) => color || gray};
   }
 `;
 
