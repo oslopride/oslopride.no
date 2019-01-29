@@ -60,7 +60,11 @@ const Header = () => {
       <TopHeader>
         <Link href="/">
           <a>
-            <Logo src="/static/oslopride.svg" alt="Oslo Pride Logo" />
+            <Logo
+              src="/static/oslopride.svg"
+              alt="Oslo Pride Logo"
+              onClick={close}
+            />
           </a>
         </Link>
         <PrideDate>14. juni – 23. juni 2019</PrideDate>
