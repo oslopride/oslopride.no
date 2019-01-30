@@ -25,6 +25,7 @@ export default () =>
                 .child(
                   S.editor()
                     .id("frontPage")
+                    .title("Forsiden")
                     .schemaType("frontPage")
                     .documentId("global-front-page")
                 ),
@@ -33,6 +34,7 @@ export default () =>
                 .child(
                   S.editor()
                     .id("prideart")
+                    .title("Pride Art")
                     .schemaType("prideart")
                     .documentId("global-pride-art")
                 ),
@@ -41,6 +43,7 @@ export default () =>
                 .child(
                   S.editor()
                     .id("pridepark")
+                    .title("Pride Park")
                     .schemaType("pridepark")
                     .documentId("global-pride-park")
                 ),
@@ -49,6 +52,7 @@ export default () =>
                 .child(
                   S.editor()
                     .id("pridehouse")
+                    .title("Pride House")
                     .schemaType("pridehouse")
                     .documentId("global-pride-house")
                 ),
@@ -57,6 +61,7 @@ export default () =>
                 .child(
                   S.editor()
                     .id("prideparade")
+                    .title("Pride Parade")
                     .schemaType("prideparade")
                     .documentId("global-pride-parade")
                 ),
@@ -65,6 +70,7 @@ export default () =>
                 .child(
                   S.editor()
                     .id("about")
+                    .title("Om oss")
                     .schemaType("about")
                     .documentId("global-about")
                 ),
@@ -73,8 +79,9 @@ export default () =>
                 .child(
                   S.editor()
                     .id("contact")
+                    .title("Kontakt")
                     .schemaType("contact")
-                    .documentId("global-pride-art")
+                    .documentId("global-contact")
                 )
             ])
         ),
