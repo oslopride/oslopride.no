@@ -24,7 +24,7 @@ export default createSchema({
   // Then proceed to concatenate our our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
-	blockContent,
+    blockContent,
     article,
     partner,
     frontPage,
@@ -34,7 +34,7 @@ export default createSchema({
     prideart,
     pridehouse,
     pridepark,
-	event, 
-	venue
+    event,
+    venue
   ])
 });

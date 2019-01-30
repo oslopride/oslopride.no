@@ -23,33 +23,6 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      name: "permanentContent",
-      title: "Fast innhold",
-      type: "array",
-      of: [
-        {
-          title: "Spalte",
-          name: "section",
-          type: "object",
-          fields: [
-            {
-              name: "title",
-              type: "string",
-              title: "Overskrift",
-              validation: Rule => Rule.required()
-            },
-            {
-              name: "body",
-              type: "array",
-              of: [{ type: "block" }],
-              title: "Tekst",
-              validation: Rule => Rule.required()
-            }
-          ]
-        }
-      ]
-    },
-    {
       name: "featuredDates",
       title: "Hoveddatoer",
       type: "array",
