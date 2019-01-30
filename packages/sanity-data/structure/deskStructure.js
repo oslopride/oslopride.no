@@ -7,12 +7,11 @@ export default () =>
       S.listItem()
         .title("Program")
         .child(
-          S.list()
-            .title("Program")
-            .child(
-              S.listItem().title("Arrangementer"),
-              S.listItem().title("Arbeidsliste")
-            )
+          S.documentList()
+            .title("Arrangementer")
+            .menuItems(S.documentTypeList("event").getMenuItems())
+            .filter("_type == $type ")
+            .params({ type: "event" })
         ),
       S.listItem()
         .title("Sider")
@@ -102,5 +101,14 @@ export default () =>
             .menuItems(S.documentTypeList("partner").getMenuItems())
             .filter("_type == $type ")
             .params({ type: "partner" })
+        ),
+      S.listItem()
+        .title("Områder")
+        .child(
+          S.documentList()
+            .title("Områder")
+            .menuItems(S.documentTypeList("venue").getMenuItems())
+            .filter("_type == $type ")
+            .params({ type: "venue" })
         )
     ]);
