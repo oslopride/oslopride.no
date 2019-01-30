@@ -10,61 +10,42 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      name: "slug",
-      title: "Adresse",
-      type: "slug",
-      options: {
-        source: "title",
-        maxLength: 200, // will be ignored if slugify is set
-        slugify: input =>
-          input
-            .toLowerCase()
-            .replace(/\s+/g, "-")
-            .slice(0, 200)
-      }
+      name: "preamble",
+      title: "Ingress",
+      validation: Rule =>
+        Rule.required()
+          .min(20)
+          .max(140),
+      type: "string"
     },
     {
       name: "image",
-      title: "Hovedbilde",
+      title: "Bilde",
       type: "image",
+      validation: Rule => Rule.required(),
       options: {
         hotspot: true
       }
     },
     {
-      name: "preamble",
-      title: "Ingress",
-      type: "array",
-      of: [{ type: "block" }]
-    },
-    {
       name: "body",
-      title: "Brødtekst",
-      type: "array",
-      of: [{ type: "block" }]
+      title: "Innhold",
+      validation: Rule => Rule.required(),
+      type: "blockContent"
     },
     {
-      name: "weight",
-      title: "Vekting",
-      type: "string",
+      name: "slug",
+      title: "URL",
+      type: "slug",
+      validation: Rule => Rule.required(),
       options: {
-        list: [
-          { title: "Uviktig", value: "1" },
-          { title: "Normal", value: "5" },
-          { title: "Fremhevet", value: "10" }
-        ]
-      }
-    },
-    {
-      name: "editorialState",
-      type: "string",
-      options: {
-        list: [
-          { title: "Needs review", value: "review" },
-          { title: "Awaiting publication", value: "awaiting" },
-          { title: "Published", value: "published" }
-        ],
-        layout: "radio"
+        source: "title",
+        maxLength: 200,
+        slugify: input =>
+          input
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .slice(0, 200)
       }
     }
   ]
