@@ -1,40 +1,36 @@
 export default {
-  name: 'venue',
-  title: 'Sted',
-  type: 'document',
+  name: "venue",
+  title: "Område",
+  type: "document",
   fields: [
     {
-      name: 'name',
-      title: 'Name',
-      type: 'string'
-    }, 
-    {
-      name: 'description',
-      title: 'Description',
-      type: 'text'
+      name: "name",
+      title: "Navn",
+      type: "string",
+      validation: Rule => Rule.required()
     },
     {
-      name: 'address',
-      title: 'Adresse',
-      type: 'text'
-    },
-    {
-      name: 'placeId',
-      title: 'Google Maps Stedsidentifikator',
-      type: 'text'
-    },
-    {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
+      name: "image",
+      title: "Bilde",
+      type: "image",
       options: {
         hotspot: true
       }
     },
-	{
-	  name: 'location',
-	  title: 'Posisjon',
-	  type: 'geopoint'
-	}
+    {
+      name: "description",
+      title: "Beskrivelse",
+      type: "text"
+    },
+    {
+      name: "address",
+      title: "Adresse",
+      type: "string"
+    },
+    {
+      name: "placeId",
+      title: "Google Maps lenke",
+      type: "url"
+    }
   ]
-}
+};
