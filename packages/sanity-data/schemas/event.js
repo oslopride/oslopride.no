@@ -192,6 +192,12 @@ export default {
           type: "string"
         }
       ]
+    },
+    {
+      name: 'documentOwner',
+      title: 'Dokumenteier',
+      type: 'string',
+      hidden: true
     }
   ]
 };
