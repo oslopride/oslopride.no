@@ -141,11 +141,11 @@ export default {
       validation: Rule => Rule.required(),
       options: {
         list: [
-          { value: 0, title: "Annet" },
-          { value: 1, title: "Pride Parade" },
-          { value: 2, title: "Pride Park" },
-          { value: 3, title: "Pride House" },
-          { value: 4, title: "Pride Art" }
+          { value: "0", title: "Annet" },
+          { value: "1", title: "Pride Parade" },
+          { value: "2", title: "Pride Park" },
+          { value: "3", title: "Pride House" },
+          { value: "4", title: "Pride Art" }
         ]
       }
     },
@@ -156,11 +156,11 @@ export default {
       validation: Rule => Rule.required(),
       options: {
         list: [
-          { value: 0, title: "Annet" },
-          { value: 1, title: "Konsert" },
-          { value: 2, title: "Debatt" },
-          { value: 3, title: "Utstilling" },
-          { value: 4, title: "Fest" }
+          { value: "0", title: "Annet" },
+          { value: "1", title: "Konsert" },
+          { value: "2", title: "Debatt" },
+          { value: "3", title: "Utstilling" },
+          { value: "4", title: "Fest" }
         ]
       }
     },
