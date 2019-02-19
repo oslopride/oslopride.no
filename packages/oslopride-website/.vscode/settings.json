@@ -1,9 +1,15 @@
 {
 	"[javascriptreact]": {
-		"editor.formatOnSave": true
+		"editor.formatOnSave": true,
+		"editor.codeActionsOnSave": {
+			"source.organizeImports": true
+		}
 	},
 	"[javascript]": {
-		"editor.formatOnSave": true
+		"editor.formatOnSave": true,
+		"editor.codeActionsOnSave": {
+			"source.organizeImports": true
+		}
 	},
-	"eslint.alwaysShowStatus": true,
+	"eslint.alwaysShowStatus": true
 }

@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-
-import styled from "styled-components";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-
 import Button from "@/components/Button";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import React, { useState } from "react";
+import styled from "styled-components";
 import Navigation from "./navigation";
 
 const Container = styled.header`

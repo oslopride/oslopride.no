@@ -1,8 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-
 import Link from "@/components/Link";
+import React from "react";
+import styled from "styled-components";
 
 const yellow = "rgba(255, 190, 0, 1)";
 const red = "rgba(211, 0, 33, 0.6)";
@@ -79,15 +77,5 @@ const Navigation = ({ className, visible, callback }) => (
     </NavigationGroup>
   </Container>
 );
-
-Navigation.propTypes = {
-  className: PropTypes.string,
-  visible: PropTypes.bool.isRequired,
-  callback: PropTypes.func.isRequired
-};
-
-Navigation.defaultProps = {
-  className: undefined
-};
 
 export default Navigation;

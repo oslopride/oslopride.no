@@ -1,7 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import NextLink from "next/link";
+import React from "react";
 import styled from "styled-components";
 
 const gray = "rgba(190, 190, 190, 1)";
@@ -24,20 +22,5 @@ const Link = ({ className, href, children, onClick, color }) => (
     </A>
   </NextLink>
 );
-
-Link.propTypes = {
-  className: PropTypes.string,
-  href: PropTypes.string.isRequired,
-  children: PropTypes.node,
-  onClick: PropTypes.func,
-  color: PropTypes.string
-};
-
-Link.defaultProps = {
-  className: undefined,
-  children: undefined,
-  onClick: undefined,
-  color: undefined
-};
 
 export default Link;
