@@ -33,9 +33,10 @@ export const aboutReducer = (state = initialState, action) => {
   }
 };
 
+export const getAbout = () => api.getDocument("global-about");
+
 function* fetchAbout() {
   try {
-    const getAbout = () => api.getDocument("global-about");
     const response = yield call(getAbout);
     yield put(aboutActions.success(response));
   } catch (e) {

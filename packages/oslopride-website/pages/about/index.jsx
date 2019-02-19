@@ -1,14 +1,13 @@
 import Sheet from "@/components/Sheet";
-import { aboutActions } from "@/store/about";
+import { aboutActions, getAbout } from "@/store/about";
+import { webResponseInitial } from "@/store/helpers";
 import blocksToHtml from "@sanity/block-content-to-html";
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 const About = props => {
   const { about } = props;
-  useEffect(() => {
-    props.fetchAboutContent();
-  }, []);
+
   if (about.status !== "SUCCESS") {
     // TODO: Make a better UX while loading
     return <div>Laster ...</div>;
@@ -25,6 +24,20 @@ const About = props => {
       <article dangerouslySetInnerHTML={{ __html: content }} />
     </Sheet>
   );
+};
+
+About.getInitialProps = async ({ store, isServer }) => {
+  if (store.getState().about.status === webResponseInitial().status) {
+    store.dispatch(aboutActions.request());
+    if (isServer) {
+      try {
+        const response = await getAbout();
+        store.dispatch(aboutActions.success(response));
+      } catch (e) {
+        store.dispatch(aboutActions.failure(`${e}`));
+      }
+    }
+  }
 };
 
 const mapStateToProps = state => ({
