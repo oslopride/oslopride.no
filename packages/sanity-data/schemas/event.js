@@ -131,8 +131,7 @@ export default {
     {
       name: "description",
       title: "Beskrivelse",
-      type: "array",
-      of: [{ type: "block" }],
+      type: "blockContent",
       validation: Rule => Rule.required()
     },
     {
@@ -194,9 +193,9 @@ export default {
       ]
     },
     {
-      name: 'documentOwner',
-      title: 'Dokumenteier',
-      type: 'string',
+      name: "documentOwner",
+      title: "Dokumenteier",
+      type: "string",
       hidden: true
     }
   ]

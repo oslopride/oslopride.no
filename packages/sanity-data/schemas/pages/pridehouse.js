@@ -6,8 +6,7 @@ export default {
     {
       name: "preamble",
       title: "Ingress",
-      type: "array",
-      of: [{ type: "block" }],
+      type: "blockContent",
       validation: Rule => Rule.required()
     },
     {
@@ -21,8 +20,7 @@ export default {
     {
       name: "body",
       title: "Innhold",
-      type: "array",
-      of: [{ type: "block" }],
+      type: "blockContent",
       validation: Rule => Rule.required()
     }
   ]

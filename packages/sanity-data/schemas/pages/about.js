@@ -6,8 +6,7 @@ export default {
     {
       name: "body",
       title: "Brødtekst",
-      type: "array",
-      of: [{ type: "block" }],
+      type: "blockContent",
       validation: Rule => Rule.required()
     }
   ]
