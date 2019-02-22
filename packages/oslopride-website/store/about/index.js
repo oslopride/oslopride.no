@@ -1,5 +1,4 @@
 import { call, put, takeLeading } from "redux-saga/effects";
-import api from "../api";
 import {
   createAction,
   webResponseFailure,
@@ -7,6 +6,7 @@ import {
   webResponseRequest,
   webResponseSuccess
 } from "../helpers";
+import sanity from "../sanity";
 
 const REQUEST_ABOUT_CONTENT = "REQUEST_ABOUT_CONTENT";
 const SUCCESS_ABOUT_CONTENT = "SUCCESS_ABOUT_CONTENT";
@@ -33,7 +33,7 @@ export const aboutReducer = (state = initialState, action) => {
   }
 };
 
-export const getAbout = () => api.getDocument("global-about");
+export const getAbout = () => sanity.getDocument("global-about");
 
 function* fetchAbout() {
   try {

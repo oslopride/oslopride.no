@@ -772,6 +772,11 @@
   resolved "https://registry.yarnpkg.com/@sanity/image-url/-/image-url-0.139.0.tgz#47cf2f4b583dc48f1ff590e5abdc86947a4c88ca"
   integrity sha512-/ec7Tof1mR61+AP8jJcIspzdkL55WM+s/pDLTSScBgoYXNETfBOePBAa7kHl9FeN3CsYCm4WuthhnC7Qv84MnQ==
 
+"@sanity/image-url@^0.140.8":
+  version "0.140.8"
+  resolved "https://registry.yarnpkg.com/@sanity/image-url/-/image-url-0.140.8.tgz#74abc8cc25cd4d12894f0187de370fd49afc36b2"
+  integrity sha512-1si4nyMwqJi3nk0hNgsHRslxzfRR5UQzl7+fZ31CaR6k+PO8iS/RTH4g0jhRv+RyA7NW0pqBfz1KI+M4QtADXg==
+
 "@sanity/observable@0.140.0":
   version "0.140.0"
   resolved "https://registry.yarnpkg.com/@sanity/observable/-/observable-0.140.0.tgz#6c7f51932d7fa446154bb127b24d64f4c9bd46c4"
