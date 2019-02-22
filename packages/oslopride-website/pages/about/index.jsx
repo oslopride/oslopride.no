@@ -1,7 +1,7 @@
 import Sheet from "@/components/Sheet";
 import { aboutActions, getAbout } from "@/store/about";
 import { webResponseInitial } from "@/store/helpers";
-import blocksToHtml from "@sanity/block-content-to-html";
+import BlockContent from "@sanity/block-content-to-react";
 import React from "react";
 import { connect } from "react-redux";
 
@@ -13,15 +13,12 @@ const About = props => {
     return <div>Laster ...</div>;
   }
 
-  // TODO: Investigate if it's posible to use a react version of this using
-  // react hyperscript: https://github.com/mlmorg/react-hyperscript instead of
-  // the regular hyperscript used here
-  const content = blocksToHtml({ blocks: about.data.body });
-  // eslint-disable-next-line react/no-danger
   return (
     <Sheet>
       <h1>Om Oss</h1>
-      <article dangerouslySetInnerHTML={{ __html: content }} />
+      <article>
+        <BlockContent blocks={about.data.body} />
+      </article>
     </Sheet>
   );
 };

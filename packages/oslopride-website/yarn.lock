@@ -718,14 +718,7 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@redux-saga/types/-/types-1.0.0.tgz#9342b7eb52ed3c903e122841407d4984b7338339"
 
-"@sanity/block-content-to-html@^1.3.8":
-  version "1.3.8"
-  resolved "https://registry.yarnpkg.com/@sanity/block-content-to-html/-/block-content-to-html-1.3.8.tgz#eff8e3dafe82f4a7e10ed914f7fa646c3e59ec2d"
-  integrity sha512-eXXilwPQCFe2uHMK5DItzZWg2CgaCfbo2hpcY1BbJEDPNhPjRlkaNBxM65U9M6yxreNnFffTNWHORVX3vZmIeQ==
-  dependencies:
-    "@sanity/block-content-to-hyperscript" "^2.0.5"
-
-"@sanity/block-content-to-hyperscript@^2.0.5":
+"@sanity/block-content-to-hyperscript@^2.0.7":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@sanity/block-content-to-hyperscript/-/block-content-to-hyperscript-2.0.7.tgz#aa64d1689fdf5263b03fbd7e377028ec2307f3c2"
   integrity sha512-En1qjMARu/evRb1BKgzs6RsRPpFqg45NB+odpCGE2H+DDZ/pM7qXZN0Br7ej6RPT7xxPs4IK3222VyrzFcn62g==
@@ -734,6 +727,14 @@
     "@sanity/image-url" "^0.139.0"
     hyperscript "^2.0.2"
     object-assign "^4.1.1"
+
+"@sanity/block-content-to-react@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@sanity/block-content-to-react/-/block-content-to-react-2.0.6.tgz#be8b090e3c24d7bc66dc6a140dd5ee6ebd70713d"
+  integrity sha512-fLZKU+tZbJVzoKNOeWgRGQjIv9yoiYXOYq+1XhWyUlC167P2e663wCQe8fYhSzoM8Yn6FlsbC7UUtQANtLMNIA==
+  dependencies:
+    "@sanity/block-content-to-hyperscript" "^2.0.7"
+    prop-types "^15.6.2"
 
 "@sanity/client@^0.140.8":
   version "0.140.8"
