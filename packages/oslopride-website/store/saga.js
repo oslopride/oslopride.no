@@ -1,5 +1,6 @@
 import { all, call } from "redux-saga/effects";
 import { aboutSaga } from "./about";
+import { frontPageSaga } from "./front-page";
 import { prideArtSaga } from "./pride-art";
 import { prideHouseSaga } from "./pride-house";
 import { prideParadeSaga } from "./pride-parade";
@@ -11,6 +12,7 @@ export default function* rootSaga() {
     call(prideArtSaga),
     call(prideHouseSaga),
     call(prideParkSaga),
-    call(prideParadeSaga)
+    call(prideParadeSaga),
+    call(frontPageSaga)
   ]);
 }

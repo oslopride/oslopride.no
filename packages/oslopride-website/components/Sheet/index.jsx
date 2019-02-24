@@ -10,6 +10,8 @@ const Container = styled.div`
   }
 `;
 
-const Sheet = ({ children }) => <Container>{children}</Container>;
+const Sheet = ({ children, className }) => (
+  <Container className={className}>{children}</Container>
+);
 
 export default Sheet;

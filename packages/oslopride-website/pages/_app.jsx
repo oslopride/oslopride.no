@@ -12,6 +12,11 @@ import styled, { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   ${normalize()}
 
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+
   body {
     font-family: "Open Sans", sans-serif;
     background-color: #f1f4f9;
@@ -20,11 +25,18 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+
+  #__next {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const Content = styled.main`
-  line-height: 1.5em;
+  line-height: 1.5;
   margin-top: 20px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;

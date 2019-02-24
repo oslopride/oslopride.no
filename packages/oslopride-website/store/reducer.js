@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { aboutReducer } from "./about";
+import { frontPageReducer } from "./front-page";
 import { prideArtReducer } from "./pride-art";
 import { prideHouseReducer } from "./pride-house";
 import { prideParadeReducer } from "./pride-parade";
@@ -10,5 +11,6 @@ export default combineReducers({
   prideArt: prideArtReducer,
   prideHouse: prideHouseReducer,
   pridePark: prideParkReducer,
-  prideParade: prideParadeReducer
+  prideParade: prideParadeReducer,
+  frontPage: frontPageReducer
 });
