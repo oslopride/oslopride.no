@@ -1,5 +1,6 @@
+import UnderConstruction from "@/components/UnderConstruction";
 import React from "react";
 
-const BecomePartner = () => <div>Bli Partner</div>;
+const BecomePartner = () => <UnderConstruction />;
 
 export default BecomePartner;

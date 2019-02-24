@@ -1,5 +1,6 @@
+import UnderConstruction from "@/components/UnderConstruction";
 import React from "react";
 
-const Partners = () => <div>Partnere</div>;
+const Partners = () => <UnderConstruction />;
 
 export default Partners;

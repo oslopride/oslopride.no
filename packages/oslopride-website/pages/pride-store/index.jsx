@@ -1,5 +1,6 @@
+import UnderConstruction from "@/components/UnderConstruction";
 import React from "react";
 
-const PrideStore = () => <div>Pridebutikken</div>;
+const PrideStore = () => <UnderConstruction />;
 
 export default PrideStore;
