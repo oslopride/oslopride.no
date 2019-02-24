@@ -1,8 +1,8 @@
+import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import { webResponseInitial } from "@/store/helpers";
 import { getPrideArt, prideArtActions } from "@/store/pride-art";
 import { imageUrlFor } from "@/store/sanity";
-import BockContent from "@sanity/block-content-to-react";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -23,12 +23,12 @@ const PrideArt = props => {
     <Sheet>
       <h1>Pride Art</h1>
       <article>
-        <BockContent blocks={prideArt.data.preamble} />
+        <SanityBlockContent blocks={prideArt.data.preamble} />
         <PrideArtImage
           src={imageUrlFor(prideArt.data.image).url()}
           alt="pride art illustrasjon"
         />
-        <BockContent blocks={prideArt.data.body} />
+        <SanityBlockContent blocks={prideArt.data.body} />
       </article>
     </Sheet>
   );

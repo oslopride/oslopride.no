@@ -1,7 +1,7 @@
+import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import { aboutActions, getAbout } from "@/store/about";
 import { webResponseInitial } from "@/store/helpers";
-import BlockContent from "@sanity/block-content-to-react";
 import React from "react";
 import { connect } from "react-redux";
 
@@ -17,7 +17,7 @@ const About = props => {
     <Sheet>
       <h1>Om Oss</h1>
       <article>
-        <BlockContent blocks={about.data.body} />
+        <SanityBlockContent blocks={about.data.body} />
       </article>
     </Sheet>
   );

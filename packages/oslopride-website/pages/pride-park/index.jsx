@@ -1,7 +1,7 @@
+import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import { webResponseInitial } from "@/store/helpers";
 import { getPridePark, prideParkActions } from "@/store/pride-park";
-import BockContent from "@sanity/block-content-to-react";
 import React from "react";
 import { connect } from "react-redux";
 
@@ -17,8 +17,8 @@ const PridePark = props => {
     <Sheet>
       <h1>Pride Park</h1>
       <article>
-        <BockContent blocks={pridePark.data.preamble} />
-        <BockContent blocks={pridePark.data.body} />
+        <SanityBlockContent blocks={pridePark.data.preamble} />
+        <SanityBlockContent blocks={pridePark.data.body} />
       </article>
     </Sheet>
   );

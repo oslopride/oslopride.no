@@ -3,9 +3,12 @@ import imageUrlBuilder from "@sanity/image-url";
 
 const isProduction = process.env.NODE_ENV === "production";
 
+export const PROJECT_ID = "2ger3rla";
+export const DATASET = "production";
+
 const sanity = sanityClient({
-  projectId: "2ger3rla",
-  dataset: "production",
+  projectId: PROJECT_ID,
+  dataset: DATASET,
   useCdn: isProduction
 });
 
