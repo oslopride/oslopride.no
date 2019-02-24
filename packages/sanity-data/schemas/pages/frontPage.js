@@ -57,12 +57,6 @@ export default {
           type: "object",
           fields: [
             {
-              name: "icon",
-              type: "image",
-              title: "Ikon",
-              validation: Rule => Rule.required()
-            },
-            {
               name: "title",
               type: "string",
               title: "Tittel",
