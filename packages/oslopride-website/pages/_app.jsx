@@ -4,15 +4,21 @@ import withReduxSaga from "next-redux-saga";
 import withRedux from "next-redux-wrapper";
 import App, { Container } from "next/app";
 import Head from "next/head";
-import "normalize.css";
+import { normalize } from "polished";
 import React from "react";
 import { Provider } from "react-redux";
 import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+  ${normalize()}
+
   body {
     font-family: "Open Sans", sans-serif;
     background-color: #f1f4f9;
+  }
+
+  * {
+    box-sizing: border-box;
   }
 `;
 
@@ -24,7 +30,11 @@ const Content = styled.main`
   align-items: center;
 
   & > * {
-    max-width: 1000px;
+    width: 100%;
+
+    @media (min-width: 1000px) {
+      width: 1000px;
+    }
   }
 `;
 
