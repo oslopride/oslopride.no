@@ -5,6 +5,8 @@ import { prideArtSaga } from "./pride-art";
 import { prideHouseSaga } from "./pride-house";
 import { prideParadeSaga } from "./pride-parade";
 import { prideParkSaga } from "./pride-park";
+import { contactSaga } from "./contact";
+
 
 export default function* rootSaga() {
   yield all([
@@ -13,6 +15,7 @@ export default function* rootSaga() {
     call(prideHouseSaga),
     call(prideParkSaga),
     call(prideParadeSaga),
-    call(frontPageSaga)
+    call(frontPageSaga),
+    call(contactSaga)
   ]);
 }
