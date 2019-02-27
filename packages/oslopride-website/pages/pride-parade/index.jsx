@@ -4,6 +4,13 @@ import { webResponseInitial } from "@/store/helpers";
 import { getPrideParade, prideParadeActions } from "@/store/pride-parade";
 import React from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
+
+const Wrapper = styled(Sheet)`
+  @media (min-width: 1000px) {
+    width: 1000px;
+  }
+`;
 
 const PrideParade = props => {
   const { prideParade } = props;
@@ -14,12 +21,12 @@ const PrideParade = props => {
   }
 
   return (
-    <Sheet>
+    <Wrapper>
       <h1>Pride Parade</h1>
       <article>
         <SanityBlockContent blocks={prideParade.data.body} />
       </article>
-    </Sheet>
+    </Wrapper>
   );
 };
 

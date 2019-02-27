@@ -4,12 +4,10 @@ import Hero from "@/components/Hero";
 import { frontPageActions, getFrontPage } from "@/store/front-page";
 import { webResponseInitial } from "@/store/helpers";
 import { imageUrlFor } from "@/store/sanity";
+import theme from "@/utils/theme";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-
-const prideOrange = "#EF5E2B";
-const pridePurple = "#3A1A7B";
 
 const ContentWrapper = styled.div`
   width: 100%;
@@ -29,9 +27,18 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const FrontPageHero = styled(Hero)`
-  padding: 0 20px;
+const HeroWrapper = styled.div`
+  padding: 0 15px;
   margin-bottom: 30px;
+  width: 100%;
+`;
+
+const FrontPageHero = styled(Hero)`
+  width: 100%;
+  margin: 0 auto;
+  @media (min-width: 1030px) {
+    width: 1000px;
+  }
 `;
 
 const SubContentWrapper = styled.div`
@@ -72,11 +79,11 @@ const FrontPageCallToActionList = styled(FeaturedCallToActionList)`
 `;
 
 const FeaturedDatesTitle = styled.h2`
-  color: ${pridePurple};
+  color: ${theme.purple};
 `;
 
 const FeaturedCallToActionTitle = styled.h2`
-  color: ${prideOrange};
+  color: ${theme.orange};
 `;
 
 const FrontPage = props => {
@@ -89,11 +96,13 @@ const FrontPage = props => {
 
   return (
     <>
-      <FrontPageHero
-        imageURL={imageUrlFor(frontPage.data.callToActionImage).url()}
-        title={frontPage.data.callToActionTitle}
-        subtitle={frontPage.data.callToActionBody}
-      />
+      <HeroWrapper>
+        <FrontPageHero
+          imageURL={imageUrlFor(frontPage.data.callToActionImage).url()}
+          title={frontPage.data.callToActionTitle}
+          subtitle={frontPage.data.callToActionBody}
+        />
+      </HeroWrapper>
       <ContentWrapper>
         <SubContentWrapper>
           <FeaturedDatesWrapper>

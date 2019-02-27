@@ -1,3 +1,4 @@
+import theme from "@/utils/theme";
 import React from "react";
 import styled from "styled-components";
 
@@ -35,7 +36,7 @@ const Image = styled.img`
 
 const Title = styled.h1`
   text-align: center;
-  color: #401080;
+  color: ${theme.purple};
   margin: 0;
   font-size: 50px;
   line-height: 1;

@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import theme from "@/utils/theme";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import styled from "styled-components";
 import Navigation from "./navigation";
 
 const Container = styled.header`
-  background-color: #fff;
+  background-color: white;
   border-bottom: 3px solid #ddd;
   display: flex;
   flex-direction: column;
@@ -29,7 +30,7 @@ const Logo = styled.img`
 `;
 
 const PrideDate = styled.div`
-  color: #666;
+  color: ${theme.gray.regular};
   text-align: center;
 
   font-size: 12px;

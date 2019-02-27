@@ -4,6 +4,13 @@ import { aboutActions, getAbout } from "@/store/about";
 import { webResponseInitial } from "@/store/helpers";
 import React from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
+
+const Wrapper = styled(Sheet)`
+  @media (min-width: 1000px) {
+    width: 1000px;
+  }
+`;
 
 const About = props => {
   const { about } = props;
@@ -14,12 +21,12 @@ const About = props => {
   }
 
   return (
-    <Sheet>
+    <Wrapper>
       <h1>Om Oss</h1>
       <article>
         <SanityBlockContent blocks={about.data.body} />
       </article>
-    </Sheet>
+    </Wrapper>
   );
 };
 

@@ -4,6 +4,10 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   width: 100%;
+
+  @media (min-width: 1000px) {
+    width: 1000px;
+  }
 `;
 
 const Program = () => (

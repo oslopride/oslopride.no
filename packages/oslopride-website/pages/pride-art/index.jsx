@@ -7,6 +7,12 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
+const Wrapper = styled(Sheet)`
+  @media (min-width: 1000px) {
+    width: 1000px;
+  }
+`;
+
 const PrideArtImage = styled.img`
   max-width: 100%;
 `;
@@ -20,7 +26,7 @@ const PrideArt = props => {
   }
 
   return (
-    <Sheet>
+    <Wrapper>
       <h1>Pride Art</h1>
       <article>
         <SanityBlockContent blocks={prideArt.data.preamble} />
@@ -30,7 +36,7 @@ const PrideArt = props => {
         />
         <SanityBlockContent blocks={prideArt.data.body} />
       </article>
-    </Sheet>
+    </Wrapper>
   );
 };
 
