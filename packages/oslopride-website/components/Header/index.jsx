@@ -3,6 +3,7 @@ import theme from "@/utils/theme";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { darken } from "polished";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Navigation from "./navigation";
@@ -30,7 +31,7 @@ const Logo = styled.img`
 `;
 
 const PrideDate = styled.div`
-  color: ${theme.gray.regular};
+  color: ${darken(0.2, theme.gray)};
   text-align: center;
 
   font-size: 12px;
