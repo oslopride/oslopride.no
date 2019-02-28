@@ -1,3 +1,5 @@
+import slugify from "../utils/slugify";
+
 export default {
   name: "article",
   title: "Artikkel",
@@ -40,12 +42,7 @@ export default {
       validation: Rule => Rule.required(),
       options: {
         source: "title",
-        maxLength: 200,
-        slugify: input =>
-          input
-            .toLowerCase()
-            .replace(/\s+/g, "-")
-            .slice(0, 200)
+        slugify: slugify("article")
       }
     }
   ]
