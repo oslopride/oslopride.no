@@ -1,11 +1,12 @@
 import { combineReducers } from "redux";
 import { aboutReducer } from "./about";
+import { articleReducer } from "./articles";
+import { contactReducer } from "./contact";
 import { frontPageReducer } from "./front-page";
 import { prideArtReducer } from "./pride-art";
 import { prideHouseReducer } from "./pride-house";
 import { prideParadeReducer } from "./pride-parade";
 import { prideParkReducer } from "./pride-park";
-import { contactReducer } from "./contact";
 
 export default combineReducers({
   about: aboutReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   pridePark: prideParkReducer,
   prideParade: prideParadeReducer,
   frontPage: frontPageReducer,
-  contact: contactReducer
+  contact: contactReducer,
+  articles: articleReducer
 });

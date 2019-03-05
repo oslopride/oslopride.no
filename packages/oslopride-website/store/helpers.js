@@ -8,8 +8,8 @@ const createWebResponse = (status, data, error) => ({ status, data, error });
 export const webResponseInitial = () =>
   createWebResponse(INITIAL, undefined, undefined);
 
-export const webResponseRequest = () =>
-  createWebResponse(REQUEST, undefined, undefined);
+export const webResponseRequest = data =>
+  createWebResponse(REQUEST, data, undefined);
 
 export const webResponseSuccess = data =>
   createWebResponse(SUCCESS, data, undefined);

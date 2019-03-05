@@ -4,5 +4,6 @@
   "builds": [
     { "src": "package.json", "use": "@now/next" }
   ],
+  "routes": [{ "src": "/a/(?<slug>[^/]+)$", "dest": "/article?slug=$slug" }],
   "public": true
 }

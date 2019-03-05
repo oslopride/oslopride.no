@@ -1,5 +1,4 @@
 import { call, put, takeLeading } from "redux-saga/effects";
-import sanity from "../sanity";
 import {
   createAction,
   webResponseFailure,
@@ -7,6 +6,7 @@ import {
   webResponseRequest,
   webResponseSuccess
 } from "../helpers";
+import sanity from "../sanity";
 
 const REQUEST_CONTACT_CONTENT = "REQUEST_CONTACT_CONTENT";
 const SUCCESS_CONTACT_CONTENT = "SUCCESS_CONTACT_CONTENT";
@@ -19,7 +19,6 @@ export const contactActions = {
   failure: error =>
     createAction(FAILURE_CONTACT_CONTENT, webResponseFailure(error))
 };
-
 
 const initialState = webResponseInitial();
 

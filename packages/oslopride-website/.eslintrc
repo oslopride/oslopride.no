@@ -12,7 +12,8 @@
       "components": [ "Link" ],
       "aspects": [ "invalidHref", "preferButton" ]
     }],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "default-case": "off"
   },
   "settings": {
     "import/resolver": {
