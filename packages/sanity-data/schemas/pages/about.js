@@ -2,6 +2,14 @@ export default {
   name: "about",
   title: "Om Oss",
   type: "document",
+  preview: {
+    select: {},
+    prepare() {
+      return {
+        title: "Om Oss"
+      };
+    }
+  },
   fields: [
     {
       name: "body",

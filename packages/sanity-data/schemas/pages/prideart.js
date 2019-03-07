@@ -2,6 +2,14 @@ export default {
   name: "prideart",
   title: "Pride Art",
   type: "document",
+  preview: {
+    select: {},
+    prepare() {
+      return {
+        title: "Pride Art"
+      };
+    }
+  },
   fields: [
     {
       name: "preamble",

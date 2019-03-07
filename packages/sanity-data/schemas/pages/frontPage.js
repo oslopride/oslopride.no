@@ -2,6 +2,14 @@ export default {
   name: "frontPage",
   title: "Forside",
   type: "document",
+  preview: {
+    select: {},
+    prepare() {
+      return {
+        title: "Forside"
+      };
+    }
+  },
   fields: [
     {
       name: "callToActionImage",
@@ -70,6 +78,28 @@ export default {
             }
           ]
         }
+      ]
+    },
+    {
+      name: "featuredArticles",
+      title: "Fremhevede artikler",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "article" }] }],
+      options: {
+        sortable: true
+      },
+      validation: Rule => [
+        Rule.required()
+          .unique()
+          .error(
+            "Det er ikke mulig å legge til den samme artikkelen flere ganger"
+          ),
+        Rule.required()
+          .max(6)
+          .error("Det er kun plass til 6 fremhevede artikler på forsiden."),
+        Rule.min(6).warning(
+          "Forsiden ser best ut om det er 6 fremhevede artikler."
+        )
       ]
     }
   ]

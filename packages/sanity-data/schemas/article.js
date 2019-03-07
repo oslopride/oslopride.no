@@ -6,6 +6,17 @@ export default {
   type: "document",
   fields: [
     {
+      name: "site",
+      title: "Tilhørende side",
+      type: "reference",
+      to: [
+        { type: "prideart" },
+        { type: "pridehouse" },
+        { type: "prideparade" },
+        { type: "pridepark" }
+      ]
+    },
+    {
       name: "title",
       title: "Tittel",
       type: "string",

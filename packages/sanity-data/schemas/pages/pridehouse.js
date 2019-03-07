@@ -2,6 +2,14 @@ export default {
   name: "pridehouse",
   title: "Pride House",
   type: "document",
+  preview: {
+    select: {},
+    prepare() {
+      return {
+        title: "Pride House"
+      };
+    }
+  },
   fields: [
     {
       name: "preamble",

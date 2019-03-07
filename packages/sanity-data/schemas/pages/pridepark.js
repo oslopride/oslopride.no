@@ -2,6 +2,14 @@ export default {
   name: "pridepark",
   title: "Pride Park",
   type: "document",
+  preview: {
+    select: {},
+    prepare() {
+      return {
+        title: "Pride Park"
+      };
+    }
+  },
   fields: [
     {
       name: "preamble",
