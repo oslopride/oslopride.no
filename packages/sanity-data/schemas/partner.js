@@ -6,18 +6,21 @@ export default {
     {
       name: "name",
       title: "Navn",
-      type: "string"
+      type: "string",
+      validation: Rule => Rule.required()
     },
     {
       name: "description",
       title: "Beskrivelse",
       type: "array",
-      of: [{ type: "block" }]
+      of: [{ type: "block" }],
+      validation: Rule => Rule.required()
     },
     {
       name: "partnerUrl",
       title: "Partners nettside",
-      type: "url"
+      type: "url",
+      validation: Rule => Rule.required()
     },
     {
       name: "image",
@@ -25,7 +28,8 @@ export default {
       type: "image",
       options: {
         hotspot: false
-      }
+      },
+      validation: Rule => Rule.required()
     },
     {
       name: "type", // Sjekk om det er en dropdown-ting
@@ -37,7 +41,8 @@ export default {
           { title: "Hovedpartner", value: "mainpartner" },
           { title: "Partner", value: "partner" }
         ]
-      }
+      },
+      validation: Rule => Rule.required()
     }
   ]
 };
