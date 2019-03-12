@@ -1,6 +1,8 @@
+import ArticlePreview from "@/components/ArticlePreview";
 import FeaturedCallToActionList from "@/components/FeaturedCallToActionList";
 import FeaturedDatesTable from "@/components/FeaturedDatesTable";
 import Hero from "@/components/Hero";
+import { articleActions } from "@/store/articles";
 import { frontPageActions, getFrontPage } from "@/store/front-page";
 import { webResponseInitial } from "@/store/helpers";
 import { imageUrlFor } from "@/store/sanity";
@@ -8,6 +10,79 @@ import theme from "@/utils/theme";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+
+const FrontPage = props => {
+  const { frontPage } = props;
+
+  if (frontPage.status !== "SUCCESS") {
+    // TODO: Make a better UX while loading
+    return <div>Laster ...</div>;
+  }
+
+  return (
+    <>
+      <HeroWrapper>
+        <FrontPageHero
+          imageURL={imageUrlFor(frontPage.data.callToActionImage).url()}
+          title={frontPage.data.callToActionTitle}
+          subtitle={frontPage.data.callToActionBody}
+        />
+      </HeroWrapper>
+      <ContentWrapper>
+        <SubContentWrapper>
+          <FeaturedDatesWrapper>
+            <FeaturedDatesTitle>HOVEDDATOER 2019</FeaturedDatesTitle>
+            <FrontPageFeaturedDatesTable dates={frontPage.data.featuredDates} />
+          </FeaturedDatesWrapper>
+          <CallToActionWrapper>
+            <FeaturedCallToActionTitle>ENGASJER DEG</FeaturedCallToActionTitle>
+            <FrontPageCallToActionList
+              featuredCallToActions={frontPage.data.featuredCallToActions}
+            />
+          </CallToActionWrapper>
+        </SubContentWrapper>
+      </ContentWrapper>
+      <FeaturedArticlesWrapper>
+        {frontPage.data.featuredArticles.map(article => (
+          <FeaturedArticle
+            slug={article.slug.current}
+            key={article.slug.current}
+          />
+        ))}
+      </FeaturedArticlesWrapper>
+    </>
+  );
+};
+
+FrontPage.getInitialProps = async ({ store, isServer }) => {
+  if (store.getState().frontPage.status === webResponseInitial().status) {
+    store.dispatch(frontPageActions.request());
+    if (isServer) {
+      try {
+        const response = await getFrontPage();
+        response.featuredArticles.forEach(article =>
+          store.dispatch(articleActions.success(article))
+        );
+        store.dispatch(frontPageActions.success(response));
+      } catch (e) {
+        store.dispatch(frontPageActions.failure(`${e}`));
+      }
+    }
+  }
+};
+
+const mapStateToProps = state => ({
+  frontPage: state.frontPage
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchAboutContent: () => dispatch(frontPageActions.request())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FrontPage);
 
 const ContentWrapper = styled.div`
   width: 100%;
@@ -86,64 +161,20 @@ const FeaturedCallToActionTitle = styled.h2`
   color: ${theme.orange};
 `;
 
-const FrontPage = props => {
-  const { frontPage } = props;
+const FeaturedArticlesWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 30px;
 
-  if (frontPage.status !== "SUCCESS") {
-    // TODO: Make a better UX while loading
-    return <div>Laster ...</div>;
+  max-width: 1200px;
+`;
+
+const FeaturedArticle = styled(ArticlePreview)`
+  margin: 10px;
+  width: 100%;
+
+  @media (min-width: 800px) {
+    width: 350px;
   }
-
-  return (
-    <>
-      <HeroWrapper>
-        <FrontPageHero
-          imageURL={imageUrlFor(frontPage.data.callToActionImage).url()}
-          title={frontPage.data.callToActionTitle}
-          subtitle={frontPage.data.callToActionBody}
-        />
-      </HeroWrapper>
-      <ContentWrapper>
-        <SubContentWrapper>
-          <FeaturedDatesWrapper>
-            <FeaturedDatesTitle>HOVEDDATOER 2019</FeaturedDatesTitle>
-            <FrontPageFeaturedDatesTable dates={frontPage.data.featuredDates} />
-          </FeaturedDatesWrapper>
-          <CallToActionWrapper>
-            <FeaturedCallToActionTitle>ENGASJER DEG</FeaturedCallToActionTitle>
-            <FrontPageCallToActionList
-              featuredCallToActions={frontPage.data.featuredCallToActions}
-            />
-          </CallToActionWrapper>
-        </SubContentWrapper>
-      </ContentWrapper>
-    </>
-  );
-};
-
-FrontPage.getInitialProps = async ({ store, isServer }) => {
-  if (store.getState().frontPage.status === webResponseInitial().status) {
-    store.dispatch(frontPageActions.request());
-    if (isServer) {
-      try {
-        const response = await getFrontPage();
-        store.dispatch(frontPageActions.success(response));
-      } catch (e) {
-        store.dispatch(frontPageActions.failure(`${e}`));
-      }
-    }
-  }
-};
-
-const mapStateToProps = state => ({
-  frontPage: state.frontPage
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchAboutContent: () => dispatch(frontPageActions.request())
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FrontPage);
+`;

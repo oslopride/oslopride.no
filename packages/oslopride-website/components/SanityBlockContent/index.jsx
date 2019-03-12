@@ -15,7 +15,9 @@ const Wrapper = styled.div`
 
 const SanityBlockContent = ({ blocks }) => (
   <Wrapper>
-    <BlockContent blocks={blocks} projectId={PROJECT_ID} dataset={DATASET} />
+    {blocks && (
+      <BlockContent blocks={blocks} projectId={PROJECT_ID} dataset={DATASET} />
+    )}
   </Wrapper>
 );
 

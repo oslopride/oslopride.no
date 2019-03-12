@@ -1,4 +1,5 @@
-import { call, put, takeLeading } from "redux-saga/effects";
+import { all, call, put, takeLeading } from "redux-saga/effects";
+import { articleActions } from "../articles";
 import {
   createAction,
   webResponseFailure,
@@ -33,11 +34,24 @@ export const frontPageReducer = (state = initialState, action) => {
   }
 };
 
-export const getFrontPage = () => sanity.getDocument("global-front-page");
+export const getFrontPage = () =>
+  sanity.fetch(`*[_id=="global-front-page"]{
+  callToActionBody,
+  callToActionImage,
+  callToActionTitle,
+  featuredArticles[]->,
+  featuredCallToActions,
+  featuredDates
+}[0]`);
 
 function* fetchFrontPage() {
   try {
     const response = yield call(getFrontPage);
+    yield all(
+      response.featuredArticles.map(article =>
+        put(articleActions.success(article))
+      )
+    );
     yield put(frontPageActions.success(response));
   } catch (e) {
     yield put(frontPageActions.failure(`${e}`));

@@ -58,7 +58,9 @@ export const getArticle = slug => {
 
 function* fetchArticle(action) {
   const {
-    payload: { slug }
+    payload: {
+      data: { slug }
+    }
   } = action;
   try {
     const response = yield call(getArticle, slug);

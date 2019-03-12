@@ -11,5 +11,6 @@
 			"source.organizeImports": true
 		}
 	},
-	"eslint.alwaysShowStatus": true
+	"eslint.alwaysShowStatus": true,
+	"javascript.validate.enable": false
 }

@@ -13,7 +13,8 @@
       "aspects": [ "invalidHref", "preferButton" ]
     }],
     "react/prop-types": "off",
-    "default-case": "off"
+    "default-case": "off",
+    "import/prefer-default-export": "off"
   },
   "settings": {
     "import/resolver": {
