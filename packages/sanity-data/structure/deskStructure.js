@@ -81,6 +81,15 @@ export default () =>
                     .title("Kontakt")
                     .schemaType("contact")
                     .documentId("global-contact")
+                ),
+              S.listItem()
+                .title("Bli Partner")
+                .child(
+                  S.editor()
+                    .id("become-partner")
+                    .title("Bli Partner")
+                    .schemaType("become-partner")
+                    .documentId("global-become-partner")
                 )
             ])
         ),
