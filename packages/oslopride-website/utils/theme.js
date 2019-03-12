@@ -10,5 +10,6 @@ export default {
   purple: rgb(53, 32, 118),
   pink: rgb(227, 80, 161),
   gray: rgb(204, 204, 204),
+  darkgray: rgb(74, 74, 74),
   background: rgb(241, 244, 249)
 };
