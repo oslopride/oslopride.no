@@ -4,7 +4,7 @@ import imageUrlBuilder from "@sanity/image-url";
 const isProduction = process.env.NODE_ENV === "production";
 
 export const PROJECT_ID = "2ger3rla";
-export const DATASET = "production";
+export const DATASET = "prod2019";
 
 const sanity = sanityClient({
   projectId: PROJECT_ID,
