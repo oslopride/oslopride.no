@@ -7,6 +7,7 @@ import { frontPageActions, getFrontPage } from "@/store/front-page";
 import { webResponseInitial } from "@/store/helpers";
 import { imageUrlFor } from "@/store/sanity";
 import theme from "@/utils/theme";
+import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -50,6 +51,27 @@ const FrontPage = props => {
           />
         ))}
       </FeaturedArticlesWrapper>
+
+      <NextSeo
+        config={{
+          title: "Forside",
+          description:
+            "Norges største feiring av skeiv kjærlighet og mangfold. En festival der alle har lov til å være akkurat den de er.",
+          openGraph: {
+            type: "website",
+            url: "https://oslopride.no/",
+            locale: "nb_NO",
+            site_name: "Oslo Pride",
+            title: "Oslo Pride",
+            description:
+              "Norges største feiring av skeiv kjærlighet og mangfold. En festival der alle har lov til å være akkurat den de er.",
+            images: [
+              { url: "https://oslopride.no/static/logo.jpg" },
+              { url: "https://oslopride.no/static/prideheart.jpg" }
+            ]
+          }
+        }}
+      />
     </>
   );
 };

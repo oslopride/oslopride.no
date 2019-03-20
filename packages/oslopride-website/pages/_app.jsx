@@ -3,8 +3,8 @@ import createStore from "@/store/store";
 import theme from "@/utils/theme";
 import withReduxSaga from "next-redux-saga";
 import withRedux from "next-redux-wrapper";
+import NextSeo, { LogoJsonLd, SocialProfileJsonLd } from "next-seo";
 import App, { Container } from "next/app";
-import Head from "next/head";
 import { normalize } from "polished";
 import React from "react";
 import { Provider } from "react-redux";
@@ -61,14 +61,38 @@ class NextApp extends App {
       <Container>
         <Provider store={store}>
           <GlobalStyle />
-          <Head>
-            <title>Oslo Pride</title>
-          </Head>
           <Header />
           <Content>
             <Component {...pageProps} />
           </Content>
         </Provider>
+
+        <NextSeo
+          config={{
+            titleTemplate: "Oslo Pride | %s",
+            canonical: "https://oslopride.no",
+
+            twitter: {
+              handle: "@OsloPride",
+              site: "@OsloPride",
+              cardType: "summary_large_image"
+            }
+          }}
+        />
+        <SocialProfileJsonLd
+          type="Organization"
+          name="Oslo Pride"
+          url="https://oslopride.no"
+          sameAs={[
+            "https://www.facebook.com/oslopride",
+            "https://twitter.com/oslopride",
+            "https://www.instagram.com/oslopride/"
+          ]}
+        />
+        <LogoJsonLd
+          logo="https://oslopride.no/static/logo.jpg"
+          url="https://oslopride.no"
+        />
       </Container>
     );
   }

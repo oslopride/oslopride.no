@@ -2,6 +2,7 @@ import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import { aboutActions, getAbout } from "@/store/about";
 import { webResponseInitial } from "@/store/helpers";
+import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -26,6 +27,27 @@ const About = props => {
       <article>
         <SanityBlockContent blocks={about.data.body} />
       </article>
+
+      <NextSeo
+        config={{
+          title: "Om Oss",
+          description:
+            "Oslo Pride er Norges største og viktigste feiring av skeiv kjærlighet og mangfold.",
+          openGraph: {
+            type: "website",
+            url: "https://oslopride.no/about",
+            locale: "nb_NO",
+            site_name: "Oslo Pride",
+            title: "Om Oslo Pride",
+            description:
+              "Oslo Pride er Norges største og viktigste feiring av skeiv kjærlighet og mangfold.",
+            images: [
+              { url: "https://oslopride.no/static/logo.jpg" },
+              { url: "https://oslopride.no/static/prideheart.jpg" }
+            ]
+          }
+        }}
+      />
     </Wrapper>
   );
 };

@@ -2,6 +2,7 @@ import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import { becomePartnerActions, getBecomePartner } from "@/store/become-partner";
 import { webResponseInitial } from "@/store/helpers";
+import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -26,6 +27,27 @@ const BecomePartner = props => {
       <article>
         <SanityBlockContent blocks={becomePartner.data.body} />
       </article>
+
+      <NextSeo
+        config={{
+          title: "Bli Partner",
+          description:
+            "Oslo Pride er Norges største og viktigste feiring av skeiv kjærlighet og mangfold og gir deg en unik mulighet til å støtte kampen for like rettigheter og solidaritet.",
+          openGraph: {
+            type: "website",
+            url: "https://oslopride.no/become-partner",
+            locale: "nb_NO",
+            site_name: "Oslo Pride",
+            title: "Bli Parner",
+            description:
+              "Oslo Pride er Norges største og viktigste feiring av skeiv kjærlighet og mangfold og gir deg en unik mulighet til å støtte kampen for like rettigheter og solidaritet.",
+            images: [
+              { url: "https://oslopride.no/static/logo.jpg" },
+              { url: "https://oslopride.no/static/prideheart.jpg" }
+            ]
+          }
+        }}
+      />
     </Wrapper>
   );
 };

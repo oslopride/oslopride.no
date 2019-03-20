@@ -4,6 +4,7 @@ import { webResponseInitial } from "@/store/helpers";
 import { getPartners, partnersActions } from "@/store/partners";
 import { imageUrlFor } from "@/store/sanity";
 import theme from "@/utils/theme";
+import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -49,6 +50,25 @@ const Partners = props => {
       <PartnerList partnerType="mainpartner" />
       <PageSubtitle>Partnere</PageSubtitle>
       <PartnerList partnerType="partner" />
+
+      <NextSeo
+        config={{
+          title: "Partnere",
+          description: "Oslo Pride sine partnere",
+          openGraph: {
+            type: "website",
+            url: "https://oslopride.no/partners",
+            locale: "nb_NO",
+            site_name: "Oslo Pride",
+            title: "Oslo Pride sine Partnere",
+            description: "Oslo Pride sine partnere",
+            images: [
+              { url: "https://oslopride.no/static/logo.jpg" },
+              { url: "https://oslopride.no/static/prideheart.jpg" }
+            ]
+          }
+        }}
+      />
     </Wrapper>
   );
 };

@@ -3,6 +3,8 @@ import Sheet from "@/components/Sheet";
 import Error from "@/pages/_error";
 import { articleActions, getArticle } from "@/store/articles";
 import { webResponseFailure, webResponseRequest } from "@/store/helpers";
+import { imageUrlFor } from "@/store/sanity";
+import NextSeo, { ArticleJsonLd } from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -21,12 +23,52 @@ const Article = ({ article }) => {
       return <Error statusCode={404} />;
   }
 
-  const { title, body } = article.data;
+  const {
+    title,
+    body,
+    preamble,
+    slug: { current: slug },
+    _updatedAt,
+    _createdAt,
+    image
+  } = article.data;
+
+  const imagrUrl = imageUrlFor(image).url();
 
   return (
     <Wrapper>
       <h1>{title}</h1>
       <SanityBlockContent blocks={body} />
+
+      <NextSeo
+        config={{
+          title,
+          description: preamble,
+          openGraph: {
+            type: "article",
+            url: `https://oslopride.no/a/${slug}`,
+            title,
+            locale: "nb_NO",
+            description: preamble,
+            article: {
+              publishedTime: _createdAt,
+              modifiedTime: _updatedAt
+            },
+            images: [{ url: imagrUrl }]
+          }
+        }}
+      />
+      <ArticleJsonLd
+        url={`https://oslopride.no/a/${slug}`}
+        title={title}
+        datePublished={_createdAt}
+        dateModified={_updatedAt}
+        authorName="Oslo Pride"
+        publisherName="Oslo Pride"
+        publisherLogo="https://oslopride.no/static/logo.jpg"
+        description={preamble}
+        images={[imageUrlFor(image).url()]}
+      />
     </Wrapper>
   );
 };

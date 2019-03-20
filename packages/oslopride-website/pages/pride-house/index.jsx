@@ -2,6 +2,8 @@ import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import { webResponseInitial } from "@/store/helpers";
 import { getPrideHouse, prideHouseActions } from "@/store/pride-house";
+import { imageUrlFor } from "@/store/sanity";
+import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -20,13 +22,33 @@ const PrideHouse = props => {
     return <div>Laster ...</div>;
   }
 
+  const { body, preamble, image } = prideHouse.data;
+
   return (
     <Wrapper>
       <h1>Pride House</h1>
       <article>
-        <SanityBlockContent blocks={prideHouse.data.preamble} />
-        <SanityBlockContent blocks={prideHouse.data.body} />
+        <SanityBlockContent blocks={preamble} />
+        <SanityBlockContent blocks={body} />
       </article>
+
+      <NextSeo
+        config={{
+          title: "Pride House",
+          description:
+            "Pride House synliggjør bredden i den skeive kulturen gjennom debatter, foredrag, workshops og ulike kulturuttrykk.",
+          openGraph: {
+            type: "website",
+            url: "https://oslopride.no/pride-house",
+            locale: "nb_NO",
+            site_name: "Oslo Pride",
+            title: "Pride House",
+            description:
+              "Pride House synliggjør bredden i den skeive kulturen gjennom debatter, foredrag, workshops og ulike kulturuttrykk.",
+            images: [{ url: imageUrlFor(image).url() }]
+          }
+        }}
+      />
     </Wrapper>
   );
 };

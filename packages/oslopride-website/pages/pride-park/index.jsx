@@ -2,6 +2,8 @@ import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import { webResponseInitial } from "@/store/helpers";
 import { getPridePark, prideParkActions } from "@/store/pride-park";
+import { imageUrlFor } from "@/store/sanity";
+import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -20,13 +22,32 @@ const PridePark = props => {
     return <div>Laster ...</div>;
   }
 
+  const { body, preamble, image } = pridePark.data;
+
   return (
     <Wrapper>
       <h1>Pride Park</h1>
       <article>
-        <SanityBlockContent blocks={pridePark.data.preamble} />
-        <SanityBlockContent blocks={pridePark.data.body} />
+        <SanityBlockContent blocks={preamble} />
+        <SanityBlockContent blocks={body} />
       </article>
+
+      <NextSeo
+        config={{
+          title: "Pride Park",
+          description: "Kom og feire mangfold, samhold og kjærlighet med oss!",
+          openGraph: {
+            type: "website",
+            url: "https://oslopride.no/pride-house",
+            locale: "nb_NO",
+            site_name: "Oslo Pride",
+            title: "Pride Park",
+            description:
+              "Kom og feire mangfold, samhold og kjærlighet med oss!",
+            images: [{ url: imageUrlFor(image).url() }]
+          }
+        }}
+      />
     </Wrapper>
   );
 };

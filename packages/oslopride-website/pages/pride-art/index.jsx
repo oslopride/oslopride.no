@@ -3,6 +3,7 @@ import Sheet from "@/components/Sheet";
 import { webResponseInitial } from "@/store/helpers";
 import { getPrideArt, prideArtActions } from "@/store/pride-art";
 import { imageUrlFor } from "@/store/sanity";
+import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -25,17 +26,35 @@ const PrideArt = props => {
     return <div>Laster ...</div>;
   }
 
+  const { body, preamble, image } = prideArt.data;
+
   return (
     <Wrapper>
       <h1>Pride Art</h1>
       <article>
-        <SanityBlockContent blocks={prideArt.data.preamble} />
+        <SanityBlockContent blocks={preamble} />
         <PrideArtImage
-          src={imageUrlFor(prideArt.data.image).url()}
+          src={imageUrlFor(image).url()}
           alt="pride art illustrasjon"
         />
-        <SanityBlockContent blocks={prideArt.data.body} />
+        <SanityBlockContent blocks={body} />
       </article>
+
+      <NextSeo
+        config={{
+          title: "Pride Art",
+          description: "Pride Art er Norges største skeive utstilling!",
+          openGraph: {
+            type: "website",
+            url: "https://oslopride.no/pride-art",
+            locale: "nb_NO",
+            site_name: "Oslo Pride",
+            title: "Pride Art",
+            description: "Pride Art er Norges største skeive utstilling!",
+            images: [{ url: imageUrlFor(image).url() }]
+          }
+        }}
+      />
     </Wrapper>
   );
 };
