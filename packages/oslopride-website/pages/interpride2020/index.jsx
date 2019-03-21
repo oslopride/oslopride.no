@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 const Wrapper = styled(Sheet)`
+  width: 100%;
   @media (min-width: 1000px) {
     width: 1000px;
   }
