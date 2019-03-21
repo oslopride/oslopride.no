@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: "Open Sans", sans-serif;
+    font-family: proxima-nova, sans-serif;
     background-color: ${theme.background};
   }
 
