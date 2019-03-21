@@ -4,6 +4,7 @@ import { articleSaga } from "./articles";
 import { becomePartnerSaga } from "./become-partner";
 import { contactSaga } from "./contact";
 import { frontPageSaga } from "./front-page";
+import { interPrideSaga } from "./interpride";
 import { partnersSaga } from "./partners";
 import { prideArtSaga } from "./pride-art";
 import { prideHouseSaga } from "./pride-house";
@@ -21,6 +22,7 @@ export default function* rootSaga() {
     call(prideParadeSaga),
     call(frontPageSaga),
     call(contactSaga),
-    call(articleSaga)
+    call(articleSaga),
+    call(interPrideSaga)
   ]);
 }
