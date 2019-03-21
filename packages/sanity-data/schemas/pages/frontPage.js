@@ -75,6 +75,12 @@ export default {
               type: "url",
               title: "Lenke",
               validation: Rule => Rule.required()
+            },
+            {
+              name: "icon",
+              type: "image",
+              title: "Ikon",
+              validation: Rule => Rule.required()
             }
           ]
         }
