@@ -90,6 +90,15 @@ export default () =>
                     .title("Bli Partner")
                     .schemaType("become-partner")
                     .documentId("global-become-partner")
+                ),
+              S.listItem()
+                .title("InterPride AGM 2020")
+                .child(
+                  S.editor()
+                    .id("interpride")
+                    .title("InterPride AGM 2020")
+                    .schemaType("interpride")
+                    .documentId("global-interpride")
                 )
             ])
         ),

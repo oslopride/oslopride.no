@@ -14,6 +14,7 @@ import pridehouse from "./pages/pridehouse";
 import prideart from "./pages/prideart";
 import prideparade from "./pages/prideparade";
 import becomePartner from "./pages/becomePartner";
+import interpride from "./pages/interpride";
 
 import blockContent from "./blockContent";
 import venue from "./venue";
@@ -36,6 +37,7 @@ export default createSchema({
     prideart,
     pridehouse,
     pridepark,
+    interpride,
     event,
     venue
   ])
