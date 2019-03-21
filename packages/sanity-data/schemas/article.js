@@ -13,8 +13,7 @@ export default {
         { type: "prideart" },
         { type: "pridehouse" },
         { type: "prideparade" },
-        { type: "pridepark" },
-        { type: "interpride" }
+        { type: "pridepark" }
       ]
     },
     {

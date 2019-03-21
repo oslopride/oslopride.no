@@ -14,8 +14,11 @@ export default {
     {
       name: "preamble",
       title: "Ingress",
-      type: "blockContent",
-      validation: Rule => Rule.required()
+      type: "string",
+      validation: Rule =>
+        Rule.required()
+          .min(20)
+          .max(140)
     },
     {
       name: "image",
@@ -30,6 +33,22 @@ export default {
       title: "Innhold",
       type: "blockContent",
       validation: Rule => Rule.required()
+    },
+    {
+      name: "articles",
+      title: "Artikler",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "article" }] }],
+      options: {
+        sortable: true
+      },
+      validation: Rule => [
+        Rule.required()
+          .unique()
+          .error(
+            "Det er ikke mulig å legge til den samme artikkelen flere ganger"
+          )
+      ]
     }
   ]
 };
