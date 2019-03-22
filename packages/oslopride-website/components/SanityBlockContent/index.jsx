@@ -16,7 +16,12 @@ const Wrapper = styled.div`
 const SanityBlockContent = ({ blocks }) => (
   <Wrapper>
     {blocks && (
-      <BlockContent blocks={blocks} projectId={PROJECT_ID} dataset={DATASET} />
+      <BlockContent
+        blocks={blocks}
+        projectId={PROJECT_ID}
+        dataset={DATASET}
+        imageOptions={{ w: 1000, fit: "max" }}
+      />
     )}
   </Wrapper>
 );
