@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import createStore from "@/store/store";
 import theme from "@/utils/theme";
@@ -65,6 +66,7 @@ class NextApp extends App {
           <Content>
             <Component {...pageProps} />
           </Content>
+          <Footer />
         </Provider>
 
         <NextSeo
