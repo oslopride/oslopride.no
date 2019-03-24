@@ -1,10 +1,12 @@
 import ArticlePreview from "@/components/ArticlePreview";
 import FeaturedCallToActionList from "@/components/FeaturedCallToActionList";
 import FeaturedDatesTable from "@/components/FeaturedDatesTable";
+import FeaturedPartners from "@/components/FeaturedPartners";
 import Hero from "@/components/Hero";
 import { articleActions } from "@/store/articles";
 import { frontPageActions, getFrontPage } from "@/store/front-page";
 import { webResponseInitial } from "@/store/helpers";
+import { getPartners, partnersActions } from "@/store/partners";
 import { imageUrlFor } from "@/store/sanity";
 import theme from "@/utils/theme";
 import NextSeo from "next-seo";
@@ -52,6 +54,10 @@ const FrontPage = props => {
         ))}
       </FeaturedArticlesWrapper>
 
+      <ContentWrapper>
+        <FeaturedPartners />
+      </ContentWrapper>
+
       <NextSeo
         config={{
           title: "Forside",
@@ -91,14 +97,27 @@ FrontPage.getInitialProps = async ({ store, isServer }) => {
       }
     }
   }
+  if (store.getState().partners.status === webResponseInitial().status) {
+    store.dispatch(partnersActions.request());
+    if (isServer) {
+      try {
+        const response = await getPartners();
+        store.dispatch(partnersActions.success(response));
+      } catch (e) {
+        store.dispatch(partnersActions.failure(`${e}`));
+      }
+    }
+  }
 };
 
 const mapStateToProps = state => ({
-  frontPage: state.frontPage
+  frontPage: state.frontPage,
+  partners: state.partners
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchAboutContent: () => dispatch(frontPageActions.request())
+  fetchAboutContent: () => dispatch(frontPageActions.request()),
+  fetchPartnerContent: () => dispatch(partnersActions.request())
 });
 
 export default connect(
@@ -187,7 +206,6 @@ const FeaturedArticlesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin-top: 30px;
 
   max-width: 1200px;
 `;
