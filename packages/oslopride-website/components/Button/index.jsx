@@ -13,6 +13,10 @@ const Button = styled.button`
   :focus {
     border-color: ${theme.purple};
   }
+  :active {
+    background: ${theme.purple};
+    color: white;
+  }
 `;
 
 export default Button;

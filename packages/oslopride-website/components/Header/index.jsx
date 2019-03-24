@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import theme from "@/utils/theme";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { darken } from "polished";
@@ -41,6 +41,11 @@ const PrideDate = styled.div`
   }
 `;
 
+const RotatingChevron = styled(FontAwesomeIcon)`
+  transform: ${props => (props.rotate ? "rotate(180deg)" : "0")};
+  transition: transform 0.2s ease;
+`;
+
 const MenuButton = styled(Button)`
   margin: 0 10px;
 `;
@@ -56,7 +61,7 @@ const Header = () => {
   const close = () => setOpen(false);
 
   return (
-    <Container>
+    <Container isOpen={isOpen}>
       <TopHeader>
         <Link href="/">
           <a>
@@ -70,7 +75,7 @@ const Header = () => {
         <PrideDate>14. juni – 23. juni 2019</PrideDate>
         <MenuButton onClick={() => setOpen(!isOpen)}>
           <MenuText>Meny</MenuText>
-          <FontAwesomeIcon icon={isOpen ? faChevronUp : faChevronDown} />
+          <RotatingChevron rotate={isOpen} icon={faChevronDown} />
         </MenuButton>
       </TopHeader>
       <Navigation visible={isOpen} callback={close} />

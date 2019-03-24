@@ -5,8 +5,10 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.nav`
-  display: ${({ visible }) => (visible ? "flex" : "none")};
-  flex-direction: column;
+  transition: max-height 0.3s ease-in-out;
+  height: auto;
+  overflow: hidden;
+  max-height: ${({ visible }) => (visible ? "250px" : "0")};
 `;
 
 const NavigationGroup = styled.div`
