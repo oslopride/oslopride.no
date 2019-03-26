@@ -29,12 +29,6 @@ const NavigationLink = styled(Link)`
 const Navigation = ({ className, visible, callback }) => (
   <Container className={className} visible={visible}>
     <NavigationGroup>
-      <NavigationLink href="/program" onClick={callback} color={theme.yellow}>
-        Program 2019
-      </NavigationLink>
-    </NavigationGroup>
-
-    <NavigationGroup>
       <NavigationLink
         href="/pride-parade"
         onClick={callback}
