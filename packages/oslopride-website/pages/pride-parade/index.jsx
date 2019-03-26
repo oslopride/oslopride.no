@@ -1,5 +1,7 @@
+import ArticlePreview from "@/components/ArticlePreview";
 import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
+import { articleActions } from "@/store/articles";
 import { webResponseInitial } from "@/store/helpers";
 import { getPrideParade, prideParadeActions } from "@/store/pride-parade";
 import { imageUrlFor } from "@/store/sanity";
@@ -7,16 +9,6 @@ import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-
-const Wrapper = styled(Sheet)`
-  @media (min-width: 1000px) {
-    width: 1000px;
-  }
-`;
-
-const PrideParadeImage = styled.img`
-  max-width: 100%;
-`;
 
 const PrideParade = props => {
   const { prideParade } = props;
@@ -29,16 +21,24 @@ const PrideParade = props => {
   const { body, preamble, image } = prideParade.data;
 
   return (
-    <Wrapper>
-      <h1>Pride Parade</h1>
-      <article>
-        <SanityBlockContent blocks={preamble} />
-        <PrideParadeImage
-          src={imageUrlFor(image).url()}
-          alt="pride parade illustrasjon"
-        />
-        <SanityBlockContent blocks={body} />
-      </article>
+    <>
+      <Wrapper>
+        <h1>Pride Parade</h1>
+        <article>
+          <SanityBlockContent blocks={preamble} />
+          <PrideParadeImage
+            src={imageUrlFor(image).url()}
+            alt="pride parade illustrasjon"
+          />
+          <SanityBlockContent blocks={body} />
+        </article>
+      </Wrapper>
+
+      <ArticlesWrapper>
+        {prideParade.data.articles.map(article => (
+          <Article slug={article.slug.current} key={article.slug.current} />
+        ))}
+      </ArticlesWrapper>
 
       <NextSeo
         config={{
@@ -57,7 +57,7 @@ const PrideParade = props => {
           }
         }}
       />
-    </Wrapper>
+    </>
   );
 };
 
@@ -67,6 +67,9 @@ PrideParade.getInitialProps = async ({ store, isServer }) => {
     if (isServer) {
       try {
         const response = await getPrideParade();
+        response.articles.forEach(article =>
+          store.dispatch(articleActions.success(article))
+        );
         store.dispatch(prideParadeActions.success(response));
       } catch (e) {
         store.dispatch(prideParadeActions.failure(`${e}`));
@@ -87,3 +90,30 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PrideParade);
+
+const Wrapper = styled(Sheet)`
+  @media (min-width: 1000px) {
+    width: 1000px;
+  }
+`;
+
+const PrideParadeImage = styled.img`
+  max-width: 100%;
+`;
+
+const ArticlesWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  max-width: 1200px;
+`;
+
+const Article = styled(ArticlePreview)`
+  margin: 10px;
+  width: 100%;
+
+  @media (min-width: 800px) {
+    width: 350px;
+  }
+`;

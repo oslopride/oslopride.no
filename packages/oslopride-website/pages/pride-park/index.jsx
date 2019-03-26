@@ -1,5 +1,7 @@
+import ArticlePreview from "@/components/ArticlePreview";
 import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
+import { articleActions } from "@/store/articles";
 import { webResponseInitial } from "@/store/helpers";
 import { getPridePark, prideParkActions } from "@/store/pride-park";
 import { imageUrlFor } from "@/store/sanity";
@@ -14,6 +16,23 @@ const Wrapper = styled(Sheet)`
   }
 `;
 
+const ArticlesWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  max-width: 1200px;
+`;
+
+const Article = styled(ArticlePreview)`
+  margin: 10px;
+  width: 100%;
+
+  @media (min-width: 800px) {
+    width: 350px;
+  }
+`;
+
 const PridePark = props => {
   const { pridePark } = props;
 
@@ -25,12 +44,20 @@ const PridePark = props => {
   const { body, preamble, image } = pridePark.data;
 
   return (
-    <Wrapper>
-      <h1>Pride Park</h1>
-      <article>
-        <SanityBlockContent blocks={preamble} />
-        <SanityBlockContent blocks={body} />
-      </article>
+    <>
+      <Wrapper>
+        <h1>Pride Park</h1>
+        <article>
+          <SanityBlockContent blocks={preamble} />
+          <SanityBlockContent blocks={body} />
+        </article>
+      </Wrapper>
+
+      <ArticlesWrapper>
+        {pridePark.data.articles.map(article => (
+          <Article slug={article.slug.current} key={article.slug.current} />
+        ))}
+      </ArticlesWrapper>
 
       <NextSeo
         config={{
@@ -48,7 +75,7 @@ const PridePark = props => {
           }
         }}
       />
-    </Wrapper>
+    </>
   );
 };
 
@@ -58,6 +85,9 @@ PridePark.getInitialProps = async ({ store, isServer }) => {
     if (isServer) {
       try {
         const response = await getPridePark();
+        response.articles.forEach(article =>
+          store.dispatch(articleActions.success(article))
+        );
         store.dispatch(prideParkActions.success(response));
       } catch (e) {
         store.dispatch(prideParkActions.failure(`${e}`));

@@ -1,5 +1,7 @@
+import ArticlePreview from "@/components/ArticlePreview";
 import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
+import { articleActions } from "@/store/articles";
 import { webResponseInitial } from "@/store/helpers";
 import { getPrideArt, prideArtActions } from "@/store/pride-art";
 import { imageUrlFor } from "@/store/sanity";
@@ -11,6 +13,23 @@ import styled from "styled-components";
 const Wrapper = styled(Sheet)`
   @media (min-width: 1000px) {
     width: 1000px;
+  }
+`;
+
+const ArticlesWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  max-width: 1200px;
+`;
+
+const Article = styled(ArticlePreview)`
+  margin: 10px;
+  width: 100%;
+
+  @media (min-width: 800px) {
+    width: 350px;
   }
 `;
 
@@ -29,16 +48,24 @@ const PrideArt = props => {
   const { body, preamble, image } = prideArt.data;
 
   return (
-    <Wrapper>
-      <h1>Pride Art</h1>
-      <article>
-        <SanityBlockContent blocks={preamble} />
-        <PrideArtImage
-          src={imageUrlFor(image).url()}
-          alt="pride art illustrasjon"
-        />
-        <SanityBlockContent blocks={body} />
-      </article>
+    <>
+      <Wrapper>
+        <h1>Pride Art</h1>
+        <article>
+          <SanityBlockContent blocks={preamble} />
+          <PrideArtImage
+            src={imageUrlFor(image).url()}
+            alt="pride art illustrasjon"
+          />
+          <SanityBlockContent blocks={body} />
+        </article>
+      </Wrapper>
+
+      <ArticlesWrapper>
+        {prideArt.data.articles.map(article => (
+          <Article slug={article.slug.current} key={article.slug.current} />
+        ))}
+      </ArticlesWrapper>
 
       <NextSeo
         config={{
@@ -55,7 +82,7 @@ const PrideArt = props => {
           }
         }}
       />
-    </Wrapper>
+    </>
   );
 };
 
@@ -65,6 +92,9 @@ PrideArt.getInitialProps = async ({ store, isServer }) => {
     if (isServer) {
       try {
         const response = await getPrideArt();
+        response.articles.forEach(article =>
+          store.dispatch(articleActions.success(article))
+        );
         store.dispatch(prideArtActions.success(response));
       } catch (e) {
         store.dispatch(prideArtActions.failure(`${e}`));

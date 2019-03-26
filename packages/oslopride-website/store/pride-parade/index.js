@@ -1,4 +1,5 @@
-import { call, put, takeLeading } from "redux-saga/effects";
+import { all, call, put, takeLeading } from "redux-saga/effects";
+import { articleActions } from "../articles";
 import {
   createAction,
   webResponseFailure,
@@ -34,11 +35,20 @@ export const prideParadeReducer = (state = initialState, action) => {
   }
 };
 
-export const getPrideParade = () => sanity.getDocument("global-pride-parade");
+export const getPrideParade = () =>
+  sanity.fetch(`*[_id=="global-pride-parade"]{
+  image,
+  preamble,
+  body,
+  articles[]->,
+}[0]`);
 
 function* fetchPrideParade() {
   try {
     const response = yield call(getPrideParade);
+    yield all(
+      response.articles.map(article => put(articleActions.success(article)))
+    );
     yield put(prideParadeActions.success(response));
   } catch (e) {
     yield put(prideParadeActions.failure(`${e}`));

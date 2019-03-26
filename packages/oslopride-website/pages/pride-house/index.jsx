@@ -1,5 +1,7 @@
+import ArticlePreview from "@/components/ArticlePreview";
 import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
+import { articleActions } from "@/store/articles";
 import { webResponseInitial } from "@/store/helpers";
 import { getPrideHouse, prideHouseActions } from "@/store/pride-house";
 import { imageUrlFor } from "@/store/sanity";
@@ -14,6 +16,23 @@ const Wrapper = styled(Sheet)`
   }
 `;
 
+const ArticlesWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  max-width: 1200px;
+`;
+
+const Article = styled(ArticlePreview)`
+  margin: 10px;
+  width: 100%;
+
+  @media (min-width: 800px) {
+    width: 350px;
+  }
+`;
+
 const PrideHouse = props => {
   const { prideHouse } = props;
 
@@ -25,12 +44,20 @@ const PrideHouse = props => {
   const { body, preamble, image } = prideHouse.data;
 
   return (
-    <Wrapper>
-      <h1>Pride House</h1>
-      <article>
-        <SanityBlockContent blocks={preamble} />
-        <SanityBlockContent blocks={body} />
-      </article>
+    <>
+      <Wrapper>
+        <h1>Pride House</h1>
+        <article>
+          <SanityBlockContent blocks={preamble} />
+          <SanityBlockContent blocks={body} />
+        </article>
+      </Wrapper>
+
+      <ArticlesWrapper>
+        {prideHouse.data.articles.map(article => (
+          <Article slug={article.slug.current} key={article.slug.current} />
+        ))}
+      </ArticlesWrapper>
 
       <NextSeo
         config={{
@@ -49,7 +76,7 @@ const PrideHouse = props => {
           }
         }}
       />
-    </Wrapper>
+    </>
   );
 };
 
@@ -59,6 +86,9 @@ PrideHouse.getInitialProps = async ({ store, isServer }) => {
     if (isServer) {
       try {
         const response = await getPrideHouse();
+        response.articles.forEach(article =>
+          store.dispatch(articleActions.success(article))
+        );
         store.dispatch(prideHouseActions.success(response));
       } catch (e) {
         store.dispatch(prideHouseActions.failure(`${e}`));
