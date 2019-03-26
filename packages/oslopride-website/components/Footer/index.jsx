@@ -31,11 +31,6 @@ const Footer = () => (
             Instagram
           </FooterLinks>
         </div>
-        <Link href="/interpride2020" passHref>
-          <FooterLinks>
-            <h3>INTERPRIDE AGM 2020</h3>
-          </FooterLinks>
-        </Link>
       </LinkWrapper>
       <OrgInfo>
         <h3>OSLO PRIDE AS</h3>
@@ -87,9 +82,10 @@ const LinkWrapper = styled.div`
   justify-content: space-between;
   flex-direction: column;
 
-  @media (min-width: 600px) {
+  /* TODO: Add this when we get more stuff inside the LinkWrapper component */
+  /* @media (min-width: 600px) {
     flex-direction: row;
-  }
+  } */
 `;
 
 const FooterLinks = styled.a`

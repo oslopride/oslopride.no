@@ -78,9 +78,6 @@ const Navigation = ({ className, visible, callback }) => (
       <NavigationLink href="/become-partner" onClick={callback}>
         Bli Partner
       </NavigationLink>
-      <NavigationLink href="/interpride2020" onClick={callback}>
-        InterPride AGM 2020
-      </NavigationLink>
     </NavigationGroup>
   </Container>
 );
