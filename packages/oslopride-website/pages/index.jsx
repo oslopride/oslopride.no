@@ -194,11 +194,11 @@ const FrontPageCallToActionList = styled(FeaturedCallToActionList)`
   }
 `;
 
-const FeaturedDatesTitle = styled.h2`
+const FeaturedDatesTitle = styled.h1`
   color: ${theme.purple};
 `;
 
-const FeaturedCallToActionTitle = styled.h2`
+const FeaturedCallToActionTitle = styled.h1`
   color: ${theme.orange};
 `;
 

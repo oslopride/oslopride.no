@@ -30,7 +30,7 @@ const CallToActionImage = styled.img`
 `;
 
 const CallToActionText = styled.span`
-  text-align: center;
+  font-size: 1.2em;
   flex-grow: 1;
   text-decoration: none;
 `;

@@ -73,7 +73,7 @@ const PageSubtitle = styled.h2`
   color: ${theme.darkgray};
   text-transform: uppercase;
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
 `;
 
 const List = styled.ul`

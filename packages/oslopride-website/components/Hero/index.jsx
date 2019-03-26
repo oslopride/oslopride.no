@@ -24,13 +24,20 @@ const Wrapper = styled.div`
 
 const ImageWrapper = styled.div`
   text-align: center;
+  flex-grow: 1;
+`;
+
+const TextWrapper = styled.div`
+  @media (min-width: 800px) {
+    margin-left: 40px;
+  }
 `;
 
 const Image = styled.img`
   height: 150px;
 
   @media (min-width: 800px) {
-    height: 300px;
+    height: 200px;
   }
 `;
 
@@ -40,6 +47,9 @@ const Title = styled.h1`
   margin: 0;
   font-size: 50px;
   line-height: 1;
+  @media (min-width: 800px) {
+    text-align: left;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -52,10 +62,10 @@ const Hero = ({ className, imageURL, title, subtitle }) => (
     <ImageWrapper>
       <Image src={imageURL} alt="hero" />
     </ImageWrapper>
-    <div>
+    <TextWrapper>
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
-    </div>
+    </TextWrapper>
   </Wrapper>
 );
 
