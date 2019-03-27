@@ -72,6 +72,9 @@ const Navigation = ({ className, visible, callback }) => (
       <NavigationLink href="/become-partner" onClick={callback}>
         Bli Partner
       </NavigationLink>
+      <NavigationLink href="https://butikk.oslopride.no/" onClick={callback}>
+        Pridebutikken
+      </NavigationLink>
     </NavigationGroup>
   </Container>
 );
