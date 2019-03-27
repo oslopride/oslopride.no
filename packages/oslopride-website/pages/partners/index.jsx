@@ -21,24 +21,26 @@ const Partners = props => {
     const partnerItems = partners.data
       .filter(partnerItem => partnerItem.type === partnerType)
       .map(({ _id, partnerUrl, image, name, description }) => (
-        <Partner key={_id}>
-          <PartnerImage>
-            <a href={partnerUrl}>
-              <img
-                src={imageUrlFor(image)
-                  .maxWidth(200)
-                  .url()}
-                alt={name}
-              />
-            </a>
-          </PartnerImage>
-          <PartnerText>
-            <h3>
-              <a href={partnerUrl}>{name}</a>
-            </h3>
-            <SanityBlockContent blocks={description} />
-          </PartnerText>
-        </Partner>
+        <PartnerItem key={_id}>
+          <PartnerCard>
+            <PartnerImage>
+              <a href={partnerUrl}>
+                <img
+                  src={imageUrlFor(image)
+                    .maxWidth(200)
+                    .url()}
+                  alt={name}
+                />
+              </a>
+            </PartnerImage>
+            <PartnerText>
+              <h3>
+                <a href={partnerUrl}>{name}</a>
+              </h3>
+              <SanityBlockContent blocks={description} />
+            </PartnerText>
+          </PartnerCard>
+        </PartnerItem>
       ));
     return <List>{partnerItems}</List>;
   };
@@ -123,7 +125,11 @@ const List = styled.ul`
   padding: 0;
 `;
 
-const Partner = styled(Sheet)`
+const PartnerItem = styled.li`
+  list-style: none;
+`;
+
+const PartnerCard = styled(Sheet)`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -17,16 +17,16 @@ const FeaturedPartners = props => {
     const partnerItems = partners.data
       .filter(partnerItem => partnerItem.type === partnerType)
       .map(({ _id, partnerUrl, image, name }) => (
-        <PartnerImage key={_id}>
-          <a href={partnerUrl}>
+        <PartnerItem key={_id}>
+          <PartnerImage href={partnerUrl}>
             <img
               src={imageUrlFor(image)
                 .maxWidth(200)
                 .url()}
               alt={name}
             />
-          </a>
-        </PartnerImage>
+          </PartnerImage>
+        </PartnerItem>
       ));
     return <List>{partnerItems}</List>;
   };
@@ -83,19 +83,23 @@ const List = styled.ul`
   width: 100%;
 `;
 
-const PartnerImage = styled.div`
+const PartnerItem = styled.li`
+  list-style: none;
+
   width: 100%;
   border: 1px solid ${theme.gray};
   margin: 0 10px;
 
+  @media (min-width: 800px) {
+    width: 20%;
+  }
+`;
+
+const PartnerImage = styled.a`
   img {
     height: auto;
     max-width: 100%;
     display: block;
     margin: auto;
-  }
-
-  @media (min-width: 800px) {
-    width: 20%;
   }
 `;

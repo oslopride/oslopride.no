@@ -81,6 +81,7 @@ const LinkWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  align-items: flex-start;
 
   /* TODO: Add this when we get more stuff inside the LinkWrapper component */
   /* @media (min-width: 600px) {
