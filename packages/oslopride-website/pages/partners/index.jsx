@@ -12,12 +12,7 @@ import styled from "styled-components";
 const Partners = props => {
   const { partners } = props;
 
-  if (partners.status !== "SUCCESS") {
-    // TODO: Make a better UX while loading
-    return <div>Laster ...</div>;
-  }
-
-  const PartnerList = ({ partnerType }) => {
+  const PartnerList = ({ partnerType, partnerSubtitle }) => {
     const partnerItems = partners.data
       .filter(partnerItem => partnerItem.type === partnerType)
       .map(({ _id, partnerUrl, image, name, description }) => (
@@ -42,16 +37,32 @@ const Partners = props => {
           </PartnerCard>
         </PartnerItem>
       ));
-    return <List>{partnerItems}</List>;
+    if (partnerItems.length > 0) {
+      return (
+        <div>
+          <PageSubtitle>{partnerSubtitle}</PageSubtitle>
+          <List>{partnerItems}</List>
+        </div>
+      );
+    }
+    return null;
   };
 
+  if (partners.status !== "SUCCESS") {
+    // TODO: Make a better UX while loading
+    return <div>Laster ...</div>;
+  }
   return (
     <Wrapper>
       <PageTitle>Partnere</PageTitle>
-      <PageSubtitle>Hovedpartnere</PageSubtitle>
-      <PartnerList partnerType="mainpartner" />
-      <PageSubtitle>Partnere</PageSubtitle>
-      <PartnerList partnerType="partner" />
+      {!partners.data.length ? (
+        <Sheet>
+          <p>Oversikt over våre partnere for Oslo Pride 2019 kommer snart</p>
+        </Sheet>
+      ) : null}
+      <PartnerList partnerSubtitle="Eier og arrangør" partnerType="owner" />
+      <PartnerList partnerSubtitle="Hovedpartnere" partnerType="mainpartner" />
+      <PartnerList partnerSubtitle="Partnere" partnerType="partner" />
 
       <NextSeo
         config={{
