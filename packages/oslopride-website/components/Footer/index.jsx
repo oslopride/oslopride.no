@@ -34,21 +34,21 @@ const Footer = () => (
       </LinkWrapper>
       <OrgInfo>
         <h3>OSLO PRIDE AS</h3>
-        <p>
+        <OrgInfoSection>
           c/o Foreningen FRI
           <br />
           Tollbugata 24
           <br />
           0157 OSLO
-        </p>
-        <p>
+        </OrgInfoSection>
+        <OrgInfoSection>
           <TlfOrgNrLink href="tel:915 44 090">Tlf: 915 44 090</TlfOrgNrLink>
-        </p>
-        <p>
+        </OrgInfoSection>
+        <OrgInfoSection>
           <TlfOrgNrLink href="https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=986625860">
             Org.nr: 986 625 860
           </TlfOrgNrLink>
-        </p>
+        </OrgInfoSection>
       </OrgInfo>
     </Container>
   </Wrapper>
@@ -59,34 +59,35 @@ export default Footer;
 const Wrapper = styled.footer`
   background-color: ${theme.blue};
   color: white;
-  padding-bottom: 20px;
   width: 100%;
 `;
 
-const Container = styled.footer`
+const Container = styled.div`
   max-width: 1000px;
+  min-height: 310px;
+  margin: 0 auto 20px auto;
   display: flex;
-  flex-direction: column;
-  margin: 0 auto;
+  flex-wrap: wrap;
 `;
 
 const OrgInfo = styled.div`
-  margin-right: 30px;
-  margin-top: 50px;
+  margin: 20px 20px 0 20px;
+  flex-grow: 1;
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+`;
+
+const OrgInfoSection = styled.p`
+  margin-top: 0;
 `;
 
 const LinkWrapper = styled.div`
-  margin: 30px 30px 0 30px;
+  margin: 20px 20px 0 20px;
+  flex-grow: 1;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  align-items: flex-start;
-
-  /* TODO: Add this when we get more stuff inside the LinkWrapper component */
-  /* @media (min-width: 600px) {
-    flex-direction: row;
-  } */
 `;
 
 const FooterLinks = styled.a`
