@@ -47,6 +47,11 @@ export default {
       type: "blockContent"
     },
     {
+      name: "pressrelease",
+      title: "Pressemelding",
+      type: "boolean"
+    },
+    {
       name: "slug",
       title: "URL",
       type: "slug",
