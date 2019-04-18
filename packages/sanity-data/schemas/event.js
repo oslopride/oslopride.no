@@ -4,6 +4,20 @@ export default {
   type: "document",
   fields: [
     {
+      name: "editorialState",
+      title: "Godkjenningsstatus",
+      type: "string",
+      options: {
+        list: [
+          { title: "Venter på godkjenning", value: "review" },
+          { title: "Godkjent, klar til publisering", value: "awaiting" },
+          { title: "Publisert", value: "published" },
+          { title: "Avvist", value: "rejected" }
+        ],
+        layout: "radio"
+      }
+    },
+    {
       name: "title",
       title: "Tittel",
       type: "string",
@@ -196,6 +210,12 @@ export default {
       name: "documentOwner",
       title: "Dokumenteier",
       type: "string",
+      hidden: true
+    },
+    {
+      name: "prideHouse",
+      title: "Gjelder Pride House",
+      type: "boolean",
       hidden: true
     }
   ]

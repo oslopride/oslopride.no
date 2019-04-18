@@ -7,11 +7,63 @@ export default () =>
       S.listItem()
         .title("Program")
         .child(
-          S.documentList()
+          S.list()
             .title("Arrangementer")
-            .menuItems(S.documentTypeList("event").getMenuItems())
-            .filter("_type == $type ")
-            .params({ type: "event" })
+            .items([
+              S.listItem()
+                .title("Nye")
+                .child(
+                  S.documentList()
+                    .title("Nye bidrag")
+                    .filter(
+                      "_type == $type && !defined(prideHouse) && !defined(editorialState)"
+                    )
+                    .params({ type: "event" })
+                ),
+              S.listItem()
+                .title("Til godkjenning")
+                .child(
+                  S.documentList()
+                    .title("Venter på godkjenning")
+                    .filter(
+                      "_type == $type && !defined(prideHouse) && editorialState == $state"
+                    )
+                    .params({ type: "event", state: "review" })
+                ),
+              S.listItem()
+                .title("Til publisering")
+                .child(
+                  S.documentList()
+                    .title("Venter på publisering")
+                    .filter(
+                      "_type == $type && !defined(prideHouse) && editorialState == $state"
+                    )
+                    .params({ type: "event", state: "awaiting" })
+                ),
+              S.listItem()
+                .title("Publisert")
+                .child(
+                  S.documentList()
+                    .title("Publisert")
+                    .filter(
+                      "_type == $type && !defined(prideHouse) && editorialState == $state"
+                    )
+                    .params({ type: "event", state: "published" })
+                ),
+              S.listItem()
+                .title("Avvist")
+                .child(
+                  S.documentList()
+                    .title("Avvist")
+                    .filter(
+                      "_type == $type && !defined(prideHouse) && editorialState == $state"
+                    )
+                    .params({ type: "event", state: "rejected" })
+                ),
+              S.listItem()
+                .title("Alle")
+                .child(S.documentTypeList("event"))
+            ])
         ),
       S.listItem()
         .title("Sider")
@@ -128,5 +180,64 @@ export default () =>
             .menuItems(S.documentTypeList("venue").getMenuItems())
             .filter("_type == $type ")
             .params({ type: "venue" })
+        ),
+
+      S.listItem()
+        .title("Pride House-programmet")
+        .child(
+          S.list()
+            .title("Arrangementer")
+            .items([
+              S.listItem()
+                .title("Nye")
+                .child(
+                  S.documentList()
+                    .title("Nye bidrag")
+                    .filter(
+                      "_type == $type && prideHouse == true && !defined(editorialState)"
+                    )
+                    .params({ type: "event" })
+                ),
+              S.listItem()
+                .title("Til godkjenning")
+                .child(
+                  S.documentList()
+                    .title("Venter på godkjenning")
+                    .filter(
+                      "_type == $type && prideHouse == true && editorialState == $state"
+                    )
+                    .params({ type: "event", state: "review" })
+                ),
+              S.listItem()
+                .title("Til publisering")
+                .child(
+                  S.documentList()
+                    .title("Venter på publisering")
+                    .filter(
+                      "_type == $type && prideHouse == true && editorialState == $state"
+                    )
+                    .params({ type: "event", state: "awaiting" })
+                ),
+              S.listItem()
+                .title("Publisert")
+                .child(
+                  S.documentList()
+                    .title("Publisert")
+                    .filter(
+                      "_type == $type && prideHouse == true && editorialState == $state"
+                    )
+                    .params({ type: "event", state: "published" })
+                ),
+              S.listItem()
+                .title("Avvist")
+                .child(
+                  S.documentList()
+                    .title("Avvist")
+                    .filter(
+                      "_type == $type && prideHouse == true && editorialState == $state"
+                    )
+                    .params({ type: "event", state: "rejected" })
+                )
+            ])
         )
     ]);
