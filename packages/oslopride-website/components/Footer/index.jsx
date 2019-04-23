@@ -31,6 +31,13 @@ const Footer = () => (
             Instagram
           </FooterLinks>
         </div>
+        <div>
+          <Link href="/press-releases" passHref>
+            <FooterLinks>
+              <h3>PRESSEMEDLINGER</h3>
+            </FooterLinks>
+          </Link>
+        </div>
       </LinkWrapper>
       <OrgInfo>
         <h3>OSLO PRIDE AS</h3>
