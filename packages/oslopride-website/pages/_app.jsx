@@ -1,11 +1,16 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import createStore from "@/store/store";
+import {
+  initializeGoogleAnalytics,
+  logPageView
+} from "@/utils/google-analytics";
 import theme from "@/utils/theme";
 import withReduxSaga from "next-redux-saga";
 import withRedux from "next-redux-wrapper";
 import NextSeo, { LogoJsonLd, SocialProfileJsonLd } from "next-seo";
 import App, { Container } from "next/app";
+import Router from "next/router";
 import { normalize } from "polished";
 import React from "react";
 import { Provider } from "react-redux";
@@ -53,6 +58,17 @@ class NextApp extends App {
     }
 
     return { pageProps };
+  }
+
+  componentDidMount() {
+    // Setup google analytics
+    initializeGoogleAnalytics();
+
+    // Log initial page view
+    logPageView(Router.pathname);
+
+    // Log future page views on route change
+    Router.events.on("routeChangeComplete", logPageView);
   }
 
   render() {

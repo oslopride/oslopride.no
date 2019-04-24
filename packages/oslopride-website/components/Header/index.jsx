@@ -75,7 +75,10 @@ const Header = () => {
         <PrideDate>14. juni – 23. juni 2019</PrideDate>
         <MenuButton onClick={() => setOpen(!isOpen)}>
           <MenuText>Meny</MenuText>
-          <RotatingChevron rotate={isOpen} icon={faChevronDown} />
+          <RotatingChevron
+            rotate={isOpen ? "true" : undefined}
+            icon={faChevronDown}
+          />
         </MenuButton>
       </TopHeader>
       <Navigation visible={isOpen} callback={close} />
