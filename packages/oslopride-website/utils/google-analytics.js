@@ -4,8 +4,9 @@ const GOOGLE_ANALYTICS_TRACKING_ID = "UA-54270444-1";
 
 const isProd = () => {
   if (typeof window === "undefined") return false;
-  // eslint-disable-next-line no-undef
-  const { location: hostname } = window;
+  const {
+    location: { hostname }
+  } = window; // eslint-disable-line no-undef
   return hostname === "www.oslopride.no" || hostname === "oslopride.no";
 };
 
