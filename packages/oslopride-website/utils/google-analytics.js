@@ -17,8 +17,7 @@ export const initializeGoogleAnalytics = () => {
     return;
   }
 
-  // TODO: Remove debug option when we are sure this works
-  ReactGA.initialize(GOOGLE_ANALYTICS_TRACKING_ID, { debug: true });
+  ReactGA.initialize(GOOGLE_ANALYTICS_TRACKING_ID);
   ReactGA.set({ anonymizeIp: true });
 };
 
