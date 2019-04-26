@@ -144,6 +144,15 @@ export default () =>
                     .documentId("global-become-partner")
                 ),
               S.listItem()
+                .title("Presse")
+                .child(
+                  S.editor()
+                    .id("press")
+                    .title("Presse")
+                    .schemaType("press")
+                    .documentId("global-press")
+                ),
+              S.listItem()
                 .title("InterPride AGM 2020")
                 .child(
                   S.editor()
