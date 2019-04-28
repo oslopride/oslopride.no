@@ -16,7 +16,7 @@ export default () =>
                   S.documentList()
                     .title("Nye bidrag")
                     .filter(
-                      "_type == $type && !defined(prideHouse) && !defined(editorialState)"
+                      "_type == $type && (!defined(prideHouse) || prideHouse == false) && !defined(editorialState)"
                     )
                     .params({ type: "event" })
                 ),
@@ -26,7 +26,7 @@ export default () =>
                   S.documentList()
                     .title("Venter på godkjenning")
                     .filter(
-                      "_type == $type && !defined(prideHouse) && editorialState == $state"
+                      "_type == $type && (!defined(prideHouse) || prideHouse == false) && editorialState == $state"
                     )
                     .params({ type: "event", state: "review" })
                 ),
@@ -36,7 +36,7 @@ export default () =>
                   S.documentList()
                     .title("Venter på publisering")
                     .filter(
-                      "_type == $type && !defined(prideHouse) && editorialState == $state"
+                      "_type == $type && (!defined(prideHouse) || prideHouse == false) && editorialState == $state"
                     )
                     .params({ type: "event", state: "awaiting" })
                 ),
@@ -46,7 +46,7 @@ export default () =>
                   S.documentList()
                     .title("Publisert")
                     .filter(
-                      "_type == $type && !defined(prideHouse) && editorialState == $state"
+                      "_type == $type && (!defined(prideHouse) || prideHouse == false) && editorialState == $state"
                     )
                     .params({ type: "event", state: "published" })
                 ),
@@ -56,7 +56,7 @@ export default () =>
                   S.documentList()
                     .title("Avvist")
                     .filter(
-                      "_type == $type && !defined(prideHouse) && editorialState == $state"
+                      "_type == $type && (!defined(prideHouse) || prideHouse == false) && editorialState == $state"
                     )
                     .params({ type: "event", state: "rejected" })
                 ),
