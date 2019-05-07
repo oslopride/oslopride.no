@@ -190,6 +190,11 @@ export default {
       type: "url"
     },
     {
+      name: "eventWebpage",
+      title: "Lenke til event",
+      type: "url"
+    },
+    {
       name: "contactPerson",
       title: "Kontaktperson",
       type: "object",
