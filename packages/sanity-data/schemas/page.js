@@ -1,3 +1,5 @@
+import slugify from "../utils/slugify";
+
 export default {
   name: "page",
   title: "Side",
@@ -28,6 +30,16 @@ export default {
           "Det er ikke mulig å legge til den samme artikkelen flere ganger"
         )
       ]
+    },
+    {
+      name: "slug",
+      title: "URL",
+      type: "slug",
+      validation: Rule => Rule.required(),
+      options: {
+        source: "title",
+        slugify: slugify("page")
+      }
     }
   ]
 };
