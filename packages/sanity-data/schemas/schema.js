@@ -16,10 +16,10 @@ import prideparade from "./pages/prideparade";
 import becomePartner from "./pages/becomePartner";
 import interpride from "./pages/interpride";
 import press from "./pages/press";
-
 import blockContent from "./blockContent";
 import venue from "./venue";
 import event from "./event";
+import page from "./page";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -41,6 +41,7 @@ export default createSchema({
     interpride,
     press,
     event,
-    venue
+    venue,
+    page
   ])
 });

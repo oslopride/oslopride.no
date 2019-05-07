@@ -72,6 +72,15 @@ export default () =>
             .title("Sider")
             .items([
               S.listItem()
+                .title("Egendefinerte sider")
+                .child(
+                  S.documentList()
+                    .title("Sider")
+                    .menuItems(S.documentTypeList("page").getMenuItems())
+                    .filter("_type == $type ")
+                    .params({ type: "page" })
+                ),
+              S.listItem()
                 .title("Forsiden")
                 .child(
                   S.editor()
