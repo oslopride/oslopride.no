@@ -149,6 +149,11 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: "ingress",
+      title: "Kort beskrivelse",
+      type: "string"
+    },
+    {
       name: "category",
       title: "Programkategori",
       type: "string",
