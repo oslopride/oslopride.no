@@ -3,6 +3,7 @@ import { aboutReducer } from "./about";
 import { articleReducer } from "./articles";
 import { becomePartnerReducer } from "./become-partner";
 import { contactReducer } from "./contact";
+import { eventsReducer } from "./events";
 import { frontPageReducer } from "./front-page";
 import { interPrideReducer } from "./interpride";
 import { partnersReducer } from "./partners";
@@ -26,5 +27,6 @@ export default combineReducers({
   articles: articleReducer,
   interPride: interPrideReducer,
   pressReleases: pressReleasesReducer,
-  press: pressReducer
+  press: pressReducer,
+  events: eventsReducer
 });

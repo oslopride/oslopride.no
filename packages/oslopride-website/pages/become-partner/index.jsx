@@ -5,13 +5,6 @@ import { webResponseInitial } from "@/store/helpers";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
-
-const Wrapper = styled(Sheet)`
-  @media (min-width: 1000px) {
-    width: 1000px;
-  }
-`;
 
 const BecomePartner = props => {
   const { becomePartner } = props;
@@ -22,7 +15,7 @@ const BecomePartner = props => {
   }
 
   return (
-    <Wrapper>
+    <Sheet>
       <h1>Bli Partner</h1>
       <article>
         <SanityBlockContent blocks={becomePartner.data.body} />
@@ -48,7 +41,7 @@ const BecomePartner = props => {
           }
         }}
       />
-    </Wrapper>
+    </Sheet>
   );
 };
 

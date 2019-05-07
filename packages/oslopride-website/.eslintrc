@@ -1,17 +1,11 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "eslint:recommended",
-    "airbnb",
     "plugin:prettier/recommended",
     "plugin:import/errors",
     "plugin:import/warnings"
   ],
   "rules": {
-    "jsx-a11y/anchor-is-valid": [ "error", {
-      "components": [ "Link" ],
-      "aspects": [ "invalidHref", "preferButton" ]
-    }],
     "react/prop-types": "off",
     "default-case": "off",
     "import/prefer-default-export": "off"

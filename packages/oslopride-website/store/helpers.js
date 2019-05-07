@@ -3,6 +3,8 @@ const REQUEST = "REQUEST";
 const SUCCESS = "SUCCESS";
 const FAILURE = "FAILURE";
 
+export const webResponseStatus = { INITIAL, REQUEST, SUCCESS, FAILURE };
+
 const createWebResponse = (status, data, error) => ({ status, data, error });
 
 export const webResponseInitial = () =>

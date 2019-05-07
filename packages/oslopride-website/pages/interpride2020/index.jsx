@@ -10,13 +10,6 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-const Wrapper = styled(Sheet)`
-  width: 100%;
-  @media (min-width: 1000px) {
-    width: 1000px;
-  }
-`;
-
 const ArticlesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -47,12 +40,12 @@ const InterPride = props => {
 
   return (
     <>
-      <Wrapper>
+      <Sheet>
         <h1>InterPride AGM 2020</h1>
         <article>
           <SanityBlockContent blocks={body} />
         </article>
-      </Wrapper>
+      </Sheet>
       <ArticlesWrapper>
         {interPride.data.articles.map(article => (
           <Article slug={article.slug.current} key={article.slug.current} />

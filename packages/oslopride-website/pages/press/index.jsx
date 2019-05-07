@@ -5,13 +5,6 @@ import { getPress, pressActions } from "@/store/press";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
-
-const Wrapper = styled(Sheet)`
-  width: 100%;
-
-  max-width: 1000px;
-`;
 
 const Press = props => {
   const { press } = props;
@@ -22,7 +15,7 @@ const Press = props => {
   }
 
   return (
-    <Wrapper>
+    <Sheet>
       <h1>For Pressen</h1>
       <article>
         <SanityBlockContent blocks={press.data.body} />
@@ -48,7 +41,7 @@ const Press = props => {
           }
         }}
       />
-    </Wrapper>
+    </Sheet>
   );
 };
 

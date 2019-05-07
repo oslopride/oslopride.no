@@ -5,13 +5,6 @@ import { webResponseInitial } from "@/store/helpers";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
-
-const Wrapper = styled(Sheet)`
-  @media (min-width: 1000px) {
-    width: 1000px;
-  }
-`;
 
 const Contact = props => {
   const { contact } = props;
@@ -23,7 +16,7 @@ const Contact = props => {
 
   // eslint-disable-next-line react/no-danger
   return (
-    <Wrapper>
+    <Sheet>
       <h1>Kontakt oss</h1>
       <SanityBlockContent blocks={contact.data.body} />
 
@@ -45,7 +38,7 @@ const Contact = props => {
           }
         }}
       />
-    </Wrapper>
+    </Sheet>
   );
 };
 

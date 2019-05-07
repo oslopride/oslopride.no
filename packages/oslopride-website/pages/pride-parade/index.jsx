@@ -22,7 +22,7 @@ const PrideParade = props => {
 
   return (
     <>
-      <Wrapper>
+      <Sheet>
         <h1>Pride Parade</h1>
         <article>
           <SanityBlockContent blocks={preamble} />
@@ -32,7 +32,7 @@ const PrideParade = props => {
           />
           <SanityBlockContent blocks={body} />
         </article>
-      </Wrapper>
+      </Sheet>
 
       <ArticlesWrapper>
         {prideParade.data.articles.map(article => (
@@ -90,12 +90,6 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PrideParade);
-
-const Wrapper = styled(Sheet)`
-  @media (min-width: 1000px) {
-    width: 1000px;
-  }
-`;
 
 const PrideParadeImage = styled.img`
   max-width: 100%;

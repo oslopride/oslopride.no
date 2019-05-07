@@ -10,12 +10,6 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-const Wrapper = styled(Sheet)`
-  @media (min-width: 1000px) {
-    width: 1000px;
-  }
-`;
-
 const ArticlesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -45,13 +39,13 @@ const PridePark = props => {
 
   return (
     <>
-      <Wrapper>
+      <Sheet>
         <h1>Pride Park</h1>
         <article>
           <SanityBlockContent blocks={preamble} />
           <SanityBlockContent blocks={body} />
         </article>
-      </Wrapper>
+      </Sheet>
 
       <ArticlesWrapper>
         {pridePark.data.articles.map(article => (

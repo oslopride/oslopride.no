@@ -3,6 +3,7 @@ import { aboutSaga } from "./about";
 import { articleSaga } from "./articles";
 import { becomePartnerSaga } from "./become-partner";
 import { contactSaga } from "./contact";
+import { eventsSaga } from "./events";
 import { frontPageSaga } from "./front-page";
 import { interPrideSaga } from "./interpride";
 import { partnersSaga } from "./partners";
@@ -27,6 +28,7 @@ export default function* rootSaga() {
     call(articleSaga),
     call(interPrideSaga),
     call(pressReleasesSaga),
-    call(pressSaga)
+    call(pressSaga),
+    call(eventsSaga)
   ]);
 }

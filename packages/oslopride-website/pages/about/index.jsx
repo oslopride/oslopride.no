@@ -5,13 +5,6 @@ import { webResponseInitial } from "@/store/helpers";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
-
-const Wrapper = styled(Sheet)`
-  @media (min-width: 1000px) {
-    width: 1000px;
-  }
-`;
 
 const About = props => {
   const { about } = props;
@@ -22,7 +15,7 @@ const About = props => {
   }
 
   return (
-    <Wrapper>
+    <Sheet>
       <h1>Om Oss</h1>
       <article>
         <SanityBlockContent blocks={about.data.body} />
@@ -48,7 +41,7 @@ const About = props => {
           }
         }}
       />
-    </Wrapper>
+    </Sheet>
   );
 };
 

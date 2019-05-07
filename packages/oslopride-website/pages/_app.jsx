@@ -6,6 +6,8 @@ import {
   logPageView
 } from "@/utils/google-analytics";
 import theme from "@/utils/theme";
+import dayjs from "dayjs";
+import "dayjs/locale/nb";
 import withReduxSaga from "next-redux-saga";
 import withRedux from "next-redux-wrapper";
 import NextSeo, { LogoJsonLd, SocialProfileJsonLd } from "next-seo";
@@ -15,6 +17,8 @@ import { normalize } from "polished";
 import React from "react";
 import { Provider } from "react-redux";
 import styled, { createGlobalStyle } from "styled-components";
+
+dayjs.locale("nb"); // Use norwegian (bokmål) globally
 
 const GlobalStyle = createGlobalStyle`
   ${normalize()}

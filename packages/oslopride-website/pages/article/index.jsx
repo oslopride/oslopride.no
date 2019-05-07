@@ -7,18 +7,11 @@ import { imageUrlFor } from "@/store/sanity";
 import NextSeo, { ArticleJsonLd } from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
-
-const Wrapper = styled(Sheet)`
-  @media (min-width: 1000px) {
-    width: 1000px;
-  }
-`;
 
 const Article = ({ article }) => {
   switch (article.status) {
     case webResponseRequest().status:
-      return <Wrapper>Laster...</Wrapper>;
+      return <Sheet>Laster...</Sheet>;
     case webResponseFailure().status:
       return <Error statusCode={404} />;
   }
@@ -36,7 +29,7 @@ const Article = ({ article }) => {
   const imagrUrl = imageUrlFor(image).url();
 
   return (
-    <Wrapper>
+    <Sheet>
       <h1>{title}</h1>
       <SanityBlockContent blocks={body} />
 
@@ -69,7 +62,7 @@ const Article = ({ article }) => {
         description={preamble}
         images={[imageUrlFor(image).url()]}
       />
-    </Wrapper>
+    </Sheet>
   );
 };
 
