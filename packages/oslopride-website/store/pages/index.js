@@ -1,4 +1,4 @@
-import { call, put, takeLeading } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import {
   createAction,
   webResponseFailure,
@@ -82,5 +82,5 @@ function* fetchPage(action) {
 }
 
 export function* pageSaga() {
-  yield takeLeading(REQUEST_PAGE_CONTENT, fetchPage);
+  yield takeEvery(REQUEST_PAGE_CONTENT, fetchPage);
 }
