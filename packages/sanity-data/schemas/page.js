@@ -32,6 +32,27 @@ export default {
       ]
     },
     {
+      type: "object",
+      name: "seo",
+      title: "Sosiale medier og søk",
+      fields: [
+        {
+          type: "string",
+          name: "description",
+          title: "Beskrivelse",
+          validation: Rule => Rule.min(20).max(140)
+        },
+        {
+          type: "image",
+          name: "image",
+          title: "Bilde",
+          options: {
+            hotspot: true
+          }
+        }
+      ]
+    },
+    {
       name: "slug",
       title: "URL",
       type: "slug",
