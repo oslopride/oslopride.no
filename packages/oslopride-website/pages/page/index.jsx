@@ -46,10 +46,12 @@ const Page = ({ page }) => {
     slug: { current: slug },
     _updatedAt,
     _createdAt,
-    seo: { description, image }
+    seo
   } = page.data;
 
-  const seoImage = image
+  const { image, description } = seo || {};
+
+  const imageUrl = image
     ? imageUrlFor(image)
         .maxWidth(1000)
         .url()
@@ -86,7 +88,7 @@ const Page = ({ page }) => {
               publishedTime: _createdAt,
               modifiedTime: _updatedAt
             },
-            images: [{ url: seoImage }]
+            images: [{ url: imageUrl }]
           }
         }}
       />
@@ -99,7 +101,7 @@ const Page = ({ page }) => {
         publisherName="Oslo Pride"
         publisherLogo="https://oslopride.no/static/logo.jpg"
         description={seoDescription}
-        images={[seoImage]}
+        images={[imageUrl]}
       />
     </>
   );
