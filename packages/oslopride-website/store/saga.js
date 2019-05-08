@@ -14,6 +14,7 @@ import { prideArtSaga } from "./pride-art";
 import { prideHouseSaga } from "./pride-house";
 import { prideParadeSaga } from "./pride-parade";
 import { prideParkSaga } from "./pride-park";
+import { configSaga } from "./config";
 
 export default function* rootSaga() {
   yield all([
@@ -31,6 +32,7 @@ export default function* rootSaga() {
     call(pressReleasesSaga),
     call(pressSaga),
     call(eventsSaga),
-    call(pageSaga)
+    call(pageSaga),
+    call(configSaga)
   ]);
 }

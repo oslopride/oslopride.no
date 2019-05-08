@@ -1,5 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { configActions, getConfig } from "@/store/config";
+import { webResponseStatus } from "@/store/helpers";
 import createStore from "@/store/store";
 import {
   initializeGoogleAnalytics,
@@ -56,6 +58,20 @@ const Content = styled.main`
 class NextApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
+
+    const { store, isServer } = ctx;
+
+    if (store.getState().config.status === webResponseStatus.INITIAL) {
+      store.dispatch(configActions.request());
+      if (isServer) {
+        try {
+          const response = await getConfig();
+          store.dispatch(configActions.success(response));
+        } catch (e) {
+          store.dispatch(configActions.failure(`${e}`));
+        }
+      }
+    }
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
