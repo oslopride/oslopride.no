@@ -6,6 +6,7 @@ import { contactReducer } from "./contact";
 import { eventsReducer } from "./events";
 import { frontPageReducer } from "./front-page";
 import { interPrideReducer } from "./interpride";
+import { pageReducer } from "./pages";
 import { partnersReducer } from "./partners";
 import { pressReducer } from "./press";
 import { pressReleasesReducer } from "./press-releases";
@@ -28,5 +29,6 @@ export default combineReducers({
   interPride: interPrideReducer,
   pressReleases: pressReleasesReducer,
   press: pressReducer,
-  events: eventsReducer
+  events: eventsReducer,
+  pages: pageReducer
 });

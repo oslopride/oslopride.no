@@ -7,42 +7,27 @@ const Footer = () => (
   <Wrapper>
     <Container>
       <LinkWrapper>
-        <div>
-          <Link href="/about" passHref>
-            <FooterLinks>
-              <h3>OM OSS</h3>
-            </FooterLinks>
-          </Link>
-          <Link href="/contact" passHref>
-            <FooterLinks>Kontakt</FooterLinks>
-          </Link>
-          <Link href="/partners" passHref>
-            <FooterLinks>Partnere</FooterLinks>
-          </Link>
-        </div>
-        <div>
-          <FooterLinks href="https://www.facebook.com/oslopride/">
-            <h3>FØLG OSS</h3>
-          </FooterLinks>
-          <FooterLinks href="https://www.facebook.com/oslopride/">
-            Facebook
-          </FooterLinks>
-          <FooterLinks href="https://www.instagram.com/oslopride/">
-            Instagram
-          </FooterLinks>
-        </div>
-        <div>
-          <Link href="/press-releases" passHref>
-            <FooterLinks>
-              <H3NoBottomMargin>PRESSEMEDLINGER</H3NoBottomMargin>
-            </FooterLinks>
-          </Link>
-          <Link href="/a/cookie-policy" passHref>
-            <FooterLinks>
-              <H3NoBottomMargin>COOKIE POLICY</H3NoBottomMargin>
-            </FooterLinks>
-          </Link>
-        </div>
+        <Link href="/about" passHref>
+          <FooterLink>om oss</FooterLink>
+        </Link>
+        <Link href="/contact" passHref>
+          <FooterLink>kontakt</FooterLink>
+        </Link>
+        <FooterLink href="https://www.facebook.com/oslopride/">
+          facebook
+        </FooterLink>
+        <FooterLink href="https://www.instagram.com/oslopride/">
+          instagram
+        </FooterLink>
+        <Link href="/p/press" passHref>
+          <FooterLink>for pressen</FooterLink>
+        </Link>
+        <Link href="/press-releases" passHref>
+          <FooterLink>pressemeldinger</FooterLink>
+        </Link>
+        <Link href="/p/cookie-policy" passHref>
+          <FooterLink>cookie policy</FooterLink>
+        </Link>
       </LinkWrapper>
       <OrgInfo>
         <h3>OSLO PRIDE AS</h3>
@@ -79,7 +64,7 @@ const Container = styled.div`
   min-height: 310px;
   margin: 0 auto 20px auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 `;
 
 const OrgInfo = styled.div`
@@ -97,15 +82,24 @@ const OrgInfoSection = styled.p`
 
 const LinkWrapper = styled.div`
   margin: 20px 20px 0 20px;
-  flex-grow: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
-const FooterLinks = styled.a`
+const FooterLink = styled.a`
   color: inherit;
   text-decoration: none;
-  display: flex;
+  margin-top: 10px;
+
+  :not(:last-child) {
+    margin-right: 5px;
+
+    ::after {
+      content: " ●";
+    }
+  }
 
   :hover,
   :focus {
@@ -121,8 +115,4 @@ const TlfOrgNrLink = styled.a`
   :focus {
     text-decoration: underline;
   }
-`;
-
-const H3NoBottomMargin = styled.h3`
-  margin-bottom: 0;
 `;

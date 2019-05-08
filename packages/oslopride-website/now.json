@@ -6,7 +6,8 @@
   ],
   "routes": [
     { "src": "/a/(?<slug>[^/]+)$", "dest": "/article?slug=$slug" },
-    { "src": "/events/(?<id>[^/]+)$", "dest": "/event?id=$id" }
+    { "src": "/events/(?<id>[^/]+)$", "dest": "/event?id=$id" },
+    { "src": "/p/(?<slug>[^/]+)$", "dest": "/page?slug=$slug" }
   ],
   "public": true
 }

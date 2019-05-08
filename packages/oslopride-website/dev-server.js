@@ -26,6 +26,11 @@ app
     server.get("/events/:id", (req, res) => {
       const actualPage = "/event";
       const queryParams = { id: req.params.id };
+    });
+
+    server.get("/p/:slug", (req, res) => {
+      const actualPage = "/page";
+      const queryParams = { slug: req.params.slug };
       app.render(req, res, actualPage, queryParams);
     });
 
