@@ -11,6 +11,10 @@ const Wrapper = styled.div`
   & div > figure {
     margin: 0;
   }
+
+  p {
+    min-height: 1em;
+  }
 `;
 
 const SanityBlockContent = ({ blocks }) => (
