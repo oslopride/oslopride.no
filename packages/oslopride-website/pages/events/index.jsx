@@ -29,7 +29,7 @@ const groupEventsByDay = events => {
     const lastEventStart = dayjs(lastEvent.startingTime);
     const currentEventStart = dayjs(event.startingTime);
 
-    if (lastEventStart.diff(currentEventStart, "day") === 0) {
+    if (lastEventStart.format("dddd") === currentEventStart.format("dddd")) {
       lastGroup.push(event);
     } else {
       groupedEvents.push([event]);
