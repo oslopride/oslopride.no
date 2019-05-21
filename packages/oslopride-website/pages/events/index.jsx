@@ -83,7 +83,7 @@ const Events = props => {
                           />
                         ) : (
                           <EventImage
-                            src="static/placeholder.jpg"
+                            src="/static/placeholder.jpg"
                             alt="arrangementsbilde"
                           />
                         )}
