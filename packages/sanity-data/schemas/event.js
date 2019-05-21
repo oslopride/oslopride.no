@@ -54,26 +54,26 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: "category",
+      title: "Arena",
+      type: "string",
+      validation: Rule => Rule.required(),
+      options: {
+        list: [
+          { value: "0", title: "Ekstern arena" },
+          { value: "1", title: "Pride Parade" },
+          { value: "2", title: "Pride Park" },
+          { value: "3", title: "Pride House" },
+          { value: "4", title: "Pride Art" }
+        ]
+      }
+    },
+    {
       name: "location",
       title: "Sted",
       type: "object",
       validation: Rule => Rule.required(),
       fields: [
-        {
-          name: "category",
-          title: "Arena",
-          type: "string",
-          validation: Rule => Rule.required(),
-          options: {
-            list: [
-              { value: "0", title: "Ekstern arena" },
-              { value: "1", title: "Pride Parade" },
-              { value: "2", title: "Pride Park" },
-              { value: "3", title: "Pride House" },
-              { value: "4", title: "Pride Art" }
-            ]
-          }
-        },
         {
           name: "venue",
           title: "Område",
