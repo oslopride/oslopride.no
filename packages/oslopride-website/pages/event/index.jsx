@@ -7,6 +7,7 @@ import {
   mapWebResponse,
   webResponseStatus
 } from "@/store/helpers";
+import { imageUrlFor } from "@/store/sanity";
 import { capitalizeString } from "@/utils";
 import theme from "@/utils/theme";
 import dayjs from "dayjs";
@@ -24,6 +25,7 @@ const Event = ({ event }) =>
       if (e === undefined) return <Error statusCode={404} />;
       const {
         title,
+        image,
         description,
         startingTime,
         endingTime,
@@ -74,6 +76,15 @@ const Event = ({ event }) =>
               </>
             )}
             <Title>{title}</Title>
+            {image ? (
+              <Image
+                src={imageUrlFor(image)
+                  .height(250)
+                  .url()}
+                alt="arrangementsbilde"
+              />
+            ) : null}
+
             <SanityBlockContent blocks={description} />
             <Details>
               <OrangeColor as="h2">Detaljer</OrangeColor>
@@ -201,6 +212,13 @@ const EventTimeLabel = styled.span`
 
 const Title = styled.h1`
   color: ${theme.purple};
+`;
+
+const Image = styled.img`
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 250px;
 `;
 
 const MultidayEventTime = styled.span`
