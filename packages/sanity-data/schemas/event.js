@@ -225,8 +225,7 @@ export default {
     {
       name: "prideHouse",
       title: "Gjelder Pride House",
-      type: "boolean",
-      hidden: true
+      type: "boolean"
     }
   ]
 };
