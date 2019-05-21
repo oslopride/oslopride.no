@@ -60,6 +60,27 @@ export default {
       validation: Rule => Rule.required(),
       fields: [
         {
+          name: "category",
+          title: "Arena",
+          type: "string",
+          validation: Rule => Rule.required(),
+          options: {
+            list: [
+              { value: "0", title: "Ekstern arena" },
+              { value: "1", title: "Pride Parade" },
+              { value: "2", title: "Pride Park" },
+              { value: "3", title: "Pride House" },
+              { value: "4", title: "Pride Art" }
+            ]
+          }
+        },
+        {
+          name: "venue",
+          title: "Område",
+          type: "reference",
+          to: { type: "venue" }
+        },
+        {
           name: "name",
           title: "Navn",
           type: "string",
@@ -70,12 +91,6 @@ export default {
           title: "Adresse",
           type: "string",
           validation: Rule => Rule.required()
-        },
-        {
-          name: "venue",
-          title: "Område",
-          type: "reference",
-          to: { type: "venue" }
         }
       ]
     },
@@ -152,21 +167,6 @@ export default {
       name: "ingress",
       title: "Kort beskrivelse",
       type: "string"
-    },
-    {
-      name: "category",
-      title: "Programkategori",
-      type: "string",
-      validation: Rule => Rule.required(),
-      options: {
-        list: [
-          { value: "0", title: "Annet" },
-          { value: "1", title: "Pride Parade" },
-          { value: "2", title: "Pride Park" },
-          { value: "3", title: "Pride House" },
-          { value: "4", title: "Pride Art" }
-        ]
-      }
     },
     {
       name: "eventType",
