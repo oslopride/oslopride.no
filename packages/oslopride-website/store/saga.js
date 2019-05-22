@@ -4,6 +4,7 @@ import { articleSaga } from "./articles";
 import { becomePartnerSaga } from "./become-partner";
 import { contactSaga } from "./contact";
 import { eventsSaga } from "./events";
+import { venuesSaga } from "./venues";
 import { frontPageSaga } from "./front-page";
 import { interPrideSaga } from "./interpride";
 import { pageSaga } from "./pages";
@@ -32,6 +33,7 @@ export default function* rootSaga() {
     call(pressReleasesSaga),
     call(pressSaga),
     call(eventsSaga),
+    call(venuesSaga),
     call(pageSaga),
     call(configSaga)
   ]);

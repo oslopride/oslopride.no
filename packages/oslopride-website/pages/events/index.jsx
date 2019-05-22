@@ -84,7 +84,7 @@ const displayEventType = event => {
 const Events = props => {
   const { events, venues } = props;
 
-  if (events.status !== "SUCCESS") {
+  if (events.status !== "SUCCESS" || venues.status !== "SUCCESS") {
     // TODO: Make a better UX while loading
     return <div>Laster ...</div>;
   }
