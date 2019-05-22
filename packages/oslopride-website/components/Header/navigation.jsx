@@ -30,6 +30,15 @@ const Navigation = ({ className, visible, callback }) => (
   <Container className={className} visible={visible}>
     <NavigationGroup>
       <NavigationLink
+        href="/events"
+        onClick={callback}
+        color={lighten(0.1, theme.yellow)}
+      >
+        Program 2019
+      </NavigationLink>
+    </NavigationGroup>
+    <NavigationGroup>
+      <NavigationLink
         href="/pride-parade"
         onClick={callback}
         color={lighten(0.3, theme.red)}
