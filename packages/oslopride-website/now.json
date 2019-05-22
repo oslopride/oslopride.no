@@ -8,21 +8,21 @@
     { "src": "/p/(?<slug>[^/]+)$", "dest": "/page?slug=$slug" },
     {
       "src": "/personvern",
-      "status": 301,
+      "status": 307,
       "headers": { "Location": "https://www.oslopride.no/p/privacy" }
     },
     {
       "src": "/privacy",
-      "status": 301,
+      "status": 307,
       "headers": { "Location": "https://www.oslopride.no/p/privacy" }
     },
     {
-      "src": "/program/?.*",
+      "src": "/program(/.*)?",
       "status": 301,
       "headers": { "Location": "https://www.oslopride.no/events" }
     },
     {
-      "src": "/om-oss/pride-art/?.*",
+      "src": "/om-oss/pride-art(/.*)?",
       "status": 301,
       "headers": { "Location": "https://www.oslopride.no/pride-art" }
     }
