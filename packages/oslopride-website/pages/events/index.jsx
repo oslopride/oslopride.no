@@ -2,6 +2,7 @@ import Sheet from "@/components/Sheet";
 import { eventsActions, getEvents } from "@/store/events";
 import { webResponseInitial } from "@/store/helpers";
 import { imageUrlFor } from "@/store/sanity";
+import { getVenues, venuesActions } from "@/store/venues";
 import theme from "@/utils/theme";
 import dayjs from "dayjs";
 import NextSeo from "next-seo";
@@ -40,13 +41,58 @@ const groupEventsByDay = events => {
   return groupedEvents;
 };
 
+const displayArena = event => {
+  switch (event.category) {
+    case "0":
+      return "Ekstern arena";
+      break;
+    case "1":
+      return "Pride Parade";
+      break;
+    case "2":
+      return "Pride Park";
+      break;
+    case "3":
+      return "Pride House";
+      break;
+    case "4":
+      return "Pride Art";
+      break;
+  }
+};
+
+const displayEventType = event => {
+  switch (event.eventType) {
+    case "0":
+      return "Annet";
+      break;
+    case "1":
+      return "Konsert";
+      break;
+    case "2":
+      return "Debatt";
+      break;
+    case "3":
+      return "Utstilling";
+      break;
+    case "4":
+      return "Fest";
+      break;
+  }
+};
+
 const Events = props => {
-  const { events } = props;
+  const { events, venues } = props;
 
   if (events.status !== "SUCCESS") {
     // TODO: Make a better UX while loading
     return <div>Laster ...</div>;
   }
+
+  const getVenueName = reference => {
+    const venueData = venues.data.find(venue => venue._id === reference);
+    return venueData.name;
+  };
 
   return (
     <>
@@ -95,8 +141,16 @@ const Events = props => {
                             {dayjs(event.endingTime).format("HH:mm")}
                           </EventTime>
                           <EventPlace>
-                            {event.location.name}, {event.location.address}
+                            <Descriptor> Hvor: </Descriptor>
+                            {displayArena(event)},{" "}
+                            {event.location.venue
+                              ? getVenueName(event.location.venue._ref)
+                              : event.location.name}
                           </EventPlace>
+                          <EventType>
+                            <Descriptor> Type: </Descriptor>
+                            {displayEventType(event)}
+                          </EventType>
                         </EventInfo>
                       </a>
                     </EventLink>
@@ -144,10 +198,22 @@ Events.getInitialProps = async ({ store, isServer }) => {
       }
     }
   }
+  if (store.getState().venues.status === webResponseInitial().status) {
+    store.dispatch(venuesActions.request());
+    if (isServer) {
+      try {
+        const response = await getVenues();
+        store.dispatch(venuesActions.success(response));
+      } catch (e) {
+        store.dispatch(venuesActions.failure(`${e}`));
+      }
+    }
+  }
 };
 
 const mapStateToProps = state => ({
-  events: state.events
+  events: state.events,
+  venues: state.venues
 });
 
 export default connect(mapStateToProps)(Events);
@@ -227,4 +293,15 @@ const EventTime = styled.div`
 const EventPlace = styled.div`
   font-size: 18px;
   font-weight: 300;
+  margin-right: 10px;
+`;
+
+const EventType = styled.div`
+  font-size: 18px;
+  font-weight: 300;
+`;
+
+const Descriptor = styled.span`
+  font-size: 18px;
+  font-weight: 500;
 `;

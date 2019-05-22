@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import { aboutReducer } from "./about";
 import { articleReducer } from "./articles";
 import { becomePartnerReducer } from "./become-partner";
+import { configReducer } from "./config";
 import { contactReducer } from "./contact";
 import { eventsReducer } from "./events";
 import { frontPageReducer } from "./front-page";
@@ -14,7 +15,7 @@ import { prideArtReducer } from "./pride-art";
 import { prideHouseReducer } from "./pride-house";
 import { prideParadeReducer } from "./pride-parade";
 import { prideParkReducer } from "./pride-park";
-import { configReducer } from "./config";
+import { venuesReducer } from "./venues";
 
 export default combineReducers({
   about: aboutReducer,
@@ -32,5 +33,6 @@ export default combineReducers({
   press: pressReducer,
   events: eventsReducer,
   pages: pageReducer,
-  config: configReducer
+  config: configReducer,
+  venues: venuesReducer
 });
