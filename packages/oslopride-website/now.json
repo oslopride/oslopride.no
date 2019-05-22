@@ -1,13 +1,31 @@
 {
   "version": 2,
   "name": "oslopride-website",
-  "builds": [
-    { "src": "package.json", "use": "@now/next" }
-  ],
+  "builds": [{ "src": "package.json", "use": "@now/next" }],
   "routes": [
     { "src": "/a/(?<slug>[^/]+)$", "dest": "/article?slug=$slug" },
     { "src": "/events/(?<id>[^/]+)$", "dest": "/event?id=$id" },
-    { "src": "/p/(?<slug>[^/]+)$", "dest": "/page?slug=$slug" }
+    { "src": "/p/(?<slug>[^/]+)$", "dest": "/page?slug=$slug" },
+    {
+      "src": "/personvern",
+      "status": 301,
+      "headers": { "Location": "https://www.oslopride.no/p/privacy" }
+    },
+    {
+      "src": "/privacy",
+      "status": 301,
+      "headers": { "Location": "https://www.oslopride.no/p/privacy" }
+    },
+    {
+      "src": "/program/?.*",
+      "status": 301,
+      "headers": { "Location": "https://www.oslopride.no/events" }
+    },
+    {
+      "src": "/om-oss/pride-art/?.*",
+      "status": 301,
+      "headers": { "Location": "https://www.oslopride.no/pride-art" }
+    }
   ],
   "public": true
 }
