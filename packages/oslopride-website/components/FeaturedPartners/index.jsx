@@ -45,7 +45,7 @@ const FeaturedPartners = props => {
     <Wrapper>
       <PageTitle>Partnere</PageTitle>
       <PartnerList partnerSubtitle="Eier og arrangør" partnerType="owner" />
-      <PartnerList partnerSubtitle="Hovedpartner" partnerType="mainpartner" />
+      <PartnerList partnerSubtitle="Hovedpartnere" partnerType="mainpartner" />
       <PartnerList partnerSubtitle="Partnere" partnerType="partner" />
     </Wrapper>
   );
