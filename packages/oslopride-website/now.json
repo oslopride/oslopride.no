@@ -7,12 +7,12 @@
     { "src": "/events/(?<id>[^/]+)$", "dest": "/event?id=$id" },
     { "src": "/p/(?<slug>[^/]+)$", "dest": "/page?slug=$slug" },
     {
-      "src": "/personvern",
+      "src": "/personvern(/.*)?",
       "status": 307,
       "headers": { "Location": "https://www.oslopride.no/p/privacy" }
     },
     {
-      "src": "/privacy",
+      "src": "/privacy(/.*)?",
       "status": 307,
       "headers": { "Location": "https://www.oslopride.no/p/privacy" }
     },
