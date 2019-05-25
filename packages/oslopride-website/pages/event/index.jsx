@@ -36,7 +36,9 @@ const Event = ({ event }) =>
         ageLimit,
         deafInterpretation,
         accessible,
-        _id
+        _id,
+        ticketSaleWebpage,
+        eventWebpage
       } = e;
 
       const start = dayjs(startingTime);
@@ -128,6 +130,26 @@ const Event = ({ event }) =>
               <div>
                 <strong>Universell utforming: </strong>
                 {accessible ? "Ja" : "Nei"}
+              </div>
+              <div>
+                {ticketSaleWebpage ? (
+                  <>
+                    <strong>Lenke til billettsalg: </strong>
+                    <a href={ticketSaleWebpage}>{ticketSaleWebpage}</a>
+                  </>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div>
+                {eventWebpage ? (
+                  <>
+                    <strong>Lenke til arrangement: </strong>
+                    <a href={eventWebpage}>{eventWebpage}</a>
+                  </>
+                ) : (
+                  ""
+                )}
               </div>
             </Details>
           </Sheet>
