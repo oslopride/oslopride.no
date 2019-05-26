@@ -77,6 +77,11 @@ const Events = props => {
                 name: "Pride Art",
                 value: "4",
                 callback: value => setFilter("category", "4")
+              },
+              {
+                name: "Eksterne",
+                value: "0",
+                callback: value => setFilter("category", "0")
               }
             ]
           }}

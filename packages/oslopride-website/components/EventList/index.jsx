@@ -71,6 +71,7 @@ const EventList = props => {
                   key={event._id}
                   href={`/event?id=${event._id}`}
                   as={`/events/${event._id}`}
+                  passHref
                 >
                   <EventLink>
                     <a>
