@@ -74,40 +74,38 @@ const EventList = props => {
                   passHref
                 >
                   <EventLink>
-                    <a>
-                      {event.image ? (
-                        <EventImage
-                          src={imageUrlFor(event.image)
-                            .height(250)
-                            .url()}
-                          alt="arrangementsbilde"
-                        />
-                      ) : (
-                        <EventImage
-                          src="/static/placeholder.jpg"
-                          alt="arrangementsbilde"
-                        />
-                      )}
+                    {event.image ? (
+                      <EventImage
+                        src={imageUrlFor(event.image)
+                          .height(250)
+                          .url()}
+                        alt="arrangementsbilde"
+                      />
+                    ) : (
+                      <EventImage
+                        src="/static/placeholder.jpg"
+                        alt="arrangementsbilde"
+                      />
+                    )}
 
-                      <EventInfo>
-                        <EventTitle>{event.title}</EventTitle>
-                        <EventTime>
-                          {dayjs(event.startingTime).format("HH:mm")}-
-                          {dayjs(event.endingTime).format("HH:mm")}
-                        </EventTime>
-                        <EventPlace>
-                          <Descriptor> Hvor: </Descriptor>
-                          {displayArena(event)},{" "}
-                          {event.location.venue
-                            ? getVenueName(event.location.venue._ref)
-                            : event.location.name}
-                        </EventPlace>
-                        <EventType>
-                          <Descriptor> Type: </Descriptor>
-                          {displayEventType(event)}
-                        </EventType>
-                      </EventInfo>
-                    </a>
+                    <EventInfo>
+                      <EventTitle>{event.title}</EventTitle>
+                      <EventTime>
+                        {dayjs(event.startingTime).format("HH:mm")}-
+                        {dayjs(event.endingTime).format("HH:mm")}
+                      </EventTime>
+                      <EventPlace>
+                        <Descriptor> Hvor: </Descriptor>
+                        {displayArena(event)},{" "}
+                        {event.location.venue
+                          ? getVenueName(event.location.venue._ref)
+                          : event.location.name}
+                      </EventPlace>
+                      <EventType>
+                        <Descriptor> Type: </Descriptor>
+                        {displayEventType(event)}
+                      </EventType>
+                    </EventInfo>
                   </EventLink>
                 </Link>
               ))}
@@ -168,24 +166,22 @@ const EventDay = styled.div`
   }
 `;
 
-const EventLink = styled.div`
+const EventLink = styled.a`
   cursor: pointer;
   border-bottom: 2px solid lightgrey;
   padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
 
   &:last-child {
     border-bottom: 0;
   }
 
-  & > a {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-decoration: none;
-
-    :hover {
-      text-decoration: underline;
-    }
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
