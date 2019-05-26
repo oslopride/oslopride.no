@@ -50,6 +50,24 @@ export default {
               type: "string",
               title: "Dato",
               validation: Rule => Rule.required()
+            },
+            {
+              name: "description",
+              type: "string",
+              title: "Kort beskrivelse",
+              validation: Rule => Rule.required().max(140)
+            },
+            {
+              name: "description",
+              type: "string",
+              title: "Farget undertekst",
+              validation: Rule => Rule.required()
+            },
+            {
+              name: "link",
+              type: "url",
+              title: "Lenke til arrangement",
+              validation: Rule => Rule.required()
             }
           ]
         }
@@ -89,6 +107,28 @@ export default {
     {
       name: "featuredArticles",
       title: "Fremhevede artikler",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "article" }] }],
+      options: {
+        sortable: true
+      },
+      validation: Rule => [
+        Rule.required()
+          .unique()
+          .error(
+            "Det er ikke mulig å legge til den samme artikkelen flere ganger"
+          ),
+        Rule.required()
+          .max(6)
+          .error("Det er kun plass til 6 fremhevede artikler på forsiden."),
+        Rule.min(6).warning(
+          "Forsiden ser best ut om det er 6 fremhevede artikler."
+        )
+      ]
+    },
+    {
+      name: "featuredEvents",
+      title: "Fremhevede arrangementer fra programmet",
       type: "array",
       of: [{ type: "reference", to: [{ type: "article" }] }],
       options: {
