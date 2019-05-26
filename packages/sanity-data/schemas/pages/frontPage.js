@@ -58,7 +58,7 @@ export default {
               validation: Rule => Rule.required().max(140)
             },
             {
-              name: "description",
+              name: "subtitle",
               type: "string",
               title: "Farget undertekst",
               validation: Rule => Rule.required()
