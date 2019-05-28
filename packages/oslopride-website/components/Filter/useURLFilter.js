@@ -11,8 +11,8 @@ export default (objects, query) =>
       const filters = toArray(query[key]);
       filteredObjects =
         filters.length === 0
-          ? objects // Return all objects if no filtes are applied
-          : objects.filter(obj => filters.includes(obj[key]));
+          ? filteredObjects // Return all objects if no filtes are applied
+          : filteredObjects.filter(obj => filters.includes(`${obj[key]}`));
     });
     return filteredObjects;
   }, [objects, query]);
@@ -41,13 +41,25 @@ export const setFilter = (key, value) => {
 export const removeFilter = (key, value) => {
   const prevFilterList = toArray(Router.query[key]);
   const newFilterList = prevFilterList.filter(v => v !== value);
-  Router.replace({
-    pathname: Router.route,
-    query: {
-      ...Router.query,
-      [key]: newFilterList.length === 1 ? newFilterList[0] : newFilterList
-    }
-  });
+  if (newFilterList.length === 0) {
+    resetFilter(key);
+  } else {
+    Router.replace({
+      pathname: Router.route,
+      query: {
+        ...Router.query,
+        [key]: newFilterList.length === 1 ? newFilterList[0] : newFilterList
+      }
+    });
+  }
+};
+
+export const toggleFilter = (key, value) => {
+  if (toArray(Router.query[key]).includes(value)) {
+    removeFilter(key, value);
+  } else {
+    addFilter(key, value);
+  }
 };
 
 export const resetFilter = key => {

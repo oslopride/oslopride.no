@@ -2,7 +2,8 @@ import EventList from "@/components/EventList";
 import Filter from "@/components/Filter";
 import useURLFilter, {
   resetFilter,
-  setFilter
+  setFilter,
+  toggleFilter
 } from "@/components/Filter/useURLFilter";
 import Sheet from "@/components/Sheet";
 import { eventsActions, getEvents } from "@/store/events";
@@ -10,7 +11,7 @@ import { webResponseInitial } from "@/store/helpers";
 import { getVenues, venuesActions } from "@/store/venues";
 import theme from "@/utils/theme";
 import NextSeo from "next-seo";
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
@@ -33,11 +34,7 @@ const arenaNameMapper = arena => {
 
 const Events = props => {
   const { events, venues, query } = props;
-  const [visible, setVisible] = useState(false);
   const filteredEvents = useURLFilter(events.data || [], query);
-
-  const toggleFilter = () => setVisible(!visible);
-  const defaultSelector = query.category || "-1";
 
   if (events.status !== "SUCCESS" || venues.status !== "SUCCESS") {
     // TODO: Make a better UX while loading
@@ -50,41 +47,53 @@ const Events = props => {
         <PageTitle>Program 2019</PageTitle>
 
         <Filter
-          selector={{
-            defaultSelector,
-            selectors: [
-              {
-                name: "Alle",
-                value: "-1",
-                callback: value => resetFilter("category")
-              },
-              {
-                name: "Pride Parade",
-                value: "1",
-                callback: value => setFilter("category", "1")
-              },
-              {
-                name: "Pride Park",
-                value: "2",
-                callback: value => setFilter("category", "2")
-              },
-              {
-                name: "Pride House",
-                value: "3",
-                callback: value => setFilter("category", "3")
-              },
-              {
-                name: "Pride Art",
-                value: "4",
-                callback: value => setFilter("category", "4")
-              },
-              {
-                name: "Eksterne",
-                value: "0",
-                callback: value => setFilter("category", "0")
-              }
-            ]
-          }}
+          selectors={[
+            {
+              name: "Alle",
+              selected: query.category === undefined,
+              callback: () => resetFilter("category")
+            },
+            {
+              name: "Pride Parade",
+              selected: query.category === "1",
+              callback: () => setFilter("category", "1")
+            },
+            {
+              name: "Pride Park",
+              selected: query.category === "2",
+              callback: () => setFilter("category", "2")
+            },
+            {
+              name: "Pride House",
+              selected: query.category === "3",
+              callback: () => setFilter("category", "3")
+            },
+            {
+              name: "Pride Art",
+              selected: query.category === "4",
+              callback: () => setFilter("category", "4")
+            },
+            {
+              name: "Eksterne",
+              selected: query.category === "0",
+              callback: () => setFilter("category", "0")
+            }
+          ]}
+          defaultSelector={query.category || "-1"}
+          toggles={[
+            {
+              off: "Alle",
+              on: "Universelt utformet",
+              isOn: query.accessible === "true",
+              callback: value => toggleFilter("accessible", "true")
+            },
+            {
+              off: "Alle",
+              on: "Tegnspråktolket",
+              isOn: query.deafInterpretation === "true",
+              callback: value => toggleFilter("deafInterpretation", "true")
+            }
+          ]}
         />
 
         {events.data.length ? (

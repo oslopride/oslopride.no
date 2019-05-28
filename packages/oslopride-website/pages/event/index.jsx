@@ -2,7 +2,11 @@ import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import Error from "@/pages/_error";
 import { eventsActions, getEvents } from "@/store/events";
-import { foldWebResponse, mapWebResponse, webResponseStatus } from "@/store/helpers";
+import {
+  foldWebResponse,
+  mapWebResponse,
+  webResponseStatus
+} from "@/store/helpers";
 import { imageUrlFor } from "@/store/sanity";
 import { capitalizeString } from "@/utils";
 import theme from "@/utils/theme";
@@ -55,24 +59,24 @@ const Event = ({ event }) =>
                 </EventTimeFromTo>
               </>
             ) : (
-                <>
-                  <EventTimeDay>
-                    <EventTimeLabel>Fra </EventTimeLabel>
-                    <OrangeColor>{start.format("dddd")} </OrangeColor>
-                    {start.format("D. MMMM YYYY")}
-                    <MultidayEventTime>
-                      {" "}
-                      {start.format("HH:mm")}
-                    </MultidayEventTime>
-                  </EventTimeDay>
-                  <EventTimeDay>
-                    <EventTimeLabel>Til </EventTimeLabel>
-                    <OrangeColor>{end.format("dddd")} </OrangeColor>
-                    {end.format("D. MMMM YYYY")}
-                    <MultidayEventTime> {end.format("HH:mm")}</MultidayEventTime>
-                  </EventTimeDay>
-                </>
-              )}
+              <>
+                <EventTimeDay>
+                  <EventTimeLabel>Fra </EventTimeLabel>
+                  <OrangeColor>{start.format("dddd")} </OrangeColor>
+                  {start.format("D. MMMM YYYY")}
+                  <MultidayEventTime>
+                    {" "}
+                    {start.format("HH:mm")}
+                  </MultidayEventTime>
+                </EventTimeDay>
+                <EventTimeDay>
+                  <EventTimeLabel>Til </EventTimeLabel>
+                  <OrangeColor>{end.format("dddd")} </OrangeColor>
+                  {end.format("D. MMMM YYYY")}
+                  <MultidayEventTime> {end.format("HH:mm")}</MultidayEventTime>
+                </EventTimeDay>
+              </>
+            )}
             <Title>{title}</Title>
             {image ? (
               <Image
@@ -101,16 +105,16 @@ const Event = ({ event }) =>
                 {singleDayEvent
                   ? `${start.format("HH:mm")} - ${end.format("HH:mm")}`
                   : `${start.format("D. MMMM HH:mm")} - ${end.format(
-                    "D MMMM HH:mm"
-                  )}`}
+                      "D MMMM HH:mm"
+                    )}`}
               </div>
               <div>
                 <strong>Pris: </strong>
                 {free
                   ? "Gratis"
                   : prices === undefined
-                    ? "Ukjent"
-                    : prices
+                  ? "Ukjent"
+                  : prices
                       .map(
                         ({ amount, priceLabel }) => `${amount} (${priceLabel})`
                       )
@@ -135,8 +139,8 @@ const Event = ({ event }) =>
                     <a href={ticketSaleWebpage}>{ticketSaleWebpage}</a>
                   </>
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
               </div>
               <div>
                 {eventWebpage ? (
@@ -145,8 +149,8 @@ const Event = ({ event }) =>
                     <a href={eventWebpage}>{eventWebpage}</a>
                   </>
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
               </div>
             </Details>
           </Sheet>
@@ -172,7 +176,7 @@ const Event = ({ event }) =>
                   "HH:mm"
                 )} @ ${location.name && location.name + ", "}${
                   location.address
-                  }`,
+                }`,
                 images: [
                   { url: "https://oslopride.no/static/logo.jpg" },
                   { url: "https://oslopride.no/static/prideheart.jpg" }

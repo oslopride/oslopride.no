@@ -21,9 +21,6 @@
   },
   "homepage": "https://oslopride.no",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.17",
-    "@fortawesome/free-solid-svg-icons": "^5.8.1",
-    "@fortawesome/react-fontawesome": "^0.1.4",
     "@sanity/block-content-to-react": "^2.0.6",
     "@sanity/client": "^0.140.17",
     "@sanity/image-url": "^0.140.12",
@@ -37,6 +34,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-ga": "^2.5.7",
+    "react-icons": "^3.7.0",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
