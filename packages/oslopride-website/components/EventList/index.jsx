@@ -137,7 +137,10 @@ const groupEventsByDay = events => {
     const lastEventStart = dayjs(lastEvent.startingTime);
     const currentEventStart = dayjs(event.startingTime);
 
-    if (lastEventStart.format("dddd") === currentEventStart.format("dddd")) {
+    if (
+      lastEventStart.format("YYYY-MM-DD") ===
+      currentEventStart.format("YYYY-MM-DD")
+    ) {
       lastGroup.push(event);
     } else {
       groupedEvents.push([event]);
