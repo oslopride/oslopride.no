@@ -20,6 +20,7 @@ import blockContent from "./blockContent";
 import venue from "./venue";
 import event from "./event";
 import page from "./page";
+import youtube from "./youtube";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -42,6 +43,7 @@ export default createSchema({
     press,
     event,
     venue,
-    page
+    page,
+    youtube
   ])
 });

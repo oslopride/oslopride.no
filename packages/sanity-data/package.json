@@ -22,6 +22,7 @@
     "@sanity/desk-tool": "^0.140.25",
     "@sanity/vision": "^0.140.25",
     "@sindresorhus/slugify": "^0.8.0",
+    "get-youtube-id": "^1.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.2"

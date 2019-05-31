@@ -41,10 +41,12 @@ export default {
         ]
       }
     },
-
     {
       type: "image",
       options: { hotspot: true }
+    },
+    {
+      type: "youtube"
     }
   ]
 };
