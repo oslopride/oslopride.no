@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="2000px" height="2000px" viewBox="0 0 2000 2000" style="enable-background:new 0 0 2000 2000;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;fill:#7F47DD;}
+	.st1{display:none;}
+	.st2{display:inline;fill:#382C74;}
+	.st3{display:inline;fill:#B2C0E3;}
+	.st4{display:inline;fill:#5F8C66;}
+	.st5{display:inline;fill:#A41D2F;}
+	.st6{display:inline;fill:#D06533;}
+	.st7{display:inline;fill:#EDBF30;}
+	.st8{clip-path:url(#SVGID_2_);}
+	.st9{fill:#3A1B7B;}
+	.st10{fill:#AEC2E6;}
+	.st11{fill:#428C63;}
+	.st12{fill:#A41D2F;}
+	.st13{fill:#EF5E2B;}
+	.st14{fill:#FFC100;}
+</style>
+<path class="st0" d="M1445,631.8L1445,631.8c-101.1-101.1-266.6-101.1-367.7,0l-77.8,77.8l-77.8-77.8
+	c-101.1-101.1-266.6-101.1-367.7,0l0,0c-101.1,101.1-101.1,266.6,0,367.7l77.8,77.8L999.5,1445l367.7-367.7l77.8-77.8
+	C1546.1,898.4,1546.1,732.9,1445,631.8z"/>
+<g class="st1">
+	<polygon class="st2" points="677,1333 1335,1137 1006,1535 	"/>
+	<polygon class="st3" points="545,1035 1371,1125 817,1336 	"/>
+	<polygon class="st4" points="1557,847 507,1053 1439,1137 	"/>
+	<rect x="461" y="287" class="st5" width="966" height="522"/>
+	<polygon class="st6" points="523,585 1258,906 397,1071 	"/>
+	<polygon class="st7" points="1665,828 841,986 1411,517 	"/>
+</g>
+<g>
+	<defs>
+		<path id="SVGID_1_" d="M1728,408.6L1728,408.6c-165.3-165.3-435.9-165.3-601.2,0L999.5,535.9L872.2,408.6
+			c-165.3-165.3-435.9-165.3-601.2,0l0,0c-165.3,165.3-165.3,435.9,0,601.2l127.3,127.3l601.2,601.2l601.2-601.2l127.3-127.3
+			C1893.3,844.5,1893.3,574,1728,408.6z"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g class="st8">
+		<polygon class="st9" points="472.1,1555.2 1548.1,1234.7 1010.1,1885.5 		"/>
+		<polygon class="st10" points="256.3,1067.9 1607,1215.1 701.1,1560.1 		"/>
+		<polygon class="st11" points="1911.1,760.5 -147.6,1151.3 1718.2,1234.7 		"/>
+		<rect x="118.9" y="-119.2" class="st12" width="1579.6" height="891.2"/>
+		<polygon class="st13" points="184.4,440 1422.2,857 14.3,1126.8 		"/>
+		<polygon class="st14" points="2087.7,729.4 740.3,987.8 1672.4,220.9 		"/>
+	</g>
+</g>
+</svg>

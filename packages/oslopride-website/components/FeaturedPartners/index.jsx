@@ -13,6 +13,7 @@ const FeaturedPartners = props => {
       .filter(partnerItem => partnerItem.type === partnerType)
       .map(({ _id, partnerUrl, image, name }) => (
         <PartnerItem key={_id}>
+          <PartnerType>{partnerSubtitle}</PartnerType>
           <PartnerImage href={partnerUrl}>
             <img
               src={imageUrlFor(image)
@@ -24,12 +25,7 @@ const FeaturedPartners = props => {
         </PartnerItem>
       ));
     if (partnerItems.length > 0) {
-      return (
-        <div>
-          <PageSubtitle>{partnerSubtitle}</PageSubtitle>
-          <List>{partnerItems}</List>
-        </div>
-      );
+      return <>{partnerItems}</>;
     }
     return null;
   };
@@ -44,9 +40,11 @@ const FeaturedPartners = props => {
   return (
     <Wrapper>
       <PageTitle>Partnere</PageTitle>
-      <PartnerList partnerSubtitle="Eier og arrangør" partnerType="owner" />
-      <PartnerList partnerSubtitle="Hovedpartnere" partnerType="mainpartner" />
-      <PartnerList partnerSubtitle="Partnere" partnerType="partner" />
+      <ListWrapper>
+        <PartnerList partnerSubtitle="Eier og arrangør" partnerType="owner" />
+        <PartnerList partnerSubtitle="Hovedpartner" partnerType="mainpartner" />
+        <PartnerList partnerSubtitle="Partner" partnerType="partner" />
+      </ListWrapper>
     </Wrapper>
   );
 };
@@ -65,48 +63,50 @@ export default connect(
 )(FeaturedPartners);
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
 `;
 
 const PageTitle = styled.h1`
   color: ${theme.purple};
-  text-transform: uppercase;
-  font-size: 40px;
-`;
-
-const PageSubtitle = styled.h2`
-  color: ${theme.darkgray};
-  text-transform: uppercase;
   text-align: center;
+  text-transform: uppercase;
   font-size: 30px;
+  width: 100%;
 `;
 
-const List = styled.ul`
-  padding: 0;
+const ListWrapper = styled.div`
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   width: 100%;
 `;
 
-const PartnerItem = styled.li`
+const PartnerType = styled.p`
+  color: ${theme.gray};
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 18px;
+`;
+
+const PartnerItem = styled.div`
   list-style: none;
-
-  width: 100%;
-  border: 1px solid ${theme.gray};
-  margin: 0 10px;
-
-  @media (min-width: 800px) {
-    width: 20%;
-  }
+  width: 200px;
+  height: auto;
+  margin: 10px;
 `;
 
 const PartnerImage = styled.a`
   img {
-    height: auto;
-    max-width: 100%;
+    border: 1px solid ${theme.lightGray};
+    background-color: white;
+    object-fit: contain;
+    width: 100%;
+    height: 200px;
     display: block;
-    margin: auto;
+
+    :hover,
+    :focus {
+      border: 1px solid ${theme.blue};
+    }
   }
 `;

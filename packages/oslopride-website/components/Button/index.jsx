@@ -1,22 +1,13 @@
-import theme from "@/utils/theme";
 import styled from "styled-components";
 
+// To reset button style for
 const Button = styled.button`
-  text-transform: uppercase;
-  padding: 10px 15px;
-  background: white;
-  border: 3px solid #ddd;
-  outline: none;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
   cursor: pointer;
-
-  :hover,
-  :focus {
-    border-color: ${theme.purple};
-  }
-  :active {
-    background: ${theme.purple};
-    color: white;
-  }
 `;
 
 export default Button;

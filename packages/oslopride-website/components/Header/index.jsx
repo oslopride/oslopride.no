@@ -1,59 +1,69 @@
-import Button from "@/components/Button";
-import theme from "@/utils/theme";
 import Link from "next/link";
-import { darken } from "polished";
 import React, { useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import styled from "styled-components";
 import Navigation from "./navigation";
 
-const Container = styled.header`
-  background-color: white;
-  border-bottom: 3px solid #ddd;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  & > * {
-    max-width: 1200px;
-  }
-`;
-
-const TopHeader = styled.div`
+const TopHeader = styled.header`
   width: 100%;
+  padding: 5px 10px;
+  height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
+  * {
+    height: 100%;
+  }
 `;
 
 const Logo = styled.img`
-  max-width: 120px;
-`;
+  display: none;
+  width: auto;
 
-const PrideDate = styled.div`
-  color: ${darken(0.2, theme.gray)};
-  text-align: center;
-
-  font-size: 12px;
-
-  @media (min-width: 450px) {
-    font-size: initial;
+  @media (min-width: 500px) {
+    display: inline-block;
   }
 `;
 
-const RotatingChevron = styled(FaChevronDown)`
-  transform: ${props => (props.rotate ? "rotate(180deg)" : "0")};
-  transition: transform 0.2s ease;
+const LogoMobile = styled.img`
+  width: 70px;
+
+  @media (min-width: 500px) {
+    display: none;
+  }
 `;
 
-const MenuButton = styled(Button)`
-  margin: 0 10px;
-  display: flex;
-  align-items: center;
+const PrideDate = styled.div`
+  text-align: center;
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  height: initial;
 `;
 
-const MenuText = styled.span`
-  margin-right: 8px;
-  font-weight: bold;
+const ButtonWrapper = styled.div`
+  width: 70px;
+  text-align: right;
+  margin-right: 5px;
+
+  @media (min-width: 500px) {
+    width: 103px;
+    margin-right: 10px;
+  }
+`;
+
+const MenuButton = styled.button`
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+`;
+
+const MenuIcon = styled(FaBars)`
+  color: black;
+  width: 30px;
 `;
 
 const Header = () => {
@@ -62,7 +72,7 @@ const Header = () => {
   const close = () => setOpen(false);
 
   return (
-    <Container isOpen={isOpen}>
+    <Wrapper>
       <TopHeader>
         <Link href="/">
           <a>
@@ -71,17 +81,28 @@ const Header = () => {
               alt="Oslo Pride Logo"
               onClick={close}
             />
+            <LogoMobile
+              src="/static/oslopride.svg"
+              alt="Oslo Pride Logo"
+              onClick={close}
+            />
           </a>
         </Link>
+
         <PrideDate>14. juni – 23. juni 2019</PrideDate>
-        <MenuButton onClick={() => setOpen(!isOpen)}>
-          <MenuText>Meny</MenuText>
-          <RotatingChevron rotate={isOpen ? "true" : undefined} />
-        </MenuButton>
+        <ButtonWrapper>
+          <MenuButton onClick={() => setOpen(!isOpen)} aria-label="Meny d">
+            <MenuIcon />
+          </MenuButton>
+        </ButtonWrapper>
       </TopHeader>
       <Navigation visible={isOpen} callback={close} />
-    </Container>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  z-index: 9001;
+`;
 
 export default Header;

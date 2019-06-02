@@ -1,14 +1,20 @@
 import Link from "@/components/Link";
 import theme from "@/utils/theme";
-import { lighten } from "polished";
 import React from "react";
 import styled from "styled-components";
 
 const Container = styled.nav`
-  transition: max-height 0.3s ease-in-out;
-  height: auto;
+  transition: height 0.2s ease-in-out;
   overflow: hidden;
-  max-height: ${({ visible }) => (visible ? "250px" : "0")};
+  height: ${({ visible }) => (visible ? "500px" : "0")};
+
+  @media (min-width: 450px) {
+    height: ${({ visible }) => (visible ? "450px" : "0")};
+  }
+
+  @media (min-width: 520px) {
+    height: ${({ visible }) => (visible ? "350px" : "0")};
+  }
 `;
 
 const NavigationGroup = styled.div`
@@ -16,14 +22,21 @@ const NavigationGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+`;
+
+const NavigationTitle = styled.p`
+width: 100%;
+text-align: center;
+  font-size 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 5px 8px;
 `;
 
 const NavigationLink = styled(Link)`
-  color: black;
-  font-weight: bold;
-  text-transform: uppercase;
   font-size: 18px;
-  margin: 5px 8px;
+  margin: 15px 8px;
 `;
 
 const Navigation = ({ className, visible, callback }) => (
@@ -32,56 +45,65 @@ const Navigation = ({ className, visible, callback }) => (
       <NavigationLink
         href="/events"
         onClick={callback}
-        color={lighten(0.1, theme.yellow)}
+        arrow={false}
+        color={theme.orange}
       >
         Program 2019
       </NavigationLink>
     </NavigationGroup>
+
     <NavigationGroup>
-      <NavigationLink
-        href="/pride-parade"
-        onClick={callback}
-        color={lighten(0.3, theme.red)}
-      >
+      <NavigationTitle>Våre arenaer</NavigationTitle>
+      <NavigationLink href="/pride-parade" onClick={callback} arrow={false}>
         Pride Parade
       </NavigationLink>
-      <NavigationLink
-        href="/pride-park"
-        onClick={callback}
-        color={lighten(0.2, theme.green)}
-      >
+      <NavigationLink href="/pride-park" onClick={callback} arrow={false}>
         Pride Park
       </NavigationLink>
-      <NavigationLink
-        href="/pride-house"
-        onClick={callback}
-        color={theme.lightBlue}
-      >
+      <NavigationLink href="/pride-house" onClick={callback} arrow={false}>
         Pride House
       </NavigationLink>
-      <NavigationLink
-        href="/pride-art"
-        onClick={callback}
-        color={lighten(0.45, theme.purple)}
-      >
+      <NavigationLink href="/pride-art" onClick={callback} arrow={false}>
         Pride Art
       </NavigationLink>
     </NavigationGroup>
 
     <NavigationGroup>
-      <NavigationLink href="/contact" onClick={callback}>
-        Kontakt
+      <NavigationTitle>Engasjer deg</NavigationTitle>
+      <NavigationLink
+        href="/a/engasjer-deg-i-oslo-pride"
+        onClick={callback}
+        arrow={false}
+      >
+        Vær Frivillig
       </NavigationLink>
-      <NavigationLink href="/about" onClick={callback}>
-        Om Oss
-      </NavigationLink>
-      <NavigationLink href="/partners" onClick={callback}>
-        Partnere
-      </NavigationLink>
-      <NavigationLink href="/become-partner" onClick={callback}>
+      <NavigationLink href="/become-partner" onClick={callback} arrow={false}>
         Bli Partner
       </NavigationLink>
-      <NavigationLink href="https://butikk.oslopride.no/" onClick={callback}>
+      <NavigationLink
+        href="/a/registrering-av-arrangement"
+        onClick={callback}
+        arrow={false}
+      >
+        Registrer arrangement
+      </NavigationLink>
+    </NavigationGroup>
+
+    <NavigationGroup>
+      <NavigationLink href="/about" onClick={callback} arrow={false}>
+        Om Oss
+      </NavigationLink>
+      <NavigationLink href="/contact" onClick={callback} arrow={false}>
+        Kontakt
+      </NavigationLink>
+      <NavigationLink href="/partners" onClick={callback} arrow={false}>
+        Partnere
+      </NavigationLink>
+      <NavigationLink
+        href="https://butikk.oslopride.no/"
+        onClick={callback}
+        arrow={false}
+      >
         Pridebutikken
       </NavigationLink>
     </NavigationGroup>

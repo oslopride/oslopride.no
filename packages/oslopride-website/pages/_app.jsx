@@ -7,7 +7,6 @@ import {
   initializeGoogleAnalytics,
   logPageView
 } from "@/utils/google-analytics";
-import theme from "@/utils/theme";
 import dayjs from "dayjs";
 import "dayjs/locale/nb";
 import withReduxSaga from "next-redux-saga";
@@ -32,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: proxima-nova, sans-serif;
-    background-color: ${theme.background};
+    background-color: white;
   }
 
   * {

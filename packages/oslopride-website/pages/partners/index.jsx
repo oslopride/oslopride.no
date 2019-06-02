@@ -126,7 +126,7 @@ const PageTitle = styled.h1`
 `;
 
 const PageSubtitle = styled.h2`
-  color: ${theme.darkgray};
+  color: ${theme.gray};
   text-transform: uppercase;
   text-align: center;
   font-size: 20px;

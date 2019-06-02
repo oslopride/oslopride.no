@@ -1443,7 +1443,6 @@ callsites@^3.0.0:
 camelcase@^5.0.0:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
-  integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
 camelize@^1.0.0:
   version "1.0.0"
@@ -2572,7 +2571,6 @@ get-value@^2.0.3, get-value@^2.0.6:
 get-youtube-id@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/get-youtube-id/-/get-youtube-id-1.0.1.tgz#adb6f475e292d98f98ed5bfb530887656193e157"
-  integrity sha512-5yidLzoLXbtw82a/Wb7LrajkGn29BM6JuLWeHyNfzOGp1weGyW4+7eMz6cP23+etqj27VlOFtq8fFFDMLq/FXQ==
 
 glob-parent@^3.1.0:
   version "3.1.0"
@@ -4243,7 +4241,6 @@ react-ga@^2.5.7:
 react-icons@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.7.0.tgz#64fe46231fabfeea27895edeae6c3b78114b8c8f"
-  integrity sha512-7MyPwjIhuyW0D2N3s4DEd0hGPGFf0sK+IIRKhc1FvSpZNVmnUoGvHbmAwzGJU+3my+fvihVWgwU5SDtlAri56Q==
   dependencies:
     camelcase "^5.0.0"
 
@@ -4271,7 +4268,6 @@ react-ssr-prepass@1.0.2:
 react-sticky-el@^1.0.20:
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/react-sticky-el/-/react-sticky-el-1.0.20.tgz#b3c5e7128218633f440dc67aec239d1cd078342d"
-  integrity sha512-uBe+ZaPJ4lAB9M85L4Hjw9lbmHw00PbbBg9KdMIAcaGEVY3ASKhQkbEaRLF6jkzStLZ7GwF6m3Fja7FbuWY9qg==
   dependencies:
     prop-types ">=15.5.10"
 

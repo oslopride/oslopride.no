@@ -40,7 +40,6 @@ export const getFrontPage = () =>
   callToActionImage,
   callToActionTitle,
   featuredArticles[]->,
-  featuredCallToActions,
   featuredDates
 }[0]`);
 
