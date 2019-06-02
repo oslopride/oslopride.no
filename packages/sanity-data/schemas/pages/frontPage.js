@@ -23,12 +23,55 @@ export default {
       type: "string",
       validation: Rule => Rule.required()
     },
-
     {
       name: "callToActionBody",
       title: "Hovedtekst",
       type: "string",
       validation: Rule => Rule.required()
+    },
+    {
+      name: "callToActionLink",
+      title: "Hovedlenke",
+      type: "object",
+      fields: [
+        {
+          name: "title",
+          type: "string",
+          title: "Lenketekst",
+          validation: Rule => Rule.required()
+        },
+        {
+          name: "link",
+          type: "url",
+          title: "Lenke",
+          validation: Rule => Rule.required()
+        }
+      ]
+    },
+    {
+      name: "featuredCallToActions",
+      title: "Hovedknapper",
+      type: "array",
+      of: [
+        {
+          title: "Lenke",
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              type: "string",
+              title: "Tittel",
+              validation: Rule => Rule.required()
+            },
+            {
+              name: "link",
+              type: "url",
+              title: "Lenke",
+              validation: Rule => Rule.required()
+            }
+          ]
+        }
+      ]
     },
     {
       name: "featuredDates",
@@ -67,37 +110,6 @@ export default {
               name: "link",
               type: "url",
               title: "Lenke til arrangement",
-              validation: Rule => Rule.required()
-            }
-          ]
-        }
-      ]
-    },
-    {
-      name: "featuredCallToActions",
-      title: "Engasjer deg",
-      type: "array",
-      of: [
-        {
-          title: "Lenke",
-          type: "object",
-          fields: [
-            {
-              name: "title",
-              type: "string",
-              title: "Tittel",
-              validation: Rule => Rule.required()
-            },
-            {
-              name: "link",
-              type: "url",
-              title: "Lenke",
-              validation: Rule => Rule.required()
-            },
-            {
-              name: "icon",
-              type: "image",
-              title: "Ikon",
               validation: Rule => Rule.required()
             }
           ]
