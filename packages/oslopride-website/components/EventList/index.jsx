@@ -3,6 +3,7 @@ import theme from "@/utils/theme";
 import dayjs from "dayjs";
 import Link from "next/link";
 import React from "react";
+import Sticky from "react-sticky-el";
 import styled from "styled-components";
 
 const EventList = props => {
@@ -59,13 +60,13 @@ const EventList = props => {
         const currentDay = dayjs(day[0].startingTime);
         return (
           <Event key={currentDay.format("YYYY-MM-DD")}>
-            <EventDay>
-              <h2>
+            <Sticky>
+              <EventDay>
                 {currentDay.format("dddd")}{" "}
                 <span>{currentDay.format("D. MMMM")}</span>
-              </h2>
-            </EventDay>
-            <div>
+              </EventDay>
+            </Sticky>
+            <EventDayListWrapper>
               {day.map(event => (
                 <Link
                   key={event._id}
@@ -109,7 +110,7 @@ const EventList = props => {
                   </EventLink>
                 </Link>
               ))}
-            </div>
+            </EventDayListWrapper>
           </Event>
         );
       })}
@@ -154,19 +155,18 @@ export default EventList;
 const Event = styled.div`
   width: 100%;
   max-width: 1000px;
+  margin-top: 20px;
 `;
 
-const EventDay = styled.div`
+const EventDay = styled.h2`
   background-color: ${theme.purple};
   width: 100%;
-
-  h2 {
-    font-size: 25px;
-    font-weight: 500;
-    color: white;
-    text-transform: uppercase;
-    text-align: center;
-  }
+  margin: 0;
+  font-size: 25px;
+  font-weight: 500;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
 `;
 
 const EventLink = styled.a`
@@ -186,6 +186,10 @@ const EventLink = styled.a`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+const EventDayListWrapper = styled.div`
+  margin-top: 20px;
 `;
 
 const EventImage = styled.img`
