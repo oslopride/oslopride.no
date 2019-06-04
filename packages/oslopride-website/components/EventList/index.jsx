@@ -12,19 +12,19 @@ const EventList = props => {
   const displayArena = event => {
     switch (event.category) {
       case "0":
-        return "Ekstern arena";
+        return "";
         break;
       case "1":
-        return "Pride Parade";
+        return "Pride Parade, ";
         break;
       case "2":
-        return "Pride Park";
+        return "Pride Park, ";
         break;
       case "3":
-        return "Pride House";
+        return "Pride House, ";
         break;
       case "4":
-        return "Pride Art";
+        return "Pride Art, ";
         break;
     }
   };
@@ -97,7 +97,7 @@ const EventList = props => {
                       </EventTime>
                       <EventPlace>
                         <Descriptor> Hvor: </Descriptor>
-                        {displayArena(event)},{" "}
+                        {displayArena(event)}
                         {event.location.venue
                           ? getVenueName(event.location.venue._ref)
                           : event.location.name}
