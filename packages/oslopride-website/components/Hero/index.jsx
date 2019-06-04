@@ -67,7 +67,7 @@ const ProgramLinkWrapper = styled.div`
   }
 `;
 
-const Hero = ({ className, imageURL, title, subtitle }) => (
+const Hero = ({ className, imageURL, title, subtitle, url, urlText }) => (
   <Wrapper className={className}>
     <ImageWrapper>
       <Image src={imageURL} alt="hero" />
@@ -76,7 +76,7 @@ const Hero = ({ className, imageURL, title, subtitle }) => (
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
       <ProgramLinkWrapper>
-        <Link href="/events">Se årets program</Link>
+        <Link href={url}>{urlText}</Link>
       </ProgramLinkWrapper>
     </TextWrapper>
   </Wrapper>

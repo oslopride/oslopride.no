@@ -39,6 +39,7 @@ export const getFrontPage = () =>
   callToActionBody,
   callToActionImage,
   callToActionTitle,
+  callToActionLink,
   featuredArticles[]->,
   featuredDates
 }[0]`);

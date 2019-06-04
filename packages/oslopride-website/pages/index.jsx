@@ -27,6 +27,8 @@ const FrontPage = props => {
           imageURL={imageUrlFor(frontPage.data.callToActionImage).url()}
           title={frontPage.data.callToActionTitle}
           subtitle={frontPage.data.callToActionBody}
+          urlText={frontPage.data.callToActionLink.title}
+          url={frontPage.data.callToActionLink.link}
         />
       </HeroWrapper>
       <ContentWrapper>
