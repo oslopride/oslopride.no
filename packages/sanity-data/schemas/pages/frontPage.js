@@ -49,6 +49,40 @@ export default {
       ]
     },
     {
+      name: "featuredAction",
+      title: "Hovedhandling",
+      type: "object",
+      fields: [
+        {
+          name: "image",
+          title: "Bilde",
+          type: "image",
+          validation: Rule => Rule.required()
+        },
+        {
+          name: "title",
+          type: "string",
+          title: "Tittel",
+          validation: Rule => Rule.required()
+        },
+        {
+          name: "description",
+          type: "string",
+          title: "Undertekst",
+          validation: Rule =>
+            Rule.required()
+              .min(20)
+              .max(140)
+        },
+        {
+          name: "link",
+          type: "url",
+          title: "Lenke",
+          validation: Rule => Rule.required()
+        }
+      ]
+    },
+    {
       name: "featuredCallToActions",
       title: "Hovedknapper",
       type: "array",
