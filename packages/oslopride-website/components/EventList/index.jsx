@@ -57,7 +57,7 @@ const EventList = props => {
   return (
     <>
       {groupEventsByDay(events).map(day => {
-        const currentDay = dayjs(day[0].startingTime);
+        const currentDay = dayjs.utc(day[0].startingTime).add(2, "hour");
         return (
           <Event key={currentDay.format("YYYY-MM-DD")}>
             <Sticky>
@@ -92,8 +92,15 @@ const EventList = props => {
                     <EventInfo>
                       <EventTitle>{event.title}</EventTitle>
                       <EventTime>
-                        {dayjs(event.startingTime).format("HH:mm")}-
-                        {dayjs(event.endingTime).format("HH:mm")}
+                        {dayjs
+                          .utc(event.startingTime)
+                          .add(2, "hour")
+                          .format("HH:mm")}
+                        -
+                        {dayjs
+                          .utc(event.endingTime)
+                          .add(2, "hour")
+                          .format("HH:mm")}
                       </EventTime>
                       <EventPlace>
                         <Descriptor> Hvor: </Descriptor>
@@ -126,7 +133,8 @@ const groupEventsByDay = events => {
   const sortedEvents = [...events];
 
   sortedEvents.sort(
-    (a, b) => dayjs(a.startingTime).unix() - dayjs(b.startingTime).unix()
+    (a, b) =>
+      dayjs.utc(a.startingTime).unix() - dayjs.utc(b.startingTime).unix()
   );
 
   const groupedEvents = [[sortedEvents[0]]];
@@ -135,8 +143,8 @@ const groupEventsByDay = events => {
     const lastGroup = groupedEvents[groupedEvents.length - 1];
     const lastEvent = lastGroup[lastGroup.length - 1];
 
-    const lastEventStart = dayjs(lastEvent.startingTime);
-    const currentEventStart = dayjs(event.startingTime);
+    const lastEventStart = dayjs.utc(lastEvent.startingTime).add(2, "hour");
+    const currentEventStart = dayjs.utc(event.startingTime).add(2, "hour");
 
     if (
       lastEventStart.format("YYYY-MM-DD") ===

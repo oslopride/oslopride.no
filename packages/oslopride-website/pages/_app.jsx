@@ -9,6 +9,7 @@ import {
 } from "@/utils/google-analytics";
 import dayjs from "dayjs";
 import "dayjs/locale/nb";
+import utc from "dayjs/plugin/utc";
 import withReduxSaga from "next-redux-saga";
 import withRedux from "next-redux-wrapper";
 import NextSeo, { LogoJsonLd, SocialProfileJsonLd } from "next-seo";
@@ -20,6 +21,7 @@ import { Provider } from "react-redux";
 import styled, { createGlobalStyle } from "styled-components";
 
 dayjs.locale("nb"); // Use norwegian (bokmål) globally
+dayjs.extend(utc); // Add UTC support
 
 const GlobalStyle = createGlobalStyle`
   ${normalize()}
