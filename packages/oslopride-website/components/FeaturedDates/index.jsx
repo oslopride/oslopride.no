@@ -69,6 +69,7 @@ const DateWrapper = styled.a`
   transition: transform 0.2s ease-in-out;
   padding: 10px;
   margin-bottom: 20px;
+  line-height: 1.7;
 
   :hover,
     :focus {

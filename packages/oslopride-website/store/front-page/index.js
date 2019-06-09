@@ -41,7 +41,8 @@ export const getFrontPage = () =>
   callToActionTitle,
   callToActionLink,
   featuredArticles[]->,
-  featuredDates
+  featuredDates,
+  featuredAction
 }[0]`);
 
 function* fetchFrontPage() {

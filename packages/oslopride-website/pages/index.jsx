@@ -1,4 +1,6 @@
 import ArticlePreview from "@/components/ArticlePreview";
+import Banner from "@/components/Banner";
+import FeaturedButtons from "@/components/FeaturedButtons";
 import FeaturedDates from "@/components/FeaturedDates";
 import FeaturedPartners from "@/components/FeaturedPartners";
 import Hero from "@/components/Hero";
@@ -7,6 +9,7 @@ import { frontPageActions, getFrontPage } from "@/store/front-page";
 import { webResponseInitial } from "@/store/helpers";
 import { getPartners, partnersActions } from "@/store/partners";
 import { imageUrlFor } from "@/store/sanity";
+import theme from "@/utils/theme";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -31,6 +34,18 @@ const FrontPage = props => {
           url={frontPage.data.callToActionLink.link}
         />
       </HeroWrapper>
+
+      {/* <ContentWrapper>
+        <FeaturedAction
+          image={imageUrlFor(frontPage.data.featuredAction.image)
+            .width(500)
+            .url()}
+          title={frontPage.data.featuredAction.title}
+          description={frontPage.data.featuredAction.description}
+          link={frontPage.data.featuredAction.link}
+        />
+      </ContentWrapper> */}
+
       <ContentWrapper>
         <FeaturedDates dates={frontPage.data.featuredDates} />
       </ContentWrapper>
@@ -42,6 +57,14 @@ const FrontPage = props => {
           />
         ))}
       </FeaturedArticlesWrapper>
+
+      <Banner
+        color={theme.lightGreen}
+        title="Engasjer deg"
+        textColor={theme.green}
+      >
+        <FeaturedButtons />
+      </Banner>
 
       <FeaturedPartners />
 
@@ -142,7 +165,6 @@ const ContentWrapper = styled.div`
 
 const HeroWrapper = styled.div`
   padding: 0 15px;
-  margin-bottom: 30px;
   width: 100%;
 `;
 

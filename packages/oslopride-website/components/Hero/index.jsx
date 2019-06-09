@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   & > * + * {
-    margin-top: 15px;
+    margin: 15px 0;
   }
 
   @media (min-width: 1025px) {
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
     & > * {
       max-width: 50%;
-      margin-top: 0;
+      margin: 30px 0;
     }
   }
 `;
@@ -38,7 +38,7 @@ const Image = styled.img`
   height: 150px;
 
   @media (min-width: 1025px) {
-    height: 200px;
+    height: 250px;
   }
 `;
 
@@ -48,6 +48,7 @@ const Title = styled.h1`
   margin: 0;
   font-size: 50px;
   line-height: 1;
+  font-weight: 600;
 
   @media (min-width: 1025px) {
     text-align: left;
@@ -56,6 +57,9 @@ const Title = styled.h1`
 
 const Subtitle = styled.p`
   text-align: justify;
+  font-size: 18px;
+  line-height: 1.7;
+  font-weight: 400;
 `;
 
 const ProgramLinkWrapper = styled.div`
