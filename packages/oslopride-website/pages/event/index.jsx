@@ -129,7 +129,7 @@ const Event = ({ event }) =>
                 {deafInterpretation ? "Ja" : "Nei"}
               </div>
               <div>
-                <strong>Universell utforming: </strong>
+                <strong>Rullestolvennlig: </strong>
                 {accessible ? "Ja" : "Nei"}
               </div>
               <div>

@@ -83,7 +83,7 @@ const Events = props => {
           toggles={[
             {
               off: "Alle",
-              on: "Universelt utformet",
+              on: "Rullestolvennlig",
               isOn: query.accessible === "true",
               callback: value => toggleFilter("accessible", "true")
             },
