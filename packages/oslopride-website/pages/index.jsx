@@ -5,6 +5,7 @@ import FeaturedButtons from "@/components/FeaturedButtons";
 import FeaturedDates from "@/components/FeaturedDates";
 import FeaturedPartners from "@/components/FeaturedPartners";
 import Hero from "@/components/Hero";
+import Link from "@/components/Link";
 import { articleActions } from "@/store/articles";
 import { frontPageActions, getFrontPage } from "@/store/front-page";
 import { webResponseInitial } from "@/store/helpers";
@@ -50,14 +51,28 @@ const FrontPage = props => {
       <ContentWrapper>
         <FeaturedDates dates={frontPage.data.featuredDates} />
       </ContentWrapper>
-      <FeaturedArticlesWrapper>
-        {frontPage.data.featuredArticles.map(article => (
-          <FeaturedArticle
-            slug={article.slug.current}
-            key={article.slug.current}
-          />
-        ))}
-      </FeaturedArticlesWrapper>
+
+      <Banner color={theme.lightBlue} title="Artikler" textColor={theme.blue}>
+        <FeaturedArticlesWrapper>
+          {frontPage.data.featuredArticles.map(article => (
+            <FeaturedArticle
+              slug={article.slug.current}
+              key={article.slug.current}
+            />
+          ))}
+        </FeaturedArticlesWrapper>
+      </Banner>
+
+      <Banner>
+        <StoreWrapper>
+          <StoreImage>
+            <img src="/static/pridebutikk.svg" alt="Pridebutikken logo" />
+          </StoreImage>
+          <StoreLink href="https://butikk.oslopride.no/">
+            Gå til butikken
+          </StoreLink>
+        </StoreWrapper>
+      </Banner>
 
       <Banner
         color={theme.lightGreen}
@@ -189,9 +204,7 @@ const FrontPageFeaturedDates = styled(FeaturedDates)`
 const FeaturedArticlesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-
-  max-width: 1200px;
+  justify-content: center;
 `;
 
 const FeaturedArticle = styled(ArticlePreview)`
@@ -202,3 +215,20 @@ const FeaturedArticle = styled(ArticlePreview)`
     width: 350px;
   }
 `;
+
+const StoreWrapper = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StoreImage = styled.div`
+  max-width: 500px;
+
+  img {
+    width: 100%;
+  }
+`;
+
+const StoreLink = styled(Link)``;

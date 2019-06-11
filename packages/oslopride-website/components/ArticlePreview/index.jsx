@@ -70,13 +70,13 @@ const Wrapper = styled.a`
   padding: 15px;
   color: initial;
   text-decoration: initial;
+  border-radius: 2px;
+  transition: transform 0.2s ease-in-out;
 
   :hover,
   :focus {
     cursor: pointer;
-    #title {
-      text-decoration: underline;
-    }
+    transform: scale(1.05);
   }
 `;
 
@@ -84,6 +84,7 @@ const Image = styled.img`
   width: 100%;
   height: 250px;
   object-fit: cover;
+  border-radius: 2px;
 `;
 
 const Title = styled.div`
