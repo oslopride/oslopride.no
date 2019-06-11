@@ -2,6 +2,7 @@ import { applyMiddleware, compose, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import reducer from "./reducer";
 import rootSaga from "./saga";
+import createSentryMiddleware from "./sentryMiddleware";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,7 +17,7 @@ export default initialState => {
   const store = createStore(
     reducer,
     initialState,
-    composeEnhancers(applyMiddleware(sagaMiddleware))
+    composeEnhancers(applyMiddleware(sagaMiddleware, createSentryMiddleware()))
   );
 
   store.sagaTask = sagaMiddleware.run(rootSaga);

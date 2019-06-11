@@ -1,3 +1,4 @@
+import logError from "@/utils/sentry";
 import { all, call, put, takeLeading } from "redux-saga/effects";
 import { articleActions } from "../articles";
 import {
@@ -46,7 +47,8 @@ function* fetchPressReleases() {
     yield all(response.map(article => put(articleActions.success(article))));
     yield put(pressReleasesActions.success(response));
   } catch (e) {
-    yield put(pressReleasesActions.failure({ message: `${e}` }));
+    logError(e);
+    yield put(pressReleasesActions.failure());
   }
 }
 

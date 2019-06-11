@@ -1,3 +1,4 @@
+import logError from "@/utils/sentry";
 import Document, { Head, Main, NextScript } from "next/document";
 import React from "react";
 import { ServerStyleSheet } from "styled-components";
@@ -18,6 +19,8 @@ export default class NextDocument extends Document {
         ...initialProps,
         styles: [...initialProps.styles, ...sheet.getStyleElement()]
       };
+    } catch (e) {
+      logError(e, ctx);
     } finally {
       sheet.seal();
     }

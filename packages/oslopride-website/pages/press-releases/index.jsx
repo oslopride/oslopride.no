@@ -2,6 +2,7 @@ import ArticlePreview from "@/components/ArticlePreview";
 import { articleActions } from "@/store/articles";
 import { webResponseInitial } from "@/store/helpers";
 import { getPressReleases, pressReleasesActions } from "@/store/press-releases";
+import logError from "@/utils/sentry";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -71,7 +72,8 @@ const PressReleases = props => {
   );
 };
 
-PressReleases.getInitialProps = async ({ store, isServer }) => {
+PressReleases.getInitialProps = async ctx => {
+  const { store, isServer } = ctx;
   if (store.getState().pressReleases.status === webResponseInitial().status) {
     store.dispatch(pressReleasesActions.request());
     if (isServer) {
@@ -82,7 +84,8 @@ PressReleases.getInitialProps = async ({ store, isServer }) => {
         );
         store.dispatch(pressReleasesActions.success(response));
       } catch (e) {
-        store.dispatch(pressReleasesActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(pressReleasesActions.failure());
       }
     }
   }

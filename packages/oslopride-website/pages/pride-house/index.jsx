@@ -5,6 +5,7 @@ import { articleActions } from "@/store/articles";
 import { webResponseInitial } from "@/store/helpers";
 import { getPrideHouse, prideHouseActions } from "@/store/pride-house";
 import { imageUrlFor } from "@/store/sanity";
+import logError from "@/utils/sentry";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -74,7 +75,8 @@ const PrideHouse = props => {
   );
 };
 
-PrideHouse.getInitialProps = async ({ store, isServer }) => {
+PrideHouse.getInitialProps = async ctx => {
+  const { store, isServer } = ctx;
   if (store.getState().prideHouse.status === webResponseInitial().status) {
     store.dispatch(prideHouseActions.request());
     if (isServer) {
@@ -85,7 +87,8 @@ PrideHouse.getInitialProps = async ({ store, isServer }) => {
         );
         store.dispatch(prideHouseActions.success(response));
       } catch (e) {
-        store.dispatch(prideHouseActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(prideHouseActions.failure());
       }
     }
   }

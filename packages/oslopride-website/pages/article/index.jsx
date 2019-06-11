@@ -4,6 +4,7 @@ import Error from "@/pages/_error";
 import { articleActions, getArticle } from "@/store/articles";
 import { webResponseFailure, webResponseRequest } from "@/store/helpers";
 import { imageUrlFor } from "@/store/sanity";
+import logError from "@/utils/sentry";
 import NextSeo, { ArticleJsonLd } from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -66,7 +67,8 @@ const Article = ({ article }) => {
   );
 };
 
-Article.getInitialProps = async ({ query, store, isServer }) => {
+Article.getInitialProps = async ctx => {
+  const { query, store, isServer } = ctx;
   const { slug } = query;
   const { articles } = store.getState();
   if (
@@ -85,7 +87,8 @@ Article.getInitialProps = async ({ query, store, isServer }) => {
           );
         }
       } catch (e) {
-        store.dispatch(articleActions.failure({ slug, message: `${e}` }));
+        logError(e, ctx);
+        store.dispatch(articleActions.failure({ slug }));
       }
     }
   }

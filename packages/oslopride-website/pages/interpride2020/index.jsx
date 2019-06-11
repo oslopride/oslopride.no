@@ -5,6 +5,7 @@ import { articleActions } from "@/store/articles";
 import { webResponseInitial } from "@/store/helpers";
 import { getInterPride, interPrideActions } from "@/store/interpride";
 import { imageUrlFor } from "@/store/sanity";
+import logError from "@/utils/sentry";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -71,7 +72,8 @@ const InterPride = props => {
   );
 };
 
-InterPride.getInitialProps = async ({ store, isServer }) => {
+InterPride.getInitialProps = async ctx => {
+  const { store, isServer } = ctx;
   if (store.getState().interPride.status === webResponseInitial().status) {
     store.dispatch(interPrideActions.request());
     if (isServer) {
@@ -82,7 +84,8 @@ InterPride.getInitialProps = async ({ store, isServer }) => {
         );
         store.dispatch(interPrideActions.success(response));
       } catch (e) {
-        store.dispatch(interPrideActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(interPrideActions.failure());
       }
     }
   }

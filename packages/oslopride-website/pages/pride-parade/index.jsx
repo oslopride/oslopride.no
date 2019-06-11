@@ -5,6 +5,7 @@ import { articleActions } from "@/store/articles";
 import { webResponseInitial } from "@/store/helpers";
 import { getPrideParade, prideParadeActions } from "@/store/pride-parade";
 import { imageUrlFor } from "@/store/sanity";
+import logError from "@/utils/sentry";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -61,7 +62,8 @@ const PrideParade = props => {
   );
 };
 
-PrideParade.getInitialProps = async ({ store, isServer }) => {
+PrideParade.getInitialProps = async ctx => {
+  const { store, isServer } = ctx;
   if (store.getState().prideParade.status === webResponseInitial().status) {
     store.dispatch(prideParadeActions.request());
     if (isServer) {
@@ -72,7 +74,8 @@ PrideParade.getInitialProps = async ({ store, isServer }) => {
         );
         store.dispatch(prideParadeActions.success(response));
       } catch (e) {
-        store.dispatch(prideParadeActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(prideParadeActions.failure());
       }
     }
   }

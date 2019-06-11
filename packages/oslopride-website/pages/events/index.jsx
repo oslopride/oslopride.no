@@ -9,6 +9,7 @@ import Sheet from "@/components/Sheet";
 import { eventsActions, getEvents } from "@/store/events";
 import { webResponseInitial } from "@/store/helpers";
 import { getVenues, venuesActions } from "@/store/venues";
+import logError from "@/utils/sentry";
 import theme from "@/utils/theme";
 import NextSeo from "next-seo";
 import React from "react";
@@ -133,7 +134,8 @@ const Events = props => {
   );
 };
 
-Events.getInitialProps = async ({ store, isServer, query }) => {
+Events.getInitialProps = async ctx => {
+  const { store, isServer, query } = ctx;
   if (store.getState().events.status === webResponseInitial().status) {
     store.dispatch(eventsActions.request());
     if (isServer) {
@@ -141,7 +143,8 @@ Events.getInitialProps = async ({ store, isServer, query }) => {
         const response = await getEvents();
         store.dispatch(eventsActions.success(response));
       } catch (e) {
-        store.dispatch(eventsActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(eventsActions.failure());
       }
     }
   }
@@ -152,7 +155,8 @@ Events.getInitialProps = async ({ store, isServer, query }) => {
         const response = await getVenues();
         store.dispatch(venuesActions.success(response));
       } catch (e) {
-        store.dispatch(venuesActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(venuesActions.failure());
       }
     }
   }

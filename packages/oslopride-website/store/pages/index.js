@@ -1,3 +1,4 @@
+import logError from "@/utils/sentry";
 import { call, put, takeEvery } from "redux-saga/effects";
 import {
   createAction,
@@ -77,7 +78,8 @@ function* fetchPage(action) {
       yield put(pageActions.failure({ slug, message: "Article not found" }));
     }
   } catch (e) {
-    yield put(pageActions.failure({ slug, message: `${e}` }));
+    logError(e);
+    yield put(pageActions.failure({ slug, message: "Unknown error" }));
   }
 }
 

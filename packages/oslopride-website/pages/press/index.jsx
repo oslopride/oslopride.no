@@ -2,6 +2,7 @@ import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import { webResponseInitial } from "@/store/helpers";
 import { getPress, pressActions } from "@/store/press";
+import logError from "@/utils/sentry";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -45,7 +46,8 @@ const Press = props => {
   );
 };
 
-Press.getInitialProps = async ({ store, isServer }) => {
+Press.getInitialProps = async ctx => {
+  const { store, isServer } = ctx;
   if (store.getState().press.status === webResponseInitial().status) {
     store.dispatch(pressActions.request());
     if (isServer) {
@@ -53,7 +55,8 @@ Press.getInitialProps = async ({ store, isServer }) => {
         const response = await getPress();
         store.dispatch(pressActions.success(response));
       } catch (e) {
-        store.dispatch(pressActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(pressActions.failure());
       }
     }
   }

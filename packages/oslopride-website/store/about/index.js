@@ -1,3 +1,4 @@
+import logError from "@/utils/sentry";
 import { call, put, takeLeading } from "redux-saga/effects";
 import {
   createAction,
@@ -40,7 +41,8 @@ function* fetchAbout() {
     const response = yield call(getAbout);
     yield put(aboutActions.success(response));
   } catch (e) {
-    yield put(aboutActions.failure(`${e}`));
+    logError(e);
+    yield put(aboutActions.failure());
   }
 }
 

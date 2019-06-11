@@ -5,6 +5,7 @@ import Error from "@/pages/_error";
 import { webResponseFailure, webResponseRequest } from "@/store/helpers";
 import { getPage, pageActions } from "@/store/pages";
 import { imageUrlFor } from "@/store/sanity";
+import logError from "@/utils/sentry";
 import NextSeo, { ArticleJsonLd } from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -107,7 +108,8 @@ const Page = ({ page }) => {
   );
 };
 
-Page.getInitialProps = async ({ query, store, isServer }) => {
+Page.getInitialProps = async ctx => {
+  const { query, store, isServer } = ctx;
   const { slug } = query;
   const { pages } = store.getState();
   if (
@@ -126,6 +128,7 @@ Page.getInitialProps = async ({ query, store, isServer }) => {
           );
         }
       } catch (e) {
+        logError(e, ctx);
         store.dispatch(pageActions.failure({ slug, message: `${e}` }));
       }
     }

@@ -11,6 +11,7 @@ import { frontPageActions, getFrontPage } from "@/store/front-page";
 import { webResponseInitial } from "@/store/helpers";
 import { getPartners, partnersActions } from "@/store/partners";
 import { imageUrlFor } from "@/store/sanity";
+import logError from "@/utils/sentry";
 import theme from "@/utils/theme";
 import NextSeo from "next-seo";
 import React from "react";
@@ -118,7 +119,8 @@ const FrontPage = props => {
   );
 };
 
-FrontPage.getInitialProps = async ({ store, isServer }) => {
+FrontPage.getInitialProps = async ctx => {
+  const { store, isServer } = ctx;
   if (store.getState().frontPage.status === webResponseInitial().status) {
     store.dispatch(frontPageActions.request());
     if (isServer) {
@@ -129,7 +131,8 @@ FrontPage.getInitialProps = async ({ store, isServer }) => {
         );
         store.dispatch(frontPageActions.success(response));
       } catch (e) {
-        store.dispatch(frontPageActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(frontPageActions.failure());
       }
     }
   }
@@ -140,7 +143,8 @@ FrontPage.getInitialProps = async ({ store, isServer }) => {
         const response = await getPartners();
         store.dispatch(partnersActions.success(response));
       } catch (e) {
-        store.dispatch(partnersActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(partnersActions.failure());
       }
     }
   }

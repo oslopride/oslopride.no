@@ -1,3 +1,4 @@
+import logError from "@/utils/sentry";
 import { all, call, put, takeLeading } from "redux-saga/effects";
 import { articleActions } from "../articles";
 import {
@@ -50,7 +51,8 @@ function* fetchInterPride() {
     );
     yield put(interPrideActions.success(response));
   } catch (e) {
-    yield put(interPrideActions.failure(`${e}`));
+    logError(e);
+    yield put(interPrideActions.failure());
   }
 }
 

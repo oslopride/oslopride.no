@@ -2,6 +2,7 @@ import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import { becomePartnerActions, getBecomePartner } from "@/store/become-partner";
 import { webResponseInitial } from "@/store/helpers";
+import logError from "@/utils/sentry";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -45,7 +46,8 @@ const BecomePartner = props => {
   );
 };
 
-BecomePartner.getInitialProps = async ({ store, isServer }) => {
+BecomePartner.getInitialProps = async ctx => {
+  const { store, isServer } = ctx;
   if (store.getState().becomePartner.status === webResponseInitial().status) {
     store.dispatch(becomePartnerActions.request());
     if (isServer) {
@@ -53,7 +55,8 @@ BecomePartner.getInitialProps = async ({ store, isServer }) => {
         const response = await getBecomePartner();
         store.dispatch(becomePartnerActions.success(response));
       } catch (e) {
-        store.dispatch(becomePartnerActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(becomePartnerActions.failure());
       }
     }
   }

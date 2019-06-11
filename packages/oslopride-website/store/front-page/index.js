@@ -1,3 +1,4 @@
+import logError from "@/utils/sentry";
 import { all, call, put, takeLeading } from "redux-saga/effects";
 import { articleActions } from "../articles";
 import {
@@ -55,7 +56,8 @@ function* fetchFrontPage() {
     );
     yield put(frontPageActions.success(response));
   } catch (e) {
-    yield put(frontPageActions.failure(`${e}`));
+    logError(e);
+    yield put(frontPageActions.failure());
   }
 }
 

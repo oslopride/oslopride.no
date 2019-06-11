@@ -24,7 +24,11 @@
     "@sanity/block-content-to-react": "^2.0.6",
     "@sanity/client": "^0.140.17",
     "@sanity/image-url": "^0.140.12",
+    "@sentry/browser": "^5.4.0",
+    "@sentry/integrations": "^5.4.1",
+    "@sentry/node": "^5.4.0",
     "@zeit/next-css": "^1.0.1",
+    "@zeit/next-source-maps": "^0.0.4-canary.1",
     "dayjs": "^1.8.13",
     "get-youtube-id": "^1.0.1",
     "next": "^8.1.0",
@@ -40,6 +44,7 @@
     "react-sticky-el": "^1.0.20",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
+    "sentry-testkit": "^2.2.1",
     "styled-components": "^4.2.0"
   },
   "devDependencies": {

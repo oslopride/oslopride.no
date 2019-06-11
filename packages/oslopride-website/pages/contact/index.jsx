@@ -2,6 +2,7 @@ import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import { contactActions, getContact } from "@/store/contact";
 import { webResponseInitial } from "@/store/helpers";
+import logError from "@/utils/sentry";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -42,7 +43,8 @@ const Contact = props => {
   );
 };
 
-Contact.getInitialProps = async ({ store, isServer }) => {
+Contact.getInitialProps = async ctx => {
+  const { store, isServer } = ctx;
   if (store.getState().contact.status === webResponseInitial().status) {
     store.dispatch(contactActions.request());
     if (isServer) {
@@ -50,7 +52,8 @@ Contact.getInitialProps = async ({ store, isServer }) => {
         const response = await getContact();
         store.dispatch(contactActions.success(response));
       } catch (e) {
-        store.dispatch(contactActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(contactActions.failure());
       }
     }
   }

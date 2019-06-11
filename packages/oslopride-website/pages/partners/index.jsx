@@ -3,6 +3,7 @@ import Sheet from "@/components/Sheet";
 import { webResponseInitial } from "@/store/helpers";
 import { getPartners, partnersActions } from "@/store/partners";
 import { imageUrlFor } from "@/store/sanity";
+import logError from "@/utils/sentry";
 import theme from "@/utils/theme";
 import NextSeo from "next-seo";
 import React from "react";
@@ -86,7 +87,8 @@ const Partners = props => {
   );
 };
 
-Partners.getInitialProps = async ({ store, isServer }) => {
+Partners.getInitialProps = async ctx => {
+  const { store, isServer } = ctx;
   if (store.getState().partners.status === webResponseInitial().status) {
     store.dispatch(partnersActions.request());
     if (isServer) {
@@ -94,7 +96,8 @@ Partners.getInitialProps = async ({ store, isServer }) => {
         const response = await getPartners();
         store.dispatch(partnersActions.success(response));
       } catch (e) {
-        store.dispatch(partnersActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(partnersActions.failure());
       }
     }
   }

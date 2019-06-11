@@ -2,6 +2,7 @@ import SanityBlockContent from "@/components/SanityBlockContent";
 import Sheet from "@/components/Sheet";
 import { aboutActions, getAbout } from "@/store/about";
 import { webResponseInitial } from "@/store/helpers";
+import logError from "@/utils/sentry";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -45,7 +46,8 @@ const About = props => {
   );
 };
 
-About.getInitialProps = async ({ store, isServer }) => {
+About.getInitialProps = async ctx => {
+  const { store, isServer } = ctx;
   if (store.getState().about.status === webResponseInitial().status) {
     store.dispatch(aboutActions.request());
     if (isServer) {
@@ -53,7 +55,8 @@ About.getInitialProps = async ({ store, isServer }) => {
         const response = await getAbout();
         store.dispatch(aboutActions.success(response));
       } catch (e) {
-        store.dispatch(aboutActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(aboutActions.failure());
       }
     }
   }

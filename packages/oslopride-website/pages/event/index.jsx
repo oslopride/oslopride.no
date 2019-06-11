@@ -9,6 +9,7 @@ import {
 } from "@/store/helpers";
 import { imageUrlFor } from "@/store/sanity";
 import { capitalizeString } from "@/utils";
+import logError from "@/utils/sentry";
 import theme from "@/utils/theme";
 import dayjs from "dayjs";
 import NextSeo from "next-seo";
@@ -167,7 +168,8 @@ const Event = ({ event }) =>
     }
   });
 
-Event.getInitialProps = async ({ query, store, isServer }) => {
+Event.getInitialProps = async ctx => {
+  const { query, store, isServer } = ctx;
   const { id } = query;
   const { events } = store.getState();
 
@@ -178,7 +180,8 @@ Event.getInitialProps = async ({ query, store, isServer }) => {
       try {
         const response = await getEvents();
         store.dispatch(eventsActions.success(response));
-      } catch {
+      } catch (e) {
+        logError(e, ctx);
         store.dispatch(eventsActions.failure("Unable to load articles"));
       }
     }

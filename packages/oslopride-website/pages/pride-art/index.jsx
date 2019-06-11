@@ -5,6 +5,7 @@ import { articleActions } from "@/store/articles";
 import { webResponseInitial } from "@/store/helpers";
 import { getPrideArt, prideArtActions } from "@/store/pride-art";
 import { imageUrlFor } from "@/store/sanity";
+import logError from "@/utils/sentry";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
@@ -80,7 +81,8 @@ const PrideArt = props => {
   );
 };
 
-PrideArt.getInitialProps = async ({ store, isServer }) => {
+PrideArt.getInitialProps = async ctx => {
+  const { store, isServer } = ctx;
   if (store.getState().prideArt.status === webResponseInitial().status) {
     store.dispatch(prideArtActions.request());
     if (isServer) {
@@ -91,7 +93,8 @@ PrideArt.getInitialProps = async ({ store, isServer }) => {
         );
         store.dispatch(prideArtActions.success(response));
       } catch (e) {
-        store.dispatch(prideArtActions.failure(`${e}`));
+        logError(e, ctx);
+        store.dispatch(prideArtActions.failure());
       }
     }
   }
