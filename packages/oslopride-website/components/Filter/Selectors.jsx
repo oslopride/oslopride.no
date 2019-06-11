@@ -29,6 +29,8 @@ const SelectBox = styled.label`
   height: 2em;
   min-width: 100px;
   flex-grow: 1;
+  flex-basis: 0;
+  white-space: nowrap;
   cursor: pointer;
   color: ${({ checked }) => (checked ? "white" : "inherit")};
   background-color: ${({ checked }) => (checked ? theme.purple : "inherit")};

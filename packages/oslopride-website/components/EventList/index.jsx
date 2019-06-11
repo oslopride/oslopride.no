@@ -60,7 +60,7 @@ const EventList = props => {
         const currentDay = dayjs.utc(day[0].startingTime).add(2, "hour");
         return (
           <Event key={currentDay.format("YYYY-MM-DD")}>
-            <Sticky>
+            <Sticky style={{ zIndex: 2, position: "relative" }}>
               <EventDay>
                 {currentDay.format("dddd")}{" "}
                 <span>{currentDay.format("D. MMMM")}</span>
@@ -76,17 +76,21 @@ const EventList = props => {
                 >
                   <EventLink>
                     {event.image ? (
-                      <EventImage
-                        src={imageUrlFor(event.image)
-                          .height(250)
-                          .url()}
-                        alt="arrangementsbilde"
-                      />
+                      <EventImageContainer>
+                        <EventImage
+                          src={imageUrlFor(event.image)
+                            .height(250)
+                            .url()}
+                          alt="arrangementsbilde"
+                        />
+                      </EventImageContainer>
                     ) : (
-                      <EventImage
-                        src="/static/placeholder.jpg"
-                        alt="arrangementsbilde"
-                      />
+                      <EventImageContainer>
+                        <EventImage
+                          src="/static/placeholder.jpg"
+                          alt="arrangementsbilde"
+                        />
+                      </EventImageContainer>
                     )}
 
                     <EventInfo>
@@ -179,20 +183,22 @@ const EventDay = styled.h2`
 
 const EventLink = styled.a`
   cursor: pointer;
-  border-bottom: 2px solid lightgrey;
-  padding: 10px 0;
+  padding: 20px 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   text-decoration: none;
   color: inherit;
+  transition: transform 0.2s ease-in-out;
 
   &:last-child {
     border-bottom: 0;
   }
-
-  &:hover {
-    text-decoration: underline;
+  
+  :hover,
+    :focus {
+      transform: scale(1.05);
+    }
   }
 `;
 
@@ -200,9 +206,15 @@ const EventDayListWrapper = styled.div`
   margin-top: 20px;
 `;
 
+const EventImageContainer = styled.div`
+  width: 150px;
+  height: 120px;
+  max-width: 25%;
+`;
+
 const EventImage = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 120px;
   object-fit: cover;
 `;
 
@@ -225,6 +237,7 @@ const EventTime = styled.div`
   font-weight: 600;
   color: ${theme.orange};
   margin-right: 10px;
+  width: 100%;
 `;
 
 const EventPlace = styled.div`
