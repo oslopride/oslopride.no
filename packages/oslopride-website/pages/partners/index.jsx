@@ -70,14 +70,14 @@ const Partners = props => {
           description: "Oslo Pride sine partnere",
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/partners",
+            url: "https://www.oslopride.no/partners",
             locale: "nb_NO",
             site_name: "Oslo Pride",
             title: "Oslo Pride sine Partnere",
             description: "Oslo Pride sine partnere",
             images: [
-              { url: "https://oslopride.no/static/logo.jpg" },
-              { url: "https://oslopride.no/static/prideheart.jpg" }
+              { url: "https://www.oslopride.no/static/logo.jpg" },
+              { url: "https://www.oslopride.no/static/prideheart.jpg" }
             ]
           }
         }}

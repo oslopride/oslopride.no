@@ -39,7 +39,7 @@ const Article = ({ article }) => {
           description: preamble,
           openGraph: {
             type: "article",
-            url: `https://oslopride.no/a/${slug}`,
+            url: `https://www.oslopride.no/a/${slug}`,
             title,
             locale: "nb_NO",
             description: preamble,
@@ -52,13 +52,13 @@ const Article = ({ article }) => {
         }}
       />
       <ArticleJsonLd
-        url={`https://oslopride.no/a/${slug}`}
+        url={`https://www.oslopride.no/a/${slug}`}
         title={title}
         datePublished={_createdAt}
         dateModified={_updatedAt}
         authorName="Oslo Pride"
         publisherName="Oslo Pride"
-        publisherLogo="https://oslopride.no/static/logo.jpg"
+        publisherLogo="https://www.oslopride.no/static/logo.jpg"
         description={preamble}
         images={[imageUrlFor(image).url()]}
       />

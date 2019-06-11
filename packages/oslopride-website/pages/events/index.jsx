@@ -110,15 +110,15 @@ const Events = props => {
             "Festivalprogram til Norges største feiring av skeiv kjærlighet og mangfold.",
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/events",
+            url: "https://www.oslopride.no/events",
             locale: "nb_NO",
             site_name: "Oslo Pride",
             title: "Oslo Pride Festivalprogram",
             description:
               "Festivalprogram til Norges største feiring av skeiv kjærlighet og mangfold.",
             images: [
-              { url: "https://oslopride.no/static/logo.jpg" },
-              { url: "https://oslopride.no/static/prideheart.jpg" }
+              { url: "https://www.oslopride.no/static/logo.jpg" },
+              { url: "https://www.oslopride.no/static/prideheart.jpg" }
             ]
           }
         }}

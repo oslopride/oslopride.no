@@ -26,14 +26,14 @@ const Contact = props => {
           description: "Kontakt Oslo Pride",
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/contact",
+            url: "https://www.oslopride.no/contact",
             locale: "nb_NO",
             site_name: "Oslo Pride",
             title: "Kontakt Oslo Pride",
             description: "Kontakt Oslo Pride",
             images: [
-              { url: "https://oslopride.no/static/logo.jpg" },
-              { url: "https://oslopride.no/static/prideheart.jpg" }
+              { url: "https://www.oslopride.no/static/logo.jpg" },
+              { url: "https://www.oslopride.no/static/prideheart.jpg" }
             ]
           }
         }}

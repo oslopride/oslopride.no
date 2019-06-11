@@ -47,7 +47,7 @@ const PrideParade = props => {
             "Pride Parade er det store høydepunktet under Oslo Pride og er etter 17. mai-toget, det mest synlige arrangementet i Oslo i løpet av året.",
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/pride-parade",
+            url: "https://www.oslopride.no/pride-parade",
             locale: "nb_NO",
             site_name: "Oslo Pride",
             title: "Pride Parade",

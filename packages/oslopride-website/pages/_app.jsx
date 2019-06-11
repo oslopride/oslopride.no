@@ -3,10 +3,7 @@ import Header from "@/components/Header";
 import { configActions, getConfig } from "@/store/config";
 import { webResponseStatus } from "@/store/helpers";
 import createStore from "@/store/store";
-import {
-  initializeGoogleAnalytics,
-  logPageView
-} from "@/utils/google-analytics";
+import { initializeGoogleAnalytics, logPageView } from "@/utils/google-analytics";
 import dayjs from "dayjs";
 import "dayjs/locale/nb";
 import utc from "dayjs/plugin/utc";
@@ -109,7 +106,7 @@ class NextApp extends App {
         <NextSeo
           config={{
             titleTemplate: "Oslo Pride | %s",
-            canonical: "https://oslopride.no",
+            canonical: "https://www.oslopride.no",
 
             twitter: {
               handle: "@OsloPride",
@@ -121,7 +118,7 @@ class NextApp extends App {
         <SocialProfileJsonLd
           type="Organization"
           name="Oslo Pride"
-          url="https://oslopride.no"
+          url="https://www.oslopride.no"
           sameAs={[
             "https://www.facebook.com/oslopride",
             "https://twitter.com/oslopride",
@@ -129,8 +126,8 @@ class NextApp extends App {
           ]}
         />
         <LogoJsonLd
-          logo="https://oslopride.no/static/logo.jpg"
-          url="https://oslopride.no"
+          logo="https://www.oslopride.no/static/logo.jpg"
+          url="https://www.oslopride.no"
         />
       </Container>
     );

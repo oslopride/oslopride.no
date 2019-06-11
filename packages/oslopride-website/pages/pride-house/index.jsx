@@ -60,7 +60,7 @@ const PrideHouse = props => {
             "Pride House synliggjør bredden i den skeive kulturen gjennom debatter, foredrag, workshops og ulike kulturuttrykk.",
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/pride-house",
+            url: "https://www.oslopride.no/pride-house",
             locale: "nb_NO",
             site_name: "Oslo Pride",
             title: "Pride House",

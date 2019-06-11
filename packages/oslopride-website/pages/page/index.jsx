@@ -55,7 +55,7 @@ const Page = ({ page }) => {
     ? imageUrlFor(image)
         .maxWidth(1000)
         .url()
-    : "https://oslopride.no/static/prideheart.jpg";
+    : "https://www.oslopride.no/static/prideheart.jpg";
   const seoDescription =
     description ||
     "Oslo Pride er Norges største og viktigste feiring av skeiv kjærlighet og mangfold.";
@@ -80,7 +80,7 @@ const Page = ({ page }) => {
           description,
           openGraph: {
             type: "page",
-            url: `https://oslopride.no/p/${slug}`,
+            url: `https://www.oslopride.no/p/${slug}`,
             title,
             locale: "nb_NO",
             description: seoDescription,
@@ -93,13 +93,13 @@ const Page = ({ page }) => {
         }}
       />
       <ArticleJsonLd
-        url={`https://oslopride.no/p/${slug}`}
+        url={`https://www.oslopride.no/p/${slug}`}
         title={title}
         datePublished={_createdAt}
         dateModified={_updatedAt}
         authorName="Oslo Pride"
         publisherName="Oslo Pride"
-        publisherLogo="https://oslopride.no/static/logo.jpg"
+        publisherLogo="https://www.oslopride.no/static/logo.jpg"
         description={seoDescription}
         images={[imageUrl]}
       />

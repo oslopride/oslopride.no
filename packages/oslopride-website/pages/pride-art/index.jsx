@@ -67,7 +67,7 @@ const PrideArt = props => {
           description: "Pride Art er Norges største skeive utstilling!",
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/pride-art",
+            url: "https://www.oslopride.no/pride-art",
             locale: "nb_NO",
             site_name: "Oslo Pride",
             title: "Pride Art",

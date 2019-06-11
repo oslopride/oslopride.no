@@ -59,7 +59,7 @@ const PridePark = props => {
           description: "Kom og feire mangfold, samhold og kjærlighet med oss!",
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/pride-house",
+            url: "https://www.oslopride.no/pride-house",
             locale: "nb_NO",
             site_name: "Oslo Pride",
             title: "Pride Park",

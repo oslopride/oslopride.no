@@ -76,7 +76,7 @@ const FrontPage = props => {
             "Norges største feiring av skeiv kjærlighet og mangfold. En festival der alle har lov til å være akkurat den de er.",
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/",
+            url: "https://www.oslopride.no/",
             locale: "nb_NO",
             site_name: "Oslo Pride",
             title: "Oslo Pride",
@@ -84,13 +84,13 @@ const FrontPage = props => {
               "Norges største feiring av skeiv kjærlighet og mangfold. En festival der alle har lov til å være akkurat den de er.",
             images: [
               {
-                url: "https://oslopride.no/static/logo.jpg",
+                url: "https://www.oslopride.no/static/logo.jpg",
                 alt: "Oslo Pride Logo",
                 width: "2110",
                 height: "1218"
               },
               {
-                url: "https://oslopride.no/static/prideheart.jpg",
+                url: "https://www.oslopride.no/static/prideheart.jpg",
                 alt: "Oslo Pride Hjerte",
                 width: "1458",
                 height: "1458"

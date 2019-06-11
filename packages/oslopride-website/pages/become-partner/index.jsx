@@ -28,15 +28,15 @@ const BecomePartner = props => {
             "Oslo Pride er Norges største og viktigste feiring av skeiv kjærlighet og mangfold og gir deg en unik mulighet til å støtte kampen for like rettigheter og solidaritet.",
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/become-partner",
+            url: "https://www.oslopride.no/become-partner",
             locale: "nb_NO",
             site_name: "Oslo Pride",
             title: "Bli Parner",
             description:
               "Oslo Pride er Norges største og viktigste feiring av skeiv kjærlighet og mangfold og gir deg en unik mulighet til å støtte kampen for like rettigheter og solidaritet.",
             images: [
-              { url: "https://oslopride.no/static/logo.jpg" },
-              { url: "https://oslopride.no/static/prideheart.jpg" }
+              { url: "https://www.oslopride.no/static/logo.jpg" },
+              { url: "https://www.oslopride.no/static/prideheart.jpg" }
             ]
           }
         }}

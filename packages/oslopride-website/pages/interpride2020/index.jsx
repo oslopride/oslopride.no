@@ -58,7 +58,7 @@ const InterPride = props => {
           description: preamble,
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/interpride2020",
+            url: "https://www.oslopride.no/interpride2020",
             locale: "en_US",
             site_name: "Oslo Pride",
             title: "InterPride AGM 2020",

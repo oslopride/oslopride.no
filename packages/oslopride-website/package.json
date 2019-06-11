@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/oslopride/oslopride-website/issues"
   },
-  "homepage": "https://oslopride.no",
+  "homepage": "https://www.oslopride.no",
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.6",
     "@sanity/client": "^0.140.17",

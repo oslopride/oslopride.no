@@ -28,15 +28,15 @@ const About = props => {
             "Oslo Pride er Norges største og viktigste feiring av skeiv kjærlighet og mangfold.",
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/about",
+            url: "https://www.oslopride.no/about",
             locale: "nb_NO",
             site_name: "Oslo Pride",
             title: "Om Oslo Pride",
             description:
               "Oslo Pride er Norges største og viktigste feiring av skeiv kjærlighet og mangfold.",
             images: [
-              { url: "https://oslopride.no/static/logo.jpg" },
-              { url: "https://oslopride.no/static/prideheart.jpg" }
+              { url: "https://www.oslopride.no/static/logo.jpg" },
+              { url: "https://www.oslopride.no/static/prideheart.jpg" }
             ]
           }
         }}

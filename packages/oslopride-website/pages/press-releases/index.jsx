@@ -59,7 +59,7 @@ const PressReleases = props => {
           description: "Liste over pressemeldinger fra Oslo Pride",
           openGraph: {
             type: "website",
-            url: "https://oslopride.no/press-releases",
+            url: "https://www.oslopride.no/press-releases",
             locale: "nb_NO",
             site_name: "Oslo Pride",
             title: "Pressemeldinger",
