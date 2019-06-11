@@ -207,14 +207,14 @@ const EventDayListWrapper = styled.div`
 `;
 
 const EventImageContainer = styled.div`
-  width: 150px;
+  width: 140px;
   height: 120px;
-  max-width: 25%;
+  max-width: 30%;
 `;
 
 const EventImage = styled.img`
-  width: 150px;
-  height: 120px;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
 `;
 
@@ -228,8 +228,12 @@ const EventInfo = styled.div`
 
 const EventTitle = styled.div`
   width: 100%;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
+
+  @media (min-width: 500px) {
+    font-size: 20px;
+  }
 `;
 
 const EventTime = styled.div`
