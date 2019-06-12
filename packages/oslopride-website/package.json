@@ -40,6 +40,7 @@
     "react-dom": "^16.8.6",
     "react-ga": "^2.5.7",
     "react-icons": "^3.7.0",
+    "react-lazyload": "^2.6.1",
     "react-redux": "^7.0.3",
     "react-sticky-el": "^1.0.20",
     "redux": "^4.0.1",
