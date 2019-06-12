@@ -62,6 +62,7 @@ const SelectorList = styled.div`
   flex-wrap: wrap;
   border-top: 2px solid ${theme.purple};
   border-left: 2px solid ${theme.purple};
+  border-radius: 2px;
 `;
 
 const SelectorLabel = styled.span`

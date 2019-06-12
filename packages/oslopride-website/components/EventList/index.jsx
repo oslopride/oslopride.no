@@ -87,7 +87,7 @@ const EventList = props => {
                     ) : (
                       <EventImageContainer>
                         <EventImage
-                          src="/static/placeholder.jpg"
+                          src="/static/event-placeholder.png"
                           alt="arrangementsbilde"
                         />
                       </EventImageContainer>
@@ -179,6 +179,7 @@ const EventDay = styled.h2`
   color: white;
   text-transform: uppercase;
   text-align: center;
+  border-radius: 2px;
 `;
 
 const EventLink = styled.a`
@@ -216,6 +217,7 @@ const EventImage = styled.img`
   height: 100%;
   width: 100%;
   object-fit: cover;
+  border-radius: 2px;
 `;
 
 const EventInfo = styled.div`
