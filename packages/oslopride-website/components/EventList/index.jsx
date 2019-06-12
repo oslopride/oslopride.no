@@ -134,16 +134,9 @@ const groupEventsByDay = events => {
     return [];
   }
 
-  const sortedEvents = [...events];
+  const groupedEvents = [[events[0]]];
 
-  sortedEvents.sort(
-    (a, b) =>
-      dayjs.utc(a.startingTime).unix() - dayjs.utc(b.startingTime).unix()
-  );
-
-  const groupedEvents = [[sortedEvents[0]]];
-
-  sortedEvents.slice(1).forEach(event => {
+  events.slice(1).forEach(event => {
     const lastGroup = groupedEvents[groupedEvents.length - 1];
     const lastEvent = lastGroup[lastGroup.length - 1];
 
