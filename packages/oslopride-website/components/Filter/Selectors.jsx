@@ -39,6 +39,16 @@ const SelectBox = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  min-width: 40%;
+
+  @media (min-width: 450px) {
+    min-width: 30%;
+  }
+
+  @media (min-width: 700px) {
+    min-width: initial;
+  }
 `;
 
 const InvisibleInput = styled.input`

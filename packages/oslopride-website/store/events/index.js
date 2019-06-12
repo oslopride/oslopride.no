@@ -33,8 +33,13 @@ export const eventsReducer = (state = initialState, action) => {
 };
 
 export const getEvents = () => {
-  const query =
-    "*[_type == 'event' && editorialState == 'published'] | order(startingTime, endingTime, title)";
+  const query = `*[_type == 'event' && editorialState == 'published']{
+      ...,
+      location {
+        ...,
+        venue->
+      }
+    } | order(startingTime, endingTime, title)`;
   return sanity.fetch(query);
 };
 

@@ -53,16 +53,18 @@ const FrontPage = props => {
         <FeaturedDates dates={frontPage.data.featuredDates} />
       </ContentWrapper>
 
-      <Banner color={theme.lightBlue} title="Artikler" textColor={theme.blue}>
-        <FeaturedArticlesWrapper>
-          {frontPage.data.featuredArticles.map(article => (
-            <FeaturedArticle
-              slug={article.slug.current}
-              key={article.slug.current}
-            />
-          ))}
-        </FeaturedArticlesWrapper>
-      </Banner>
+      {frontPage.data.featuredArticles.length > 0 && (
+        <Banner color={theme.lightBlue} title="Artikler" textColor={theme.blue}>
+          <FeaturedArticlesWrapper>
+            {frontPage.data.featuredArticles.map(article => (
+              <FeaturedArticle
+                slug={article.slug.current}
+                key={article.slug.current}
+              />
+            ))}
+          </FeaturedArticlesWrapper>
+        </Banner>
+      )}
 
       <Banner>
         <StoreWrapper>

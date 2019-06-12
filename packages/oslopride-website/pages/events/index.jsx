@@ -8,7 +8,6 @@ import useURLFilter, {
 import Sheet from "@/components/Sheet";
 import { eventsActions, getEvents } from "@/store/events";
 import { webResponseInitial } from "@/store/helpers";
-import { getVenues, venuesActions } from "@/store/venues";
 import logError from "@/utils/sentry";
 import theme from "@/utils/theme";
 import NextSeo from "next-seo";
@@ -34,10 +33,10 @@ const arenaNameMapper = arena => {
 };
 
 const Events = props => {
-  const { events, venues, query } = props;
+  const { events, query } = props;
   const filteredEvents = useURLFilter(events.data || [], query);
 
-  if (events.status !== "SUCCESS" || venues.status !== "SUCCESS") {
+  if (events.status !== "SUCCESS") {
     // TODO: Make a better UX while loading
     return <div>Laster ...</div>;
   }
@@ -104,7 +103,7 @@ const Events = props => {
         />
 
         {events.data.length ? (
-          <EventList events={filteredEvents} venues={venues} />
+          <EventList events={filteredEvents} />
         ) : (
           <p>Kommer snart!</p>
         )}
@@ -148,25 +147,11 @@ Events.getInitialProps = async ctx => {
       }
     }
   }
-  if (store.getState().venues.status === webResponseInitial().status) {
-    store.dispatch(venuesActions.request());
-    if (isServer) {
-      try {
-        const response = await getVenues();
-        store.dispatch(venuesActions.success(response));
-      } catch (e) {
-        logError(e, ctx);
-        store.dispatch(venuesActions.failure());
-      }
-    }
-  }
-
   return { query };
 };
 
 const mapStateToProps = state => ({
-  events: state.events,
-  venues: state.venues
+  events: state.events
 });
 
 export default connect(mapStateToProps)(Events);

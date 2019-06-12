@@ -27,6 +27,7 @@ const ToggleText = styled.span`
 
 const Toggle = styled(Switch)`
   margin: 0 5px;
+  flex-shrink: 0;
 `;
 
 const OnIcon = styled(FaToggleOn)`
@@ -57,5 +58,10 @@ export default Toggles;
 const Container = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+
+  @media (min-width: 750px) {
+    flex-direction: row;
+  }
 `;

@@ -15,7 +15,6 @@ import { prideArtReducer } from "./pride-art";
 import { prideHouseReducer } from "./pride-house";
 import { prideParadeReducer } from "./pride-parade";
 import { prideParkReducer } from "./pride-park";
-import { venuesReducer } from "./venues";
 
 export default combineReducers({
   about: aboutReducer,
@@ -33,6 +32,5 @@ export default combineReducers({
   press: pressReducer,
   events: eventsReducer,
   pages: pageReducer,
-  config: configReducer,
-  venues: venuesReducer
+  config: configReducer
 });

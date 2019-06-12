@@ -8,7 +8,7 @@ import Sticky from "react-sticky-el";
 import styled from "styled-components";
 
 const EventList = props => {
-  const { events, venues } = props;
+  const { events } = props;
 
   const displayArena = event => {
     switch (event.category) {
@@ -48,11 +48,6 @@ const EventList = props => {
         return "Fest";
         break;
     }
-  };
-
-  const getVenueName = reference => {
-    const venueData = venues.data.find(venue => venue._id === reference);
-    return venueData.name;
   };
 
   return (
@@ -125,7 +120,7 @@ const EventList = props => {
                         <Descriptor> Hvor: </Descriptor>
                         {displayArena(event)}
                         {event.location.venue
-                          ? getVenueName(event.location.venue._ref)
+                          ? event.location.venue.name
                           : event.location.name}
                       </EventPlace>
                       <EventType>

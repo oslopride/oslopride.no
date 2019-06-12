@@ -77,6 +77,7 @@ const Event = ({ event }) =>
                 <strong>Sted: </strong>
                 {location.name && `${location.name}, `}
                 {location.address}
+                {location.venue && ` (${location.venue.name})`}
               </div>
               <div>
                 <strong>Tidspunkt: </strong>
@@ -182,7 +183,7 @@ Event.getInitialProps = async ctx => {
         store.dispatch(eventsActions.success(response));
       } catch (e) {
         logError(e, ctx);
-        store.dispatch(eventsActions.failure("Unable to load articles"));
+        store.dispatch(eventsActions.failure("Unable to load events"));
       }
     }
   }
