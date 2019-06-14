@@ -34,7 +34,12 @@ const arenaNameMapper = arena => {
 
 const Events = props => {
   const { events, query } = props;
-  const filteredEvents = useURLFilter(events.data || [], query);
+  const filteredEvents = useURLFilter(events.data || [], query, [
+    "category",
+    "official",
+    "accessible",
+    "deafInterpretation"
+  ]);
 
   if (events.status !== "SUCCESS") {
     // TODO: Make a better UX while loading

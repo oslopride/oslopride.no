@@ -4,18 +4,20 @@ import { useMemo } from "react";
 const toArray = val =>
   val === undefined ? [] : Array.isArray(val) ? val : [val];
 
-export default (objects, query) =>
+export default (objects, query, allowedFilterKeys) =>
   useMemo(() => {
     let filteredObjects = objects;
-    Object.keys(query).forEach(key => {
-      const filters = toArray(query[key]);
-      filteredObjects =
-        filters.length === 0
-          ? filteredObjects // Return all objects if no filtes are applied
-          : filteredObjects.filter(obj => filters.includes(`${obj[key]}`));
-    });
+    Object.keys(query)
+      .filter(key => allowedFilterKeys.includes(key))
+      .forEach(key => {
+        const filters = toArray(query[key]);
+        filteredObjects =
+          filters.length === 0
+            ? filteredObjects // Return all objects if no filtes are applied
+            : filteredObjects.filter(obj => filters.includes(`${obj[key]}`));
+      });
     return filteredObjects;
-  }, [objects, query]);
+  }, [objects, query, allowedFilterKeys]);
 
 export const addFilter = (key, value) => {
   const prevFilterList = toArray(Router.query[key]);
