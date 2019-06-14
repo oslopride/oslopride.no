@@ -1,4 +1,4 @@
-import Link from "@/components/Link";
+import { ExternalLink } from "@/components/Link";
 import theme from "@/utils/theme";
 import React from "react";
 import styled from "styled-components";
@@ -44,7 +44,7 @@ const Wrapper = styled.div`
   justify-content: space-around;
 `;
 
-const ButtonStyle = styled(Link)`
+const ButtonStyle = styled(ExternalLink)`
   margin: 10px;
   width: 100%;
   transition: transform 0.2s ease-in-out;
