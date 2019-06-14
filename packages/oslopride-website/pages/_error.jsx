@@ -1,10 +1,14 @@
 import Sheet from "@/components/Sheet";
+import logError from "@/utils/sentry";
 import NextSeo from "next-seo";
-import React from "react";
+import React, { useEffect } from "react";
 
 const is400Error = statusCode => statusCode >= 400 && statusCode < 500;
 
-const Error = ({ statusCode }) => {
+const ErrorPage = ({ statusCode }) => {
+  useEffect(() => {
+    logError(new Error(`Encountered an error [${statusCode}]`));
+  }, []);
   if (is400Error(statusCode)) {
     return (
       <Sheet>
@@ -37,16 +41,11 @@ const Error = ({ statusCode }) => {
   );
 };
 
-Error.getInitialProps = async ({ res, err, isServer }) => {
-  if (isServer) {
-    if (res) {
-      return { statusCode: res.statusCode };
-    }
-    if (err) {
-      return { statusCode: err.statusCode };
-    }
-  }
-  return { statusCode: undefined };
+ErrorPage.getInitialProps = async ctx => {
+  const { res, err } = ctx;
+  const statusCode = res ? res.statusCode : err ? err.statusCode : null;
+
+  return { statusCode };
 };
 
-export default Error;
+export default ErrorPage;

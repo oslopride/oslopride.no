@@ -4,7 +4,7 @@
   "description": "Oslo Pride's official website",
   "main": "index.js",
   "scripts": {
-    "dev": "node dev-server.js",
+    "dev": "now dev",
     "build": "next build",
     "now-build": "next build",
     "start": "next start",
@@ -61,6 +61,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.13.0",
     "express": "^4.16.4",
+    "now": "^15.5.0",
     "prettier": "^1.17.0"
   }
 }

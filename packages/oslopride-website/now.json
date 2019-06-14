@@ -25,6 +25,11 @@
       "src": "/om-oss/pride-art(/.*)?",
       "status": 301,
       "headers": { "Location": "https://www.oslopride.no/pride-art" }
+    },
+    { "handle": "filesystem" },
+    {
+      "src": "/.*",
+      "dest": "/404"
     }
   ],
   "public": true
