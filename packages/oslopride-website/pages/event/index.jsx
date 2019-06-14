@@ -111,7 +111,9 @@ const Event = ({ event }) =>
                 {ticketSaleWebpage ? (
                   <>
                     <strong>Lenke til billettsalg: </strong>
-                    <a href={ticketSaleWebpage}>{ticketSaleWebpage}</a>
+                    <LongLink href={ticketSaleWebpage}>
+                      {ticketSaleWebpage}
+                    </LongLink>
                   </>
                 ) : (
                   ""
@@ -121,7 +123,7 @@ const Event = ({ event }) =>
                 {eventWebpage ? (
                   <>
                     <strong>Lenke til arrangement: </strong>
-                    <a href={eventWebpage}>{eventWebpage}</a>
+                    <LongLink href={eventWebpage}>{eventWebpage}</LongLink>
                   </>
                 ) : (
                   ""
@@ -229,6 +231,10 @@ const Image = styled.img`
 
 const MultidayEventTime = styled.span`
   font-weight: normal;
+`;
+
+const LongLink = styled.a`
+  word-break: break-word;
 `;
 
 const mapStateToProps = (state, { id }) => ({
