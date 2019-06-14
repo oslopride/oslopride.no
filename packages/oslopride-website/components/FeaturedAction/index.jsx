@@ -1,4 +1,4 @@
-import Link from "@/components/Link";
+import { ExternalLink } from "@/components/Link";
 import theme from "@/utils/theme";
 import React from "react";
 import styled from "styled-components";
@@ -66,7 +66,7 @@ const TextBox = styled.div`
   }
 `;
 
-const Text = styled(Link)`
+const Text = styled(ExternalLink)`
   margin: 20px;
   line-height: 1.7;
 

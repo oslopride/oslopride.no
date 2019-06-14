@@ -13,6 +13,13 @@ const Link = ({ className, href, children, onClick, arrow = true, color }) => (
   </NextLink>
 );
 
+export const ExternalLink = ({ children, arrow = true, color, ...rest }) => (
+  <A arrow={arrow} color={color} {...rest}>
+    {children}
+    {arrow && <Arrow />}
+  </A>
+);
+
 const A = styled.a`
   position: relative;
   text-transform: uppercase;

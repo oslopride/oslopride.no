@@ -1,4 +1,4 @@
-import Link from "@/components/Link";
+import { ExternalLink } from "@/components/Link";
 import theme from "@/utils/theme";
 import React from "react";
 import styled from "styled-components";
@@ -80,7 +80,7 @@ const Hero = ({ className, imageURL, title, subtitle, url, urlText }) => (
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
       <ProgramLinkWrapper>
-        <Link href={url}>{urlText}</Link>
+        <ExternalLink href={url}>{urlText}</ExternalLink>
       </ProgramLinkWrapper>
     </TextWrapper>
   </Wrapper>
