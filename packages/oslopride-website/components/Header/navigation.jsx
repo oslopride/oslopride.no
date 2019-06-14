@@ -1,4 +1,4 @@
-import Link from "@/components/Link";
+import Link, { ExternalLink } from "@/components/Link";
 import theme from "@/utils/theme";
 import React from "react";
 import styled from "styled-components";
@@ -39,6 +39,11 @@ const NavigationLink = styled(Link)`
   margin: 15px 8px;
 `;
 
+const ExternalNavigationLink = styled(ExternalLink)`
+  font-size: 18px;
+  margin: 15px 8px;
+`;
+
 const Navigation = ({ className, visible, callback }) => (
   <Container className={className} visible={visible}>
     <NavigationGroup>
@@ -70,23 +75,23 @@ const Navigation = ({ className, visible, callback }) => (
 
     <NavigationGroup>
       <NavigationTitle>Engasjer deg</NavigationTitle>
-      <NavigationLink
+      <ExternalNavigationLink
         href="/a/engasjer-deg-i-oslo-pride"
         onClick={callback}
         arrow={false}
       >
         Vær Frivillig
-      </NavigationLink>
+      </ExternalNavigationLink>
       <NavigationLink href="/become-partner" onClick={callback} arrow={false}>
         Bli Partner
       </NavigationLink>
-      <NavigationLink
+      <ExternalNavigationLink
         href="/a/registrering-av-arrangement"
         onClick={callback}
         arrow={false}
       >
         Registrer arrangement
-      </NavigationLink>
+      </ExternalNavigationLink>
     </NavigationGroup>
 
     <NavigationGroup>
@@ -99,13 +104,13 @@ const Navigation = ({ className, visible, callback }) => (
       <NavigationLink href="/partners" onClick={callback} arrow={false}>
         Partnere
       </NavigationLink>
-      <NavigationLink
+      <ExternalNavigationLink
         href="https://butikk.oslopride.no/"
         onClick={callback}
         arrow={false}
       >
         Pridebutikken
-      </NavigationLink>
+      </ExternalNavigationLink>
     </NavigationGroup>
   </Container>
 );
