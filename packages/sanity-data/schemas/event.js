@@ -24,6 +24,11 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: "isFeatured",
+      title: "Fremhev øverst i programmet",
+      type: "boolean"
+    },
+    {
       name: "official",
       title: "Offisielt",
       type: "boolean",
