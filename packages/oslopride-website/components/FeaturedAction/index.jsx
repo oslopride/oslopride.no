@@ -85,6 +85,7 @@ const Text = styled(ExternalLink)`
     color: black;
     font-size: 16px;
     font-weight: 400;
+    text-transform: none;
   }
 
   @media (min-width: 500px) {
