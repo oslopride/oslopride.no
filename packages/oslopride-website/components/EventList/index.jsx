@@ -12,6 +12,14 @@ const EventList = props => {
   const [showFinished, setShowFinished] = useState(false);
   const toggleShowFinished = () => setShowFinished(!showFinished);
 
+  const filteredEvents = events.filter(e => {
+    if (showFinished) {
+      return true;
+    } else {
+      return dayjs.utc(e.endingTime).isAfter(dayjs.utc().add(1, "hour"));
+    }
+  });
+
   const displayArena = event => {
     switch (event.category) {
       case "0":
@@ -54,7 +62,14 @@ const EventList = props => {
 
   return (
     <>
-      {groupEventsByDay(events).map(day => {
+      <ShowPastEventsContainer>
+        <ShowPastEventsButton onClick={toggleShowFinished}>
+          {showFinished
+            ? "Skjul avsluttede arrangementer"
+            : "Vis avsluttede arrangementer"}
+        </ShowPastEventsButton>
+      </ShowPastEventsContainer>
+      {groupEventsByDay(filteredEvents).map(day => {
         const currentDay = dayjs.utc(day[0].startingTime).add(2, "hour");
         return (
           <Event key={currentDay.format("YYYY-MM-DD")}>
