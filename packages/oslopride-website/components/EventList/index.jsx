@@ -54,105 +54,89 @@ const EventList = props => {
 
   return (
     <>
-      <ShowPastEventsContainer>
-        <ShowPastEventsButton onClick={toggleShowFinished}>
-          {showFinished
-            ? "Skjul avsluttede arrangementer"
-            : "Vis avsluttede arrangementer"}
-        </ShowPastEventsButton>
-      </ShowPastEventsContainer>
-      {groupEventsByDay(events)
-        .filter(eventGroup => {
-          if (!showFinished && eventGroup.length > 0) {
-            return dayjs
-              .utc(eventGroup[0].endingTime)
-              .isAfter(dayjs.utc().add(1, "hour"));
-          }
-          return true;
-        })
-        .map(day => {
-          const currentDay = dayjs.utc(day[0].startingTime).add(2, "hour");
-          return (
-            <Event key={currentDay.format("YYYY-MM-DD")}>
-              <Sticky style={{ zIndex: 2, position: "relative" }}>
-                <EventDay>
-                  {currentDay.format("dddd")}{" "}
-                  <span>{currentDay.format("D. MMMM")}</span>
-                </EventDay>
-              </Sticky>
-              <EventDayListWrapper>
-                {day.map(event => (
-                  <Link
-                    key={event._id}
-                    href={`/event?id=${event._id}`}
-                    as={`/events/${event._id}`}
-                    passHref
-                  >
-                    <EventLink>
-                      <LazyLoad
-                        height={120}
-                        scroll
-                        once
-                        offset={100}
-                        placeholder={
-                          <EventImageContainer>
-                            <EventImage
-                              src="/static/event-placeholder.png"
-                              alt="arrangementsbilde"
-                            />
-                          </EventImageContainer>
-                        }
-                      >
-                        {event.image ? (
-                          <EventImageContainer>
-                            <EventImage
-                              src={imageUrlFor(event.image)
-                                .height(250)
-                                .url()}
-                              alt="arrangementsbilde"
-                            />
-                          </EventImageContainer>
-                        ) : (
-                          <EventImageContainer>
-                            <EventImage
-                              src="/static/event-placeholder.png"
-                              alt="arrangementsbilde"
-                            />
-                          </EventImageContainer>
-                        )}
-                      </LazyLoad>
-                      <EventInfo>
-                        <EventTitle>{event.title}</EventTitle>
-                        <EventTime>
-                          {dayjs
-                            .utc(event.startingTime)
-                            .add(2, "hour")
-                            .format("HH:mm")}
-                          -
-                          {dayjs
-                            .utc(event.endingTime)
-                            .add(2, "hour")
-                            .format("HH:mm")}
-                        </EventTime>
-                        <EventPlace>
-                          <Descriptor> Hvor: </Descriptor>
-                          {displayArena(event)}
-                          {event.location.venue
-                            ? event.location.venue.name
-                            : event.location.name}
-                        </EventPlace>
-                        <EventType>
-                          <Descriptor> Type: </Descriptor>
-                          {displayEventType(event)}
-                        </EventType>
-                      </EventInfo>
-                    </EventLink>
-                  </Link>
-                ))}
-              </EventDayListWrapper>
-            </Event>
-          );
-        })}
+      {groupEventsByDay(events).map(day => {
+        const currentDay = dayjs.utc(day[0].startingTime).add(2, "hour");
+        return (
+          <Event key={currentDay.format("YYYY-MM-DD")}>
+            <Sticky style={{ zIndex: 2, position: "relative" }}>
+              <EventDay>
+                {currentDay.format("dddd")}{" "}
+                <span>{currentDay.format("D. MMMM")}</span>
+              </EventDay>
+            </Sticky>
+            <EventDayListWrapper>
+              {day.map(event => (
+                <Link
+                  key={event._id}
+                  href={`/event?id=${event._id}`}
+                  as={`/events/${event._id}`}
+                  passHref
+                >
+                  <EventLink>
+                    <LazyLoad
+                      height={120}
+                      scroll
+                      once
+                      offset={100}
+                      placeholder={
+                        <EventImageContainer>
+                          <EventImage
+                            src="/static/event-placeholder.png"
+                            alt="arrangementsbilde"
+                          />
+                        </EventImageContainer>
+                      }
+                    >
+                      {event.image ? (
+                        <EventImageContainer>
+                          <EventImage
+                            src={imageUrlFor(event.image)
+                              .height(250)
+                              .url()}
+                            alt="arrangementsbilde"
+                          />
+                        </EventImageContainer>
+                      ) : (
+                        <EventImageContainer>
+                          <EventImage
+                            src="/static/event-placeholder.png"
+                            alt="arrangementsbilde"
+                          />
+                        </EventImageContainer>
+                      )}
+                    </LazyLoad>
+                    <EventInfo>
+                      <EventTitle>{event.title}</EventTitle>
+                      <EventTime>
+                        {dayjs
+                          .utc(event.startingTime)
+                          .add(2, "hour")
+                          .format("HH:mm")}
+                        -
+                        {dayjs
+                          .utc(event.endingTime)
+                          .add(2, "hour")
+                          .format("HH:mm")}
+                      </EventTime>
+                      <EventPlace>
+                        <Descriptor> Hvor: </Descriptor>
+                        {displayArena(event)}
+                        {event.location.venue
+                          ? event.location.venue.name
+                          : event.location.name}
+                      </EventPlace>
+                      <EventType>
+                        <Descriptor> Type: </Descriptor>
+                        {displayEventType(event)}
+                      </EventType>
+                    </EventInfo>
+                  </EventLink>
+                </Link>
+              ))}
+            </EventDayListWrapper>
+          </Event>
+        );
+      })}
     </>
   );
 };
