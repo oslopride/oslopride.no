@@ -57,13 +57,15 @@ const Event = ({ event }) =>
             </EventTimeFromTo>
             <Title>{title}</Title>
             {image ? (
-              <Image
-                src={imageUrlFor(image)
-                  .width(1000)
-                  .height(500)
-                  .url()}
-                alt="arrangementsbilde"
-              />
+              <ImageContainer>
+                <Image
+                  src={imageUrlFor(image)
+                    .width(1000)
+                    .height(500)
+                    .url()}
+                  alt="arrangementsbilde"
+                />
+              </ImageContainer>
             ) : null}
 
             <SanityBlockContent blocks={description} />
@@ -221,12 +223,17 @@ const Title = styled.h1`
   color: ${theme.purple};
 `;
 
-const Image = styled.img`
-  display: block;
-  object-fit: cover;
-  margin: 0 auto;
+const ImageContainer = styled.div`
   width: 100%;
-  max-height: 400px;
+  height: calc(width * (16 / 9));
+  flex-shrink: 0;
+`;
+
+const Image = styled.img`
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 2px;
 `;
 
 const MultidayEventTime = styled.span`
