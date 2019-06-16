@@ -69,7 +69,8 @@ export default {
           { value: "1", title: "Pride Parade" },
           { value: "2", title: "Pride Park" },
           { value: "3", title: "Pride House" },
-          { value: "4", title: "Pride Art" }
+          { value: "4", title: "Pride Art" },
+          { value: "5", title: "Rockefeller" }
         ]
       }
     },
