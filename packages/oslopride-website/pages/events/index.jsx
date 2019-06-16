@@ -1,4 +1,5 @@
 import EventList from "@/components/EventList";
+import EventPreview from "@/components/EventPreview";
 import Filter from "@/components/Filter";
 import useURLFilter, {
   resetFilter,
@@ -13,24 +14,8 @@ import theme from "@/utils/theme";
 import NextSeo from "next-seo";
 import React from "react";
 import { connect } from "react-redux";
+import Sticky from "react-sticky-el";
 import styled from "styled-components";
-
-const arenaNameMapper = arena => {
-  switch (arena) {
-    case "0":
-      return "Ekstern arena";
-    case "1":
-      return "Pride Parade";
-    case "2":
-      return "Pride Park";
-    case "3":
-      return "Pride House";
-    case "4":
-      return "Pride Art";
-    default:
-      return "Ukjent";
-  }
-};
 
 const Events = props => {
   const { events, query } = props;
@@ -41,6 +26,9 @@ const Events = props => {
     "deafInterpretation"
   ]);
 
+  const featuredEvents =
+    filteredEvents.filter(x => x.isFeatured).slice(0, 4) || [];
+
   if (events.status !== "SUCCESS") {
     // TODO: Make a better UX while loading
     return <div>Laster ...</div>;
@@ -50,7 +38,6 @@ const Events = props => {
     <>
       <Sheet>
         <PageTitle>Program 2019</PageTitle>
-
         <Filter
           selectors={[
             {
@@ -106,6 +93,20 @@ const Events = props => {
             }
           ]}
         />
+
+        {featuredEvents && (
+          <FeaturedEventsTitleWrapper>
+            <Sticky style={{ zIndex: 2, position: "relative" }}>
+              <FeaturedEventsTitle>Smakebiter</FeaturedEventsTitle>
+            </Sticky>
+          </FeaturedEventsTitleWrapper>
+        )}
+
+        <FeaturedEventsWrapper>
+          {featuredEvents.map(e => (
+            <EventPreview event={e} />
+          ))}
+        </FeaturedEventsWrapper>
 
         {events.data.length ? (
           <EventList events={filteredEvents} />
@@ -165,4 +166,36 @@ const PageTitle = styled.h1`
   color: ${theme.purple};
   text-transform: uppercase;
   text-align: center;
+`;
+
+const FeaturedEventsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (min-width: 1000px) {
+    & > :first-child {
+      margin-left: 0;
+    }
+
+    & > :last-child {
+      margin-right: 0;
+    }
+  }
+`;
+
+const FeaturedEventsTitleWrapper = styled.div`
+  margin-top: 20px;
+`;
+
+const FeaturedEventsTitle = styled.h2`
+  background-color: ${theme.purple};
+  width: 100%;
+  margin: 0;
+  font-size: 25px;
+  font-weight: 500;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 2px;
 `;
