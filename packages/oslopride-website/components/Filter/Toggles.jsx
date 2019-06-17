@@ -4,8 +4,8 @@ import React from "react";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 import styled from "styled-components";
 
-const Toggles = ({ toggles, className }) => (
-  <Container className={className}>
+const Toggles = ({ toggles }) => (
+  <>
     {toggles.map(({ on, off, isOn, callback }) => (
       <ToggleWrapper key={`toggle-${off}-${on}`}>
         <ToggleText onClick={isOn ? callback : undefined} gray={isOn}>
@@ -17,7 +17,7 @@ const Toggles = ({ toggles, className }) => (
         </ToggleText>
       </ToggleWrapper>
     ))}
-  </Container>
+  </>
 );
 
 const ToggleText = styled.span`
@@ -26,7 +26,7 @@ const ToggleText = styled.span`
 `;
 
 const Toggle = styled(Switch)`
-  margin: 0 5px;
+  margin: 10px 5px;
   flex-shrink: 0;
 `;
 
@@ -55,13 +55,3 @@ const ToggleWrapper = styled.div`
 
 export default Toggles;
 
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-
-  @media (min-width: 750px) {
-    flex-direction: row;
-  }
-`;

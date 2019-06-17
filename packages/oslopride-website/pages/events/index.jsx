@@ -23,7 +23,8 @@ const Events = props => {
     "category",
     "official",
     "accessible",
-    "deafInterpretation"
+    "deafInterpretation",
+    "eventType"
   ]);
 
   const featuredEvents =
@@ -92,9 +93,41 @@ const Events = props => {
               callback: value => toggleFilter("deafInterpretation", "true")
             }
           ]}
+          onDropdownSelect={
+            (value) => {
+              if (value && value !== "0") {
+                setFilter("eventType", value);
+              } else {
+                resetFilter("eventType");
+              }
+            }
+          }
+          defaultDropdownValue={query.eventType || "0"}
+          dropdownOptions={[
+            {
+              name: "Alle arrangementer",
+              value: "0"
+            },
+            {
+              name: "Fester",
+              value: "4"
+            },
+            {
+              name: "Konserter",
+              value: "1"
+            },
+            {
+              name: "Debatter",
+              value: "2"
+            },
+            {
+              name: "Utstillinger",
+              value: "3"
+            }
+          ]}
         />
 
-        {featuredEvents && (
+        {featuredEvents && featuredEvents.length > 0 && (
           <FeaturedEventsTitleWrapper>
             <Sticky style={{ zIndex: 2, position: "relative" }}>
               <FeaturedEventsTitle>Smakebiter</FeaturedEventsTitle>
@@ -104,12 +137,12 @@ const Events = props => {
 
         <FeaturedEventsWrapper>
           {featuredEvents.map(e => (
-            <EventPreview event={e} />
+            <EventPreview event={e} key={e._id} />
           ))}
         </FeaturedEventsWrapper>
 
         {events.data.length ? (
-          <EventList events={filteredEvents} />
+          <EventList events={filteredEvents}/>
         ) : (
           <p>Kommer snart!</p>
         )}
