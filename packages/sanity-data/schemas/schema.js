@@ -21,6 +21,7 @@ import venue from "./venue";
 import event from "./event";
 import page from "./page";
 import youtube from "./youtube";
+import iframe from "./iframe";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -44,6 +45,7 @@ export default createSchema({
     event,
     venue,
     page,
-    youtube
+    youtube,
+    iframe
   ])
 });
