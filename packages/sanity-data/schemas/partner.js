@@ -39,7 +39,8 @@ export default {
         list: [
           { title: "Eier og arrangør", value: "owner" },
           { title: "Hovedpartner", value: "mainpartner" },
-          { title: "Partner", value: "partner" }
+          { title: "Partner", value: "partner" },
+          { title: "Støttepartner", value: "supportpartner" }
         ]
       },
       validation: Rule => Rule.required()
