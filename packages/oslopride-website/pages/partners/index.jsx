@@ -64,6 +64,7 @@ const Partners = props => {
       <PartnerList partnerSubtitle="Eier og arrangør" partnerType="owner" />
       <PartnerList partnerSubtitle="Hovedpartnere" partnerType="mainpartner" />
       <PartnerList partnerSubtitle="Partnere" partnerType="partner" />
+      <PartnerList partnerSubtitle="Støttepartnere" partnerType="supportpartner" />
 
       <NextSeo
         config={{

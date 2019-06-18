@@ -16,7 +16,7 @@ const EventList = props => {
     if (showFinished) {
       return true;
     } else {
-      return dayjs.utc(e.endingTime).isAfter(dayjs.utc().add(1, "hour"));
+      return dayjs.utc(e.endingTime).isAfter(dayjs.utc().add(-1, "hour"));
     }
   });
 
