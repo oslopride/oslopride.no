@@ -1,10 +1,10 @@
 import { imageUrlFor } from "@/store/sanity";
 import theme from "@/utils/theme";
+import dayjs from "dayjs";
+import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
-import Link from "next/link";
-import dayjs from "dayjs";
-import LazyLoad from "react-lazyload";
+import Image from "./Image";
 
 const displayEventType = event => {
   switch (event.eventType) {
@@ -39,47 +39,27 @@ const EventPreview = props => {
       passHref
     >
       <Wrapper>
-        <LazyLoad
-          height={120}
-          scroll
-          once
-          offset={100}
-          placeholder={
-            <EventImageContainer>
-              <EventImage
-                src="/static/event-placeholder.png"
-                alt="arrangementsbilde"
-              />
-            </EventImageContainer>
-          }
-        >
-          {event.image ? (
-            <EventImageContainer>
-              <EventImage
-                src={imageUrlFor(event.image)
-                  .height(250)
-                  .width(375)
-                  .url()}
-                alt="arrangementsbilde"
-              />
-            </EventImageContainer>
-          ) : (
-            <EventImageContainer>
-              <EventImage
-                src="/static/event-placeholder.png"
-                alt="arrangementsbilde"
-              />
-            </EventImageContainer>
-          )}
-        </LazyLoad>
-        <EventTitle id="title">{event.title}</EventTitle>
         <EventTimeDay>
           <OrangeColor>{start.format("dddd")} </OrangeColor>
           {start.format("D. MMMM YYYY")}
         </EventTimeDay>
+        <Image
+          src={
+            event.image
+              ? imageUrlFor(event.image)
+                  .width(300)
+                  .height(169)
+                  .url()
+              : "/static/event-placeholder.png"
+          }
+          alt="arrangementsbilde"
+        />
         <EventTimeFromTo>
-          {start.format("HH:mm")} - {end.format("HH:mm")} {displayEventType(event)}
+          {start.format("HH:mm")} - {end.format("HH:mm")}
+          {", "}
+          {displayEventType(event)}
         </EventTimeFromTo>
+        <EventTitle id="title">{event.title}</EventTitle>
       </Wrapper>
     </Link>
   );
@@ -100,12 +80,11 @@ const Wrapper = styled.a`
   padding: 10px 0;
 
   @media (min-width: 500px) {
-    width: 220px;
+    width: 47%;
   }
 
-  @media (min-width: 1000px) {
-    margin: 10px;
-    padding: 10px;
+  @media (min-width: 900px) {
+    width: 22%;
   }
 
   :hover,
@@ -113,25 +92,6 @@ const Wrapper = styled.a`
     cursor: pointer;
     transform: scale(1.05);
   }
-`;
-
-const EventImageContainer = styled.div`
-  width: 100%;
-  height: 150px;
-  flex-shrink: 0;
-  margin-bottom: 5px;
-
-  @media (min-width: 500px) {
-    width: 200px;
-    height: 112px;
-  }
-`;
-
-const EventImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 2px;
 `;
 
 const EventTimeDay = styled.div`
@@ -150,7 +110,9 @@ const OrangeColor = styled.span`
 
 const EventTitle = styled.div`
   width: 100%;
-  font-size: 16px;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.2em;
 
   @media (min-width: 500px) {
     font-size: 18px;
