@@ -169,6 +169,16 @@ export default () =>
                     .title("InterPride AGM 2020")
                     .schemaType("interpride")
                     .documentId("global-interpride")
+                ),
+
+              S.listItem()
+                .title("Footer links")
+                .child(
+                  S.editor()
+                    .id("config")
+                    .title("Footer links")
+                    .schemaType("config")
+                    .documentId("global-config")
                 )
             ])
         ),
