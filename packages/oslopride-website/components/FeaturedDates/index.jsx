@@ -36,9 +36,6 @@ const FeaturedDates = ({ dates }) => {
           )
         )}
       </DatesWrapper>
-      <ProgramLinkWrapper>
-        <ProgramLink href="/events">Se hele festivalprogrammet</ProgramLink>
-      </ProgramLinkWrapper>
     </>
   );
 };

@@ -38,7 +38,7 @@ const Events = props => {
   return (
     <>
       <Sheet>
-        <PageTitle>Program 2019</PageTitle>
+        <PageTitle>Program 2020</PageTitle>
         <Filter
           selectors={[
             {

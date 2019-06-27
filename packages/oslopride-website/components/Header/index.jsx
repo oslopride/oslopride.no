@@ -89,7 +89,7 @@ const Header = () => {
           </a>
         </Link>
 
-        <PrideDate>14. juni – 23. juni 2019</PrideDate>
+        <PrideDate>19. juni – 28. juni 2020</PrideDate>
         <ButtonWrapper>
           <MenuButton onClick={() => setOpen(!isOpen)} aria-label="Meny d">
             <MenuIcon />

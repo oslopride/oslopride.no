@@ -35,7 +35,6 @@ export default class NextDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
-          <meta name="apple-itunes-app" content="app-id=1466382885" />
           <link rel="stylesheet" href="https://use.typekit.net/ygk6hzk.css" />
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta

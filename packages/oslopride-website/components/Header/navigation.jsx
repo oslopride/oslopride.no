@@ -47,17 +47,6 @@ const ExternalNavigationLink = styled(ExternalLink)`
 const Navigation = ({ className, visible, callback }) => (
   <Container className={className} visible={visible}>
     <NavigationGroup>
-      <NavigationLink
-        href="/events"
-        onClick={callback}
-        arrow={false}
-        color={theme.orange}
-      >
-        Program 2019
-      </NavigationLink>
-    </NavigationGroup>
-
-    <NavigationGroup>
       <NavigationTitle>Våre arenaer</NavigationTitle>
       <NavigationLink href="/pride-parade" onClick={callback} arrow={false}>
         Pride Parade

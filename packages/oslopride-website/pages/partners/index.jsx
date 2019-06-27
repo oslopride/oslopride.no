@@ -58,7 +58,7 @@ const Partners = props => {
       <PageTitle>Partnere</PageTitle>
       {!partners.data.length ? (
         <Sheet>
-          <p>Oversikt over våre partnere for Oslo Pride 2019 kommer snart</p>
+          <p>Oversikt over våre partnere for Oslo Pride 2020 kommer snart</p>
         </Sheet>
       ) : null}
       <PartnerList partnerSubtitle="Eier og arrangør" partnerType="owner" />
