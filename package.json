@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "oslopride.no",
+  "author": "Oslo Pride <teknologi@oslopride.no>",
+  "license": "MPL-2.0",
+  "workspaces": ["packages/*"],
+  "scripts": {}
+}
