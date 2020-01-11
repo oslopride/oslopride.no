@@ -1,8 +1,10 @@
 {
   "private": true,
-  "name": "oslopride.no",
+  "name": "oslopride",
   "author": "Oslo Pride <teknologi@oslopride.no>",
   "license": "MPL-2.0",
   "workspaces": ["packages/*"],
-  "scripts": {}
+  "scripts": {
+    "start:sanity": "yarn workspace @oslopride/sanity start"
+  }
 }
