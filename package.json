@@ -5,6 +5,7 @@
   "license": "MPL-2.0",
   "workspaces": ["packages/*"],
   "scripts": {
-    "start:sanity": "yarn workspace @oslopride/sanity start"
+    "start:sanity": "yarn workspace @oslopride/sanity start",
+    "start:web": "yarn workspace @oslopride/web start"
   }
 }
