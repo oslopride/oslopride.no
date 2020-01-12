@@ -15,7 +15,7 @@ export default {
 			name: "slug",
 			type: "slug",
 			options: {
-				source: "title"
+				source: "title.en"
 			}
 		},
 		{
