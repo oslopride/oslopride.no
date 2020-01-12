@@ -10,6 +10,11 @@ export default function Anchor({ _type, text, url }) {
 				</a>
 			);
 		case "internal_link":
-			return <Link to={`/${url.slug.current}`}>{text}</Link>;
+			return (
+				(url && url.slug && url.slug.current && (
+					<Link to={`/${url.slug.current || "404"}`}>{text}</Link>
+				)) ||
+				text
+			);
 	}
 }
