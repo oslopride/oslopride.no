@@ -10,7 +10,8 @@
     "start": "sanity start",
     "lint": "eslint --quiet . --ext js --ext jsx",
     "lint:fix": "yarn lint --fix",
-    "test": "sanity check"
+    "test": "sanity check",
+    "build": "sanity build"
   },
   "keywords": [
     "sanity"
