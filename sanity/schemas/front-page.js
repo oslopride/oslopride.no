@@ -4,10 +4,9 @@ export default {
 	type: "document",
 	fields: [
 		{
-			title: "blocks",
+			title: "Blocks",
 			name: "blocks",
-			type: "array",
-			of: [{ type: "hero" }]
+			type: "localeBlocks"
 		}
 	]
 };

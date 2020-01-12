@@ -1,3 +1,5 @@
+import supportedLanguages from "../supported-languages";
+
 export default {
 	title: "Page",
 	name: "page",
@@ -6,7 +8,7 @@ export default {
 		{
 			title: "Title",
 			name: "title",
-			type: "string"
+			type: "localeString"
 		},
 		{
 			title: "URL",
@@ -17,10 +19,21 @@ export default {
 			}
 		},
 		{
-			title: "blocks",
+			title: "Blocks",
 			name: "blocks",
-			type: "array",
-			of: [{ type: "hero" }]
+			type: "localeBlocks"
 		}
-	]
+	],
+	preview: {
+		select: {
+			title: "title"
+		},
+		prepare: ({ title }) => ({
+			title: title[(supportedLanguages.find(lang => lang.isDefault) || {}).id],
+			subtitle: supportedLanguages
+				.filter(lang => !lang.isDefault)
+				.map(lang => `${lang.id.toUpperCase()}: ${title[lang.id]}`)
+				.join(", ")
+		})
+	}
 };

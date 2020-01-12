@@ -10,6 +10,7 @@ import frontPage from "./front-page";
 import configuration from "./configuration";
 
 // Blocks
+import blocks from "./blocks";
 import hero from "./blocks/hero";
 import textArea from "./blocks/text-area";
 
@@ -19,6 +20,8 @@ import keyValuePair from "./types/key-value-pair";
 import illustration from "./types/illustration";
 import youtube from "./types/youtube";
 import link from "./types/link";
+import localeBlock from "./types/localeBlocks";
+import localeString from "./types/localeString";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -30,12 +33,15 @@ export default createSchema({
 		page,
 		frontPage,
 		configuration,
+		blocks,
 		hero,
 		textArea,
 		portableText,
 		keyValuePair,
 		illustration,
 		youtube,
-		link
+		link,
+		localeBlock,
+		localeString
 	])
 });
