@@ -974,6 +974,19 @@
     make-error "^1.3.0"
     object-assign "^4.1.1"
 
+"@sanity/client@^0.144.0":
+  version "0.144.0"
+  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-0.144.0.tgz#193e7401658e0cede6e60076923c30832244a802"
+  integrity sha512-t1bEA1pb1/oPFRkm8hBRYXZzas1BuIsDgZwuwC0dPEymrI+xM5Hdx6nSyDtgz4NFs8mkPcgQbIzLXuRXt6E7LQ==
+  dependencies:
+    "@sanity/eventsource" "0.144.0"
+    "@sanity/generate-help-url" "0.144.0"
+    "@sanity/observable" "0.144.0"
+    deep-assign "^2.0.0"
+    get-it "^5.0.0"
+    make-error "^1.3.0"
+    object-assign "^4.1.1"
+
 "@sanity/components@^0.147.6":
   version "0.147.6"
   resolved "https://registry.yarnpkg.com/@sanity/components/-/components-0.147.6.tgz#a249c2c2147cb8f85b26b7b9d8d811d90c6b1870"
@@ -1158,6 +1171,14 @@
     nano-pubsub "^1.0.2"
     rxjs "^6.5.3"
 
+"@sanity/eventsource@0.144.0":
+  version "0.144.0"
+  resolved "https://registry.yarnpkg.com/@sanity/eventsource/-/eventsource-0.144.0.tgz#d84de7b686cb210d5c798e9347880e06b22180ef"
+  integrity sha512-MMuYYETcytAQa2JSduFxSPhwM1RsXYU8+syU8k5WKvKvUZpXy5wRSFHWFmcS5zPbwzRB6CRBl/7Ek5iFXpznvA==
+  dependencies:
+    eventsource "^1.0.6"
+    eventsource-polyfill "^0.9.6"
+
 "@sanity/eventsource@0.147.0":
   version "0.147.0"
   resolved "https://registry.yarnpkg.com/@sanity/eventsource/-/eventsource-0.147.0.tgz#40ef249c0803902800b951c765ffdf58205db6f7"
@@ -1224,6 +1245,11 @@
     slate-soft-break "^0.9.0"
     speakingurl "^13.0.0"
 
+"@sanity/generate-help-url@0.144.0":
+  version "0.144.0"
+  resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-0.144.0.tgz#27437654c0664380c2a925724aa6a7f8fd06207d"
+  integrity sha512-rtMloCn7azSymOR4hwHhiIB4C6Mv7wU3Gq+0MFByNGX3Vdlm3F55HCXxR/+X3Sey/OPDBucxBt59/iI08pAlMg==
+
 "@sanity/generate-help-url@0.147.0":
   version "0.147.0"
   resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-0.147.0.tgz#720b55ea736dfdc65006ca225eceb8fe79537fdf"
@@ -1288,6 +1314,24 @@
     debug "^4.1.1"
     diff-match-patch "^1.0.0"
     lodash "^4.17.15"
+
+"@sanity/mutator@^0.144.0":
+  version "0.144.0"
+  resolved "https://registry.yarnpkg.com/@sanity/mutator/-/mutator-0.144.0.tgz#620a4bb5c413d038836cc820ec0ec4567ba2d925"
+  integrity sha512-0uRYdhBjGbpOeRRK4bhDGNp7fRdPxqMsKRxG5c55JisMTgOvqghuvY2FSXFZUjyr9tLJC5rtCriCwnm52/6+Pg==
+  dependencies:
+    "@types/diff-match-patch" "^1.0.32"
+    debug "^4.1.1"
+    diff-match-patch "^1.0.0"
+    lodash "^4.17.4"
+
+"@sanity/observable@0.144.0":
+  version "0.144.0"
+  resolved "https://registry.yarnpkg.com/@sanity/observable/-/observable-0.144.0.tgz#6cb6a5ebe7d4fdfef70c88218710afc8a0753064"
+  integrity sha512-P4ZVGvFdzhukh26/b3ivY8jwj/R9YOtnaRfEbLRVma97XeoQSGWlHXTO5nIk/+8P44/BhQrzL8szRd2nWKQyQA==
+  dependencies:
+    object-assign "^4.1.1"
+    rxjs "^6.5.2"
 
 "@sanity/observable@0.147.0":
   version "0.147.0"
@@ -1645,6 +1689,11 @@
   version "0.0.32"
   resolved "https://registry.yarnpkg.com/@types/tmp/-/tmp-0.0.32.tgz#0d3cb31022f8427ea58c008af32b80da126ca4e3"
   integrity sha1-DTyzECL4Qn6ljACK8yuA2hJspOM=
+
+"@types/url-parse@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@types/url-parse/-/url-parse-1.4.3.tgz#fba49d90f834951cb000a674efee3d6f20968329"
+  integrity sha512-4kHAkbV/OfW2kb5BLVUuUMoumB3CP8rHqlw48aHvFy5tf9ER0AfOonBlX29l/DD68G70DmyhRlSYfQPSYpC5Vw==
 
 "@typescript-eslint/eslint-plugin@^2.11.0":
   version "2.15.0"
@@ -6072,6 +6121,27 @@ gatsby-react-router-scroll@^2.1.20:
     scroll-behavior "^0.9.10"
     warning "^3.0.0"
 
+gatsby-source-sanity@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/gatsby-source-sanity/-/gatsby-source-sanity-5.0.5.tgz#7234d3229200b61979b927807c007a86c86e7b0d"
+  integrity sha512-nf2naRo/+6owEeVAcLzsBvdAVyUd9PLvuQmPQN0xCZFb3S3noAQydF58Lt9qYaEwQej00TaWJgoEN6sCFV4LJg==
+  dependencies:
+    "@sanity/client" "^0.144.0"
+    "@sanity/image-url" "^0.140.15"
+    "@sanity/mutator" "^0.144.0"
+    "@types/url-parse" "^1.4.3"
+    axios "^0.19.0"
+    debug "^4.1.0"
+    fs-extra "^8.1.0"
+    get-stream "^5.1.0"
+    lodash "^4.17.15"
+    oneline "^1.0.2"
+    pump "^3.0.0"
+    rxjs "^6.5.3"
+    split2 "^3.1.1"
+    through2 "^3.0.1"
+    url-parse "^1.4.4"
+
 gatsby-telemetry@^1.1.47:
   version "1.1.47"
   resolved "https://registry.yarnpkg.com/gatsby-telemetry/-/gatsby-telemetry-1.1.47.tgz#680c071cde9682f2daf5301b37d1376077157300"
@@ -9453,7 +9523,7 @@ onecolor@^3.0.4:
   resolved "https://registry.yarnpkg.com/onecolor/-/onecolor-3.1.0.tgz#b72522270a49569ac20d244b3cd40fe157fda4d2"
   integrity sha512-YZSypViXzu3ul5LMu/m6XjJ9ol8qAy9S2VjHl5E6UlhUH1KGKWabyEJifn0Jjpw23bYDzC2ucKMPGiH5kfwSGQ==
 
-oneline@^1.0.3:
+oneline@^1.0.2, oneline@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/oneline/-/oneline-1.0.3.tgz#2f2631bd3a5716a4eeb439291697af2fc7fa39a5"
   integrity sha512-KWLrLloG/ShWvvWuvmOL2jw17++ufGdbkKC2buI2Aa6AaM4AkjCtpeJZg60EK34NQVo2qu1mlPrC2uhvQgCrhQ==
@@ -11404,7 +11474,7 @@ readable-stream@1.1.x:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@^3.0.6, readable-stream@^3.1.1:
+"readable-stream@2 || 3", readable-stream@^3.0.0, readable-stream@^3.0.6, readable-stream@^3.1.1:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.4.0.tgz#a51c26754658e0a3c21dbf59163bd45ba6f447fc"
   integrity sha512-jItXPLmrSR8jmTRmRWJXCnGJsfy85mB3Wd/uINMXA65yrnFo0cPClFIUWzo2najVNSl+mx7/4W8ttlLWJe99pQ==
@@ -11902,7 +11972,7 @@ rx-lite@*, rx-lite@^4.0.8:
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
   integrity sha1-Cx4Rr4vESDbwSmQH6S2kJGe3lEQ=
 
-rxjs@^6.3.3, rxjs@^6.5.3:
+rxjs@^6.3.3, rxjs@^6.5.2, rxjs@^6.5.3:
   version "6.5.4"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.4.tgz#e0777fe0d184cec7872df147f303572d414e211c"
   integrity sha512-naMQXcgEo3csAEGvw/NydRA0fuS2nDZJiw1YUWFKU7aPPAPGZEsD4Iimit96qwCieH6y614MCLYwdkrWx7z/7Q==
@@ -12605,6 +12675,13 @@ split2@^2.1.1:
   dependencies:
     through2 "^2.0.2"
 
+split2@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/split2/-/split2-3.1.1.tgz#c51f18f3e06a8c4469aaab487687d8d956160bb6"
+  integrity sha512-emNzr1s7ruq4N+1993yht631/JH+jaj0NYBosuKmLcq+JkGQ9MmTw1RB1fGaTCzUuseRIClrlSLHRNYGwWQ58Q==
+  dependencies:
+    readable-stream "^3.0.0"
+
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
@@ -13078,6 +13155,13 @@ through2@^2.0.0, through2@^2.0.1, through2@^2.0.2, through2@^2.0.3, through2@~2.
     readable-stream "~2.3.6"
     xtend "~4.0.1"
 
+through2@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/through2/-/through2-3.0.1.tgz#39276e713c3302edf9e388dd9c812dd3b825bd5a"
+  integrity sha512-M96dvTalPT3YbYLaKaCuwu+j06D/8Jfib0o/PxbVt6Amhv3dUAtW6rTV1jPgJSBG83I/e04Y6xkVdVhSRhi0ww==
+  dependencies:
+    readable-stream "2 || 3"
+
 through@^2.3.6:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
@@ -13512,7 +13596,7 @@ url-parse-lax@^3.0.0:
   dependencies:
     prepend-http "^2.0.0"
 
-url-parse@^1.1.8, url-parse@^1.1.9, url-parse@^1.4.3:
+url-parse@^1.1.8, url-parse@^1.1.9, url-parse@^1.4.3, url-parse@^1.4.4:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.7.tgz#a8a83535e8c00a316e403a5db4ac1b9b853ae278"
   integrity sha512-d3uaVyzDB9tQoSXFvuSUNFibTd9zxd2bkVrDRvF5TmvWWQwqE4lgYJ5m+x1DbecWkw+LK4RNl2CU1hHuOKPVlg==
