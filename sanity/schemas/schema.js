@@ -19,7 +19,8 @@ import portableText from "./types/portable-text";
 import keyValuePair from "./types/key-value-pair";
 import illustration from "./types/illustration";
 import youtube from "./types/youtube";
-import link from "./types/link";
+import externalLink from "./types/external-link";
+import internalLink from "./types/internal-link";
 import localeBlock from "./types/localeBlocks";
 import localeString from "./types/localeString";
 
@@ -40,7 +41,8 @@ export default createSchema({
 		keyValuePair,
 		illustration,
 		youtube,
-		link,
+		internalLink,
+		externalLink,
 		localeBlock,
 		localeString
 	])

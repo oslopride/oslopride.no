@@ -8,5 +8,8 @@ export default {
 			name: "blocks",
 			type: "localeBlocks"
 		}
-	]
+	],
+	preview: {
+		prepare: () => ({ title: "Front Page" })
+	}
 };

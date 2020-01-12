@@ -14,10 +14,10 @@ export default {
 			type: "string"
 		},
 		{
-			title: "Buttons",
-			name: "buttons",
+			title: "Links",
+			name: "links",
 			type: "array",
-			of: [{ type: "link" }]
+			of: [{ type: "internal_link" }, { type: "external_link" }]
 		},
 		{
 			title: "Image",

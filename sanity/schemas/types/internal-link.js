@@ -1,6 +1,6 @@
 export default {
-	title: "Link",
-	name: "link",
+	title: "Internal Link",
+	name: "internal_link",
 	type: "object",
 	fields: [
 		{
@@ -11,8 +11,8 @@ export default {
 		{
 			title: "URL",
 			name: "url",
-			type: "url",
-			validation: Rule => Rule.uri({ allowRelative: true })
+			type: "reference",
+			to: [{ type: "page" }, { type: "front_page" }]
 		}
 	]
 };
