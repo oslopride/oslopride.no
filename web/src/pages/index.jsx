@@ -1,11 +1,15 @@
 import React from "react";
-import Layout from "../components/layout";
+import { graphql } from "gatsby";
+import Page from "../templates/page";
 
-export default function IndexPage() {
-	return (
-		<Layout>
-			<h1>Hi people</h1>
-			<p>Welcome to your new Gatsby site.</p>
-		</Layout>
-	);
+export default function FrontPage(props) {
+	return <Page {...props} />;
 }
+
+export const query = graphql`
+	query SanityFrontPagesQuery {
+		page: sanityFrontPage(_id: { eq: "global_front_page" }) {
+			_rawBlocks
+		}
+	}
+`;
