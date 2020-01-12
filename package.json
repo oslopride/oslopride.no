@@ -3,9 +3,13 @@
   "name": "oslopride",
   "author": "Oslo Pride <teknologi@oslopride.no>",
   "license": "MPL-2.0",
-  "workspaces": ["web", "sanity"],
+  "workspaces": [
+    "web",
+    "sanity"
+  ],
   "scripts": {
     "start:sanity": "yarn workspace @oslopride/sanity start",
     "start:web": "yarn workspace @oslopride/web start"
-  }
+  },
+  "devDependencies": {}
 }
