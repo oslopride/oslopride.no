@@ -1,8 +1,18 @@
 {
-  "name": "root",
   "private": true,
-  "workspaces": ["studio", "web"],
+  "name": "oslopride",
+  "author": "Oslo Pride <teknologi@oslopride.no>",
+  "license": "MPL-2.0",
+  "workspaces": [
+    "web",
+    "sanity"
+  ],
+  "scripts": {
+    "sanity": "yarn workspace @oslopride/sanity",
+    "web": "yarn workspace @oslopride/web"
+  },
   "devDependencies": {
-    "lerna": "^3.19.0"
+    "husky": "^4.0.7",
+    "lint-staged": "^9.5.0"
   }
 }

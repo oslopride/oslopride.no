@@ -1,0 +1,8 @@
+package.json
+package-lock.json
+yarn.lock
+gatsby-config.js
+.cache/
+public/
+node_modules/
+static/
