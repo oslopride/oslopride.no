@@ -11,8 +11,10 @@
   "scripts": {
     "build": "gatsby build",
     "start": "gatsby develop",
+    "lint": "eslint --quiet . --ext js --ext jsx",
+    "lint:fix": "yarn lint --fix",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo 'Write tests! -> https://gatsby.dev/unit-testing'"
   },
   "dependencies": {
     "gatsby": "^2.18.12",

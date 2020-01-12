@@ -8,8 +8,11 @@
     "sanity"
   ],
   "scripts": {
-    "start:sanity": "yarn workspace @oslopride/sanity start",
-    "start:web": "yarn workspace @oslopride/web start"
+    "sanity": "yarn workspace @oslopride/sanity",
+    "web": "yarn workspace @oslopride/web"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "husky": "^4.0.7",
+    "lint-staged": "^9.5.0"
+  }
 }
