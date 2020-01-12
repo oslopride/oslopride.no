@@ -3,6 +3,7 @@
   "name": "oslopride",
   "author": "Oslo Pride <teknologi@oslopride.no>",
   "license": "MPL-2.0",
+  "engines": { "node": "12.x" },
   "workspaces": [
     "web",
     "sanity"
