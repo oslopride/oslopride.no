@@ -17,6 +17,9 @@ export default () =>
 				.title("Pages")
 				.child(S.documentTypeList("page").title("Pages")),
 			S.listItem()
+				.title("Articles")
+				.child(S.documentTypeList("article").title("Articles")),
+			S.listItem()
 				.title("Configuration")
 				.child(
 					S.editor()
