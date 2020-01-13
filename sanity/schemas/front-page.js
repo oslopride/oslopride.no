@@ -6,7 +6,7 @@ export default {
 		{
 			title: "Blocks",
 			name: "blocks",
-			type: "localeBlocks"
+			type: "locale_blocks"
 		}
 	],
 	preview: {

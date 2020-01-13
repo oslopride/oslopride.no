@@ -8,6 +8,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 import page from "./page";
 import frontPage from "./front-page";
 import configuration from "./configuration";
+import article from "./article";
 
 // Blocks
 import blocks from "./blocks";
@@ -21,8 +22,9 @@ import illustration from "./types/illustration";
 import youtube from "./types/youtube";
 import externalLink from "./types/external-link";
 import internalLink from "./types/internal-link";
-import localeBlock from "./types/localeBlocks";
-import localeString from "./types/localeString";
+import localeBlock from "./types/locale-blocks";
+import localeString from "./types/locale-string";
+import localePortableText from "./types/localse-portable-text";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -34,6 +36,7 @@ export default createSchema({
 		page,
 		frontPage,
 		configuration,
+		article,
 		blocks,
 		hero,
 		textArea,
@@ -44,6 +47,7 @@ export default createSchema({
 		internalLink,
 		externalLink,
 		localeBlock,
-		localeString
+		localeString,
+		localePortableText
 	])
 });

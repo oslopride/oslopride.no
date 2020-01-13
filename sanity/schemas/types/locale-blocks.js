@@ -1,7 +1,7 @@
 import supportedLanguages from "../../supported-languages";
 
 export default {
-	name: "localeString",
+	name: "locale_blocks",
 	type: "object",
 	fieldsets: [
 		{
@@ -13,7 +13,7 @@ export default {
 	fields: supportedLanguages.map(lang => ({
 		title: lang.title,
 		name: lang.id,
-		type: "string",
+		type: "blocks",
 		fieldset: lang.isDefault ? null : "translations"
 	}))
 };
