@@ -5,12 +5,6 @@ export default {
 	of: [
 		{
 			type: "hero"
-		},
-		{
-			type: "image",
-			options: {
-				hotspot: true
-			}
 		}
 	]
 };
