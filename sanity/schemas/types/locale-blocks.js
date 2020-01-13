@@ -1,7 +1,7 @@
 import supportedLanguages from "../../supported-languages";
 
 export default {
-	name: "localeBlocks",
+	name: "locale_blocks",
 	type: "object",
 	fieldsets: [
 		{

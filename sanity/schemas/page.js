@@ -8,7 +8,7 @@ export default {
 		{
 			title: "Title",
 			name: "title",
-			type: "localeString"
+			type: "locale_string"
 		},
 		{
 			title: "URL",
@@ -21,7 +21,7 @@ export default {
 		{
 			title: "Blocks",
 			name: "blocks",
-			type: "localeBlocks"
+			type: "locale_blocks"
 		}
 	],
 	preview: {

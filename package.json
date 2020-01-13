@@ -11,8 +11,5 @@
     "sanity": "yarn workspace @oslopride/sanity",
     "web": "yarn workspace @oslopride/web"
   },
-  "devDependencies": {
-    "husky": "^4.0.7",
-    "lint-staged": "^9.5.0"
-  }
+  "devDependencies": {}
 }

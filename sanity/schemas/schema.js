@@ -21,8 +21,8 @@ import illustration from "./types/illustration";
 import youtube from "./types/youtube";
 import externalLink from "./types/external-link";
 import internalLink from "./types/internal-link";
-import localeBlock from "./types/localeBlocks";
-import localeString from "./types/localeString";
+import localeBlock from "./types/locale-blocks";
+import localeString from "./types/locale-string";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
