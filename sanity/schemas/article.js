@@ -38,13 +38,13 @@ export default {
 	],
 	preview: {
 		select: {
-			header: "header"
+			title: "title"
 		},
-		prepare: ({ header }) => ({
-			title: header[getDefaultLanguage().id],
+		prepare: ({ title }) => ({
+			title: title[getDefaultLanguage().id],
 			subtitle: supportedLanguages
 				.filter(lang => !lang.isDefault)
-				.map(lang => `${lang.id.toUpperCase()}: ${header[lang.id]}`)
+				.map(lang => `${lang.id.toUpperCase()}: ${title[lang.id]}`)
 				.join(", ")
 		})
 	}
