@@ -9,8 +9,6 @@ export default function Page({ data: { page }, pageContext: { locale } }) {
 		switch (block._type) {
 			case "hero":
 				return <Hero key={block._key} {...block} />;
-			case "image":
-				return <Image key={block._key} image={block} />;
 			default:
 				console.warn(`Unknown block type: "${block._type}"`);
 				if (process.env.NODE_ENV !== "production") {
