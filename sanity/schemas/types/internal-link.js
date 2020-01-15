@@ -6,13 +6,15 @@ export default {
 		{
 			title: "Text",
 			name: "text",
-			type: "string"
+			type: "string",
+			validate: Rule => Rule.required()
 		},
 		{
 			title: "URL",
 			name: "url",
 			type: "reference",
-			to: [{ type: "page" }, { type: "front_page" }]
+			to: [{ type: "page" }, { type: "front_page" }],
+			validate: Rule => Rule.required()
 		}
 	]
 };

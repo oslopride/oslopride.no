@@ -6,12 +6,14 @@ export default {
 		{
 			title: "Text",
 			name: "text",
-			type: "string"
+			type: "string",
+			validate: Rule => Rule.required()
 		},
 		{
 			title: "URL",
 			name: "url",
-			type: "url"
+			type: "url",
+			validate: Rule => Rule.required()
 		}
 	]
 };

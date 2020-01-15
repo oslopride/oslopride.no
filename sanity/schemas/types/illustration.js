@@ -21,7 +21,8 @@ export default {
 			description: "Important for SEO and accessiblity.",
 			options: {
 				isHighlighted: true
-			}
+			},
+			validate: Rule => Rule.required()
 		}
 	],
 	preview: {

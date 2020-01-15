@@ -6,7 +6,8 @@ export default {
 		{
 			name: "url",
 			type: "url",
-			title: "YouTube video URL"
+			title: "YouTube video URL",
+			validate: Rule => Rule.required()
 		}
 	],
 	preview: {
