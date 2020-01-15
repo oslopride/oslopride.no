@@ -2,8 +2,6 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import Hero from "../blocks/hero";
-import Image from "../blocks/image";
-
 export default function Page({ data: { page }, pageContext: { locale } }) {
 	const blocks = (page._rawBlocks[locale] || []).map(block => {
 		switch (block._type) {
