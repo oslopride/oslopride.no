@@ -7,9 +7,9 @@ export default function Hero({ title, subtitle, links, image }) {
 		<div>
 			<h1>{title}</h1>
 
-			<h2>{subtitle}</h2>
+			{subtitle && <h2>{subtitle}</h2>}
 
-			{links && (
+			{links && links.lenght > 0 && (
 				<ul>
 					{links.map(link => (
 						<li key={link._key}>
