@@ -23,8 +23,9 @@ import youtube from "./types/youtube";
 import externalLink from "./types/external-link";
 import internalLink from "./types/internal-link";
 import localeBlock from "./types/locale-blocks";
-import localeString from "./types/locale-string";
-import localePortableText from "./types/localse-portable-text";
+import localePageTitle from "./types/locale-page-title";
+import localeArticleTitle from "./types/locale-article-title";
+import localePortableText from "./types/locale-portable-text";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -47,7 +48,8 @@ export default createSchema({
 		internalLink,
 		externalLink,
 		localeBlock,
-		localeString,
+		localePageTitle,
+		localeArticleTitle,
 		localePortableText
 	])
 });

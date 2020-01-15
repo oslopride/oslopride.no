@@ -9,7 +9,8 @@ export default {
 		{
 			title: "Title",
 			name: "title",
-			type: "string"
+			type: "string",
+			validate: Rule => Rule.required()
 		},
 		{
 			title: "Subtitle",

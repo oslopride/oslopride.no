@@ -1,19 +1,3 @@
-import supportedLanguages from "../../supported-languages";
+import { localize } from "../../utils/locale";
 
-export default {
-	name: "locale_blocks",
-	type: "object",
-	fieldsets: [
-		{
-			title: "Translations",
-			name: "translations",
-			options: { collapsible: true }
-		}
-	],
-	fields: supportedLanguages.map(lang => ({
-		title: lang.title,
-		name: lang.id,
-		type: "blocks",
-		fieldset: lang.isDefault ? null : "translations"
-	}))
-};
+export default localize("locale_blocks", "blocks");

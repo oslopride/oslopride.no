@@ -1,4 +1,5 @@
 import supportedLanguages from "../supported-languages";
+import { getDefaultLanguage } from "../utils/locale";
 
 export default {
 	title: "Article",
@@ -6,17 +7,18 @@ export default {
 	type: "document",
 	fields: [
 		{
-			name: "header",
-			title: "Header",
-			type: "locale_string"
+			name: "title",
+			title: "Title",
+			type: "locale_article_title"
 		},
 		{
 			title: "URL",
 			name: "slug",
 			type: "slug",
 			options: {
-				source: "header.en"
-			}
+				source: `title.${getDefaultLanguage().id}`
+			},
+			validate: Rule => Rule.required()
 		},
 		{
 			title: "Image",
@@ -24,23 +26,25 @@ export default {
 			type: "image",
 			options: {
 				hotspot: true
-			}
+			},
+			validate: Rule => Rule.required()
 		},
 		{
 			title: "Body",
 			name: "body",
-			type: "locale_portable_text"
+			type: "locale_portable_text",
+			validate: Rule => Rule.required()
 		}
 	],
 	preview: {
 		select: {
-			header: "header"
+			title: "title"
 		},
-		prepare: ({ header }) => ({
-			title: header[(supportedLanguages.find(lang => lang.isDefault) || {}).id],
+		prepare: ({ title }) => ({
+			title: title[getDefaultLanguage().id],
 			subtitle: supportedLanguages
 				.filter(lang => !lang.isDefault)
-				.map(lang => `${lang.id.toUpperCase()}: ${header[lang.id]}`)
+				.map(lang => `${lang.id.toUpperCase()}: ${title[lang.id]}`)
 				.join(", ")
 		})
 	}

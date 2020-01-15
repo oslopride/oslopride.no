@@ -24,12 +24,14 @@ export default function({ locale }) {
 
 	const links = (data.sanityConfiguration.navigation_bar || []).map(page => (
 		<li key={page.slug.current}>
-			<Link
-				to={`${prefix}${page.slug.current}`}
-				aria-label={page.title[locale]}
-			>
-				{page.title[locale] || page.title.en}
-			</Link>
+			{page.title[locale] && (
+				<Link
+					to={`${prefix}${page.slug.current}`}
+					aria-label={page.title[locale]}
+				>
+					{page.title[locale]}
+				</Link>
+			)}
 		</li>
 	));
 

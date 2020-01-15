@@ -1,4 +1,5 @@
 import supportedLanguages from "../supported-languages";
+import { getDefaultLanguage } from "../utils/locale";
 
 export default {
 	title: "Page",
@@ -8,14 +9,14 @@ export default {
 		{
 			title: "Title",
 			name: "title",
-			type: "locale_string"
+			type: "locale_page_title"
 		},
 		{
 			title: "URL",
 			name: "slug",
 			type: "slug",
 			options: {
-				source: "title.en"
+				source: `title.${getDefaultLanguage().id}`
 			}
 		},
 		{
@@ -29,7 +30,7 @@ export default {
 			title: "title"
 		},
 		prepare: ({ title }) => ({
-			title: title[(supportedLanguages.find(lang => lang.isDefault) || {}).id],
+			title: title[getDefaultLanguage().id],
 			subtitle: supportedLanguages
 				.filter(lang => !lang.isDefault)
 				.map(lang => `${lang.id.toUpperCase()}: ${title[lang.id]}`)

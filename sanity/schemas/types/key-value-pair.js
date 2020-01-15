@@ -6,7 +6,8 @@ export default {
 		{
 			title: "Key",
 			name: "key",
-			type: "string"
+			type: "string",
+			validate: Rule => Rule.required()
 		},
 		{
 			title: "Value",
