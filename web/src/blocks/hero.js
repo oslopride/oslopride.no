@@ -4,12 +4,19 @@ import Anchor from "../components/anchor";
 import { urlFor } from "../utils/sanity";
 
 export default function Hero({ title, subtitle, links, image }) {
+	const imageRef = React.useRef(null);
+	const [imageHeight, setImageHeight] = React.useState(0);
+	const updateImageHeight = () =>
+		setImageHeight((imageRef.current || {}).offsetHeight || 0);
+
 	return (
 		<Wrapper>
 			<ImageContainer>
 				{image && (
 					<>
 						<Image
+							onLoad={updateImageHeight}
+							ref={imageRef}
 							src={urlFor(image)
 								.maxWidth(500)
 								.url()}
@@ -18,7 +25,7 @@ export default function Hero({ title, subtitle, links, image }) {
 				)}
 			</ImageContainer>
 
-			<TextContainer>
+			<TextContainer imageHeight={imageHeight}>
 				<h1>{title}</h1>
 
 				{subtitle && <p>{subtitle}</p>}
@@ -42,6 +49,7 @@ const Wrapper = styled.div`
 	flex-direction: column;
 	max-width: 1000px;
 	margin: 0 auto;
+	padding: 0 1rem;
 
 	@media (min-width: 700px) {
 		flex-direction: row-reverse;
@@ -76,7 +84,7 @@ const Image = styled.img`
 
 const TextContainer = styled.div`
 	flex: 1;
-	margin-top: -30%;
+	margin-top: -${props => props.imageHeight * 0.35}px;
 
 	@media (min-width: 700px) {
 		margin-top: 0;
