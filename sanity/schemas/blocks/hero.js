@@ -25,5 +25,19 @@ export default {
 			name: "image",
 			type: "illustration"
 		}
-	]
+	],
+	preview: {
+		select: {
+			subtitle: "title",
+			media: "image"
+		},
+		prepare(selection) {
+			const { subtitle, media } = selection;
+			return {
+				title: "Hero",
+				subtitle,
+				media
+			};
+		}
+	}
 };
