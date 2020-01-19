@@ -1,7 +1,5 @@
 import React from "react";
-// Hack to not make sanity break when importing the component
-// See: https://github.com/gatsbyjs/gatsby/issues/10668
-import Link from "gatsby-link";
+import Link from "./link";
 
 export default function Anchor({ _type, text, url }) {
 	switch (_type) {

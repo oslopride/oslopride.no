@@ -1,15 +1,26 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Page from "../templates/page";
+import PageTemplate from "../templates/page-template";
 
 export default function FrontPage(props) {
-	return <Page {...props} />;
+	return <PageTemplate {...props} />;
 }
 
 export const query = graphql`
 	query SanityFrontPagesQuery {
 		page: sanityFrontPage(_id: { eq: "global_front_page" }) {
 			_rawBlocks
+		}
+		configuration: sanityConfiguration(_id: { eq: "global_configuration" }) {
+			navigation_bar {
+				title {
+					en
+					no
+				}
+				slug {
+					current
+				}
+			}
 		}
 	}
 `;

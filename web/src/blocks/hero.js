@@ -46,6 +46,7 @@ export default function Hero({ title, subtitle, links, image }) {
 
 const Wrapper = styled.div`
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	max-width: 1000px;
 	margin: 0 auto;
@@ -59,7 +60,6 @@ const Wrapper = styled.div`
 const ImageContainer = styled.div`
 	flex: 1;
 	position: relative;
-	z-index: -1;
 
 	&::after {
 		content: "";
@@ -85,6 +85,7 @@ const Image = styled.img`
 const TextContainer = styled.div`
 	flex: 1;
 	margin-top: -${props => props.imageHeight * 0.35}px;
+	z-index: 10;
 
 	@media (min-width: 700px) {
 		margin-top: 0;
