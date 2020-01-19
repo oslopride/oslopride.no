@@ -1,6 +1,3 @@
-import React from "react";
-import Hero from "@oslopride/web/src/blocks/hero";
-
 export default {
 	title: "Hero",
 	name: "hero",
@@ -31,11 +28,16 @@ export default {
 	],
 	preview: {
 		select: {
-			title: "title",
-			subtitle: "subtitle",
-			links: "links",
-			image: "image"
+			subtitle: "title",
+			media: "image"
 		},
-		component: ({ value }) => <Hero {...value} />
+		prepare(selection) {
+			const { subtitle, media } = selection;
+			return {
+				title: "Hero",
+				subtitle,
+				media
+			};
+		}
 	}
 };

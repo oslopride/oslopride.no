@@ -1,12 +1,13 @@
 import React from "react";
-import { Link } from "gatsby";
+import Link from "./link";
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "polished";
 import logo from "../assets/logo.svg";
 import Navigation from "./navigation";
+import { usePageContext } from "../hooks/page-context";
 
 const GlobalStyle = createGlobalStyle`
-  ${normalize()}
+	${normalize()}
 	body {
     font-family: proxima-nova, sans-serif;
   }
@@ -16,9 +17,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default function Layout({ children, locale }) {
-	const baseUrl = locale === "no" ? "/" : `/${locale}/`;
-
+export default function Layout({ children }) {
+	const { baseUrl } = usePageContext();
 	return (
 		<>
 			<GlobalStyle />
@@ -26,7 +26,7 @@ export default function Layout({ children, locale }) {
 				<Link to={baseUrl}>
 					<img width="100px" src={logo} alt="Oslo Pride logo" />
 				</Link>
-				<Navigation locale={locale} />
+				<Navigation />
 			</header>
 			{children}
 			<footer>OSLO PRIDE</footer>

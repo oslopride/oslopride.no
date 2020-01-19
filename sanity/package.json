@@ -26,7 +26,8 @@
     "@sanity/vision": "^0.147.6",
     "prop-types": "^15.6",
     "react": "^16.2",
-    "react-dom": "^16.2"
+    "react-dom": "^16.2",
+    "react-frame-component": "^4.1.1"
   },
   "devDependencies": {
     "@sanity/cli": "^0.147.3",

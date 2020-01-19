@@ -53,7 +53,7 @@ exports.createPages = async function({ graphql, actions, reporter }) {
 		createLocalePage(
 			{
 				path: `/${page.slug.current}`,
-				component: require.resolve("./src/templates/page"),
+				component: require.resolve("./src/templates/page-template"),
 				context: {
 					id: page.id
 				}

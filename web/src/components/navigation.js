@@ -1,44 +1,28 @@
 import React from "react";
-import { Link, graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
+import Link from "./link";
+import { usePageContext } from "../hooks/page-context";
 
-export default function({ locale }) {
-	const data = useStaticQuery(
-		graphql`
-			query SanityNavbarConfigurationQuery {
-				sanityConfiguration(_id: { eq: "global_configuration" }) {
-					navigation_bar {
-						title {
-							no
-							en
-						}
-						slug {
-							current
-						}
-					}
-				}
-			}
-		`
-	);
+export default function() {
 	const [navigationVisible, showNavigation] = React.useState(false);
 	const toggleNavigation = () => showNavigation(current => !current);
 	const closeNavigation = () => showNavigation(false);
+	const {
+		configuration: { navigation_bar: navigationBar },
+		baseUrl,
+		locale
+	} = usePageContext();
 
-	const prefix = locale === "no" ? "/" : `/${locale}/`;
-
-	const links = (data.sanityConfiguration.navigation_bar || []).map(
-		page =>
-			page.title[locale] && (
-				<NavigationItem key={page.slug.current} onClick={closeNavigation}>
-					<Link
-						to={`${prefix}${page.slug.current}`}
-						aria-label={page.title[locale]}
-					>
-						{page.title[locale]}
-					</Link>
-				</NavigationItem>
-			)
-	);
+	const links = navigationBar.map(page => (
+		<NavigationItem key={page.slug.current} onClick={closeNavigation}>
+			<Link
+				to={`${baseUrl}${page.slug.current}`}
+				aria-label={page.title[locale]}
+			>
+				{page.title[locale]}
+			</Link>
+		</NavigationItem>
+	));
 
 	return (
 		<>
@@ -63,6 +47,7 @@ const Navigation = styled.div`
 	flex-direction: column;
 	align-items: center;
 	padding: 5rem 2rem;
+	z-index: 99;
 `;
 
 const NavigationList = styled.ul`
@@ -78,5 +63,5 @@ const NavigationToggleButton = styled.button`
 	position: absolute;
 	top: 20px;
 	right: 20px;
-	z-index: 1;
+	z-index: 100;
 `;
