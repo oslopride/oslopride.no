@@ -14,6 +14,7 @@ import article from "./article";
 import blocks from "./blocks";
 import hero from "./blocks/hero";
 import textArea from "./blocks/text-area";
+import callToAction from "./blocks/call-to-action";
 
 // Types
 import portableText from "./types/portable-text";
@@ -50,6 +51,7 @@ export default createSchema({
 		localeBlock,
 		localePageTitle,
 		localeArticleTitle,
-		localePortableText
+		localePortableText,
+		callToAction
 	])
 });

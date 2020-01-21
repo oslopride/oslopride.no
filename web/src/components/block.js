@@ -1,11 +1,15 @@
 import React from "react";
 
 import Hero from "../blocks/hero";
+import CallToAction from "../blocks/call-to-action";
 
 export default function Block({ block }) {
 	switch (block._type) {
 		case "hero":
 			return <Hero {...block} />;
+		case "callToAction":
+			return <CallToAction {...block} />;
+
 		default:
 			console.warn(`Unknown block type: "${block._type}"`);
 			if (process.env.NODE_ENV !== "production") {
