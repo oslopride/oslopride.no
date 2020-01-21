@@ -9,21 +9,76 @@ export default function CallToActionMinimal({ title, headline, button }) {
 				<h2>{title}</h2>
 				<h3>{headline}</h3>
 			</Header>
-			<Anchor {...button} />
+			<ButtonWrapper>
+				<button>
+					<Anchor {...button} />
+				</button>
+			</ButtonWrapper>
 		</Wrapper>
 	);
 }
 
 const Wrapper = styled.div`
 	display: flex;
+	flex-flow: row nowrap;
+
 	width: 100%;
 	background-color: inherit;
+	margin: 32px 0;
+	padding: 0 200px;
 `;
 
 const Header = styled.div`
-	font-size: 2em;
+	width: 50%;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: left;
 
 	h2 {
-		color: blue;
+		font-size: 1em;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		padding-left: 60px;
+		position: relative;
+
+		:before {
+			content: "";
+			display: block;
+			height: 4px;
+			width: 50px;
+			background-color: red;
+			position: absolute;
+			left: 0;
+			top: 7px;
+		}
+	}
+
+	h3 {
+		font-size: 2em;
+		margin: 10px 0;
+	}
+`;
+
+const ButtonWrapper = styled.div`
+	width: 50%;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: flex-end;
+
+	button {
+		width: 100px;
+		height: 50px;
+		background-color: #e350a0;
+		border-radius: 8px;
+		border: none;
+
+		a {
+			text-decoration: none;
+			color: white;
+			text-transform: uppercase;
+			font-weight: bold;
+		}
 	}
 `;

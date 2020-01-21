@@ -1,4 +1,0 @@
-{
-	"web/**/*.{js,jsx}": ["yarn web lint:fix", "git add"],
-	"sanity/**/*.{js,jsx}": ["yarn sanity lint:fix", "git add"]
-}
