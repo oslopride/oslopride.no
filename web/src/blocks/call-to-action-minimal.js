@@ -47,7 +47,7 @@ const Header = styled.div`
 			display: block;
 			height: 4px;
 			width: 50px;
-			background-color: red;
+			background-color: #e350a0;
 			position: absolute;
 			left: 0;
 			top: 7px;
@@ -71,8 +71,9 @@ const ButtonWrapper = styled.div`
 		width: 100px;
 		height: 50px;
 		background-color: #e350a0;
-		border-radius: 8px;
+		border-radius: 25px;
 		border: none;
+		box-shadow: 0 0 18px #dcdcdc;
 
 		a {
 			text-decoration: none;
