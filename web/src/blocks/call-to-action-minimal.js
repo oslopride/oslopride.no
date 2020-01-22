@@ -7,21 +7,20 @@ export default function CallToActionMinimal({ title, headline, button }) {
 		<Wrapper>
 			<Header>
 				<h2>{title}</h2>
-			</Header>
-			<ContentWrapper>
 				<h3>{headline}</h3>
-				<ButtonWrapper>
-					<button>
-						<Anchor {...button} />
-					</button>
-				</ButtonWrapper>
-			</ContentWrapper>
+			</Header>
+			<ButtonWrapper>
+				<button>
+					<Anchor {...button} />
+				</button>
+			</ButtonWrapper>
 		</Wrapper>
 	);
 }
 
 const Wrapper = styled.div`
-	display: block;
+	display: flex;
+	flex-flow: row nowrap;
 
 	width: 100%;
 	background-color: inherit;
@@ -54,25 +53,19 @@ const Header = styled.div`
 			top: 7px;
 		}
 	}
-`;
-
-const ContentWrapper = styled.div`
-	width: 100%;
-	display: flex;
-	flex-flow: row nowrap;
-	align-items: center;
-	justify-content: flex-end;
 
 	h3 {
 		font-size: 2em;
 		margin: 10px 0;
-		width: 50%;
 	}
 `;
 
 const ButtonWrapper = styled.div`
 	width: 50%;
-	text-align: right;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: flex-end;
 
 	button {
 		min-width: 100px;
