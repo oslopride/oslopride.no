@@ -85,13 +85,14 @@ const ButtonWrapper = styled.div`
 		border-radius: 25px;
 		border: none;
 		box-shadow: 0 0 18px #dcdcdc;
-		letter-spacing: 1.5px;
+		letter-spacing: 2px;
 
 		a {
 			text-decoration: none;
 			color: white;
 			text-transform: uppercase;
-			font-weight: bold;
+			font-weight: 600;
+			font-size: 0.8em;
 		}
 	}
 
