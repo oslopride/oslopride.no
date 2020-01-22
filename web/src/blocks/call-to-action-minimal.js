@@ -68,8 +68,9 @@ const ButtonWrapper = styled.div`
 	justify-content: flex-end;
 
 	button {
-		width: 100px;
+		min-width: 100px;
 		height: 50px;
+		padding: 0 2em;
 		background-color: #e350a0;
 		border-radius: 25px;
 		border: none;
