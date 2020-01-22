@@ -21,10 +21,8 @@ export default function CallToActionMinimal({ title, headline, button }) {
 const Wrapper = styled.div`
 	display: flex;
 	flex-flow: row nowrap;
-
 	width: 1000px;
 	max-width: 90vw;
-	background-color: inherit;
 	margin: 100px auto;
 
 	@media screen and (max-width: 1024px) {
@@ -37,24 +35,24 @@ const Wrapper = styled.div`
 `;
 
 const Header = styled.div`
-	width: 50%;
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: center;
 	align-items: left;
+	width: 50%;
 
 	h2 {
 		font-size: 1em;
 		text-transform: uppercase;
 		letter-spacing: 2px;
-		padding-left: 60px;
 		position: relative;
+		padding-left: 60px;
 
 		:before {
 			content: "";
 			display: block;
-			height: 4px;
 			width: 50px;
+			height: 4px;
 			background-color: #e350a0;
 			position: absolute;
 			left: 0;
@@ -73,8 +71,8 @@ const Header = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-	width: 50%;
 	display: flex;
+	width: 50%;
 	flex-flow: row nowrap;
 	align-items: center;
 	justify-content: flex-end;
