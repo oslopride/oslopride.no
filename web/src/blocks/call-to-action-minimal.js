@@ -22,10 +22,18 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-flow: row nowrap;
 
-	width: 100%;
+	width: 1000px;
+	max-width: 90vw;
 	background-color: inherit;
-	margin: 100px 0;
-	padding: 0 200px;
+	margin: 100px auto;
+
+	@media screen and (max-width: 1024px) {
+		display: block;
+
+		button {
+			margin-top: 1.5em;
+		}
+	}
 `;
 
 const Header = styled.div`
@@ -58,6 +66,10 @@ const Header = styled.div`
 		font-size: 2em;
 		margin: 10px 0;
 	}
+
+	@media screen and (max-width: 1024px) {
+		width: 100%;
+	}
 `;
 
 const ButtonWrapper = styled.div`
@@ -83,5 +95,10 @@ const ButtonWrapper = styled.div`
 			text-transform: uppercase;
 			font-weight: bold;
 		}
+	}
+
+	@media screen and (max-width: 1024px) {
+		width: 100%;
+		justify-content: left;
 	}
 `;
