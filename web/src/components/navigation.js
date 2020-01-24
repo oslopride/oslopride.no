@@ -47,7 +47,7 @@ const Navigation = styled.div`
 	display: ${props => (props.visible ? "flex" : "none")};
 	flex-direction: column;
 	align-items: left;
-	padding: 14rem 8rem;
+	padding: 14rem 3rem;
 	z-index: 99;
 
 	a {
@@ -68,6 +68,26 @@ const NavigationItem = styled.li`
 	line-height: 2em;
 	font-weight: 600;
 	letter-spacing: 2px;
+	position: relative;
+	padding-left: 4rem;
+
+	/* TODO: Should not be on hover, just on active state probably? */
+	&:hover {
+		:before {
+			content: "";
+			display: block;
+			width: 50px;
+			height: 4px;
+			background-color: #e350a0;
+			position: absolute;
+			left: -0.5em;
+			top: 0.9em;
+		}
+
+		a {
+			color: #e350a0;
+		}
+	}
 `;
 
 const NavigationToggleButton = styled.button`
