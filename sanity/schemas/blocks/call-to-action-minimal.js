@@ -18,5 +18,18 @@ export default {
 			name: "button",
 			type: "external_link"
 		}
-	]
+	],
+	preview: {
+		select: {
+			title: "title",
+			subtitle: "headline"
+		},
+		prepare(selection) {
+			const { title, subtitle } = selection;
+			return {
+				title: "Call To Action: " + title,
+				subtitle
+			};
+		}
+	}
 };
