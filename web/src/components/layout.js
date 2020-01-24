@@ -38,7 +38,11 @@ const GlobalHeader = styled.header`
 	display: block;
 	width: 1280px;
 	max-width: 95vw;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 40px auto;
 	position: relative;
+
+	img {
+		width: 170px;
+		height: auto;
+	}
 `;
