@@ -40,14 +40,20 @@ const Navigation = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100vw;
+	width: 930px;
+	max-width: 100vw;
 	height: 100vh;
-	background: white;
+	background: #352176;
 	display: ${props => (props.visible ? "flex" : "none")};
 	flex-direction: column;
-	align-items: center;
-	padding: 5rem 2rem;
+	align-items: left;
+	padding: 14rem 8rem;
 	z-index: 99;
+
+	a {
+		color: white;
+		text-decoration: none;
+	}
 `;
 
 const NavigationList = styled.ul`
@@ -57,7 +63,12 @@ const NavigationList = styled.ul`
 	font-size: 2em;
 `;
 
-const NavigationItem = styled.li``;
+const NavigationItem = styled.li`
+	font-size: 1.25em;
+	line-height: 2em;
+	font-weight: 600;
+	letter-spacing: 2px;
+`;
 
 const NavigationToggleButton = styled.button`
 	position: absolute;
