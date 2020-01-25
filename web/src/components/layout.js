@@ -3,7 +3,6 @@ import Link from "./link";
 import styled, { createGlobalStyle } from "styled-components";
 import { normalize } from "polished";
 import logo from "../assets/logo.svg";
-import menu from "../assets/menu-button-purple.svg";
 import Navigation from "./navigation";
 import { usePageContext } from "../hooks/page-context";
 
@@ -47,24 +46,6 @@ const GlobalHeader = styled.header`
 	img {
 		width: 170px;
 		height: auto;
-	}
-
-	button {
-		height: 30px;
-		width: 35px;
-		top: 35px;
-		background-color: white;
-		background-image: url(${menu});
-		background-repeat: no-repeat;
-
-		border: none;
-		outline: none;
-
-		text-indent: -9999px;
-		white-space: nowrap;
-		overflow: hidden;
-
-		cursor: pointer;
 	}
 
 	.date {

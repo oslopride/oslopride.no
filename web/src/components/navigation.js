@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "./link";
+import menu from "../assets/menu-button-purple.svg";
+import close from "../assets/close-button.svg";
 import { usePageContext } from "../hooks/page-context";
 
 export default function() {
@@ -27,9 +29,12 @@ export default function() {
 	return (
 		<>
 			<NavigationToggleButton onClick={toggleNavigation}>
-				{navigationVisible ? "close" : "menu"}
+				Menu
 			</NavigationToggleButton>
 			<Navigation visible={navigationVisible}>
+				<NavigationToggleButton onClick={toggleNavigation}>
+					Close
+				</NavigationToggleButton>
 				<NavigationList>{links}</NavigationList>
 			</Navigation>
 		</>
@@ -53,6 +58,14 @@ const Navigation = styled.div`
 	a {
 		color: white;
 		text-decoration: none;
+	}
+
+	button {
+		top: 70px;
+		right: 50px;
+		background-color: transparent;
+		background-image: url(${close});
+		background-size: 30px auto;
 	}
 `;
 
@@ -92,7 +105,22 @@ const NavigationItem = styled.li`
 
 const NavigationToggleButton = styled.button`
 	position: absolute;
-	top: 20px;
+	top: 35px;
 	right: 20px;
 	z-index: 100;
+
+	height: 30px;
+	width: 35px;
+	background-color: transparent;
+	background-image: url(${menu});
+	background-repeat: no-repeat;
+
+	border: none;
+	outline: none;
+
+	text-indent: -9999px;
+	white-space: nowrap;
+	overflow: hidden;
+
+	cursor: pointer;
 `;
