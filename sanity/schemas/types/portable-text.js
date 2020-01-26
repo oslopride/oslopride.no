@@ -1,6 +1,6 @@
 export default {
 	title: "Portable Text",
-	name: "portable_text",
+	name: "portableText",
 	type: "array",
 	of: [{ type: "block" }, { type: "illustration" }, { type: "youtube" }]
 };

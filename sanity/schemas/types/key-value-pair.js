@@ -1,6 +1,6 @@
 export default {
 	title: "Key Value Pair",
-	name: "key_value_pair",
+	name: "keyValuePair",
 	type: "object",
 	fields: [
 		{

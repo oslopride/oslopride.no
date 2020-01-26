@@ -10,7 +10,7 @@ import JSONpreview from "./previews/json-preview";
 
 // Hide document types that we already have a structure definition for
 const hiddenDocTypes = listItem =>
-	!["front_page", "page", "article", "configuration"].includes(
+	!["frontPage", "page", "article", "configuration"].includes(
 		listItem.getId()
 	);
 

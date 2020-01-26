@@ -5,7 +5,7 @@ export default {
 	fields: [
 		{
 			title: "Navigation Bar",
-			name: "navigation_bar",
+			name: "navigationBar",
 			type: "array",
 			of: [
 				{
@@ -20,7 +20,7 @@ export default {
 			type: "array",
 			of: [
 				{
-					type: "key_value_pair"
+					type: "keyValuePair"
 				}
 			]
 		}
