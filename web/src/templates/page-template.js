@@ -27,7 +27,7 @@ export const query = graphql`
 			_rawBlocks(resolveReferences: { maxDepth: 10 })
 		}
 		configuration: sanityConfiguration(_id: { eq: "global_configuration" }) {
-			navigation_bar {
+			navigationBar {
 				title {
 					en
 					no

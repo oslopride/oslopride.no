@@ -8,11 +8,11 @@ export default function FrontPage(props) {
 
 export const query = graphql`
 	query SanityFrontPagesQuery {
-		page: sanityFrontPage(_id: { eq: "global_front_page" }) {
+		page: sanityFrontPage(_id: { eq: "global_frontPage" }) {
 			_rawBlocks
 		}
 		configuration: sanityConfiguration(_id: { eq: "global_configuration" }) {
-			navigation_bar {
+			navigationBar {
 				title {
 					en
 					no

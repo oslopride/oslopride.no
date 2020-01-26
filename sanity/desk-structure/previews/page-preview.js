@@ -9,7 +9,7 @@ export default function PagePreview({ document }) {
 	const context = {
 		locale: "no",
 		baseUrl: "/",
-		configuration: { navigation_bar: [] },
+		configuration: { navigationBar: [] },
 		gatsbyEnvironment: false
 	};
 
