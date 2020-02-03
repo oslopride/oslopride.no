@@ -85,7 +85,9 @@ const NavigationItem = styled.li`
 	padding-left: 4rem;
 
 	/* TODO: Should not be on hover, just on active state probably? */
-	&:hover {
+	a:hover {
+		color: #e350a0;
+
 		:before {
 			content: "";
 			display: block;
@@ -95,10 +97,6 @@ const NavigationItem = styled.li`
 			position: absolute;
 			left: -0.5em;
 			top: 0.9em;
-		}
-
-		a {
-			color: #e350a0;
 		}
 	}
 `;
