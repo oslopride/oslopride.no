@@ -44,7 +44,7 @@ export default function() {
 const Navigation = styled.div`
 	position: fixed;
 	top: 0;
-	left: 0;
+	left: -930px;
 	width: 930px;
 	max-width: 100vw;
 	height: 100vh;
@@ -54,6 +54,8 @@ const Navigation = styled.div`
 	align-items: left;
 	padding: 14rem 3rem;
 	z-index: 99;
+
+	animation: move-in 0.3s ease-out forwards;
 
 	a {
 		color: white;
@@ -66,6 +68,15 @@ const Navigation = styled.div`
 		background-color: transparent;
 		background-image: url(${close});
 		background-size: 30px auto;
+	}
+
+	@keyframes move-in {
+		0% {
+			left: -930px;
+		}
+		100% {
+			left: 0;
+		}
 	}
 `;
 
