@@ -11,9 +11,9 @@ export default S.listItem()
 	.child(
 		S.document()
 			.title("Front Page")
-			.id("front_page")
-			.schemaType("front_page")
-			.documentId("global_front_page")
+			.id("frontPage")
+			.schemaType("frontPage")
+			.documentId("global_frontPage")
 			.views([
 				S.view.form().icon(EditIcon),
 				S.view.component(PagePreview).title("Web"),

@@ -9,14 +9,19 @@ export default {
 			type: "string"
 		},
 		{
-			title: "Subtitle", // in sanity
-			name: "subtitle", // json
+			title: "Headline",
+			name: "headline",
 			type: "string"
 		},
 		{
-			title: "Link", // in sanity
-			name: "link", // json
-			type: "internal_link" // taken from sanity/schemas/types
+			title: "Subheadline",
+			name: "subheadline",
+			type: "string"
+		},
+		{
+			title: "Button", // in sanity
+			name: "button", // json
+			type: "externalLink" // taken from sanity/schemas/types
 		},
 		{
 			title: "Image",

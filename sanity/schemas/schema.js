@@ -12,6 +12,7 @@ import article from "./article";
 
 // Blocks
 import blocks from "./blocks";
+import callToActionMinimal from "./blocks/call-to-action-minimal";
 import hero from "./blocks/hero";
 import textArea from "./blocks/text-area";
 import callToAction from "./blocks/call-to-action";
@@ -37,6 +38,7 @@ export default createSchema({
 	types: schemaTypes.concat([
 		page,
 		frontPage,
+		callToActionMinimal,
 		configuration,
 		article,
 		blocks,

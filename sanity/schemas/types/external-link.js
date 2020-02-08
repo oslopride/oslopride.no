@@ -1,6 +1,6 @@
 export default {
-	title: "External Link",
-	name: "external_link",
+	title: "Extrnal Link",
+	name: "externalLink",
 	type: "object",
 	fields: [
 		{

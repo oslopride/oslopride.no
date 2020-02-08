@@ -2,6 +2,7 @@ import React from "react";
 
 import Hero from "../blocks/hero";
 import CallToAction from "../blocks/call-to-action";
+import CallToActionMinimal from "../blocks/call-to-action-minimal";
 
 export default function Block({ block }) {
 	switch (block._type) {
@@ -10,6 +11,8 @@ export default function Block({ block }) {
 		case "callToAction":
 			return <CallToAction {...block} />;
 
+		case "callToActionMinimal":
+			return <CallToActionMinimal {...block} />;
 		default:
 			console.warn(`Unknown block type: "${block._type}"`);
 			if (process.env.NODE_ENV !== "production") {

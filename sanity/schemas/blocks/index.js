@@ -8,6 +8,9 @@ export default {
 		},
 		{
 			type: "callToAction"
+		},
+		{
+			type: "callToActionMinimal"
 		}
 	]
 };

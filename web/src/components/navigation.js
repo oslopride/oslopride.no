@@ -8,7 +8,7 @@ export default function() {
 	const toggleNavigation = () => showNavigation(current => !current);
 	const closeNavigation = () => showNavigation(false);
 	const {
-		configuration: { navigation_bar: navigationBar },
+		configuration: { navigationBar },
 		baseUrl,
 		locale
 	} = usePageContext();
