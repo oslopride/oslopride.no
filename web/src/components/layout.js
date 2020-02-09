@@ -5,6 +5,7 @@ import { normalize } from "polished";
 import logo from "../assets/logo.svg";
 import Navigation from "./navigation";
 import { usePageContext } from "../hooks/page-context";
+import Footer from "./footer";
 
 const GlobalStyle = createGlobalStyle`
 	${normalize()}
@@ -29,7 +30,7 @@ export default function Layout({ children }) {
 				<Navigation />
 			</header>
 			{children}
-			<footer>OSLO PRIDE</footer>
+			<Footer />
 		</>
 	);
 }
