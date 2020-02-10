@@ -21,6 +21,15 @@ export const query = graphql`
 					current
 				}
 			}
+			footer {
+				twitter
+				instagram
+				facebook
+				links {
+					text
+					url
+				}
+			}
 		}
 	}
 `;

@@ -36,7 +36,7 @@ export default {
 			type: "array",
 			of: [
 				{
-					type: "internalLink"
+					type: "externalLink"
 				}
 			]
 		}
