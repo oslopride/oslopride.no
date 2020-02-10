@@ -12,7 +12,6 @@ export default function Layout({ children }) {
 		configuration: { footer }
 	} = usePageContext();
 
-	console.log(footer);
 	return (
 		<>
 			<GlobalStyle />
@@ -24,15 +23,31 @@ export default function Layout({ children }) {
 			</header>
 			<Content>{children}</Content>
 			<Footer>
-				<div>
+				<Image>
 					<img width="100px" src={logo} alt="Oslo Pride logo" />
-				</div>
-				<div>
-					<h4>Oslo Pride as</h4>
-				</div>
-				<div>
-					<h4>Snarveier</h4>
-				</div>
+					<h3>19. - 28. Juni 2020</h3>
+				</Image>
+
+				<Info>
+					<h3>Oslo Pride as</h3>
+					<p>c/o Foreningen FRI,</p>
+					<p>Mariboes gate 13, 0183 OSLO</p>
+					<a href="https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=986625860">
+						Org.nr: 986 625 860
+					</a>
+					<a href="tel:91544090">Tlf: 915 44 090</a>
+				</Info>
+
+				<Shortcuts>
+					<h3>Snarveier</h3>
+					{footer.links.map((link, i) => {
+						return (
+							<a href={link.url} key={i}>
+								{link.text}
+							</a>
+						);
+					})}
+				</Shortcuts>
 			</Footer>
 		</>
 	);
@@ -71,12 +86,46 @@ const Footer = styled.footer`
 	height: 300px;
 	flex-flow: row nowrap;
 	justify-content: space-around;
+	font-size: 16px;
 
-	div:nth-child(1) {
-		width: 40%;
+	h3 {
+		color: #3a1b7b;
 	}
-	div:nth-child(2),
-	div:nth-child(3) {
-		width: 30%;
+
+	a {
+		color: #e350a0;
 	}
+
+	a,
+	p {
+		margin: 5px 0;
+	}
+`;
+
+const Image = styled.div`
+	width: 40%;
+
+	img {
+		max-width: 50%;
+		width: 150px;
+	}
+
+	h3 {
+		text-transform: uppercase;
+		margin-left: 20px;
+		margin-top: 8px;
+		font-weight: 500;
+	}
+`;
+
+const Info = styled.div`
+	display: flex;
+	flex-flow: column nowrap;
+	width: 30%;
+`;
+
+const Shortcuts = styled.div`
+	display: flex;
+	flex-flow: column nowrap;
+	width: 30%;
 `;
