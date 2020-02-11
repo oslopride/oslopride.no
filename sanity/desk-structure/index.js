@@ -4,13 +4,14 @@ import EditIcon from "part:@sanity/base/edit-icon";
 import frontPage from "./front-page";
 import pages from "./pages";
 import articles from "./articles";
+import partners from "./partners";
 import configuration from "./configuration";
 
 import JSONpreview from "./previews/json-preview";
 
 // Hide document types that we already have a structure definition for
 const hiddenDocTypes = listItem =>
-	!["frontPage", "page", "article", "configuration"].includes(
+	!["frontPage", "page", "article", "partner", "configuration"].includes(
 		listItem.getId()
 	);
 
@@ -21,6 +22,7 @@ export default () =>
 			frontPage,
 			pages,
 			articles,
+			partners,
 			configuration,
 			...S.documentTypeListItems().filter(hiddenDocTypes)
 		]);
