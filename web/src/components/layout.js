@@ -9,23 +9,24 @@ import { usePageContext } from "../hooks/page-context";
 export default function Layout({ children }) {
 	const {
 		baseUrl,
-		configuration: { footer }
+		configuration: { footer, date }
 	} = usePageContext();
 
 	return (
 		<>
 			<GlobalStyle />
-			<header>
+			<GlobalHeader>
 				<Link to={baseUrl}>
 					<img width="100px" src={logo} alt="Oslo Pride logo" />
 				</Link>
+				<p className="date">{date}</p>
 				<Navigation />
-			</header>
+			</GlobalHeader>
 			<Content>{children}</Content>
 			<Footer>
 				<Image>
 					<img width="100px" src={logo} alt="Oslo Pride logo" />
-					<h3>19. - 28. Juni 2020</h3>
+					<h3>{date}</h3>
 				</Image>
 
 				<Info>
@@ -71,6 +72,28 @@ const GlobalStyle = createGlobalStyle`
 	
 	* {
 		box-sizing: border-box;
+	}
+`;
+
+const GlobalHeader = styled.header`
+	display: block;
+	width: 1280px;
+	max-width: 95vw;
+	margin: 40px auto;
+	position: relative;
+
+	img {
+		width: 170px;
+		height: auto;
+	}
+
+	.date {
+		text-transform: uppercase;
+		color: #ecafb4;
+		font-weight: 600;
+		position: absolute;
+		top: 25px;
+		right: 100px;
 	}
 `;
 

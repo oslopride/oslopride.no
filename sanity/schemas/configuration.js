@@ -10,9 +10,14 @@ export default {
 			of: [
 				{
 					type: "reference",
-					to: [{ type: "page" }]
+					to: [{ type: "page" }, { type: "frontPage" }]
 				}
 			]
+		},
+		{
+			title: "Date",
+			name: "date",
+			type: "string"
 		},
 		{
 			title: "Footer",
