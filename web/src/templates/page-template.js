@@ -27,24 +27,10 @@ export const query = graphql`
 			_rawBlocks(resolveReferences: { maxDepth: 10 })
 		}
 		configuration: sanityConfiguration(_id: { eq: "global_configuration" }) {
-			navigationBar {
-				title {
-					en
-					no
-				}
-				slug {
-					current
-				}
-			}
-			footer {
-				twitter
-				instagram
-				facebook
-				links {
-					text
-					url
-				}
-			}
+			navigationBar: _rawNavigationBar(resolveReferences: { maxDepth: 10 })
+			footer: _rawFooter(resolveReferences: { maxDepth: 10 })
+			advanced: _rawAdvanced(resolveReferences: { maxDepth: 10 })
+			date
 		}
 	}
 `;

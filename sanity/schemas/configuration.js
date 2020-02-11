@@ -15,6 +15,11 @@ export default {
 			]
 		},
 		{
+			title: "Date",
+			name: "date",
+			type: "string"
+		},
+		{
 			title: "Footer",
 			name: "footer",
 			type: "footer"

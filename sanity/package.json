@@ -12,7 +12,7 @@
     "lint:fix": "yarn lint --fix",
     "test": "sanity check",
     "build": "sanity build",
-    "graphql-deploy": "sanity graphql deploy"
+    "graphql-deploy": "sanity login && sanity graphql deploy"
   },
   "keywords": [
     "sanity"

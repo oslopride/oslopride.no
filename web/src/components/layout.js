@@ -9,7 +9,7 @@ import { usePageContext } from "../hooks/page-context";
 export default function Layout({ children }) {
 	const {
 		baseUrl,
-		configuration: { footer }
+		configuration: { footer, date }
 	} = usePageContext();
 
 	return (
@@ -19,8 +19,7 @@ export default function Layout({ children }) {
 				<Link to={baseUrl}>
 					<img width="100px" src={logo} alt="Oslo Pride logo" />
 				</Link>
-				{/* TODO: Translate date? */}
-				<p className="date">18. - 29. Juni 2020</p>
+				<p className="date">{date}</p>
 				<Navigation />
 			</GlobalHeader>
 			<Content>{children}</Content>
