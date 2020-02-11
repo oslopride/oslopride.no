@@ -28,6 +28,7 @@ import localeBlock from "./types/locale-blocks";
 import localePageTitle from "./types/locale-page-title";
 import localeArticleTitle from "./types/locale-article-title";
 import localePortableText from "./types/locale-portable-text";
+import footer from "./types/footer";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -54,6 +55,7 @@ export default createSchema({
 		localePageTitle,
 		localeArticleTitle,
 		localePortableText,
-		callToAction
+		callToAction,
+		footer
 	])
 });

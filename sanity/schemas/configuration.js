@@ -15,6 +15,11 @@ export default {
 			]
 		},
 		{
+			title: "Footer",
+			name: "footer",
+			type: "footer"
+		},
+		{
 			title: "Advanced",
 			name: "advanced",
 			type: "array",
