@@ -9,6 +9,7 @@ import page from "./page";
 import frontPage from "./front-page";
 import configuration from "./configuration";
 import article from "./article";
+import partner from "./partner";
 
 // Blocks
 import blocks from "./blocks";
@@ -42,6 +43,7 @@ export default createSchema({
 		callToActionMinimal,
 		configuration,
 		article,
+		partner,
 		blocks,
 		hero,
 		textArea,
