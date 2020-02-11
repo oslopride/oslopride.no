@@ -53,7 +53,7 @@ const Navigation = styled.div`
 	flex-direction: column;
 	align-items: left;
 	padding: 14rem 3rem;
-	z-index: 99;
+	z-index: 100;
 	transition: 0.5s;
 
 	a {
@@ -106,7 +106,7 @@ const NavigationToggleButton = styled.button`
 	position: absolute;
 	top: 35px;
 	right: 20px;
-	z-index: 100;
+	z-index: 99;
 
 	height: 30px;
 	width: 35px;
