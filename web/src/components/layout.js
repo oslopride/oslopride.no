@@ -26,7 +26,7 @@ export default function Layout({ children }) {
 			<Footer>
 				<Image>
 					<img width="100px" src={logo} alt="Oslo Pride logo" />
-					<h3>19. - 28. Juni 2020</h3>
+					<h3>{date}</h3>
 				</Image>
 
 				<Info>
