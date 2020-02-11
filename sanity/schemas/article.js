@@ -9,7 +9,7 @@ export default {
 		{
 			name: "title",
 			title: "Title",
-			type: "locale_article_title"
+			type: "localeArticleTitle"
 		},
 		{
 			title: "URL",
@@ -32,7 +32,7 @@ export default {
 		{
 			title: "Body",
 			name: "body",
-			type: "locale_portable_text",
+			type: "localePortableText",
 			validate: Rule => Rule.required()
 		}
 	],

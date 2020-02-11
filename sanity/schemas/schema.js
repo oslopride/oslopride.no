@@ -15,6 +15,7 @@ import blocks from "./blocks";
 import callToActionMinimal from "./blocks/call-to-action-minimal";
 import hero from "./blocks/hero";
 import textArea from "./blocks/text-area";
+import callToAction from "./blocks/call-to-action";
 
 // Types
 import portableText from "./types/portable-text";
@@ -27,6 +28,7 @@ import localeBlock from "./types/locale-blocks";
 import localePageTitle from "./types/locale-page-title";
 import localeArticleTitle from "./types/locale-article-title";
 import localePortableText from "./types/locale-portable-text";
+import footer from "./types/footer";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -52,6 +54,8 @@ export default createSchema({
 		localeBlock,
 		localePageTitle,
 		localeArticleTitle,
-		localePortableText
+		localePortableText,
+		callToAction,
+		footer
 	])
 });

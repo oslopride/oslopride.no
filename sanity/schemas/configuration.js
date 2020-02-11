@@ -10,9 +10,14 @@ export default {
 			of: [
 				{
 					type: "reference",
-					to: [{ type: "page" }, { type: "front_page" }]
+					to: [{ type: "page" }, { type: "frontPage" }]
 				}
 			]
+		},
+		{
+			title: "Footer",
+			name: "footer",
+			type: "footer"
 		},
 		{
 			title: "Advanced",
@@ -20,7 +25,7 @@ export default {
 			type: "array",
 			of: [
 				{
-					type: "key_value_pair"
+					type: "keyValuePair"
 				}
 			]
 		}

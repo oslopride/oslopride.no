@@ -16,7 +16,7 @@ export default {
 		{
 			title: "Button",
 			name: "button",
-			type: "external_link"
+			type: "externalLink"
 		}
 	],
 	preview: {

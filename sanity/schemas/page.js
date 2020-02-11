@@ -9,7 +9,7 @@ export default {
 		{
 			title: "Title",
 			name: "title",
-			type: "locale_page_title"
+			type: "localePageTitle"
 		},
 		{
 			title: "URL",
@@ -22,7 +22,7 @@ export default {
 		{
 			title: "Blocks",
 			name: "blocks",
-			type: "locale_blocks"
+			type: "localeBlocks"
 		}
 	],
 	preview: {

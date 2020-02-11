@@ -18,7 +18,7 @@ export default {
 			title: "Links",
 			name: "links",
 			type: "array",
-			of: [{ type: "internal_link" }, { type: "external_link" }]
+			of: [{ type: "internalLink" }, { type: "externalLink" }]
 		},
 		{
 			title: "Image",

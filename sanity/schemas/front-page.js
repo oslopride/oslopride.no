@@ -2,13 +2,13 @@ import { getDefaultLanguage } from "../utils/locale";
 
 export default {
 	title: "Front Page",
-	name: "front_page",
+	name: "frontPage",
 	type: "document",
 	fields: [
 		{
 			title: "Title",
 			name: "title",
-			type: "locale_page_title"
+			type: "localePageTitle"
 		},
 		{
 			title: "URL",
@@ -21,7 +21,7 @@ export default {
 		{
 			title: "Blocks",
 			name: "blocks",
-			type: "locale_blocks"
+			type: "localeBlocks"
 		}
 	],
 	preview: {
