@@ -7,6 +7,9 @@ export default {
 			type: "hero"
 		},
 		{
+			type: "callToAction"
+		},
+		{
 			type: "callToActionMinimal"
 		}
 	]
