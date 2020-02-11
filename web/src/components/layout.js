@@ -81,9 +81,8 @@ const Content = styled.div`
 const Footer = styled.footer`
 	flex-shrink: 0;
 	width: 1000px;
-	margin: 0 auto;
+	margin: 50px auto;
 	display: flex;
-	height: 300px;
 	flex-flow: row nowrap;
 	justify-content: space-around;
 	font-size: 16px;
