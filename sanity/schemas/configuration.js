@@ -5,12 +5,12 @@ export default {
 	fields: [
 		{
 			title: "Navigation Bar",
-			name: "navigation_bar",
+			name: "navigationBar",
 			type: "array",
 			of: [
 				{
 					type: "reference",
-					to: [{ type: "page" }]
+					to: [{ type: "page" }, { type: "front_page" }]
 				}
 			]
 		},

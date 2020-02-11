@@ -12,7 +12,7 @@ export const query = graphql`
 			_rawBlocks
 		}
 		configuration: sanityConfiguration(_id: { eq: "global_configuration" }) {
-			navigation_bar {
+			navigationBar {
 				title {
 					en
 					no
