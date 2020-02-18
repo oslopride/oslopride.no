@@ -1,6 +1,7 @@
 import advertisement from "./advertisement";
 import announcement from "./announcement";
 import textArea from "./text-area";
+import partnerList from "./partner-list";
 
 export default {
 	title: "Blocks",
@@ -15,6 +16,9 @@ export default {
 		},
 		{
 			type: advertisement.name
+		},
+		{
+			type: partnerList.name
 		}
 	]
 };

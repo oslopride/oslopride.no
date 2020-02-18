@@ -16,6 +16,7 @@ import blocks from "./blocks";
 import textArea from "./blocks/text-area";
 import announcement from "./blocks/announcement";
 import advertisement from "./blocks/advertisement";
+import partnerList from "./blocks/partner-list";
 
 // Types
 import externalLink from "./types/external-link";
@@ -40,6 +41,7 @@ export default createSchema({
 		advertisement,
 
 		internalLink,
-		externalLink
+		externalLink,
+		partnerList
 	])
 });
