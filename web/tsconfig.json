@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "build",
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
@@ -10,7 +10,8 @@
     "allowJs": true,
     "jsx": "react",
     
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
   "include": ["./src/**/*"]
 }
