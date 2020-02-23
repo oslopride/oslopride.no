@@ -1,25 +1,49 @@
 import React from "react";
-import { useOvermind } from "./overmind";
 import { Router, Link } from "@reach/router";
 import Page from "./pages/page";
 import FrontPage from "./pages/front-page";
+import sanity, { SanityConfiguration } from "./sanity";
+import { isEmptyResult } from "./sanity/utils";
+
+type State = {
+	isLoading: boolean;
+	configuration: SanityConfiguration | null;
+};
 
 const App: React.FC = () => {
-	const { state } = useOvermind();
+	const [state, setState] = React.useState<State>({
+		isLoading: true,
+		configuration: null
+	});
 
-	if (state.isLoadingConfiguration) return <>Loading...</>;
-	if (state.configuration === null) return <>Error</>;
+	React.useEffect(() => {
+		const query = `*[_id == "global_configuration"][0]{..., navigationBar[]->}`;
+		sanity.fetch<SanityConfiguration>(query).then(result => {
+			setState(current => ({
+				...current,
+				isLoading: false,
+				configuration: isEmptyResult(result) ? null : result
+			}));
+		});
+	}, []);
+
+	if (state.isLoading) return <div>Loading...</div>;
 
 	return (
 		<>
 			<h1>Welcome to this page</h1>
 			<nav>
 				<ul>
-					{state.configuration.navigationBar.map(link => (
-						<li key={link.id}>
-							<Link to={link.url}>{link.title.no}</Link>
-						</li>
-					))}
+					{state.configuration?.navigationBar.map(item => {
+						const id = item._id;
+						const slug = item._type === "frontPage" ? "/" : item.slug.current;
+						const title = item._type === "frontPage" ? "Hjem" : item.title.no;
+						return (
+							<li key={id}>
+								<Link to={slug}>{title}</Link>
+							</li>
+						);
+					})}
 				</ul>
 			</nav>
 			<article>
