@@ -1,44 +1,45 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
-import sanity, { SanityPage } from "../sanity";
-import { isEmptyResult } from "../sanity/utils";
-
-type State = {
-	isLoading: boolean;
-	page: SanityPage | null;
-};
+import sanity, { isEmptyResult } from "../sanity";
+import { SanityPage } from "../sanity/models";
+import { useSanityStore } from "../sanity/store";
 
 type Props = { slug?: string } & RouteComponentProps;
 
 const Page: React.FC<Props> = props => {
-	const [state, setState] = React.useState<State>({
-		isLoading: true,
-		page: null
-	});
+	const [isLoading, setLoading] = React.useState(false);
+	const [error, setError] = React.useState<null | string>(null);
+	const [store, dispatch] = useSanityStore();
+
+	const page = Object.values(store.pages).find(
+		page => page.slug.current === props.slug
+	);
 
 	React.useEffect(() => {
-		if (props.slug) {
-			setState({ isLoading: true, page: null });
-			const query = `*[_type == "page" && slug.current == $slug][0]`;
+		if (page === undefined && props.slug) {
+			setLoading(true);
 			sanity
-				.fetch<SanityPage>(query, { slug: props.slug })
+				.fetch<SanityPage>(`*[_type == "page" && slug.current == $slug][0]`, {
+					slug: props.slug
+				})
 				.then(result => {
-					setState(current => ({
-						...current,
-						isLoading: false,
-						page: isEmptyResult(result) ? null : result
-					}));
+					if (!isEmptyResult(result)) {
+						dispatch({ type: "add_page", data: result });
+					} else {
+						setError(`Cannot find any page with slug "${props.slug}"`);
+					}
+					setLoading(false);
 				});
 		}
 	}, [props.slug]);
 
-	if (state.isLoading) return <div>Loading...</div>;
-	if (state.page === null) return <div>Error</div>;
+	if (isLoading) return <div>Loading...</div>;
+	if (error !== null) return <div>{error}</div>;
 
 	return (
 		<div>
-			<h2>{state.page.title.no}</h2>
-			<pre>{JSON.stringify(state.page.blocks)}</pre>
+			<h2>{page?.title.no}</h2>
+			<pre>{JSON.stringify(page?.blocks, null, 2)}</pre>
 		</div>
 	);
 };
