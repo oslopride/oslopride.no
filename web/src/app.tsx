@@ -2,8 +2,9 @@ import React from "react";
 import { Router, Link } from "@reach/router";
 import Page from "./pages/page";
 import FrontPage from "./pages/front-page";
-import sanity, { SanityConfiguration } from "./sanity";
-import { isEmptyResult } from "./sanity/utils";
+import sanity, { isEmptyResult } from "./sanity";
+import { SanityConfiguration } from "./sanity/models";
+import { useSanityStore } from "./sanity/store";
 
 type State = {
 	isLoading: boolean;
@@ -11,30 +12,33 @@ type State = {
 };
 
 const App: React.FC = () => {
-	const [state, setState] = React.useState<State>({
-		isLoading: true,
-		configuration: null
-	});
+	const [isLoading, setLoading] = React.useState(true);
+	const [store, dispatch] = useSanityStore();
 
 	React.useEffect(() => {
-		const query = `*[_id == "global_configuration"][0]{..., navigationBar[]->}`;
-		sanity.fetch<SanityConfiguration>(query).then(result => {
-			setState(current => ({
-				...current,
-				isLoading: false,
-				configuration: isEmptyResult(result) ? null : result
-			}));
-		});
+		if (store.configuration === undefined) {
+			setLoading(true);
+			sanity
+				.fetch<SanityConfiguration>(
+					`*[_id == "global_configuration"][0]{..., navigationBar[]->}`
+				)
+				.then(result => {
+					if (!isEmptyResult(result)) {
+						dispatch({ type: "set_configuration", data: result });
+					}
+					setLoading(false);
+				});
+		}
 	}, []);
 
-	if (state.isLoading) return <div>Loading...</div>;
+	if (isLoading) return <div>Loading...</div>;
 
 	return (
 		<>
 			<h1>Welcome to this page</h1>
 			<nav>
 				<ul>
-					{state.configuration?.navigationBar.map(item => {
+					{store.configuration?.navigationBar.map(item => {
 						const id = item._id;
 						const slug = item._type === "frontPage" ? "/" : item.slug.current;
 						const title = item._type === "frontPage" ? "Hjem" : item.title.no;
