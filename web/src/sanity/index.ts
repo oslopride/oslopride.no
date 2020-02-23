@@ -38,9 +38,4 @@ const sanity = sanityClient({
 	useCdn: true
 });
 
-export function isEmptyResult(result: object | null): boolean {
-	if (result === null) return true;
-	return Object.keys(result).length === 0;
-}
-
 export default sanity;
