@@ -2,39 +2,23 @@ import React from "react";
 import { Router, Link } from "@reach/router";
 import Page from "./pages/page";
 import FrontPage from "./pages/front-page";
-import sanity, { SanityConfiguration } from "./sanity";
-import { isEmptyResult } from "./sanity/utils";
-
-type State = {
-	isLoading: boolean;
-	configuration: SanityConfiguration | null;
-};
+import { useDataContext } from "./hooks/data-context";
 
 const App: React.FC = () => {
-	const [state, setState] = React.useState<State>({
-		isLoading: true,
-		configuration: null
-	});
+	const { isLoading, data } = useDataContext();
+	console.log(data);
+	const navBar = data.filter(
+		(item: any) => item.__id === "global_configuration"
+	).navigationBar;
 
-	React.useEffect(() => {
-		const query = `*[_id == "global_configuration"][0]{..., navigationBar[]->}`;
-		sanity.fetch<SanityConfiguration>(query).then(result => {
-			setState(current => ({
-				...current,
-				isLoading: false,
-				configuration: isEmptyResult(result) ? null : result
-			}));
-		});
-	}, []);
-
-	if (state.isLoading) return <div>Loading...</div>;
+	if (isLoading) return <div>Loading...</div>;
 
 	return (
 		<>
 			<h1>Welcome to this page</h1>
 			<nav>
 				<ul>
-					{state.configuration?.navigationBar.map(item => {
+					{navBar.map((item: any) => {
 						const id = item._id;
 						const slug = item._type === "frontPage" ? "/" : item.slug.current;
 						const title = item._type === "frontPage" ? "Hjem" : item.title.no;
