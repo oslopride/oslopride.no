@@ -10,9 +10,7 @@
   ],
   "scripts": {
     "dev": "webpack-dev-server --hot --mode development",
-    "build:dev": "webpack -d --mode development",
-    "build:prod": "webpack -p --mode production",
-    "postbuild": "react-snap --help"
+    "build": "webpack -p --mode production"
   },
   "dependencies": {
     "@reach/router": "^1.3.1",
