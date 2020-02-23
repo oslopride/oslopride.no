@@ -1,1 +1,3 @@
-!dist/index.html
+public/*
+!public/index.html
+

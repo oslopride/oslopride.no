@@ -5,7 +5,7 @@ const path = require("path");
 const config = {
 	entry: ["react-hot-loader/patch", "./src/index.tsx"],
 	output: {
-		path: path.resolve(__dirname, "dist"),
+		path: path.resolve(__dirname, "public"),
 		filename: "bundle.js"
 	},
 	module: {
@@ -29,7 +29,7 @@ const config = {
 		}
 	},
 	devServer: {
-		contentBase: "./dist"
+		contentBase: "./public"
 	}
 };
 
