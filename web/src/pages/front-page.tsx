@@ -3,6 +3,7 @@ import { RouteComponentProps } from "@reach/router";
 import sanity, { isEmptyResult } from "../sanity";
 import { SanityFrontPage } from "../sanity/models";
 import { useSanityStore } from "../sanity/store";
+import Block from "../blocks";
 
 type Props = {} & RouteComponentProps;
 
@@ -30,11 +31,14 @@ const FrontPage: React.FC<Props> = () => {
 
 	if (isLoading) return <div>Loading...</div>;
 	if (error) return <div>{error}</div>;
+	if (!store.frontPage) return <div>404</div>;
 
 	return (
 		<div>
 			<h2>Front Page</h2>
-			<pre>{JSON.stringify(store.frontPage?.blocks, null, 2)}</pre>
+			{store.frontPage.blocks.no.map(block => (
+				<Block key={block._key} block={block} />
+			))}
 		</div>
 	);
 };

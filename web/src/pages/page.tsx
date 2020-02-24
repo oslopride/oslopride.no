@@ -3,6 +3,7 @@ import { RouteComponentProps } from "@reach/router";
 import sanity, { isEmptyResult } from "../sanity";
 import { SanityPage } from "../sanity/models";
 import { useSanityStore } from "../sanity/store";
+import Block from "../blocks";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -40,7 +41,9 @@ const Page: React.FC<Props> = props => {
 	return (
 		<div>
 			<h2>{page.title.no}</h2>
-			<pre>{JSON.stringify(page.blocks, null, 2)}</pre>
+			{page.blocks.no.map(block => (
+				<Block key={block._key} block={block} />
+			))}
 		</div>
 	);
 };
