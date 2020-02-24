@@ -9,7 +9,7 @@ export const Navigation = styled.nav`
 	top: 0;
 	right: ${props => (props.visible ? "0" : "-100%")};
 	width: 930px;
-	max-width: 40vw;
+	max-width: 30vw;
 	height: 100vh;
 	background: ${props => props.theme.main.purple};
 	display: flex;
