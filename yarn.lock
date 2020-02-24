@@ -1444,6 +1444,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.6.3":
+  version "7.8.4"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.4.tgz#d79f5a2040f7caa24d53e563aad49cbc05581308"
+  integrity sha512-neAp3zt80trRVBI1x0azq6c57aNBqYZH8KhMm3TaB7wEI5Q4A2SHfBHE8w9gOhI/lrqxtEbXZgQIrHP+wvSGwQ==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.7.4.tgz#428a7d9eecffe27deac0a98e23bf8e3675d2a77b"
@@ -2217,6 +2224,14 @@
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.5.tgz#527d20ef68571a4af02ed74350164e7a67544860"
   integrity sha512-wLD/Aq2VggCJXSjxEwrMafIP51Z+13H78nXIX0ABEuIGhmB5sNGbR113MOKo+yfw+RDo1ZU3DM6yfnnRF/+ouw==
 
+"@types/hoist-non-react-statics@*":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
+  integrity sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==
+  dependencies:
+    "@types/react" "*"
+    hoist-non-react-statics "^3.3.0"
+
 "@types/json-schema@^7.0.3":
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.4.tgz#38fd73ddfd9b55abb1e1b2ed578cb55bd7b7d339"
@@ -2272,12 +2287,29 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-native@*":
+  version "0.61.17"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.61.17.tgz#5994af207c2339d498ebd8bd427c68074ce9e744"
+  integrity sha512-12qKZz/ob56lglVRAIDgqDchcyO0g5lZtrjxCTQDNJv8HFHZMcZx78+/CjKsu3LGs6KbajkZ1+0htqiaxr5JVA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^16.9.22":
   version "16.9.22"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.22.tgz#f0288c92d94e93c4b43e3f5633edf788b2c040ae"
   integrity sha512-7OSt4EGiLvy0h5R7X+r0c7S739TCU/LvWbkNOrm10lUwNHe7XPz5OLhLOSZeCkqO9JSCly1NkYJ7ODTUqVnHJQ==
   dependencies:
     "@types/prop-types" "*"
+    csstype "^2.2.0"
+
+"@types/styled-components@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.0.0.tgz#0ed43d0e6003358f8b1f74304de010de19cbda66"
+  integrity sha512-fnLlZKZfDCySbq0M25wh9nAXRuy2FaHCFHlRl4LkoKJXqk/bbd8FwYPctv6mVnEe6rqs3JLx1COVy3a0Nmrv+w==
+  dependencies:
+    "@types/hoist-non-react-statics" "*"
+    "@types/react" "*"
+    "@types/react-native" "*"
     csstype "^2.2.0"
 
 "@typescript-eslint/eslint-plugin@^2.20.0":
@@ -2903,7 +2935,7 @@ babel-plugin-dynamic-import-node@^2.3.0:
   dependencies:
     object.assign "^4.1.0"
 
-"babel-plugin-styled-components@>= 1":
+"babel-plugin-styled-components@>= 1", babel-plugin-styled-components@^1.10.7:
   version "1.10.7"
   resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-1.10.7.tgz#3494e77914e9989b33cc2d7b3b29527a949d635c"
   integrity sha512-MBMHGcIA22996n9hZRf/UJLVVgkEOITuR2SvjHLb5dSTUyR4ZRGn+ngITapes36FI3WLxZHfRhkA1ffHxihOrg==
@@ -8493,6 +8525,13 @@ pn@^1.1.0:
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
 
+polished@^3.4.4:
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-3.4.4.tgz#ac8cd6e704887398f3b802718f9d389b9ea4307b"
+  integrity sha512-x9PKeExyI9AhWrJP3Q57I1k7GInujjiVBJMPFmycj9hX1yCOo/X9eu9eZwxgOziiXge3WbFQ5XOmkzunOntBSA==
+  dependencies:
+    "@babel/runtime" "^7.6.3"
+
 popper.js@1.14.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.1.tgz#b8815e5cda6f62fc2042e47618649f75866e6753"
@@ -10435,6 +10474,11 @@ simple-get@^3.0.2:
     once "^1.3.1"
     simple-concat "^1.0.0"
 
+simple-html-tokenizer@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.1.1.tgz#05c2eec579ffffe145a030ac26cfea61b980fabe"
+  integrity sha1-BcLuxXn//+FFoDCsJs/qYbmA+r4=
+
 simple-swizzle@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/simple-swizzle/-/simple-swizzle-0.2.2.tgz#a4da6b635ffcccca33f70d17cb92592de95e557a"
@@ -10995,6 +11039,15 @@ supports-color@^5.3.0, supports-color@^5.4.0, supports-color@^5.5.0:
   integrity sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==
   dependencies:
     has-flag "^3.0.0"
+
+svg-inline-loader@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/svg-inline-loader/-/svg-inline-loader-0.8.2.tgz#9872414f9e4141601e04eb80cda748c9a50dae71"
+  integrity sha512-kbrcEh5n5JkypaSC152eGfGcnT4lkR0eSfvefaUJkLqgGjRQJyKDvvEE/CCv5aTSdfXuc+N98w16iAojhShI3g==
+  dependencies:
+    loader-utils "^1.1.0"
+    object-assign "^4.0.1"
+    simple-html-tokenizer "^0.1.1"
 
 svgo@^1.0.0:
   version "1.3.2"

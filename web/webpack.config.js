@@ -11,7 +11,7 @@ const config = {
 	module: {
 		rules: [
 			{
-				test: /\.(js|jsx)$/,
+				test: /\.(js|jsx|ts|tsx)$/,
 				use: "babel-loader",
 				exclude: /node_modules/
 			},
@@ -19,6 +19,10 @@ const config = {
 				test: /\.ts(x)?$/,
 				use: ["awesome-typescript-loader"],
 				exclude: /node_modules/
+			},
+			{
+				test: /\.svg$/,
+				loader: "svg-inline-loader"
 			}
 		]
 	},

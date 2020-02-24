@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from "react";
 import { Router, Link } from "@reach/router";
 import Page from "./pages/page";
@@ -5,7 +7,9 @@ import FrontPage from "./pages/front-page";
 import sanity, { isEmptyResult } from "./sanity";
 import { SanityConfiguration } from "./sanity/models";
 import { useSanityStore } from "./sanity/store";
-
+import * as S from "./styles";
+import Footer from "./components/Footer";
+import { ThemeProvider } from "styled-components";
 type State = {
 	isLoading: boolean;
 	configuration: SanityConfiguration | null;
@@ -34,32 +38,36 @@ const App: React.FC = () => {
 	if (isLoading) return <div>Loading...</div>;
 
 	return (
-		<>
-			<h1>Welcome to this page</h1>
-			<nav>
-				<ul>
-					{store.configuration?.navigationBar.map(item => {
-						const id = item._id;
-						const slug = item._type === "frontPage" ? "/" : item.slug.current;
-						const title = item._type === "frontPage" ? "Hjem" : item.title.no;
-						return (
-							<li key={id}>
-								<Link to={slug}>{title}</Link>
-							</li>
-						);
-					})}
-				</ul>
-			</nav>
-			<article>
+		<ThemeProvider theme={S.theme}>
+			<S.GlobalStyle />
+
+			<S.Header>
+				<nav>
+					<ul>
+						{store.configuration?.navigationBar.map(item => {
+							const id = item._id;
+							const slug = item._type === "frontPage" ? "/" : item.slug.current;
+							const title = item._type === "frontPage" ? "Hjem" : item.title.no;
+							return (
+								<li key={id}>
+									<Link to={slug}>{title}</Link>
+								</li>
+							);
+						})}
+					</ul>
+				</nav>
+			</S.Header>
+			<S.Content>
 				<Router>
 					<FrontPage path="/" />
 					<Page path="/:slug" />
 				</Router>
-			</article>
-			<footer>
-				<p>This is the end of the page.</p>
-			</footer>
-		</>
+			</S.Content>
+			<Footer
+				date={store.configuration.date}
+				links={store.configuration.footer.links}
+			/>
+		</ThemeProvider>
 	);
 };
 
