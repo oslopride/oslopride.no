@@ -4,7 +4,6 @@ import React from "react";
 import * as S from "./styles";
 import { useSanityStore } from "../../sanity/store";
 import whiteLogo from "../../assets/logo-white.svg";
-import { size } from "polished";
 
 const Footer = () => {
 	const store = useSanityStore();

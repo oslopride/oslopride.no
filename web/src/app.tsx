@@ -14,6 +14,7 @@ type State = {
 	isLoading: boolean;
 	configuration: SanityConfiguration | null;
 };
+import Header from "./components/Header";
 
 const App: React.FC = () => {
 	const [isLoading, setLoading] = React.useState(true);
@@ -41,22 +42,7 @@ const App: React.FC = () => {
 		<ThemeProvider theme={S.theme}>
 			<S.GlobalStyle />
 
-			<S.Header>
-				<nav>
-					<ul>
-						{store.configuration?.navigationBar.map(item => {
-							const id = item._id;
-							const slug = item._type === "frontPage" ? "/" : item.slug.current;
-							const title = item._type === "frontPage" ? "Hjem" : item.title.no;
-							return (
-								<li key={id}>
-									<Link to={slug}>{title}</Link>
-								</li>
-							);
-						})}
-					</ul>
-				</nav>
-			</S.Header>
+			<Header />
 			<S.Content>
 				<Router>
 					<FrontPage path="/" />

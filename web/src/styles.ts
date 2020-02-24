@@ -24,27 +24,6 @@ export const GlobalStyle = createGlobalStyle`
 	}
 `;
 
-export const Header = styled.header`
-	display: block;
-	width: 1280px;
-	max-width: 95vw;
-	margin: 40px auto;
-	position: relative;
-
-	img {
-		width: 170px;
-		height: auto;
-	}
-	.date {
-		text-transform: uppercase;
-		color: #ecafb4;
-		font-weight: 600;
-		position: absolute;
-		top: 25px;
-		right: 100px;
-	}
-`;
-
 export const Content = styled.div`
 	flex: 1 0 auto;
 	margin-bottom: 32px;
