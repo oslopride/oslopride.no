@@ -22,7 +22,7 @@ const config = {
 			},
 			{
 				test: /\.svg$/,
-				loader: "svg-inline-loader"
+				use: ["url-loader"]
 			}
 		]
 	},

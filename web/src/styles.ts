@@ -47,4 +47,5 @@ export const Header = styled.header`
 
 export const Content = styled.div`
 	flex: 1 0 auto;
+	margin-bottom: 32px;
 `;

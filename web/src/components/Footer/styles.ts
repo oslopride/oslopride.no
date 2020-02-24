@@ -1,16 +1,19 @@
 import styled from "styled-components";
 
-export const Footer = styled.footer`
+export const StickyFooter = styled.footer`
 	flex-shrink: 0;
-	width: 100%;
-	margin-top: 50px;
-	padding: 50px;
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: space-around;
-	font-size: 16px;
 	background-color: ${props => props.theme.main.purple};
 	color: ${props => props.theme.text.white};
+	font-size: 16px;
+`;
+
+export const Footer = styled.div`
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+
+	width: 80%;
+	margin: 50px auto;
 
 	a {
 		color: ${props => props.theme.background.pink};
@@ -22,10 +25,10 @@ export const Footer = styled.footer`
 `;
 
 export const Image = styled.div`
-	width: 40%;
 	img {
 		max-width: 50%;
-		width: 150px;
+		width: 300px;
+		fill: ${props => props.theme.text.white};
 	}
 	h3 {
 		text-transform: uppercase;
@@ -38,11 +41,9 @@ export const Image = styled.div`
 export const Info = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
-	width: 30%;
 `;
 
 export const Shortcuts = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
-	width: 30%;
 `;
