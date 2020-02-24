@@ -7,13 +7,14 @@ import { useSanityStore } from "../sanity/store";
 type Props = {} & RouteComponentProps;
 
 const FrontPage: React.FC<Props> = () => {
-	const [isLoading, setLoading] = React.useState(false);
-	const [error, setError] = React.useState<null | string>(null);
 	const [store, dispatch] = useSanityStore();
+	const [isLoading, setLoading] = React.useState(store.frontPage === undefined);
+	const [error, setError] = React.useState<false | string>(false);
 
 	React.useEffect(() => {
 		if (store.frontPage === undefined) {
 			setLoading(true);
+			setError(false);
 			sanity
 				.fetch<SanityFrontPage>(`*[_id == "global_frontPage"][0]`)
 				.then(result => {
@@ -28,7 +29,7 @@ const FrontPage: React.FC<Props> = () => {
 	}, []);
 
 	if (isLoading) return <div>Loading...</div>;
-	if (error !== null) return <div>{error}</div>;
+	if (error) return <div>{error}</div>;
 
 	return (
 		<div>
