@@ -6,11 +6,6 @@ import sanity, { isEmptyResult } from "./sanity";
 import { SanityConfiguration } from "./sanity/models";
 import { useSanityStore } from "./sanity/store";
 
-type State = {
-	isLoading: boolean;
-	configuration: SanityConfiguration | null;
-};
-
 const App: React.FC = () => {
 	const [isLoading, setLoading] = React.useState(true);
 	const [store, dispatch] = useSanityStore();
