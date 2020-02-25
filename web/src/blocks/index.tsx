@@ -15,7 +15,6 @@ const Block: React.FC<Props> = props => {
 		case "callToAction":
 			return <CallToAction content={props.block} />;
 		case "hero":
-			console.log(props.block);
 			return <Hero content={props.block} />;
 		default:
 			console.warn(
