@@ -1,3 +1,9 @@
+/**
+ *
+ * UTILITIES
+ *
+ */
+
 export type Language = "no" | "en";
 export type Locale<T> = {
 	[L in Language]: T;
@@ -28,6 +34,12 @@ export type SanityImage = SanityObject<
 	}
 >;
 
+/**
+ *
+ * TYPES
+ *
+ */
+
 export type SanityIllustration = SanityObject<
 	"illustration",
 	{
@@ -51,6 +63,12 @@ export type SanityInternalLink = SanityObject<
 		url: SanityPage | SanityFrontPage;
 	}
 >;
+
+/**
+ *
+ * BLOCKS
+ *
+ */
 
 export type SanityCallToActionMinimal = SanityObject<
 	"callToActionMinimal",
@@ -87,24 +105,25 @@ export type SanityBlock =
 	| SanityCallToActionMinimal
 	| SanityHero;
 
-export type SanityLocaleBlocks = SanityObject<
-	"localeBlocks",
-	Locale<SanityArray<SanityBlock>>
->;
+/**
+ *
+ * DOCUMENTS
+ *
+ */
 
 export type SanityPage = SanityDocument<
 	"page",
 	{
 		title: Locale<string>;
 		slug: { current: string };
-		blocks: SanityLocaleBlocks;
+		blocks: SanityObject<"localeBlocks", Locale<SanityArray<SanityBlock>>>;
 	}
 >;
 
 export type SanityFrontPage = SanityDocument<
 	"frontPage",
 	{
-		blocks: SanityLocaleBlocks;
+		blocks: SanityObject<"localeBlocks", Locale<SanityArray<SanityBlock>>>;
 	}
 >;
 
