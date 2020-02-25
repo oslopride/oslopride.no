@@ -11,7 +11,9 @@ export type Locale<T> = {
 
 export type SanityObject<T extends string, O extends object> = { _type: T } & O;
 
-export type SanityArray<O extends SanityObject<string, object>> = ({
+// NB: Only use this when all elements within the array are sanity object (i.e.
+// not docuements, arrays ect)
+export type SanityObjectArray<O extends SanityObject<string, object>> = ({
 	_key: string;
 } & O)[];
 
@@ -64,6 +66,16 @@ export type SanityInternalLink = SanityObject<
 	}
 >;
 
+export type SanityFooter = SanityObject<
+	"footer",
+	{
+		twitter?: string;
+		instagram?: string;
+		facebook?: string;
+		links?: SanityObjectArray<SanityExternalLink>;
+	}
+>;
+
 /**
  *
  * BLOCKS
@@ -95,7 +107,7 @@ export type SanityHero = SanityObject<
 	{
 		title: string;
 		subtitle?: string;
-		links?: SanityArray<SanityExternalLink | SanityInternalLink>;
+		links?: SanityObjectArray<SanityExternalLink | SanityInternalLink>;
 		image?: SanityIllustration;
 	}
 >;
@@ -116,14 +128,20 @@ export type SanityPage = SanityDocument<
 	{
 		title: Locale<string>;
 		slug: { current: string };
-		blocks: SanityObject<"localeBlocks", Locale<SanityArray<SanityBlock>>>;
+		blocks: SanityObject<
+			"localeBlocks",
+			Locale<SanityObjectArray<SanityBlock>>
+		>;
 	}
 >;
 
 export type SanityFrontPage = SanityDocument<
 	"frontPage",
 	{
-		blocks: SanityObject<"localeBlocks", Locale<SanityArray<SanityBlock>>>;
+		blocks: SanityObject<
+			"localeBlocks",
+			Locale<SanityObjectArray<SanityBlock>>
+		>;
 	}
 >;
 
@@ -131,5 +149,7 @@ export type SanityConfiguration = SanityDocument<
 	"configuration",
 	{
 		navigationBar: (SanityPage | SanityFrontPage)[];
+		footer: SanityFooter;
+		date: string;
 	}
 >;

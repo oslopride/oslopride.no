@@ -1,10 +1,12 @@
 import React from "react";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import Page from "./pages/page";
 import FrontPage from "./pages/front-page";
 import sanity, { isEmptyResult } from "./sanity";
 import { SanityConfiguration } from "./sanity/models";
 import { useSanityStore } from "./sanity/store";
+import Footer from "./components/footer";
+import Header from "./components/header";
 
 const App: React.FC = () => {
 	const [isLoading, setLoading] = React.useState(true);
@@ -27,33 +29,21 @@ const App: React.FC = () => {
 	}, []);
 
 	if (isLoading) return <div>Loading...</div>;
+	if (!store.configuration) return <div>Error: No configuration available</div>;
 
 	return (
 		<>
-			<h1>Welcome to this page</h1>
-			<nav>
-				<ul>
-					{store.configuration?.navigationBar.map(item => {
-						const id = item._id;
-						const slug = item._type === "frontPage" ? "/" : item.slug.current;
-						const title = item._type === "frontPage" ? "Hjem" : item.title.no;
-						return (
-							<li key={id}>
-								<Link to={slug}>{title}</Link>
-							</li>
-						);
-					})}
-				</ul>
-			</nav>
-			<article>
+			<Header
+				navigation={store.configuration.navigationBar}
+				date={store.configuration.date}
+			/>
+			<main>
 				<Router>
 					<FrontPage path="/" />
 					<Page path="/:slug" />
 				</Router>
-			</article>
-			<footer>
-				<p>This is the end of the page.</p>
-			</footer>
+			</main>
+			<Footer footer={store.configuration.footer} />
 		</>
 	);
 };

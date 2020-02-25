@@ -1,7 +1,7 @@
 import React from "react";
 import { SanityHero } from "../sanity/models";
 import { urlFor } from "../sanity";
-import Link from "../components/Link";
+import Link from "../components/link";
 
 type Props = {
 	content: SanityHero;
