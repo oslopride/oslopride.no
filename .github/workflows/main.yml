@@ -1,0 +1,18 @@
+name: Mirror
+
+on:
+  schedule:
+    - cron: "5 * * * *"
+jobs:
+  reset-sanity-dataset:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Sanity Mirror Dataset
+      uses: oslopride/sanity-mirror-dataset@v0.0.1
+      with:
+        dataset_to_reset: dev
+        dataset_to_mirror: future
+        sanity_project_id: 2ger3rla
+        sanity_token: ${{ secrets.SANITY_TOKEN }}
+
