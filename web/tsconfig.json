@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
-    "outDir": "build",
-    "sourceMap": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "jsx": "react",
     "strict": true,
     "noImplicitReturns": true,
-    "module": "esnext",
     "moduleResolution": "node",
-    "target": "es5",
-    "allowJs": true,
-    "jsx": "react",
-    
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
-  },
-  "include": ["./src/**/*"]
+    "skipLibCheck": true,
+    "noEmit": true,
+
+    "outDir": "lib",
+    "declaration": true
+  }
 }
