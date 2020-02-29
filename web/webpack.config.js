@@ -1,5 +1,6 @@
-/* eslint-disable */
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+/* eslint-disable @typescript-eslint/no-var-requires */
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 const config = {
@@ -22,16 +23,23 @@ const config = {
 				use: "babel-loader"
 			},
 			{
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      }
+				test: /\.css$/,
+				use: ["style-loader", "css-loader"]
+			}
 		]
 	},
 	devServer: {
 		contentBase: path.join(__dirname, "public"),
 		historyApiFallback: true
 	},
-	plugins: [new ForkTsCheckerWebpackPlugin({ eslint: true })]
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: "src/index.html",
+			// Classy-ui uses this within the template
+			production: process.env.NODE_ENV === "production"
+		}),
+		new ForkTsCheckerWebpackPlugin({ eslint: true })
+	]
 };
 
 module.exports = config;
