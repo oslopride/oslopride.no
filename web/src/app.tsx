@@ -8,6 +8,9 @@ import { useSanityStore } from "./sanity/store";
 import Footer from "./components/footer";
 import Header from "./components/header";
 
+// Add normalize.css
+import "normalize.css";
+
 const App: React.FC = () => {
 	const [isLoading, setLoading] = React.useState(true);
 	const [store, dispatch] = useSanityStore();
