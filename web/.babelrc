@@ -2,10 +2,11 @@
   "presets": [
       "@babel/env",
       "@babel/react",
+      "@emotion/babel-preset-css-prop",
       "@babel/typescript"
   ],
   "plugins": [
-    "classy-ui/plugin",
+    "emotion",
     "react-hot-loader/babel",
     "@babel/plugin-proposal-numeric-separator",
     "@babel/plugin-proposal-optional-chaining",

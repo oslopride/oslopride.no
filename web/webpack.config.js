@@ -21,10 +21,6 @@ const config = {
 				test: /\.(ts|js)x?$/,
 				exclude: /node_modules/,
 				use: "babel-loader"
-			},
-			{
-				test: /\.css$/,
-				use: ["style-loader", "css-loader"]
 			}
 		]
 	},
@@ -34,8 +30,7 @@ const config = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			// Classy-ui uses this within the template
-			production: process.env.NODE_ENV === "production"
+			title: "Oslo Pride"
 		}),
 		new ForkTsCheckerWebpackPlugin({ eslint: true })
 	]
