@@ -34,7 +34,6 @@ const config = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: "src/index.html",
 			// Classy-ui uses this within the template
 			production: process.env.NODE_ENV === "production"
 		}),
