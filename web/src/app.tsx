@@ -16,9 +16,7 @@ const App: React.FC = () => {
 		if (store.configuration === undefined) {
 			setLoading(true);
 			sanity
-				.fetch<SanityConfiguration>(
-					`*[_id == "global_configuration"][0]{..., navigationBar[]->}`
-				)
+				.fetch<SanityConfiguration>(`*[_id == "global_configuration"][0]`)
 				.then(result => {
 					if (!isEmptyResult(result)) {
 						dispatch({ type: "set_configuration", data: result });
@@ -33,10 +31,7 @@ const App: React.FC = () => {
 
 	return (
 		<>
-			<Header
-				navigation={store.configuration.navigationBar}
-				date={store.configuration.date}
-			/>
+			<Header navigation={[]} date={store.configuration.date} />
 			<main>
 				<Router>
 					<FrontPage path="/" />

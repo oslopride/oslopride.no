@@ -15,16 +15,17 @@ const Header: React.FC<Props> = props => {
 			<h1>Oslo Pride - {date}</h1>
 			<nav>
 				<ul>
-					{navigation.map(item => {
-						const id = item._id;
-						const slug = item._type === "frontPage" ? "/" : item.slug.current;
-						const title = item._type === "frontPage" ? "Hjem" : item.title.no;
-						return (
-							<li key={id}>
-								<RouterLink to={slug}>{title}</RouterLink>
-							</li>
-						);
-					})}
+					{navigation?.map(item => (
+						<li key={item.url._id}>
+							<RouterLink
+								to={
+									item.url._type === "frontPage" ? "/" : item.url.slug.current
+								}
+							>
+								{item.text}
+							</RouterLink>
+						</li>
+					))}
 				</ul>
 			</nav>
 		</header>

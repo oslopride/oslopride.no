@@ -1,19 +1,19 @@
 import React from "react";
-import { SanityFooter } from "../sanity/models";
+import { SanityConfiguration } from "../sanity/models";
 
 type Props = {
-	footer: SanityFooter;
+	footer: SanityConfiguration["footer"];
 };
 
 const Footer: React.FC<Props> = props => {
 	const { footer } = props;
 
 	const socialLinks: { name: string; url: string }[] = [];
-	if (footer.facebook)
+	if (footer?.facebook)
 		socialLinks.push({ name: "Facebook", url: footer.facebook });
-	if (footer.instagram)
+	if (footer?.instagram)
 		socialLinks.push({ name: "Instagram", url: footer.instagram });
-	if (footer.twitter)
+	if (footer?.twitter)
 		socialLinks.push({ name: "Twitter", url: footer.twitter });
 
 	return (
@@ -27,7 +27,7 @@ const Footer: React.FC<Props> = props => {
 					))}
 				</ul>
 			)}
-			{footer.links && footer.links.length > 0 && (
+			{footer?.links && footer.links.length > 0 && (
 				<ul>
 					{footer.links.map(link => (
 						<li key={link._key}>

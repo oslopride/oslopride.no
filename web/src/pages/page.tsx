@@ -40,7 +40,7 @@ const Page: React.FC<Props> = props => {
 
 	return (
 		<div>
-			<h2>{page.title.no}</h2>
+			<h2>{page.header.no.title}</h2>
 			{page.blocks.no.map(block => (
 				<Block key={block._key} block={block} />
 			))}

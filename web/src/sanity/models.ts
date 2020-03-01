@@ -4,10 +4,12 @@
  *
  */
 
-export type Language = "no" | "en";
-export type Locale<T> = {
-	[L in Language]: T;
-};
+export type SupportedLanguages = "en";
+export type DefaultLagnguage = "no";
+export type Locale<T> = { [L in DefaultLagnguage]: T } &
+	{
+		[L in SupportedLanguages]: T | undefined;
+	};
 
 export type SanityObject<T extends string, O extends object> = { _type: T } & O;
 
@@ -36,20 +38,13 @@ export type SanityImage = SanityObject<
 	}
 >;
 
+export type SanityBlockContent = SanityObject<"block", object>;
+
 /**
  *
  * TYPES
  *
  */
-
-export type SanityIllustration = SanityObject<
-	"illustration",
-	{
-		asset: SanityReference;
-		caption?: string;
-		alt?: string;
-	}
->;
 
 export type SanityExternalLink = SanityObject<
 	"externalLink",
@@ -66,56 +61,33 @@ export type SanityInternalLink = SanityObject<
 	}
 >;
 
-export type SanityFooter = SanityObject<
-	"footer",
-	{
-		twitter?: string;
-		instagram?: string;
-		facebook?: string;
-		links?: SanityObjectArray<SanityExternalLink>;
-	}
->;
-
 /**
  *
  * BLOCKS
  *
  */
 
-export type SanityCallToActionMinimal = SanityObject<
-	"callToActionMinimal",
+export type SanityAnnouncement = SanityObject<
+	"announcement",
 	{
+		category?: string;
 		title: string;
-		headline?: string;
-		button?: SanityExternalLink;
+		link?: SanityInternalLink | SanityExternalLink;
 	}
 >;
 
-export type SanityCallToAction = SanityObject<
-	"callToAction",
+export type SanityAdvertisement = SanityObject<
+	"advertisement",
 	{
+		category?: string;
 		title: string;
-		headline?: string;
-		subheadline?: string;
-		button?: SanityExternalLink;
+		content?: SanityObjectArray<SanityBlockContent>;
+		links?: SanityObjectArray<SanityInternalLink>;
 		image?: SanityImage;
 	}
 >;
 
-export type SanityHero = SanityObject<
-	"hero",
-	{
-		title: string;
-		subtitle?: string;
-		links?: SanityObjectArray<SanityExternalLink | SanityInternalLink>;
-		image?: SanityIllustration;
-	}
->;
-
-export type SanityBlock =
-	| SanityCallToAction
-	| SanityCallToActionMinimal
-	| SanityHero;
+export type SanityBlock = SanityAnnouncement | SanityAdvertisement;
 
 /**
  *
@@ -123,11 +95,15 @@ export type SanityBlock =
  *
  */
 
-export type SanityPage = SanityDocument<
-	"page",
+export type SanityFrontPage = SanityDocument<
+	"frontPage",
 	{
-		title: Locale<string>;
-		slug: { current: string };
+		header: Locale<{
+			title: string;
+			subtitle: string;
+			links?: SanityObjectArray<SanityInternalLink | SanityExternalLink>;
+			image: SanityImage;
+		}>;
 		blocks: SanityObject<
 			"localeBlocks",
 			Locale<SanityObjectArray<SanityBlock>>
@@ -135,9 +111,16 @@ export type SanityPage = SanityDocument<
 	}
 >;
 
-export type SanityFrontPage = SanityDocument<
-	"frontPage",
+export type SanityPage = SanityDocument<
+	"page",
 	{
+		slug: { current: string };
+		header: Locale<{
+			title: string;
+			subtitle: string;
+			links?: SanityObjectArray<SanityInternalLink | SanityExternalLink>;
+			image: SanityImage;
+		}>;
 		blocks: SanityObject<
 			"localeBlocks",
 			Locale<SanityObjectArray<SanityBlock>>
@@ -148,8 +131,13 @@ export type SanityFrontPage = SanityDocument<
 export type SanityConfiguration = SanityDocument<
 	"configuration",
 	{
-		navigationBar: (SanityPage | SanityFrontPage)[];
-		footer: SanityFooter;
 		date: string;
+		navigationBar?: SanityObjectArray<SanityInternalLink>;
+		footer?: {
+			twitter?: string;
+			instagram?: string;
+			facebook?: string;
+			links?: SanityObjectArray<SanityExternalLink>;
+		};
 	}
 >;
