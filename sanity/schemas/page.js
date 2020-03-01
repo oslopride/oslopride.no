@@ -1,39 +1,72 @@
 import supportedLanguages from "../supported-languages";
-import { getDefaultLanguage } from "../utils/locale";
+import { getDefaultLanguage, localize } from "../utils/locale";
+import { MdLink } from "react-icons/md";
 
 export default {
 	title: "Page",
+	icon: MdLink,
 	name: "page",
 	type: "document",
 	fields: [
-		{
-			title: "Title",
-			name: "title",
-			type: "localePageTitle"
-		},
+		localize(
+			{
+				title: "Header",
+				name: "header",
+				type: "object",
+				fields: [
+					{
+						name: "title",
+						title: "Title",
+						type: "string",
+						validate: Rule => Rule.required()
+					},
+					{
+						name: "subtitle",
+						title: "Subtitle",
+						type: "string",
+						validate: Rule => Rule.required()
+					},
+					{
+						title: "Image",
+						name: "image",
+						type: "image",
+						options: {
+							hotspot: true
+						},
+						validate: Rule => Rule.required()
+					}
+				]
+			},
+			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
+		),
 		{
 			title: "URL",
 			name: "slug",
 			type: "slug",
 			options: {
-				source: `title.${getDefaultLanguage().id}`
+				source: "header.en.title.id"
 			}
 		},
-		{
-			title: "Blocks",
-			name: "blocks",
-			type: "localeBlocks"
-		}
+		localize(
+			{
+				title: "Blocks",
+				name: "blocks",
+				type: "blocks"
+			},
+			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
+		)
 	],
 	preview: {
 		select: {
-			title: "title"
+			header: "header"
 		},
-		prepare: ({ title }) => ({
-			title: title[getDefaultLanguage().id],
+		prepare: ({ header }) => ({
+			title: header[getDefaultLanguage().id].title,
 			subtitle: supportedLanguages
 				.filter(lang => !lang.isDefault)
-				.map(lang => `${lang.id.toUpperCase()}: ${title[lang.id]}`)
+				.map(
+					lang => `${lang.id.toUpperCase()}: ${(header[lang.id] || {}).title}`
+				)
 				.join(", ")
 		})
 	}

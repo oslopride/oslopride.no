@@ -1,6 +1,6 @@
 import S from "@sanity/desk-tool/structure-builder";
 import EditIcon from "part:@sanity/base/edit-icon";
-import { MdHome } from "react-icons/lib/md";
+import { MdHome } from "react-icons/md";
 
 import JSONpreview from "./previews/json-preview";
 

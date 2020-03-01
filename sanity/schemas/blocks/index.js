@@ -1,16 +1,20 @@
+import advertisement from "./advertisement";
+import announcement from "./announcement";
+import textArea from "./text-area";
+
 export default {
 	title: "Blocks",
 	name: "blocks",
 	type: "array",
 	of: [
 		{
-			type: "hero"
+			type: textArea.name
 		},
 		{
-			type: "callToAction"
+			type: announcement.name
 		},
 		{
-			type: "callToActionMinimal"
+			type: advertisement.name
 		}
 	]
 };

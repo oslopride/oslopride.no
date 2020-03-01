@@ -13,23 +13,13 @@ import partner from "./partner";
 
 // Blocks
 import blocks from "./blocks";
-import callToActionMinimal from "./blocks/call-to-action-minimal";
-import hero from "./blocks/hero";
 import textArea from "./blocks/text-area";
-import callToAction from "./blocks/call-to-action";
+import announcement from "./blocks/announcement";
+import advertisement from "./blocks/advertisement";
 
 // Types
-import portableText from "./types/portable-text";
-import keyValuePair from "./types/key-value-pair";
-import illustration from "./types/illustration";
-import youtube from "./types/youtube";
 import externalLink from "./types/external-link";
 import internalLink from "./types/internal-link";
-import localeBlock from "./types/locale-blocks";
-import localePageTitle from "./types/locale-page-title";
-import localeArticleTitle from "./types/locale-article-title";
-import localePortableText from "./types/locale-portable-text";
-import footer from "./types/footer";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -38,26 +28,18 @@ export default createSchema({
 	// Then proceed to concatenate our document type
 	// to the ones provided by any plugins that are installed
 	types: schemaTypes.concat([
-		page,
 		frontPage,
-		callToActionMinimal,
-		configuration,
+		page,
 		article,
 		partner,
+		configuration,
+
 		blocks,
-		hero,
 		textArea,
-		portableText,
-		keyValuePair,
-		illustration,
-		youtube,
+		announcement,
+		advertisement,
+
 		internalLink,
-		externalLink,
-		localeBlock,
-		localePageTitle,
-		localeArticleTitle,
-		localePortableText,
-		callToAction,
-		footer
+		externalLink
 	])
 });
