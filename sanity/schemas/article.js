@@ -1,22 +1,27 @@
 import supportedLanguages from "../supported-languages";
-import { getDefaultLanguage } from "../utils/locale";
+import { getDefaultLanguage, localize } from "../utils/locale";
+import { MdFormatAlignLeft } from "react-icons/md";
 
 export default {
 	title: "Article",
 	name: "article",
+	icon: MdFormatAlignLeft,
 	type: "document",
 	fields: [
-		{
-			name: "title",
-			title: "Title",
-			type: "localeArticleTitle"
-		},
+		localize(
+			{
+				title: "Title",
+				name: "title",
+				type: "string"
+			},
+			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
+		),
 		{
 			title: "URL",
 			name: "slug",
 			type: "slug",
 			options: {
-				source: `title.${getDefaultLanguage().id}`
+				source: "title.en.id"
 			},
 			validate: Rule => Rule.required()
 		},
@@ -29,12 +34,15 @@ export default {
 			},
 			validate: Rule => Rule.required()
 		},
-		{
-			title: "Body",
-			name: "body",
-			type: "localePortableText",
-			validate: Rule => Rule.required()
-		}
+		localize(
+			{
+				title: "Body",
+				name: "body",
+				type: "array",
+				of: [{ type: "block" }]
+			},
+			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
+		)
 	],
 	preview: {
 		select: {

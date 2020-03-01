@@ -1,8 +1,10 @@
 import supportedLanguages from "../supported-languages";
 import { getDefaultLanguage } from "../utils/locale";
+import { MdBusinessCenter } from "react-icons/md";
 
 export default {
 	title: "Partner",
+	icon: MdBusinessCenter,
 	name: "partner",
 	type: "document",
 	fields: [
