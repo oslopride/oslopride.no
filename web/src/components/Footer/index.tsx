@@ -1,6 +1,7 @@
 import React from "react";
 import { SanityConfiguration } from "../../sanity/models";
 import * as S from "./styles";
+import WhiteLogo from "../../assets/logo-white.svg";
 
 type Props = {
 	footer: SanityConfiguration["footer"];
@@ -22,7 +23,7 @@ const Footer: React.FC<Props> = props => {
 		<S.StickyFooter>
 			<S.Footer>
 				<S.Image>
-					<img src="" alt="Oslo Pride logo" />
+					<img src={`${WhiteLogo}`} alt="Oslo Pride logo" />
 					<h3>{date}</h3>
 
 					{socialLinks.length > 0 && (

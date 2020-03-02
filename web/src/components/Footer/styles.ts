@@ -35,8 +35,8 @@ export const Image = styled.div`
 	}
 
 	ul {
+		margin-left: 20px;
 		list-style: none;
-		margin: 0;
 		padding: 0;
 	}
 `;
@@ -49,4 +49,10 @@ export const Info = styled.div`
 export const Shortcuts = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
+
+	ul {
+		margin: 0;
+		list-style: none;
+		padding: 0;
+	}
 `;
