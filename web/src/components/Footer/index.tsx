@@ -41,10 +41,15 @@ const Footer: React.FC<Props> = props => {
 					<h3>Oslo Pride as</h3>
 					<p>c/o Foreningen FRI,</p>
 					<p>Mariboes gate 13, 0183 OSLO</p>
-					<a href="https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=986625860">
-						Org.nr: 986 625 860
-					</a>
-					<a href="tel:91544090">Tlf: 915 44 090</a>
+					<p>
+						Org.nr:{" "}
+						<a href="https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=986625860">
+							986 625 860
+						</a>
+					</p>
+					<p>
+						Tlf: <a href="tel:91544090">915 44 090</a>
+					</p>
 				</S.Info>
 
 				<S.Shortcuts>

@@ -11,8 +11,9 @@ export const Footer = styled.div`
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
-	width: 80%;
+	width: 70%;
 	margin: 50px auto;
+
 	a {
 		color: ${theme.color.background.pink};
 	}
@@ -21,12 +22,34 @@ export const Footer = styled.div`
 	p {
 		margin: 5px 0;
 	}
+
+	> div {
+		flex: 1;
+		margin: 0 20px;
+
+		:nth-child(1) {
+			flex: 2;
+		}
+	}
+
+	@media (max-width: 767px) {
+		text-align: center;
+
+		> div {
+			flex: 1 0 100%;
+			padding: 20px;
+		}
+
+		ul,
+		h3 {
+			margin-left: 0;
+		}
+	}
 `;
 
 export const Image = styled.div`
 	img {
-		max-width: 50%;
-		width: 300px;
+		width: 180px;
 		fill: ${theme.color.text.white};
 	}
 	h3 {
