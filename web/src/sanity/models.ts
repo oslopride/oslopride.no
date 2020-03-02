@@ -87,7 +87,17 @@ export type SanityAdvertisement = SanityObject<
 	}
 >;
 
-export type SanityBlock = SanityAnnouncement | SanityAdvertisement;
+export type SanityTextArea = SanityObject<
+	"textArea",
+	{
+		text: SanityObjectArray<SanityBlockContent>;
+	}
+>;
+
+export type SanityBlock =
+	| SanityAnnouncement
+	| SanityAdvertisement
+	| SanityTextArea;
 
 /**
  *

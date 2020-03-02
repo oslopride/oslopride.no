@@ -2,6 +2,7 @@ import React from "react";
 import { SanityBlock, SanityUnknown } from "../sanity/models";
 import Announcement from "./announcement";
 import Advertisement from "./advertisement";
+import TextArea from "./text-area";
 
 type Props = {
 	block: SanityBlock;
@@ -13,6 +14,8 @@ const Block: React.FC<Props> = props => {
 			return <Announcement content={props.block} />;
 		case "advertisement":
 			return <Advertisement content={props.block} />;
+		case "textArea":
+			return <TextArea content={props.block} />;
 		default:
 			console.warn(
 				`Unknown block type: ${(props.block as SanityUnknown)._type}`
