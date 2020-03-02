@@ -1,8 +1,9 @@
-import styled from "../../helpers/styled";
+import theme from "../../helpers/theme";
+import styled from "@emotion/styled";
 
 export const StickyFooter = styled.footer`
-	background-color: ${props => props.theme.main.purple};
-	color: ${props => props.theme.text.white};
+	background-color: ${theme.main.purple};
+	color: ${theme.text.white};
 	font-size: 16px;
 `;
 
@@ -13,7 +14,7 @@ export const Footer = styled.div`
 	width: 80%;
 	margin: 50px auto;
 	a {
-		color: ${props => props.theme.background.pink};
+		color: ${theme.background.pink};
 	}
 	a,
 	p {
@@ -25,7 +26,7 @@ export const Image = styled.div`
 	img {
 		max-width: 50%;
 		width: 300px;
-		fill: ${props => props.theme.text.white};
+		fill: ${theme.text.white};
 	}
 	h3 {
 		text-transform: uppercase;
