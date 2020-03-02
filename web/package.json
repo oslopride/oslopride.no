@@ -20,6 +20,7 @@
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^1.148.3",
     "@sanity/image-url": "^0.140.17",
+    "emotion-theming": "^10.0.27",
     "polished": "^3.4.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
