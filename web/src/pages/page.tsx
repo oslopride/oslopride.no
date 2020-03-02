@@ -21,11 +21,13 @@ const Page: React.FC<Props> = props => {
 		if (page === undefined && props.slug) {
 			setError(false);
 			setLoading(true);
+			console.log(`*[_type == "page" && slug.current == "${props.slug}"][0]`);
 			sanity
 				.fetch<SanityPage>(`*[_type == "page" && slug.current == $slug][0]`, {
 					slug: props.slug
 				})
 				.then(result => {
+					console.log(result);
 					if (!isEmptyResult(result)) {
 						dispatch({ type: "add_page", data: result });
 					}
