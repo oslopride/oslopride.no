@@ -6,6 +6,7 @@ import { normalize } from "polished";
 import { hot } from "react-hot-loader/root";
 import App from "./app";
 import { SanityStoreProvider } from "./sanity/store";
+import { ThemeProvider } from "emotion-theming";
 
 WebFont.load({
 	typekit: {
@@ -25,11 +26,19 @@ const globalStyles = css`
 	}
 `;
 
+const theme = {
+	main: { purple: "#3a1b7b", pink: "#e350a0", blue: "#184FBD" },
+	text: { black: "#252525", grey: "#656781", white: "#ffffff" },
+	background: { white: "#f7f8fa", pink: "#f7acb3", purple: "#bfb4d3" }
+};
+
 const ConfiguredApp = hot(() => (
 	<>
 		<Global styles={globalStyles} />
 		<SanityStoreProvider>
-			<App />
+			<ThemeProvider theme={theme}>
+				<App />
+			</ThemeProvider>
 		</SanityStoreProvider>
 	</>
 ));
