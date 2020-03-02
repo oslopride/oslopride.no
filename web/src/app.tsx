@@ -5,7 +5,7 @@ import FrontPage from "./pages/front-page";
 import sanity, { isEmptyResult } from "./sanity";
 import { SanityConfiguration } from "./sanity/models";
 import { useSanityStore } from "./sanity/store";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 import Header from "./components/header";
 
 const App: React.FC = () => {
@@ -43,7 +43,10 @@ const App: React.FC = () => {
 					<Page path="/:slug" />
 				</Router>
 			</main>
-			<Footer footer={store.configuration.footer} />
+			<Footer
+				footer={store.configuration.footer}
+				date={store.configuration.date}
+			/>
 		</>
 	);
 };

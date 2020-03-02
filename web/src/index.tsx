@@ -21,8 +21,28 @@ const globalStyles = css`
 		box-sizing: border-box;
 	}
 
-	html {
+	html,
+	body,
+	#app {
+		height: 100%;
+	}
+
+	body {
 		font-family: proxima-nova, sans-serif;
+	}
+
+	#app {
+		display: flex;
+		flex-direction: column;
+	}
+
+	main {
+		flex: 1 0 auto;
+		margin-bottom: 32px;
+	}
+
+	footer {
+		flex-shrink: 0;
 	}
 `;
 
