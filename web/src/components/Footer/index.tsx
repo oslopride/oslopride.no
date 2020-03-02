@@ -48,6 +48,7 @@ const Footer: React.FC<Props> = props => {
 				</S.Info>
 
 				<S.Shortcuts>
+					<h3>Snarveier</h3>
 					{footer?.links && footer.links.length > 0 && (
 						<ul>
 							{footer.links.map(link => (

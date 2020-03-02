@@ -2,8 +2,8 @@ import theme from "../../helpers/theme";
 import styled from "@emotion/styled";
 
 export const StickyFooter = styled.footer`
-	background-color: ${theme.main.purple};
-	color: ${theme.text.white};
+	background-color: ${theme.color.main.purple};
+	color: ${theme.color.text.white};
 	font-size: 16px;
 `;
 
@@ -14,8 +14,9 @@ export const Footer = styled.div`
 	width: 80%;
 	margin: 50px auto;
 	a {
-		color: ${theme.background.pink};
+		color: ${theme.color.background.pink};
 	}
+
 	a,
 	p {
 		margin: 5px 0;
@@ -26,7 +27,7 @@ export const Image = styled.div`
 	img {
 		max-width: 50%;
 		width: 300px;
-		fill: ${theme.text.white};
+		fill: ${theme.color.text.white};
 	}
 	h3 {
 		text-transform: uppercase;
@@ -55,5 +56,9 @@ export const Shortcuts = styled.div`
 		margin: 0;
 		list-style: none;
 		padding: 0;
+
+		li {
+			margin: 5px 0;
+		}
 	}
 `;
