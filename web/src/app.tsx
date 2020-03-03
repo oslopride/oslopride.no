@@ -6,7 +6,7 @@ import sanity, { isEmptyResult } from "./sanity";
 import { SanityConfiguration } from "./sanity/models";
 import { useSanityStore } from "./sanity/store";
 import Footer from "./components/footer";
-import Header from "./components/header";
+import Header from "./components/header/header";
 
 const App: React.FC = () => {
 	const [isLoading, setLoading] = React.useState(true);
