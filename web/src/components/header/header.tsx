@@ -4,6 +4,7 @@ import { SanityConfiguration } from "../../sanity/models";
 import { css } from "@emotion/core";
 
 import LogoColor from "./logo-color.svg";
+import Close from "./close.svg";
 
 type Props = {
 	navigation: SanityConfiguration["navigationBar"];
@@ -73,6 +74,21 @@ const navigationStyle = css`
 			}
 		}
 	}
+
+	button {
+		position: absolute;
+		top: 35px;
+		right: 3rem;
+		z-index: 99;
+		height: 30px;
+		width: 35px;
+		border: none;
+		outline: none;
+		white-space: nowrap;
+		overflow: hidden;
+		cursor: pointer;
+		background-color: transparent;
+	}
 `;
 
 const logoStyle = css`
@@ -103,6 +119,9 @@ const Header: React.FC<Props> = props => {
 						</li>
 					))}
 				</ul>
+				<button>
+					<Close width="30px" height="auto" />
+				</button>
 			</nav>
 		</header>
 	);
