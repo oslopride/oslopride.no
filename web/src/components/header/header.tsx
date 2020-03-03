@@ -11,6 +11,11 @@ type Props = {
 	date: SanityConfiguration["date"];
 };
 
+/* TODO BEFORE MERGING:
+	- Code cleanup
+	- Accessibility of button, logo, etc
+*/
+
 const headerStyle = css`
 	position: relative;
 	h1 {
