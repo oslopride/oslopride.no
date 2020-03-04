@@ -5,7 +5,7 @@ import FrontPage from "./pages/front-page";
 import sanity, { isEmptyResult } from "./sanity";
 import { SanityConfiguration } from "./sanity/models";
 import { useSanityStore } from "./sanity/store";
-import Footer from "./components/Footer";
+import Footer from "./components/footer";
 import Header from "./components/header";
 
 const App: React.FC = () => {
