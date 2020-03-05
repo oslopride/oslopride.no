@@ -101,10 +101,27 @@ export type SanityTextArea = SanityObject<
 	}
 >;
 
+export type SanityCollapsibleListItem = SanityObject<
+	"listItem",
+	{
+		title: string;
+		content: SanityObjectArray<SanityBlockContent>;
+	}
+>;
+
+export type SanityCollapsibleList = SanityObject<
+	"collapsibleList",
+	{
+		title: string;
+		listItems: SanityObjectArray<SanityCollapsibleListItem>;
+	}
+>;
+
 export type SanityBlock =
 	| SanityAnnouncement
 	| SanityAdvertisement
-	| SanityTextArea;
+	| SanityTextArea
+	| SanityCollapsibleList;
 
 /**
  *
