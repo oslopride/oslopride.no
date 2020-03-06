@@ -25,6 +25,17 @@ const config = {
 			{
 				test: /\.svg$/,
 				use: ["@svgr/webpack"]
+			},
+			{
+				test: /\.(png|jpe?g|gif|svg)$/i,
+				use: [
+					{
+						loader: "file-loader",
+						options: {
+							name: "[name].[ext]"
+						}
+					}
+				]
 			}
 		]
 	},

@@ -43,7 +43,10 @@ const App: React.FC = () => {
 					<Page path="/:slug" />
 				</Router>
 			</main>
-			<Footer footer={store.configuration.footer} />
+			<Footer
+				footer={store.configuration.footer}
+				date={store.configuration.date}
+			/>
 		</>
 	);
 };
