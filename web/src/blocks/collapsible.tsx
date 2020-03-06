@@ -42,6 +42,7 @@ const CollapsibleList: React.FC<Props> = ({
 									color: ${isActive ? "white" : "black"};
 									padding: 15px;
 									margin: 5px 0;
+									cursor: pointer;
 								`}
 								onClick={() => onClickHandler(idx)}
 							>
