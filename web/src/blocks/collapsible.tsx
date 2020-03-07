@@ -3,6 +3,9 @@ import BlockContentToReact from "@sanity/block-content-to-react";
 import { css } from "@emotion/core";
 
 import { SanityCollapsibleList } from "../sanity/models";
+import theme from "../helpers/theme";
+import { ReactComponent as Plus } from "../assets/plus.svg";
+import { ReactComponent as Minus } from "../assets/minus.svg";
 
 type Props = {
 	content: SanityCollapsibleList;
@@ -16,6 +19,10 @@ const CollapsibleList: React.FC<Props> = ({
 	const onClickHandler = (index: number): void => {
 		setActive(index === active ? null : index);
 	};
+
+	const { white, black } = theme.color.text;
+	const purple = theme.color.main.purple;
+	const lightPurple = theme.color.background.purple;
 
 	return (
 		<div
@@ -32,22 +39,30 @@ const CollapsibleList: React.FC<Props> = ({
 			>
 				{listItems.map((item, idx) => {
 					const isActive = active === idx;
+					const Icon = isActive ? Minus : Plus;
 					return (
 						<li key={`${idx}-${item.title}`}>
 							<h3
 								css={css`
 									display: flex;
 									justify-content: space-between;
-									background-color: ${isActive ? "green" : "lightgreen"};
-									color: ${isActive ? "white" : "black"};
+									align-items: center;
+									background-color: ${isActive ? purple : lightPurple};
+									color: ${isActive ? white : black};
 									padding: 15px;
 									margin: 5px 0;
 									cursor: pointer;
 								`}
 								onClick={() => onClickHandler(idx)}
 							>
-								<span>{item.title}</span>
-								<span>{isActive ? "-" : "+"}</span>
+								{item.title}
+								<Icon
+									height="1em"
+									width="1em"
+									css={css`
+										stroke: ${isActive ? white : purple};
+									`}
+								/>
 							</h3>
 							<div
 								css={css`
