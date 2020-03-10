@@ -50,6 +50,7 @@ const navigationStyle = css`
 	align-items: left;
 	padding: 14rem 3rem;
 	z-index: 100;
+	transition: right 1s;
 
 	li {
 		list-style: none;
@@ -96,6 +97,11 @@ const navigationStyle = css`
 	}
 `;
 
+const navigationStyleCollapsed = css`
+	right: -100vw;
+	transition: right 1s;
+`;
+
 const logoStyle = css`
 	.logo-color_svg__st0 {
 	}
@@ -112,7 +118,16 @@ const Header: React.FC<Props> = props => {
 				<LogoColor css={logoStyle} width="160px" height="auto" />
 			</h1>
 			<p>{date}</p>
-			<nav css={navigationStyle}>
+			<button>
+				<Close width="30px" height="auto" onClick={toggleNavigation} />
+			</button>
+			<nav
+				css={
+					navigationVisible
+						? navigationStyle
+						: [navigationStyle, navigationStyleCollapsed]
+				}
+			>
 				<ul>
 					{navigation?.map(item => (
 						<li key={item.url._id}>
