@@ -16,9 +16,7 @@ const App: React.FC = () => {
 		if (store.configuration === undefined) {
 			setLoading(true);
 			sanity
-				.fetch<SanityConfiguration>(
-					`*[_id == "global_configuration"][0]{ ..., navigationBar[]{ url->, text } }`
-				)
+				.fetch<SanityConfiguration>(`*[_id == "global_configuration"][0]`)
 				.then(result => {
 					if (!isEmptyResult(result)) {
 						dispatch({ type: "set_configuration", data: result });

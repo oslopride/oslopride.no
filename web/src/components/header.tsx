@@ -1,6 +1,6 @@
 import React from "react";
-import { Link as RouterLink } from "@reach/router";
 import { SanityConfiguration } from "../sanity/models";
+import Link from "./link";
 
 type Props = {
 	navigation: SanityConfiguration["navigationBar"];
@@ -16,14 +16,8 @@ const Header: React.FC<Props> = props => {
 			<nav>
 				<ul>
 					{navigation?.map(item => (
-						<li key={item.url._id}>
-							<RouterLink
-								to={
-									item.url._type === "frontPage" ? "/" : item.url.slug.current
-								}
-							>
-								{item.text}
-							</RouterLink>
+						<li key={item._key}>
+							<Link link={item} />
 						</li>
 					))}
 				</ul>

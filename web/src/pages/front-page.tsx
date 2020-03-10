@@ -79,7 +79,7 @@ const FrontPage: React.FC<Props> = () => {
 				<p>{store.frontPage.header.no.subtitle}</p>
 				<ul>
 					{store.frontPage.header.no.links?.map(link => (
-						<li>
+						<li key={link._key}>
 							<Link link={link} />
 						</li>
 					))}

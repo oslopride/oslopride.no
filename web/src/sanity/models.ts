@@ -57,7 +57,7 @@ export type SanityInternalLink = SanityObject<
 	"internalLink",
 	{
 		text: string;
-		url: SanityPage | SanityFrontPage;
+		url: SanityReference;
 	}
 >;
 
