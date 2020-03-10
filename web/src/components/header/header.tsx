@@ -5,6 +5,7 @@ import { css } from "@emotion/core";
 
 import LogoColor from "./logo-color.svg";
 import Close from "./close.svg";
+import Menu from "./menu.svg";
 
 type Props = {
 	navigation: SanityConfiguration["navigationBar"];
@@ -17,7 +18,6 @@ type Props = {
 */
 
 const headerStyle = css`
-	position: relative;
 	h1 {
 		position: absolute;
 		top: 0;
@@ -27,7 +27,7 @@ const headerStyle = css`
 	p {
 		position: absolute;
 		top: 1rem;
-		right: 3rem;
+		right: 6rem;
 		text-transform: uppercase;
 		font-size: 1.2rem;
 		font-weight: 600;
@@ -80,26 +80,26 @@ const navigationStyle = css`
 			}
 		}
 	}
-
-	button {
-		position: absolute;
-		top: 35px;
-		right: 3rem;
-		z-index: 99;
-		height: 30px;
-		width: 35px;
-		border: none;
-		outline: none;
-		white-space: nowrap;
-		overflow: hidden;
-		cursor: pointer;
-		background-color: transparent;
-	}
 `;
 
 const navigationStyleCollapsed = css`
 	right: -100vw;
 	transition: right 1s;
+`;
+
+const buttonStyle = css`
+	position: absolute;
+	top: 2rem;
+	right: 3rem;
+	z-index: 99;
+	height: 30px;
+	width: 35px;
+	border: none;
+	outline: none;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor: pointer;
+	background-color: transparent;
 `;
 
 const logoStyle = css`
@@ -118,8 +118,8 @@ const Header: React.FC<Props> = props => {
 				<LogoColor css={logoStyle} width="160px" height="auto" />
 			</h1>
 			<p>{date}</p>
-			<button>
-				<Close width="30px" height="auto" onClick={toggleNavigation} />
+			<button css={buttonStyle}>
+				<Menu width="30px" height="auto" onClick={toggleNavigation} />
 			</button>
 			<nav
 				css={
@@ -141,7 +141,7 @@ const Header: React.FC<Props> = props => {
 						</li>
 					))}
 				</ul>
-				<button>
+				<button css={buttonStyle}>
 					<Close width="30px" height="auto" onClick={toggleNavigation} />
 				</button>
 			</nav>
