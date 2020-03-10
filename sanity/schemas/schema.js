@@ -39,6 +39,7 @@ export default createSchema({
 		textArea,
 		announcement,
 		advertisement,
+		partnerList,
 
 		internalLink,
 		externalLink,

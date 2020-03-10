@@ -1,7 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React, { FC } from "react";
+import { SanityPartnerList } from "../sanity/models";
 
-export default function PartnerList({ title }) {
+type Props = {
+	content: SanityPartnerList;
+};
+
+const PartnerList: FC<Props> = ({ title }) => {
 	console.log("title", title);
 	return (
 		<Wrapper>
@@ -11,7 +15,7 @@ export default function PartnerList({ title }) {
 			</Header>
 		</Wrapper>
 	);
-}
+};
 
 const Wrapper = styled.div`
 	display: flex;
@@ -28,6 +32,8 @@ const Wrapper = styled.div`
 		}
 	}
 `;
+
+export default PartnerList;
 
 const Header = styled.div`
 	display: flex;
