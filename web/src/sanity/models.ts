@@ -87,7 +87,7 @@ export type SanityPartnerList = SanityObject<
 	"partnerList",
 	{
 		title: string;
-		partnerList?: SanityObjectArray<SanityReference>;
+		partnerList: SanityObjectArray<SanityReference>;
 	}
 >;
 

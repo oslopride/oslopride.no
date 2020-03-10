@@ -1,4 +1,6 @@
 import React, { FC } from "react";
+import useSWR from "swr";
+import sanity from "../sanity";
 import { SanityPartnerList } from "../sanity/models";
 import styled from "@emotion/styled";
 
@@ -7,7 +9,17 @@ type Props = {
 };
 
 const PartnerList: FC<Props> = ({ content }) => {
-	console.log("title", content.partnerList);
+	console.log("content", content);
+	const refList = content.partnerList.map(ref => ref._ref);
+	const { data, error } = useSWR<SanityPartnerList>(
+		`*[_id in ${JSON.stringify(refList)}]`,
+		query => sanity.fetch(query)
+	);
+	console.log("data", data);
+	console.log("d", `*[_id in ${refList}]`);
+
+	console.log("refList", refList);
+
 	return (
 		<Wrapper>
 			<Header>
