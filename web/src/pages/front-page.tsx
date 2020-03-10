@@ -5,7 +5,7 @@ import { SanityFrontPage } from "../sanity/models";
 import { useSanityStore } from "../sanity/store";
 import Block from "../blocks";
 import Hero from "../components/hero";
-import Link from "../components/link";
+import { LinkButton } from "../components/link";
 import { css } from "@emotion/core";
 
 const hero = css`
@@ -15,20 +15,45 @@ const hero = css`
 	padding: 0 7vw;
 
 	span {
+		display: inline-flex;
 		text-transform: uppercase;
-		font-size: 1rem;
-		letter-spacing: 0.2rem;
+		font-size: 0.85rem;
+		letter-spacing: 2px;
 		font-weight: 600;
+
+		::before {
+			content: "";
+			width: 3em;
+			height: 2px;
+			background-color: #e350a0;
+			place-self: center;
+			margin-right: 1em;
+		}
 	}
 
 	h1 {
-		font-size: calc(3rem + 2vw);
+		font-size: calc(2.5rem + 2vw);
 		margin: 2rem 0;
 	}
 
 	p {
-		font-size: 1.2rem;
+		font-size: 1rem;
 		margin: 0;
+	}
+
+	ul {
+		list-style: none;
+		margin: 2rem 0;
+		padding: 0;
+		display: inline-flex;
+
+		li {
+			display: inherit;
+
+			:not(:first-of-type) {
+				margin-left: 1rem;
+			}
+		}
 	}
 `;
 
@@ -78,9 +103,9 @@ const FrontPage: React.FC<Props> = () => {
 				<h1>{store.frontPage.header.no.title}</h1>
 				<p>{store.frontPage.header.no.subtitle}</p>
 				<ul>
-					{store.frontPage.header.no.links?.map(link => (
+					{store.frontPage.header.no.links?.map((link, idx) => (
 						<li key={link._key}>
-							<Link link={link} />
+							<LinkButton link={link} color={idx === 0 ? "pink" : "blue"} />
 						</li>
 					))}
 				</ul>
