@@ -6,12 +6,10 @@ import { useSanityStore } from "../sanity/store";
 import Block from "../blocks";
 import Hero from "../components/hero";
 import { css } from "@emotion/core";
+import theme from "../utils/theme";
 
 const hero = css`
-	color: white;
-	display: flex;
-	flex-direction: column;
-	padding: 0 7vw;
+	color: #ffffff;
 	text-align: center;
 
 	h2 {
@@ -41,13 +39,11 @@ const Page: React.FC<Props> = props => {
 		if (page === undefined && props.slug) {
 			setError(false);
 			setLoading(true);
-			console.log(`*[_type == "page" && slug.current == "${props.slug}"][0]`);
 			sanity
 				.fetch<SanityPage>(`*[_type == "page" && slug.current == $slug][0]`, {
 					slug: props.slug
 				})
 				.then(result => {
-					console.log(result);
 					if (!isEmptyResult(result)) {
 						dispatch({ type: "add_page", data: result });
 					}
@@ -66,7 +62,7 @@ const Page: React.FC<Props> = props => {
 				angleDirection="<"
 				anglePosition="after"
 				height="50vh"
-				color="#3a1b7b"
+				color={theme.color.main.purple}
 				imageUrl={
 					urlFor(page.header.no.image)
 						.width(window.innerWidth)

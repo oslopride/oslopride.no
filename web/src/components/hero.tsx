@@ -13,9 +13,7 @@ const image = (height: string) => css`
 `;
 
 const content = (marginBottom: string) => css`
-	color: white;
-	margin-top: calc(7rem + 7vw);
-	margin-bottom: ${marginBottom};
+	padding: calc(7rem + 7vw) 7vw ${marginBottom};
 `;
 
 type Props = {
@@ -40,13 +38,18 @@ const Hero: React.FC<Props> = props => {
 		children
 	} = props;
 	// Distance from the bottom of the content to the top of the page
-	const [contentBottomToPageTop, setContentBottomToPageTop] = React.useState(0);
+	const [contentBottomToPageTop, setContentBottomToPageTop] = React.useState<
+		number | undefined
+	>(undefined);
+	const contentRef = React.useRef<HTMLDivElement>(null);
 
-	const updateContentBottomToPageTop = (elm: HTMLDivElement | null) => {
-		if (elm) {
-			setContentBottomToPageTop(elm.offsetTop + elm.clientHeight);
+	React.useLayoutEffect(() => {
+		if (contentRef.current) {
+			setContentBottomToPageTop(
+				contentRef.current.offsetTop + contentRef.current.offsetHeight
+			);
 		}
-	};
+	}, []);
 
 	const triangleHeight = rightAngledTriangleHeight(100, 6);
 
@@ -57,9 +60,10 @@ const Hero: React.FC<Props> = props => {
 			? `calc(${height} + ${triangleHeight}vw)`
 			: `calc(${height} + (${triangleHeight}vw / 2))`;
 
-	const childrenWrapper = overflow
-		? "0"
-		: `calc(${totalImageHeight} - ${contentBottomToPageTop}px)`;
+	const childrenWrapper =
+		overflow || contentBottomToPageTop === undefined
+			? "0"
+			: `calc(${totalImageHeight} - ${contentBottomToPageTop}px)`;
 
 	return (
 		<>
@@ -70,12 +74,10 @@ const Hero: React.FC<Props> = props => {
 				overlayColor={color}
 				css={image(totalImageHeight)}
 			/>
-			<div
-				className={className}
-				ref={updateContentBottomToPageTop}
-				css={content(childrenWrapper)}
-			>
-				{children}
+			<div className={className}>
+				<div css={content(childrenWrapper)} ref={contentRef}>
+					{children}
+				</div>
 			</div>
 		</>
 	);

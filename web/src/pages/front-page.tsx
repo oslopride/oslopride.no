@@ -17,10 +17,7 @@ const date = css`
 `;
 
 const hero = css`
-	color: white;
-	display: flex;
-	flex-direction: column;
-	padding: 0 7vw;
+	color: #ffffff;
 
 	span {
 		display: inline-flex;
@@ -106,7 +103,7 @@ const FrontPage: React.FC<Props> = () => {
 				angleDirection=">"
 				anglePosition="after"
 				height="100vh"
-				color="#3a1b7b"
+				color={theme.color.main.purple}
 				imageUrl={
 					urlFor(store.frontPage.header.no.image)
 						.width(window.innerWidth)
