@@ -14,7 +14,7 @@ const image = (height: string) => css`
 
 const content = (marginBottom: string) => css`
 	color: white;
-	margin-top: 6rem;
+	margin-top: calc(7rem + 7vw);
 	margin-bottom: ${marginBottom};
 `;
 
