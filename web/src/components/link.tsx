@@ -10,6 +10,7 @@ import styled from "@emotion/styled";
 import { useSanityStore } from "../sanity/store";
 import sanity, { isEmptyResult } from "../sanity";
 import { css } from "@emotion/core";
+import theme from "../utils/theme";
 
 const base = css`
 	color: inherit;
@@ -68,5 +69,27 @@ const Link: React.FC<Props> = props => {
 	}
 	return null;
 };
+
+type LinkButtonProps = {
+	color?: "blue" | "pink";
+};
+
+export const LinkButton = styled(Link)<LinkButtonProps>`
+	background-color: ${props =>
+		props.color === "pink" ? theme.color.main.pink : theme.color.main.blue};
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	padding: 1em 1.7em;
+	text-decoration: none;
+	cursor: pointer;
+	border-radius: 4px;
+	color: ${props => (props.color === "pink" ? "#371755" : "#ffffff")};
+	font-weight: bold;
+
+	:hover {
+		color: #ffffff;
+		background-color: ${theme.color.main.purple};
+	}
+`;
 
 export default Link;
