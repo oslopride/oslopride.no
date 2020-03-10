@@ -3,7 +3,7 @@ import BlockContentToReact from "@sanity/block-content-to-react";
 import { css } from "@emotion/core";
 
 import { SanityCollapsibleList } from "../sanity/models";
-import theme from "../helpers/theme";
+import theme from "../utils/theme";
 import { ReactComponent as Plus } from "../assets/plus.svg";
 import { ReactComponent as Minus } from "../assets/minus.svg";
 
