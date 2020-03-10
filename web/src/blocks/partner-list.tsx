@@ -1,17 +1,18 @@
 import React, { FC } from "react";
 import { SanityPartnerList } from "../sanity/models";
+import styled from "@emotion/styled";
 
 type Props = {
 	content: SanityPartnerList;
 };
 
-const PartnerList: FC<Props> = ({ title }) => {
-	console.log("title", title);
+const PartnerList: FC<Props> = ({ content }) => {
+	console.log("title", content.partnerList);
 	return (
 		<Wrapper>
 			<Header>
 				<h1>Test</h1>
-				<h2>{title}</h2>
+				{/* <h2>{title}</h2> */}
 			</Header>
 		</Wrapper>
 	);
