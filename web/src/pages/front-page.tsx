@@ -31,7 +31,7 @@ const hero = css`
 		}
 	}
 
-	h1 {
+	h2 {
 		font-size: calc(2.5rem + 2vw);
 		margin: 2rem 0;
 	}
@@ -86,7 +86,7 @@ const FrontPage: React.FC<Props> = () => {
 	if (!store.frontPage) return <div>404</div>;
 
 	return (
-		<div>
+		<>
 			<Hero
 				angleDirection=">"
 				anglePosition="after"
@@ -100,7 +100,7 @@ const FrontPage: React.FC<Props> = () => {
 				css={hero}
 			>
 				<span>Oslo Pride</span>
-				<h1>{store.frontPage.header.no.title}</h1>
+				<h2>{store.frontPage.header.no.title}</h2>
 				<p>{store.frontPage.header.no.subtitle}</p>
 				<ul>
 					{store.frontPage.header.no.links?.map((link, idx) => (
@@ -113,7 +113,7 @@ const FrontPage: React.FC<Props> = () => {
 			{store.frontPage.blocks.no.map(block => (
 				<Block key={block._key} block={block} />
 			))}
-		</div>
+		</>
 	);
 };
 

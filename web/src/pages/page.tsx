@@ -1,9 +1,29 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
-import sanity, { isEmptyResult } from "../sanity";
+import sanity, { isEmptyResult, urlFor } from "../sanity";
 import { SanityPage } from "../sanity/models";
 import { useSanityStore } from "../sanity/store";
 import Block from "../blocks";
+import Hero from "../components/hero";
+import { css } from "@emotion/core";
+
+const hero = css`
+	color: white;
+	display: flex;
+	flex-direction: column;
+	padding: 0 7vw;
+	text-align: center;
+
+	h2 {
+		font-size: 2.5rem;
+		margin: 0 0 2rem 0;
+	}
+
+	p {
+		font-size: 1rem;
+		margin: 0;
+	}
+`;
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -41,12 +61,26 @@ const Page: React.FC<Props> = props => {
 	if (page === undefined) return <div>404 - Not found</div>;
 
 	return (
-		<div>
-			<h2>{page.header.no.title}</h2>
+		<>
+			<Hero
+				angleDirection="<"
+				anglePosition="after"
+				height="50vh"
+				color="#3a1b7b"
+				imageUrl={
+					urlFor(page.header.no.image)
+						.width(window.innerWidth)
+						.url() || ""
+				}
+				css={hero}
+			>
+				<h2>{page.header.no.title}</h2>
+				<p>{page.header.no.subtitle}</p>
+			</Hero>
 			{page.blocks.no.map(block => (
 				<Block key={block._key} block={block} />
 			))}
-		</div>
+		</>
 	);
 };
 
