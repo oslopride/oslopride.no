@@ -27,7 +27,7 @@ export const Footer = styled.div`
 		flex: 1;
 		margin: 0 20px;
 
-		:nth-child(1) {
+		:nth-of-type(1) {
 			flex: 2;
 		}
 	}
