@@ -24,6 +24,7 @@ const globalStyles = css`
 	body,
 	#app {
 		height: 100%;
+		font-size: 18px;
 	}
 
 	body {
