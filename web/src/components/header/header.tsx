@@ -103,6 +103,8 @@ const logoStyle = css`
 
 const Header: React.FC<Props> = props => {
 	const { navigation, date } = props;
+	const [navigationVisible, showNavigation] = React.useState(false);
+	const toggleNavigation = () => showNavigation(current => !current);
 
 	return (
 		<header css={headerStyle}>
@@ -125,7 +127,7 @@ const Header: React.FC<Props> = props => {
 					))}
 				</ul>
 				<button>
-					<Close width="30px" height="auto" />
+					<Close width="30px" height="auto" onClick={toggleNavigation} />
 				</button>
 			</nav>
 		</header>
