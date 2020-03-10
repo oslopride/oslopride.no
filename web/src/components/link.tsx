@@ -37,7 +37,14 @@ const Link: React.FC<Props> = props => {
 	}
 
 	if (error) return <span>[broken link]</span>;
-	if (!data) return <span>[broken link]</span>;
+	if (data === null) return <span>[broken link]</span>;
+	if (data === undefined) {
+		return (
+			<a className={className} css={base} href="#">
+				{link.text}
+			</a>
+		);
+	}
 
 	const url = data._type === "frontPage" ? "/" : `/${data.slug.current}`;
 
