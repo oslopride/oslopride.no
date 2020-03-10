@@ -2,14 +2,22 @@ import React from "react";
 import { SanityConfiguration } from "../../sanity/models";
 import * as S from "./styles";
 import WhiteLogo from "../../assets/logo-white.svg";
+import useSWR from "swr";
+import sanity from "../../sanity";
 
-type Props = {
-	footer: SanityConfiguration["footer"];
-	date: SanityConfiguration["date"];
-};
+type Props = {};
 
-const Footer: React.FC<Props> = props => {
-	const { footer, date } = props;
+const Footer: React.FC<Props> = () => {
+	const { data: config, error: configError } = useSWR<SanityConfiguration>(
+		`*[_id == "global_configuration"][0]`,
+		query => sanity.fetch(query)
+	);
+
+	if (configError) return <div>{configError}</div>;
+	if (config === undefined) return <div>Loading...</div>;
+	if (config === null) return <div>No configuration found</div>;
+
+	const { footer, date } = config;
 
 	const socialLinks: { name: string; url: string }[] = [];
 	if (footer?.facebook)

@@ -1,8 +1,8 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
-import sanity, { isEmptyResult, urlFor } from "../sanity";
-import { SanityFrontPage } from "../sanity/models";
-import { useSanityStore } from "../sanity/store";
+import useSWR from "swr";
+import sanity, { urlFor } from "../sanity";
+import { SanityFrontPage, SanityConfiguration } from "../sanity/models";
 import Block from "../blocks";
 import Hero from "../components/hero";
 import { LinkButton } from "../components/link";
@@ -71,31 +71,23 @@ const hero = css`
 type Props = {} & RouteComponentProps;
 
 const FrontPage: React.FC<Props> = () => {
-	const [store, dispatch] = useSanityStore();
-	const [isLoading, setLoading] = React.useState(store.frontPage === undefined);
-	const [error, setError] = React.useState<false | string>(false);
 	const { width } = useWindowSize(500);
+	const { data: frontPage, error: frontPageError } = useSWR<SanityFrontPage>(
+		`*[_id == "global_frontPage"][0]`,
+		query => sanity.fetch(query)
+	);
+	const { data: config, error: configError } = useSWR<SanityConfiguration>(
+		`*[_id == "global_configuration"][0]`,
+		query => sanity.fetch(query)
+	);
 
-	React.useEffect(() => {
-		if (store.frontPage === undefined) {
-			setLoading(true);
-			setError(false);
-			sanity
-				.fetch<SanityFrontPage>(`*[_id == "global_frontPage"][0]`)
-				.then(result => {
-					if (!isEmptyResult(result)) {
-						dispatch({ type: "set_front_page", data: result });
-					} else {
-						setError("No front page exits");
-					}
-					setLoading(false);
-				});
-		}
-	}, []);
+	if (frontPageError) return <div>{frontPageError}</div>;
+	if (configError) console.error(configError);
 
-	if (isLoading) return <div>Loading...</div>;
-	if (error) return <div>{error}</div>;
-	if (!store.frontPage) return <div>404</div>;
+	if (frontPage === undefined) return <div>Loading...</div>;
+	if (config === undefined) return <div>Loading...</div>;
+
+	if (frontPage === null) return <div>404 - Not found</div>;
 
 	return (
 		<>
@@ -105,7 +97,7 @@ const FrontPage: React.FC<Props> = () => {
 				height="100vh"
 				color={theme.color.main.purple}
 				imageUrl={
-					urlFor(store.frontPage.header.no.image)
+					urlFor(frontPage.header.no.image)
 						.width(window.innerWidth)
 						.url() || ""
 				}
@@ -114,12 +106,12 @@ const FrontPage: React.FC<Props> = () => {
 				{width > 700 ? (
 					<span>Oslo Pride</span>
 				) : (
-					<h1 css={date}>{store.configuration?.date}</h1>
+					<h1 css={date}>{config?.date}</h1>
 				)}
-				<h2>{store.frontPage.header.no.title}</h2>
-				<p>{store.frontPage.header.no.subtitle}</p>
+				<h2>{frontPage.header.no.title}</h2>
+				<p>{frontPage.header.no.subtitle}</p>
 				<ul>
-					{store.frontPage.header.no.links?.map((link, idx) => (
+					{frontPage.header.no.links?.map((link, idx) => (
 						<li key={link._key}>
 							<LinkButton
 								link={link}
@@ -132,7 +124,7 @@ const FrontPage: React.FC<Props> = () => {
 					))}
 				</ul>
 			</Hero>
-			{store.frontPage.blocks.no.map(block => (
+			{frontPage.blocks.no.map(block => (
 				<Block key={block._key} block={block} />
 			))}
 		</>
