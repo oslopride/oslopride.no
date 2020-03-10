@@ -4,11 +4,8 @@ import Link from "./link";
 import { css } from "@emotion/core";
 import theme from "../utils/theme";
 import { useWindowSize } from "../utils/hooks";
-
-type Props = {
-	navigation: SanityConfiguration["navigationBar"];
-	date: SanityConfiguration["date"];
-};
+import useSWR from "swr";
+import sanity from "../sanity";
 
 const header = css`
 	display: flex;
@@ -38,16 +35,25 @@ const header = css`
 	}
 `;
 
-const Header: React.FC<Props> = props => {
-	const { navigation, date } = props;
+type Props = {};
+
+const Header: React.FC<Props> = () => {
 	const { width } = useWindowSize(500);
+	const { data: config, error: configError } = useSWR<SanityConfiguration>(
+		`*[_id == "global_configuration"][0]`,
+		query => sanity.fetch(query)
+	);
+
+	if (configError) return <div>{configError}</div>;
+	if (config === undefined) return <div>Loading...</div>;
+	if (config === null) return <div>No configuration found</div>;
 
 	return (
 		<header css={header}>
-			{width > 700 && <h1>{date}</h1>}
+			{width > 700 && <h1>{config.date}</h1>}
 			<nav>
 				<ul>
-					{navigation?.map(item => (
+					{config.navigationBar?.map(item => (
 						<li key={item._key}>
 							<Link link={item} />
 						</li>

@@ -1,12 +1,12 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
-import sanity, { isEmptyResult, urlFor } from "../sanity";
+import sanity, { urlFor } from "../sanity";
 import { SanityPage } from "../sanity/models";
-import { useSanityStore } from "../sanity/store";
 import Block from "../blocks";
 import Hero from "../components/hero";
 import { css } from "@emotion/core";
 import theme from "../utils/theme";
+import useSWR from "swr";
 
 const hero = css`
 	color: #ffffff;
@@ -26,35 +26,14 @@ const hero = css`
 type Props = { slug?: string } & RouteComponentProps;
 
 const Page: React.FC<Props> = props => {
-	const [store, dispatch] = useSanityStore();
-	const page = Object.values(store.pages).find(
-		page => page.slug.current === props.slug
-	);
-	const [isLoading, setLoading] = React.useState(page === undefined);
-	const [error, setError] = React.useState<false | string>(
-		props.slug === undefined ? "No slug provided" : false
+	const { data: page, error } = useSWR<SanityPage>(
+		[`*[_type == "page" && slug.current == $slug][0]`, props.slug],
+		(query, slug) => sanity.fetch(query, { slug })
 	);
 
-	React.useEffect(() => {
-		if (page === undefined && props.slug) {
-			setError(false);
-			setLoading(true);
-			sanity
-				.fetch<SanityPage>(`*[_type == "page" && slug.current == $slug][0]`, {
-					slug: props.slug
-				})
-				.then(result => {
-					if (!isEmptyResult(result)) {
-						dispatch({ type: "add_page", data: result });
-					}
-					setLoading(false);
-				});
-		}
-	}, [props.slug]);
-
-	if (isLoading) return <div>Loading...</div>;
 	if (error) return <div>{error}</div>;
-	if (page === undefined) return <div>404 - Not found</div>;
+	if (page === undefined) return <div>Loading...</div>;
+	if (page === null) return <div>404 - Not found</div>;
 
 	return (
 		<>

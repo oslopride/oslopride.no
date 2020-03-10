@@ -5,7 +5,6 @@ import { Global, css } from "@emotion/core";
 import { normalize } from "polished";
 import { hot } from "react-hot-loader/root";
 import App from "./app";
-import { SanityStoreProvider } from "./sanity/store";
 
 WebFont.load({
 	typekit: {
@@ -49,9 +48,7 @@ const globalStyles = css`
 const ConfiguredApp = hot(() => (
 	<>
 		<Global styles={globalStyles} />
-		<SanityStoreProvider>
-			<App />
-		</SanityStoreProvider>
+		<App />
 	</>
 ));
 
