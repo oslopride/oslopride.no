@@ -18,6 +18,10 @@ type Props = {
 */
 
 const headerStyle = css`
+	display: block;
+	height: 6rem;
+	width: 100%;
+
 	h1 {
 		position: absolute;
 		top: 0;
@@ -113,14 +117,16 @@ const Header: React.FC<Props> = props => {
 	const toggleNavigation = () => showNavigation(current => !current);
 
 	return (
-		<header css={headerStyle}>
-			<h1>
-				<LogoColor css={logoStyle} width="160px" height="auto" />
-			</h1>
-			<p>{date}</p>
-			<button css={buttonStyle}>
-				<Menu width="30px" height="auto" onClick={toggleNavigation} />
-			</button>
+		<>
+			<header css={headerStyle}>
+				<h1>
+					<LogoColor css={logoStyle} width="160px" height="auto" />
+				</h1>
+				<p>{date}</p>
+				<button css={buttonStyle}>
+					<Menu width="30px" height="auto" onClick={toggleNavigation} />
+				</button>
+			</header>
 			<nav
 				css={
 					navigationVisible
@@ -145,7 +151,7 @@ const Header: React.FC<Props> = props => {
 					<Close width="30px" height="auto" onClick={toggleNavigation} />
 				</button>
 			</nav>
-		</header>
+		</>
 	);
 };
 
