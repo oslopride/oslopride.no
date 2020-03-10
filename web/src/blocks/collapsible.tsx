@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import BlockContentToReact from "@sanity/block-content-to-react";
 import { css } from "@emotion/core";
 
@@ -15,6 +15,7 @@ const CollapsibleList: React.FC<Props> = ({
 	content: { title, listItems }
 }) => {
 	const [active, setActive] = useState<number | null>(null);
+	const itemRefs = listItems.map(() => useRef<HTMLLIElement>(null));
 
 	const onClickHandler = (index: number): void => {
 		setActive(index === active ? null : index);
@@ -41,7 +42,7 @@ const CollapsibleList: React.FC<Props> = ({
 					const isActive = active === idx;
 					const Icon = isActive ? Minus : Plus;
 					return (
-						<li key={`${idx}-${item.title}`}>
+						<li key={`${idx}-${item.title}`} ref={itemRefs[idx]}>
 							<h3
 								css={css`
 									display: flex;
@@ -66,8 +67,13 @@ const CollapsibleList: React.FC<Props> = ({
 							</h3>
 							<div
 								css={css`
-									display: ${isActive ? "block" : "none"};
 									padding: 3px 15px;
+									visibility: ${isActive ? "visible" : "hidden"};
+									transition: height 0.1s ease-in-out;
+									overflow: hidden;
+									height: ${isActive
+										? itemRefs[idx].current?.clientHeight
+										: 0}px;
 								`}
 							>
 								<BlockContentToReact blocks={item.content} />
