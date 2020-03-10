@@ -1,4 +1,4 @@
-import theme from "../../helpers/theme";
+import theme from "../../utils/theme";
 import styled from "@emotion/styled";
 
 export const StickyFooter = styled.footer`
