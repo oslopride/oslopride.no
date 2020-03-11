@@ -1,6 +1,6 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
-import sanity, { urlFor } from "../sanity";
+import { urlFor } from "../sanity";
 import { SanityPage } from "../sanity/models";
 import Block from "../blocks";
 import Hero from "../components/hero";
@@ -26,9 +26,10 @@ const hero = css`
 type Props = { slug?: string } & RouteComponentProps;
 
 const Page: React.FC<Props> = props => {
+	const { slug } = props;
+
 	const { data: page, error } = useSWR<SanityPage>(
-		[`*[_type == "page" && slug.current == $slug][0]`, props.slug],
-		(query, slug) => sanity.fetch(query, { slug })
+		`*[_type == "page" && slug.current == "${slug}"] | order(_updatedAt desc) [0]`
 	);
 
 	if (error) return <div>{error}</div>;

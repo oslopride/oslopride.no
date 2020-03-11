@@ -8,10 +8,7 @@
   "plugins": [
     "emotion",
     "react-hot-loader/babel",
-    "@babel/plugin-proposal-numeric-separator",
-    "@babel/plugin-proposal-optional-chaining",
-    "@babel/plugin-proposal-partial-application",
-    ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }],
-    "@babel/plugin-proposal-throw-expressions"
+    "@babel/proposal-class-properties",
+    "@babel/proposal-object-rest-spread"
   ]
 }

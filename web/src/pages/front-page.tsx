@@ -1,7 +1,7 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import useSWR from "swr";
-import sanity, { urlFor } from "../sanity";
+import { urlFor } from "../sanity";
 import { SanityFrontPage, SanityConfiguration } from "../sanity/models";
 import Block from "../blocks";
 import Hero from "../components/hero";
@@ -73,12 +73,10 @@ type Props = {} & RouteComponentProps;
 const FrontPage: React.FC<Props> = () => {
 	const { width } = useWindowSize(500);
 	const { data: frontPage, error: frontPageError } = useSWR<SanityFrontPage>(
-		`*[_id == "global_frontPage"][0]`,
-		query => sanity.fetch(query)
+		`*[_id == "global_frontPage"] | order(_updatedAt desc) [0]`
 	);
 	const { data: config, error: configError } = useSWR<SanityConfiguration>(
-		`*[_id == "global_configuration"][0]`,
-		query => sanity.fetch(query)
+		`*[_id == "global_configuration"] | order(_updatedAt desc) [0]`
 	);
 
 	if (frontPageError) return <div>{frontPageError}</div>;
