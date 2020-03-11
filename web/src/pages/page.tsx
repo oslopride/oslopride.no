@@ -32,7 +32,7 @@ const Page: React.FC<Props> = props => {
 		`*[_type == "page" && slug.current == "${slug}"] | order(_updatedAt desc) [0]`
 	);
 
-	if (error) return <div>{error}</div>;
+	if (error) return <div>{JSON.stringify(error)}</div>;
 	if (page === undefined) return <div>Loading...</div>;
 	if (page === null) return <div>404 - Not found</div>;
 

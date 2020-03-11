@@ -11,7 +11,7 @@ const Footer: React.FC<Props> = () => {
 		`*[_id == "global_configuration"]  | order(_updatedAt desc) [0]`
 	);
 
-	if (configError) return <div>{configError}</div>;
+	if (configError) return <div>{JSON.stringify(configError)}</div>;
 	if (config === undefined) return <div>Loading...</div>;
 	if (config === null) return <div>No configuration found</div>;
 

@@ -79,8 +79,8 @@ const FrontPage: React.FC<Props> = () => {
 		`*[_id == "global_configuration"] | order(_updatedAt desc) [0]`
 	);
 
-	if (frontPageError) return <div>{frontPageError}</div>;
-	if (configError) console.error(configError);
+	if (frontPageError) return <div>{JSON.stringify(frontPageError)}</div>;
+	if (configError) console.error(JSON.stringify(configError));
 
 	if (frontPage === undefined) return <div>Loading...</div>;
 	if (config === undefined) return <div>Loading...</div>;
