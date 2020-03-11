@@ -5,7 +5,6 @@ import { css } from "@emotion/core";
 import theme from "../utils/theme";
 import { useWindowSize } from "../utils/hooks";
 import useSWR from "swr";
-import sanity from "../sanity";
 
 const header = css`
 	display: flex;
@@ -40,11 +39,10 @@ type Props = {};
 const Header: React.FC<Props> = () => {
 	const { width } = useWindowSize(500);
 	const { data: config, error: configError } = useSWR<SanityConfiguration>(
-		`*[_id == "global_configuration"][0]`,
-		query => sanity.fetch(query)
+		`*[_id == "global_configuration"] | order(_updatedAt desc) [0]`
 	);
 
-	if (configError) return <div>{configError}</div>;
+	if (configError) return <div>{JSON.stringify(configError)}</div>;
 	if (config === undefined) return <div>Loading...</div>;
 	if (config === null) return <div>No configuration found</div>;
 

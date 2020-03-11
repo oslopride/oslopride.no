@@ -7,7 +7,6 @@ import {
 	SanityFrontPage
 } from "../sanity/models";
 import styled from "@emotion/styled";
-import sanity from "../sanity";
 import { css } from "@emotion/core";
 import theme from "../utils/theme";
 import useSWR from "swr";
@@ -24,8 +23,9 @@ type Props = {
 const Link: React.FC<Props> = props => {
 	const { link, className } = props;
 	const { data, error } = useSWR<SanityPage | SanityFrontPage>(
-		link._type === "internalLink" ? [`*[_id == $id][0]`, link.url._ref] : null,
-		(query, id) => sanity.fetch(query, { id })
+		link._type === "internalLink"
+			? `*[_id == "${link.url._ref}"]  | order(_updatedAt desc) [0]`
+			: null
 	);
 
 	if (link._type === "externalLink") {

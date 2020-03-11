@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const { EnvironmentPlugin } = require("webpack");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
-const config = {
+module.exports = {
 	entry: ["react-hot-loader/patch", "./src/index.tsx"],
 	output: {
 		path: path.resolve(__dirname, "public"),
@@ -48,8 +49,10 @@ const config = {
 		new HtmlWebpackPlugin({
 			title: "Oslo Pride"
 		}),
-		new ForkTsCheckerWebpackPlugin({ eslint: true })
+		new ForkTsCheckerWebpackPlugin({ eslint: true }),
+		new EnvironmentPlugin({
+			NODE_ENV: "development",
+			SANITY_PREVIEW: "false"
+		})
 	]
 };
-
-module.exports = config;
