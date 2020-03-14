@@ -1,12 +1,23 @@
 import React from "react";
 import { css } from "@emotion/core";
 import Link from "../link";
+import Logo from "../../assets/logo-color.svg";
+import LogoWhite from "../../assets/logo-white.svg";
+import Menu from "../../assets/menu.svg";
+import MenuWhite from "../../assets/menu-white.svg";
+import Close from "../../assets/close.svg";
 
 import useConfig from "../../utils/use-config";
 
 type Props = {};
 
-const headerStyle = css`
+const headerStyle = (
+	logoWhite: string,
+	logoColor: string,
+	menuWhite: string,
+	menuColor: string,
+	close: string
+) => css`
 	display: block;
 	height: 6rem;
 	width: 100%;
@@ -19,7 +30,7 @@ const headerStyle = css`
 		top: 0.5rem;
 		left: 2rem;
 		margin: 0;
-		background-image: url("./logo-white.svg");
+		background-image: url(${logoWhite});
 		background-size: 160px auto;
 		background-repeat: no-repeat;
 
@@ -42,11 +53,19 @@ const headerStyle = css`
 		color: #f7acb3;
 	}
 
+	button {
+		background-image: url(${menuWhite});
+	}
+
 	&.fixed {
 		background-color: white;
 
 		h1 {
-			background-image: url("./logo-color.svg");
+			background-image: url(${logoColor});
+		}
+
+		button {
+			background-image: url(${menuColor});
 		}
 	}
 `;
@@ -124,10 +143,6 @@ const buttonStyle = css`
 	overflow: hidden;
 `;
 
-const menuButton = css`
-	background-image: url("./menu.svg");
-`;
-
 const closeButton = css`
 	background-image: url("./close.svg");
 `;
@@ -148,12 +163,15 @@ const Header: React.FC<Props> = () => {
 
 	return (
 		<>
-			<header css={headerStyle} id="pageHeader">
+			<header
+				css={headerStyle(LogoWhite, Logo, MenuWhite, Menu, Close)}
+				id="pageHeader"
+			>
 				<h1>
 					<span>Oslo Pride</span>
 				</h1>
 				<p>{date}</p>
-				<button css={[buttonStyle, menuButton]} onClick={toggleNavigation}>
+				<button css={buttonStyle} onClick={toggleNavigation}>
 					Menu
 				</button>
 			</header>
