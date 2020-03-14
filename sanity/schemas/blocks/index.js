@@ -1,7 +1,8 @@
 import advertisement from "./advertisement";
 import announcement from "./announcement";
-import textArea from "./text-area";
 import collapsible from "./collapsible";
+import textArea from "./text-area";
+import partnerPreview from "./partner-preview";
 
 export default {
 	title: "Blocks",
@@ -19,6 +20,9 @@ export default {
 		},
 		{
 			type: collapsible.name
+		},
+		{
+			type: partnerPreview.name
 		}
 	]
 };
