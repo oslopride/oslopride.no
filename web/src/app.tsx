@@ -3,7 +3,7 @@ import { Router } from "@reach/router";
 import Page from "./pages/page";
 import FrontPage from "./pages/front-page";
 import Footer from "./components/footer";
-import Header from "./components/header/header";
+import Header from "./components/header";
 import useSWR from "swr";
 import { SanityConfiguration } from "./sanity/models";
 import { ClientError, ServerError } from "@sanity/client";

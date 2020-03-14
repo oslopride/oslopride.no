@@ -15,8 +15,7 @@ const headerStyle = (
 	logoWhite: string,
 	logoColor: string,
 	menuWhite: string,
-	menuColor: string,
-	close: string
+	menuColor: string
 ) => css`
 	display: block;
 	height: 6rem;
@@ -143,8 +142,8 @@ const buttonStyle = css`
 	overflow: hidden;
 `;
 
-const closeButton = css`
-	background-image: url("./close.svg");
+const closeButton = (close: any) => css`
+	background-image: url(${close});
 `;
 
 window.addEventListener("scroll", () => {
@@ -164,7 +163,7 @@ const Header: React.FC<Props> = () => {
 	return (
 		<>
 			<header
-				css={headerStyle(LogoWhite, Logo, MenuWhite, Menu, Close)}
+				css={headerStyle(LogoWhite, Logo, MenuWhite, Menu)}
 				id="pageHeader"
 			>
 				<h1>
@@ -189,7 +188,10 @@ const Header: React.FC<Props> = () => {
 						</li>
 					))}
 				</ul>
-				<button css={[buttonStyle, closeButton]} onClick={toggleNavigation}>
+				<button
+					css={[buttonStyle, closeButton(Close)]}
+					onClick={toggleNavigation}
+				>
 					Close
 				</button>
 			</nav>
