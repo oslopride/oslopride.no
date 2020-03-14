@@ -4,6 +4,8 @@ import WebFont from "webfontloader";
 import { Global, css } from "@emotion/core";
 import { normalize } from "polished";
 import { hot } from "react-hot-loader/root";
+import { SWRConfig } from "swr";
+import sanity, { previewMode } from "./sanity";
 import App from "./app";
 
 WebFont.load({
@@ -48,7 +50,14 @@ const globalStyles = css`
 const ConfiguredApp = hot(() => (
 	<>
 		<Global styles={globalStyles} />
-		<App />
+		<SWRConfig
+			value={{
+				refreshInterval: previewMode ? 5000 : 0,
+				fetcher: (query: string) => sanity.fetch(query)
+			}}
+		>
+			<App />
+		</SWRConfig>
 	</>
 ));
 

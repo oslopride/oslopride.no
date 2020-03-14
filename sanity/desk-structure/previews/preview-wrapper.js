@@ -1,4 +1,5 @@
 import React from "react";
+// For later reference: https://codesandbox.io/s/p98y9o7jz0 & https://github.com/emotion-js/emotion/issues/560
 import { StyleSheetManager } from "styled-components";
 import Frame, { FrameContextConsumer } from "react-frame-component";
 

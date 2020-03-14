@@ -1,6 +1,6 @@
 import React from "react";
 
-export function useWindowSize(idleTime = 500) {
+export default function useWindowSize(idleTime = 500) {
 	const getWindowSize = () => ({
 		width: window.innerWidth,
 		height: window.innerHeight

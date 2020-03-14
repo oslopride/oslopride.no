@@ -2,6 +2,7 @@ import React from "react";
 import { SanityBlock, SanityUnknown } from "../sanity/models";
 import Announcement from "./announcement";
 import Advertisement from "./advertisement";
+import CollapsibleList from "./collapsible";
 import TextArea from "./text-area";
 import PartnerList from "./partner-list";
 
@@ -15,6 +16,8 @@ const Block: React.FC<Props> = props => {
 			return <Announcement content={props.block} />;
 		case "advertisement":
 			return <Advertisement content={props.block} />;
+		case "collapsibleList":
+			return <CollapsibleList content={props.block} />;
 		case "textArea":
 			return <TextArea content={props.block} />;
 		case "partnerList":

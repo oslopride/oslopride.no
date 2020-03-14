@@ -1,14 +1,16 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import useSWR from "swr";
-import sanity, { urlFor } from "../sanity";
-import { SanityFrontPage, SanityConfiguration } from "../sanity/models";
+import { urlFor } from "../sanity";
+import { SanityFrontPage } from "../sanity/models";
 import Block from "../blocks";
 import Hero from "../components/hero";
 import { LinkButton } from "../components/link";
 import { css } from "@emotion/core";
-import { useWindowSize } from "../utils/hooks";
+import useWindowSize from "../utils/use-window-size";
 import theme from "../utils/theme";
+import useConfig from "../utils/use-config";
+import { ClientError, ServerError } from "@sanity/client";
 
 const date = css`
 	font-size: 1rem;
@@ -72,22 +74,14 @@ type Props = {} & RouteComponentProps;
 
 const FrontPage: React.FC<Props> = () => {
 	const { width } = useWindowSize(500);
-	const { data: frontPage, error: frontPageError } = useSWR<SanityFrontPage>(
-		`*[_id == "global_frontPage"][0]`,
-		query => sanity.fetch(query)
+	const { data, error } = useSWR<SanityFrontPage, ClientError | ServerError>(
+		`*[_id in ["global_frontPage", "drafts.global_frontPage"]] | order(_updatedAt desc) [0]`
 	);
-	const { data: config, error: configError } = useSWR<SanityConfiguration>(
-		`*[_id == "global_configuration"][0]`,
-		query => sanity.fetch(query)
-	);
+	const config = useConfig();
 
-	if (frontPageError) return <div>{frontPageError}</div>;
-	if (configError) console.error(configError);
-
-	if (frontPage === undefined) return <div>Loading...</div>;
-	if (config === undefined) return <div>Loading...</div>;
-
-	if (frontPage === null) return <div>404 - Not found</div>;
+	if (error) return <div>{JSON.stringify(error)}</div>;
+	if (data === undefined) return <div>Loading...</div>;
+	if (data === null) return <div>404 - Not found</div>;
 
 	return (
 		<>
@@ -97,7 +91,7 @@ const FrontPage: React.FC<Props> = () => {
 				height="100vh"
 				color={theme.color.main.purple}
 				imageUrl={
-					urlFor(frontPage.header.no.image)
+					urlFor(data.header.no.image)
 						.width(window.innerWidth)
 						.url() || ""
 				}
@@ -108,10 +102,10 @@ const FrontPage: React.FC<Props> = () => {
 				) : (
 					<h1 css={date}>{config?.date}</h1>
 				)}
-				<h2>{frontPage.header.no.title}</h2>
-				<p>{frontPage.header.no.subtitle}</p>
+				<h2>{data.header.no.title}</h2>
+				<p>{data.header.no.subtitle}</p>
 				<ul>
-					{frontPage.header.no.links?.map((link, idx) => (
+					{data.header.no.links?.map((link, idx) => (
 						<li key={link._key}>
 							<LinkButton
 								link={link}
@@ -124,7 +118,7 @@ const FrontPage: React.FC<Props> = () => {
 					))}
 				</ul>
 			</Hero>
-			{frontPage.blocks.no.map(block => (
+			{data.blocks.no.map(block => (
 				<Block key={block._key} block={block} />
 			))}
 		</>
