@@ -13,14 +13,13 @@ const headerStyle = css`
 	position: fixed;
 	top: 0;
 	left: 0;
-	background-color: white;
 
 	h1 {
 		position: absolute;
 		top: 0.5rem;
 		left: 2rem;
 		margin: 0;
-		background-image: url("./logo-color.svg");
+		background-image: url("./logo-white.svg");
 		background-size: 160px auto;
 		background-repeat: no-repeat;
 
@@ -31,6 +30,7 @@ const headerStyle = css`
 			visibility: hidden;
 		}
 	}
+
 	p {
 		position: absolute;
 		top: 1rem;
@@ -40,6 +40,14 @@ const headerStyle = css`
 		font-weight: 600;
 		letter-spacing: 0.5px;
 		color: #f7acb3;
+	}
+
+	&.fixed {
+		background-color: white;
+
+		h1 {
+			background-image: url("./logo-color.svg");
+		}
 	}
 `;
 
@@ -124,6 +132,15 @@ const closeButton = css`
 	background-image: url("./close.svg");
 `;
 
+window.addEventListener("scroll", () => {
+	const header = document.getElementById("pageHeader");
+	if (window.pageYOffset > 100 && !header?.classList.contains("fixed")) {
+		header?.classList.add("fixed");
+	} else if (window.pageYOffset <= 100) {
+		header?.classList.remove("fixed");
+	}
+});
+
 const Header: React.FC<Props> = () => {
 	const { date, navigationBar } = useConfig();
 	const [navigationVisible, showNavigation] = React.useState(false);
@@ -131,7 +148,7 @@ const Header: React.FC<Props> = () => {
 
 	return (
 		<>
-			<header css={headerStyle}>
+			<header css={headerStyle} id="pageHeader">
 				<h1>
 					<span>Oslo Pride</span>
 				</h1>
