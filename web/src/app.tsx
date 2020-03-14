@@ -2,48 +2,39 @@ import React from "react";
 import { Router } from "@reach/router";
 import Page from "./pages/page";
 import FrontPage from "./pages/front-page";
-import sanity, { isEmptyResult } from "./sanity";
-import { SanityConfiguration } from "./sanity/models";
-import { useSanityStore } from "./sanity/store";
 import Footer from "./components/footer";
 import Header from "./components/header/header";
+import useSWR from "swr";
+import { SanityConfiguration } from "./sanity/models";
+import { ClientError, ServerError } from "@sanity/client";
+import { ConfigProvider } from "./utils/use-config";
 
 const App: React.FC = () => {
-	const [isLoading, setLoading] = React.useState(true);
-	const [store, dispatch] = useSanityStore();
+	const { data, error } = useSWR<
+		SanityConfiguration,
+		ClientError | ServerError
+	>(`
+		*[_id in ["global_configuration", "drafts.global_configuration"]]
+		| order(_updatedAt desc)
+		[0]
+	`);
 
-	React.useEffect(() => {
-		if (store.configuration === undefined) {
-			setLoading(true);
-			sanity
-				.fetch<SanityConfiguration>(
-					`*[_id == "global_configuration"][0]{ ..., navigationBar[]{ url->, text } }`
-				)
-				.then(result => {
-					if (!isEmptyResult(result)) {
-						dispatch({ type: "set_configuration", data: result });
-					}
-					setLoading(false);
-				});
-		}
-	}, []);
-
-	if (isLoading) return <div>Loading...</div>;
-	if (!store.configuration) return <div>Error: No configuration available</div>;
+	if (error) return <div>500 - Error</div>;
+	if (data === undefined) return <div>Loading...</div>;
+	if (data === null) return <div>No configuration found.</div>;
 
 	return (
 		<>
-			<Header
-				navigation={store.configuration.navigationBar || []}
-				date={store.configuration.date}
-			/>
-			<main>
-				<Router>
-					<FrontPage path="/" />
-					<Page path="/:slug" />
-				</Router>
-			</main>
-			<Footer footer={store.configuration.footer} />
+			<ConfigProvider value={data}>
+				<Header />
+				<main>
+					<Router>
+						<FrontPage path="/" />
+						<Page path="/:slug" />
+					</Router>
+				</main>
+				<Footer />
+			</ConfigProvider>
 		</>
 	);
 };

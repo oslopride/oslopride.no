@@ -4,9 +4,9 @@ import WebFont from "webfontloader";
 import { Global, css } from "@emotion/core";
 import { normalize } from "polished";
 import { hot } from "react-hot-loader/root";
+import { SWRConfig } from "swr";
+import sanity, { previewMode } from "./sanity";
 import App from "./app";
-import { SanityStoreProvider } from "./sanity/store";
-import { ThemeProvider } from "emotion-theming";
 
 WebFont.load({
 	typekit: {
@@ -21,25 +21,43 @@ const globalStyles = css`
 		box-sizing: border-box;
 	}
 
-	html {
+	html,
+	body,
+	#app {
+		height: 100%;
+		font-size: 18px;
+	}
+
+	body {
 		font-family: proxima-nova, sans-serif;
 	}
-`;
 
-const theme = {
-	main: { purple: "#3a1b7b", pink: "#e350a0", blue: "#184FBD" },
-	text: { black: "#252525", grey: "#656781", white: "#ffffff" },
-	background: { white: "#f7f8fa", pink: "#f7acb3", purple: "#bfb4d3" }
-};
+	#app {
+		display: flex;
+		flex-direction: column;
+	}
+
+	main {
+		flex: 1 0 auto;
+		margin-bottom: 32px;
+	}
+
+	footer {
+		flex-shrink: 0;
+	}
+`;
 
 const ConfiguredApp = hot(() => (
 	<>
 		<Global styles={globalStyles} />
-		<SanityStoreProvider>
-			<ThemeProvider theme={theme}>
-				<App />
-			</ThemeProvider>
-		</SanityStoreProvider>
+		<SWRConfig
+			value={{
+				refreshInterval: previewMode ? 5000 : 0,
+				fetcher: (query: string) => sanity.fetch(query)
+			}}
+		>
+			<App />
+		</SWRConfig>
 	</>
 ));
 

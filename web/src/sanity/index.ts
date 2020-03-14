@@ -5,6 +5,12 @@ import {
 	SanityImageSource
 } from "@sanity/image-url/lib/types/types";
 
+export const previewMode = process.env.SANITY_PREVIEW === "true";
+
+if (previewMode) {
+	console.warn("YOU ARE IN PREVIEW MODE");
+}
+
 export function isEmptyResult(result: object | null): boolean {
 	if (result === null) return true;
 	return Object.keys(result).length === 0;
@@ -13,7 +19,8 @@ export function isEmptyResult(result: object | null): boolean {
 const sanity = sanityClient({
 	projectId: "2ger3rla",
 	dataset: "future",
-	useCdn: true
+	useCdn: !previewMode,
+	withCredentials: previewMode
 });
 
 const builder = imageUrlBuilder(sanity as SanityClient);

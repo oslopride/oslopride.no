@@ -16,6 +16,7 @@ import blocks from "./blocks";
 import textArea from "./blocks/text-area";
 import announcement from "./blocks/announcement";
 import advertisement from "./blocks/advertisement";
+import collapsible from "./blocks/collapsible";
 
 // Types
 import externalLink from "./types/external-link";
@@ -38,6 +39,7 @@ export default createSchema({
 		textArea,
 		announcement,
 		advertisement,
+		collapsible,
 
 		internalLink,
 		externalLink

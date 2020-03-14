@@ -1,21 +1,10 @@
 import React from "react";
-import { Link as RouterLink } from "@reach/router";
-import { SanityConfiguration } from "../../sanity/models";
 import { css } from "@emotion/core";
+import Link from "../link";
 
-import LogoColor from "./logo-color.svg";
-import Close from "./close.svg";
-import Menu from "./menu.svg";
+import useConfig from "../../utils/use-config";
 
-type Props = {
-	navigation: SanityConfiguration["navigationBar"];
-	date: SanityConfiguration["date"];
-};
-
-/* TODO BEFORE MERGING:
-	- Code cleanup
-	- Accessibility of button, logo, etc
-*/
+type Props = {};
 
 const headerStyle = css`
 	display: block;
@@ -28,9 +17,19 @@ const headerStyle = css`
 
 	h1 {
 		position: absolute;
-		top: 0;
+		top: 0.5rem;
 		left: 2rem;
 		margin: 0;
+		background-image: url("./logo-color.svg");
+		background-size: 160px auto;
+		background-repeat: no-repeat;
+
+		width: 160px;
+		height: 80px;
+
+		span {
+			visibility: hidden;
+		}
 	}
 	p {
 		position: absolute;
@@ -67,11 +66,13 @@ const navigationStyle = css`
 		font-weight: 600;
 		letter-spacing: 0.5px;
 		position: relative;
-		padding-left: 4rem;
 
 		a {
 			color: white;
 			text-decoration: none;
+			width: 100%;
+			padding-left: 4rem;
+			display: block;
 		}
 
 		a:hover {
@@ -108,15 +109,23 @@ const buttonStyle = css`
 	overflow: hidden;
 	cursor: pointer;
 	background-color: transparent;
+
+	background-repeat: no-repeat;
+	background-size: auto 30px;
+	text-indent: -9999px;
+	overflow: hidden;
 `;
 
-const logoStyle = css`
-	.logo-color_svg__st0 {
-	}
+const menuButton = css`
+	background-image: url("./menu.svg");
 `;
 
-const Header: React.FC<Props> = props => {
-	const { navigation, date } = props;
+const closeButton = css`
+	background-image: url("./close.svg");
+`;
+
+const Header: React.FC<Props> = () => {
+	const { date, navigationBar } = useConfig();
 	const [navigationVisible, showNavigation] = React.useState(false);
 	const toggleNavigation = () => showNavigation(current => !current);
 
@@ -124,11 +133,11 @@ const Header: React.FC<Props> = props => {
 		<>
 			<header css={headerStyle}>
 				<h1>
-					<LogoColor css={logoStyle} width="160px" height="auto" />
+					<span>Oslo Pride</span>
 				</h1>
 				<p>{date}</p>
-				<button css={buttonStyle}>
-					<Menu width="30px" height="auto" onClick={toggleNavigation} />
+				<button css={[buttonStyle, menuButton]} onClick={toggleNavigation}>
+					Menu
 				</button>
 			</header>
 			<nav
@@ -139,20 +148,14 @@ const Header: React.FC<Props> = props => {
 				}
 			>
 				<ul>
-					{navigation?.map(item => (
-						<li key={item.url._id}>
-							<RouterLink
-								to={
-									item.url._type === "frontPage" ? "/" : item.url.slug.current
-								}
-							>
-								{item.text}
-							</RouterLink>
+					{navigationBar?.map(item => (
+						<li key={item._key} onClick={toggleNavigation}>
+							<Link link={item} />
 						</li>
 					))}
 				</ul>
-				<button css={buttonStyle}>
-					<Close width="30px" height="auto" onClick={toggleNavigation} />
+				<button css={[buttonStyle, closeButton]} onClick={toggleNavigation}>
+					Close
 				</button>
 			</nav>
 		</>

@@ -57,9 +57,16 @@ export type SanityInternalLink = SanityObject<
 	"internalLink",
 	{
 		text: string;
-		url: SanityPage | SanityFrontPage;
+		url: SanityReference;
 	}
 >;
+
+export type SanityPageHeader = Locale<{
+	title: string;
+	subtitle: string;
+	links?: SanityObjectArray<SanityInternalLink | SanityExternalLink>;
+	image: SanityImage;
+}>;
 
 /**
  *
@@ -94,10 +101,27 @@ export type SanityTextArea = SanityObject<
 	}
 >;
 
+export type SanityCollapsibleListItem = SanityObject<
+	"listItem",
+	{
+		title: string;
+		content: SanityObjectArray<SanityBlockContent>;
+	}
+>;
+
+export type SanityCollapsibleList = SanityObject<
+	"collapsibleList",
+	{
+		title: string;
+		listItems: SanityObjectArray<SanityCollapsibleListItem>;
+	}
+>;
+
 export type SanityBlock =
 	| SanityAnnouncement
 	| SanityAdvertisement
-	| SanityTextArea;
+	| SanityTextArea
+	| SanityCollapsibleList;
 
 /**
  *
@@ -108,12 +132,7 @@ export type SanityBlock =
 export type SanityFrontPage = SanityDocument<
 	"frontPage",
 	{
-		header: Locale<{
-			title: string;
-			subtitle: string;
-			links?: SanityObjectArray<SanityInternalLink | SanityExternalLink>;
-			image: SanityImage;
-		}>;
+		header: SanityPageHeader;
 		blocks: SanityObject<
 			"localeBlocks",
 			Locale<SanityObjectArray<SanityBlock>>
@@ -125,12 +144,7 @@ export type SanityPage = SanityDocument<
 	"page",
 	{
 		slug: { current: string };
-		header: Locale<{
-			title: string;
-			subtitle: string;
-			links?: SanityObjectArray<SanityInternalLink | SanityExternalLink>;
-			image: SanityImage;
-		}>;
+		header: SanityPageHeader;
 		blocks: SanityObject<
 			"localeBlocks",
 			Locale<SanityObjectArray<SanityBlock>>

@@ -2,6 +2,7 @@ import React from "react";
 import { SanityAdvertisement } from "../sanity/models";
 import { urlFor } from "../sanity";
 import BlockContentToReact from "@sanity/block-content-to-react";
+import Link from "../components/link";
 
 type Props = {
 	content: SanityAdvertisement;
@@ -19,13 +20,7 @@ const Advertisement: React.FC<Props> = props => {
 				<ul>
 					{content.links?.map(link => (
 						<li key={link._key}>
-							<a
-								href={
-									link.url._type === "frontPage" ? "/" : link.url.slug.current
-								}
-							>
-								{link.text}
-							</a>
+							<Link link={link} />
 						</li>
 					))}
 				</ul>

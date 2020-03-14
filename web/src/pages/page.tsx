@@ -1,52 +1,62 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
-import sanity, { isEmptyResult } from "../sanity";
+import { urlFor } from "../sanity";
 import { SanityPage } from "../sanity/models";
-import { useSanityStore } from "../sanity/store";
 import Block from "../blocks";
+import Hero from "../components/hero";
+import { css } from "@emotion/core";
+import theme from "../utils/theme";
+import useSWR from "swr";
+
+const hero = css`
+	color: #ffffff;
+	text-align: center;
+
+	h2 {
+		font-size: 2.5rem;
+		margin: 0 0 2rem 0;
+	}
+
+	p {
+		font-size: 1rem;
+		margin: 0;
+	}
+`;
 
 type Props = { slug?: string } & RouteComponentProps;
 
 const Page: React.FC<Props> = props => {
-	const [store, dispatch] = useSanityStore();
-	const page = Object.values(store.pages).find(
-		page => page.slug.current === props.slug
-	);
-	const [isLoading, setLoading] = React.useState(page === undefined);
-	const [error, setError] = React.useState<false | string>(
-		props.slug === undefined ? "No slug provided" : false
+	const { slug } = props;
+
+	const { data: page, error } = useSWR<SanityPage>(
+		`*[_type == "page" && slug.current == "${slug}"] | order(_updatedAt desc) [0]`
 	);
 
-	React.useEffect(() => {
-		if (page === undefined && props.slug) {
-			setError(false);
-			setLoading(true);
-			console.log(`*[_type == "page" && slug.current == "${props.slug}"][0]`);
-			sanity
-				.fetch<SanityPage>(`*[_type == "page" && slug.current == $slug][0]`, {
-					slug: props.slug
-				})
-				.then(result => {
-					console.log(result);
-					if (!isEmptyResult(result)) {
-						dispatch({ type: "add_page", data: result });
-					}
-					setLoading(false);
-				});
-		}
-	}, [props.slug]);
-
-	if (isLoading) return <div>Loading...</div>;
-	if (error) return <div>{error}</div>;
-	if (page === undefined) return <div>404 - Not found</div>;
+	if (error) return <div>{JSON.stringify(error)}</div>;
+	if (page === undefined) return <div>Loading...</div>;
+	if (page === null) return <div>404 - Not found</div>;
 
 	return (
-		<div>
-			<h2>{page.header.no.title}</h2>
+		<>
+			<Hero
+				angleDirection="<"
+				anglePosition="after"
+				height="50vh"
+				color={theme.color.main.purple}
+				imageUrl={
+					urlFor(page.header.no.image)
+						.width(window.innerWidth)
+						.url() || ""
+				}
+				css={hero}
+			>
+				<h2>{page.header.no.title}</h2>
+				<p>{page.header.no.subtitle}</p>
+			</Hero>
 			{page.blocks.no.map(block => (
 				<Block key={block._key} block={block} />
 			))}
-		</div>
+		</>
 	);
 };
 

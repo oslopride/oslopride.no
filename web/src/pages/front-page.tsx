@@ -1,45 +1,127 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
-import sanity, { isEmptyResult } from "../sanity";
+import useSWR from "swr";
+import { urlFor } from "../sanity";
 import { SanityFrontPage } from "../sanity/models";
-import { useSanityStore } from "../sanity/store";
 import Block from "../blocks";
+import Hero from "../components/hero";
+import { LinkButton } from "../components/link";
+import { css } from "@emotion/core";
+import useWindowSize from "../utils/use-window-size";
+import theme from "../utils/theme";
+import useConfig from "../utils/use-config";
+import { ClientError, ServerError } from "@sanity/client";
+
+const date = css`
+	font-size: 1rem;
+	text-transform: uppercase;
+	color: ${theme.color.background.pink};
+`;
+
+const hero = css`
+	color: #ffffff;
+
+	span {
+		display: inline-flex;
+		text-transform: uppercase;
+		font-size: 0.85rem;
+		letter-spacing: 2px;
+		font-weight: 600;
+
+		::before {
+			content: "";
+			width: 3em;
+			height: 2px;
+			background-color: #e350a0;
+			place-self: center;
+			margin-right: 1em;
+		}
+	}
+
+	h2 {
+		font-size: calc(2rem + 1.7vw);
+		margin: 2rem 0;
+	}
+
+	p {
+		font-size: 1rem;
+		margin: 0;
+	}
+
+	ul {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		margin: 1rem 0;
+		padding: 0;
+
+		@media (min-width: 600px) {
+			flex-direction: row;
+
+			li:not(:first-of-type) {
+				margin-left: 1rem;
+			}
+		}
+
+		li {
+			display: inherit;
+			margin-top: 1rem;
+		}
+	}
+`;
 
 type Props = {} & RouteComponentProps;
 
 const FrontPage: React.FC<Props> = () => {
-	const [store, dispatch] = useSanityStore();
-	const [isLoading, setLoading] = React.useState(store.frontPage === undefined);
-	const [error, setError] = React.useState<false | string>(false);
+	const { width } = useWindowSize(500);
+	const { data, error } = useSWR<SanityFrontPage, ClientError | ServerError>(
+		`*[_id in ["global_frontPage", "drafts.global_frontPage"]] | order(_updatedAt desc) [0]`
+	);
+	const config = useConfig();
 
-	React.useEffect(() => {
-		if (store.frontPage === undefined) {
-			setLoading(true);
-			setError(false);
-			sanity
-				.fetch<SanityFrontPage>(`*[_id == "global_frontPage"][0]`)
-				.then(result => {
-					if (!isEmptyResult(result)) {
-						dispatch({ type: "set_front_page", data: result });
-					} else {
-						setError("No front page exits");
-					}
-					setLoading(false);
-				});
-		}
-	}, []);
-
-	if (isLoading) return <div>Loading...</div>;
-	if (error) return <div>{error}</div>;
-	if (!store.frontPage) return <div>404</div>;
+	if (error) return <div>{JSON.stringify(error)}</div>;
+	if (data === undefined) return <div>Loading...</div>;
+	if (data === null) return <div>404 - Not found</div>;
 
 	return (
-		<div>
-			<h2>Front Page</h2>
-			{store.frontPage.blocks.no.map(block => (
+		<>
+			<Hero
+				angleDirection=">"
+				anglePosition="after"
+				height="100vh"
+				color={theme.color.main.purple}
+				imageUrl={
+					urlFor(data.header.no.image)
+						.width(window.innerWidth)
+						.url() || ""
+				}
+				css={hero}
+			>
+				{width > 700 ? (
+					<span>Oslo Pride</span>
+				) : (
+					<h1 css={date}>{config?.date}</h1>
+				)}
+				<h2>{data.header.no.title}</h2>
+				<p>{data.header.no.subtitle}</p>
+				<ul>
+					{data.header.no.links?.map((link, idx) => (
+						<li key={link._key}>
+							<LinkButton
+								link={link}
+								color={idx === 0 ? "pink" : "blue"}
+								css={css`
+									width: 100%;
+								`}
+							/>
+						</li>
+					))}
+				</ul>
+			</Hero>
+			{data.blocks.no.map(block => (
 				<Block key={block._key} block={block} />
 			))}
-		</div>
+		</>
 	);
 };
 
