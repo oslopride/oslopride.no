@@ -120,6 +120,8 @@ export type SanityCollapsibleList = SanityObject<
 export type SanityPartnerPreview = SanityObject<
 	"partnerPreview",
 	{
+		heading: string;
+		subHeading: string;
 		partners: SanityObjectArray<SanityReference>;
 	}
 >;

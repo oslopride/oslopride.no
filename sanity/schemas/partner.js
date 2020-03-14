@@ -20,12 +20,7 @@ export default {
 			type: "string",
 			validation: Rule => Rule.required(),
 			options: {
-				list: [
-					{ title: "Eier og arrangør", value: "owner" },
-					{ title: "Hovedpartner", value: "main-partner" },
-					{ title: "Partner", value: "partner" },
-					{ title: "Støttepartner", value: "support-partner" }
-				],
+				list: ["Eier og arrangør", "Hovedpartner", "Partner", "Støttepartner"],
 				layout: "radio"
 			}
 		},

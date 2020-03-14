@@ -4,6 +4,16 @@ export default {
 	type: "object",
 	fields: [
 		{
+			title: "Heading",
+			name: "heading",
+			type: "string"
+		},
+		{
+			title: "Subheading",
+			name: "subHeading",
+			type: "string"
+		},
+		{
 			type: "array",
 			name: "partners",
 			of: [
