@@ -16,7 +16,8 @@ const headerStyle = (
 	logoWhite: string,
 	logoColor: string,
 	menuWhite: string,
-	menuColor: string
+	menuColor: string,
+	fixedHeader: boolean
 ) => css`
 	display: block;
 	height: 6rem;
@@ -25,12 +26,14 @@ const headerStyle = (
 	top: 0;
 	left: 0;
 
+	background-color: ${fixedHeader ? "#fff" : "transparent"};
+
 	h1 {
 		position: absolute;
 		top: 0.5rem;
 		left: 2rem;
 		margin: 0;
-		background-image: url(${logoWhite});
+		background-image: url(${fixedHeader ? logoColor : logoWhite});
 		background-size: 160px auto;
 		background-repeat: no-repeat;
 
@@ -54,19 +57,7 @@ const headerStyle = (
 	}
 
 	button {
-		background-image: url(${menuWhite});
-	}
-
-	&.fixed {
-		background-color: white;
-
-		h1 {
-			background-image: url(${logoColor});
-		}
-
-		button {
-			background-image: url(${menuColor});
-		}
+		background-image: url(${fixedHeader ? menuColor : menuWhite});
 	}
 `;
 
@@ -147,24 +138,31 @@ const closeButton = (close: string) => css`
 	background-image: url(${close});
 `;
 
-window.addEventListener("scroll", () => {
-	const header = document.getElementById("pageHeader");
-	if (window.pageYOffset > 100 && !header?.classList.contains("fixed")) {
-		header?.classList.add("fixed");
-	} else if (window.pageYOffset <= 100) {
-		header?.classList.remove("fixed");
-	}
-});
-
 const Header: React.FC<Props> = () => {
 	const { date, navigationBar } = useConfig();
 	const [navigationVisible, showNavigation] = React.useState(false);
 	const toggleNavigation = () => showNavigation(current => !current);
 
+	const [fixedHeader, setFixedHeader] = React.useState(false);
+
+	React.useEffect(() => {
+		const scrollHandler = () => {
+			if (window.pageYOffset > 100) {
+				setFixedHeader(true);
+			} else if (window.pageYOffset <= 100) {
+				setFixedHeader(false);
+			}
+		};
+
+		window.addEventListener("scroll", scrollHandler);
+
+		return () => window.removeEventListener("scroll", scrollHandler);
+	}, []);
+
 	return (
 		<>
 			<header
-				css={headerStyle(logoWhite, logo, menuWhite, menu)}
+				css={headerStyle(logoWhite, logo, menuWhite, menu, fixedHeader)}
 				id="pageHeader"
 			>
 				<h1>
