@@ -1,11 +1,12 @@
 import React from "react";
 import { css } from "@emotion/core";
 import Link from "../link";
-import Logo from "../../assets/logo-color.svg";
-import LogoWhite from "../../assets/logo-white.svg";
-import Menu from "../../assets/menu.svg";
-import MenuWhite from "../../assets/menu-white.svg";
-import Close from "../../assets/close.svg";
+
+import logo from "../../assets/logo-color.svg";
+import logoWhite from "../../assets/logo-white.svg";
+import menu from "../../assets/menu.svg";
+import menuWhite from "../../assets/menu-white.svg";
+import close from "../../assets/close.svg";
 
 import useConfig from "../../utils/use-config";
 
@@ -142,7 +143,7 @@ const buttonStyle = css`
 	overflow: hidden;
 `;
 
-const closeButton = (close: any) => css`
+const closeButton = (close: string) => css`
 	background-image: url(${close});
 `;
 
@@ -163,7 +164,7 @@ const Header: React.FC<Props> = () => {
 	return (
 		<>
 			<header
-				css={headerStyle(LogoWhite, Logo, MenuWhite, Menu)}
+				css={headerStyle(logoWhite, logo, menuWhite, menu)}
 				id="pageHeader"
 			>
 				<h1>
@@ -189,7 +190,7 @@ const Header: React.FC<Props> = () => {
 					))}
 				</ul>
 				<button
-					css={[buttonStyle, closeButton(Close)]}
+					css={[buttonStyle, closeButton(close)]}
 					onClick={toggleNavigation}
 				>
 					Close
