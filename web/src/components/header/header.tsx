@@ -21,6 +21,10 @@ const headerStyle = css`
 	display: block;
 	height: 6rem;
 	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: white;
 
 	h1 {
 		position: absolute;
@@ -54,7 +58,7 @@ const navigationStyle = css`
 	align-items: left;
 	padding: 14rem 3rem;
 	z-index: 100;
-	transition: right 1s;
+	transition: right 0.65s;
 
 	li {
 		list-style: none;
