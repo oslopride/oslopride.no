@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { css } from "@emotion/core";
 import useSWR from "swr";
 
-import sanity, { urlFor } from "../sanity";
+import { urlFor } from "../sanity";
 import { SanityPartnerPreview, SanityPartner } from "../sanity/models";
 import SubHeading from "../components/sub-heading";
 
@@ -50,9 +50,8 @@ const PartnerPreview: React.FC<Props> = ({
 	content: { partners, heading, subHeading }
 }) => {
 	const refList = partners.map(ref => ref._ref);
-	const { data, error } = useSWR<SanityPartner[]>(
-		`*[_id in ${JSON.stringify(refList)}]`,
-		query => sanity.fetch(query)
+	const { data } = useSWR<SanityPartner[]>(
+		`*[_id in ${JSON.stringify(refList)}]`
 	);
 
 	// sanity query does not return documents in same order as reference array
