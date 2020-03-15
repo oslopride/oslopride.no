@@ -10,6 +10,9 @@ import frontPage from "./front-page";
 import configuration from "./configuration";
 import article from "./article";
 import partner from "./partner";
+import event from "./event";
+import arena from "./arena";
+import venue from "./venue";
 
 // Blocks
 import blocks from "./blocks";
@@ -34,6 +37,9 @@ export default createSchema({
 		article,
 		partner,
 		configuration,
+		event,
+		arena,
+		venue,
 
 		blocks,
 		textArea,
