@@ -3,7 +3,7 @@ import { css } from "@emotion/core";
 import useSWR from "swr";
 
 import { urlFor } from "../sanity";
-import { SanityPartnerPreview, SanityPartner } from "../sanity/models";
+import { SanityPartnerPreview, SanityPartner, Locale } from "../sanity/models";
 import SubHeading from "../components/sub-heading";
 
 const container = css`
@@ -42,6 +42,8 @@ const partnerType = css`
 	font-weight: 400;
 `;
 
+type DereferencedSanityPartner = SanityPartner & { type: Locale<string> };
+
 type Props = {
 	content: SanityPartnerPreview;
 };
@@ -50,10 +52,12 @@ const PartnerPreview: React.FC<Props> = ({
 	content: { partners, heading, subHeading }
 }) => {
 	const refList = partners.map(ref => ref._ref);
-	const { data } = useSWR<SanityPartner[]>(
-		`*[_id in ${JSON.stringify(refList)}]`
+	const { data } = useSWR<DereferencedSanityPartner[]>(
+		`*[_id in ${JSON.stringify(
+			refList
+		)}]{_id, name, image, url, "type": type->name}`
 	);
-
+	console.log(data);
 	// sanity query does not return documents in same order as reference array
 	const orderedPartners = useMemo(() => {
 		return data ? refList.map(ref => data.find(doc => doc._id === ref)) : [];
@@ -83,7 +87,7 @@ const PartnerPreview: React.FC<Props> = ({
 										}
 									/>
 								</a>
-								<span css={partnerType}>{partner.type}</span>
+								<span css={partnerType}>{partner.type.no}</span>
 							</li>
 						)
 				)}
