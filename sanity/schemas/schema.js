@@ -7,9 +7,13 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 // Documents
 import page from "./page";
 import frontPage from "./front-page";
-import configuration from "./configuration";
+import webConfiguration from "./web-configuration";
+import appConfiguration from "./app-configuration";
 import article from "./article";
 import partner from "./partner";
+import event from "./event";
+import arena from "./arena";
+import venue from "./venue";
 
 // Blocks
 import blocks from "./blocks";
@@ -33,7 +37,11 @@ export default createSchema({
 		page,
 		article,
 		partner,
-		configuration,
+		webConfiguration,
+		appConfiguration,
+		event,
+		arena,
+		venue,
 
 		blocks,
 		textArea,
