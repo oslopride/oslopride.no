@@ -14,7 +14,7 @@ const App: React.FC = () => {
 		SanityConfiguration,
 		ClientError | ServerError
 	>(`
-		*[_id in ["global_configuration", "drafts.global_configuration"]]
+		*[_id in ["global_web_configuration", "drafts.global_web_configuration"]]
 		| order(_updatedAt desc)
 		[0]
 	`);

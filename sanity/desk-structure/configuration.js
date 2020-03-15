@@ -1,6 +1,12 @@
 import S from "@sanity/desk-tool/structure-builder";
 import EditIcon from "part:@sanity/base/edit-icon";
-import { MdSettings, MdPublic, MdPlace, MdPinDrop } from "react-icons/md";
+import {
+	MdSettings,
+	MdPublic,
+	MdPlace,
+	MdPinDrop,
+	MdPhoneIphone
+} from "react-icons/md";
 
 import JSONpreview from "./previews/json-preview";
 
@@ -16,10 +22,24 @@ export default S.listItem()
 					.icon(MdPublic)
 					.child(
 						S.document()
-							.title("Configuration")
-							.id("configuration")
-							.schemaType("configuration")
-							.documentId("global_configuration")
+							.title("Website")
+							.id("webConfiguration")
+							.schemaType("webConfiguration")
+							.documentId("global_web_configuration")
+							.views([
+								S.view.form().icon(EditIcon),
+								S.view.component(JSONpreview).title("JSON")
+							])
+					),
+				S.listItem()
+					.title("App")
+					.icon(MdPhoneIphone)
+					.child(
+						S.document()
+							.title("Website")
+							.id("appConfiguration")
+							.schemaType("appConfiguration")
+							.documentId("global_app_configuration")
 							.views([
 								S.view.form().icon(EditIcon),
 								S.view.component(JSONpreview).title("JSON")
