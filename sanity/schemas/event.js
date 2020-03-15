@@ -207,13 +207,11 @@ export default {
 			validation: Rule => Rule.required()
 		},
 		{
-			title: "Prices",
 			name: "prices",
 			fieldset: "entranceFee",
 			type: "array",
 			of: [
 				{
-					title: "Price",
 					type: "object",
 					fields: [
 						{
