@@ -18,6 +18,7 @@ const hiddenDocTypes = listItem =>
 		"article",
 		"partner",
 		"webConfiguration",
+		"appConfiguration"
 		"event",
 		"venue",
 		"arena"
