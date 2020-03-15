@@ -129,11 +129,8 @@ export type SanityBlock =
 	| SanityAnnouncement
 	| SanityAdvertisement
 	| SanityTextArea
-<<<<<<< HEAD
-	| SanityPartnerList;
-=======
+	| SanityPartnerList
 	| SanityCollapsibleList;
->>>>>>> master
 
 /**
  *
