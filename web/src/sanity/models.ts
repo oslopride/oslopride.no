@@ -166,7 +166,7 @@ export type SanityPartner = SanityDocument<
 	"partner",
 	{
 		name: string;
-		type: string;
+		type: SanityReference;
 		description: SanityBlockContent;
 		url: string;
 		image: SanityImage;
