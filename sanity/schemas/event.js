@@ -278,6 +278,11 @@ export default {
 			validation: Rule => Rule.required()
 		},
 		{
+			name: "eventWebsite",
+			description: "URL to the event website, usually facebook",
+			type: "url"
+		},
+		{
 			name: "organizer",
 			type: "string",
 			validation: Rule => Rule.required()
