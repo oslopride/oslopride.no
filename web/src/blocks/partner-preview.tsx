@@ -53,9 +53,7 @@ const PartnerPreview: React.FC<Props> = ({
 }) => {
 	const refList = partners.map(ref => ref._ref);
 	const { data } = useSWR<DereferencedSanityPartner[]>(
-		`*[_id in ${JSON.stringify(
-			refList
-		)}]{..., "type": type->name}`
+		`*[_id in ${JSON.stringify(refList)}]{..., "type": type->name}`
 	);
 
 	// sanity query does not return documents in same order as reference array
