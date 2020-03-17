@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import useSWR from "swr";
+import BlockContentToReact from "@sanity/block-content-to-react";
 import sanity, { urlFor } from "../sanity";
 import { SanityPartnerList } from "../sanity/models";
 import styled from "@emotion/styled";
@@ -15,26 +16,24 @@ const PartnerList: FC<Props> = ({ content }) => {
 		query => sanity.fetch(query)
 	);
 
-	console.log("data", data);
-
 	return (
 		<Wrapper>
 			<h1>{content.title}</h1>
 			{data &&
-				data.map(el => (
-					<FlexBox key={el._id}>
+				data.map(partner => (
+					<FlexBox key={partner._id}>
 						<ImgWrap>
 							<img
 								src={
-									urlFor(el.image.asset._ref)
+									urlFor(partner.image)
 										.width(200)
 										.url() || undefined
 								}
 							/>
 						</ImgWrap>
 						<ContentWrap>
-							<h2>{el.name}</h2>
-							<span>description</span>
+							<h2>{partner.name}</h2>
+							<BlockContentToReact blocks={partner.description} />
 						</ContentWrap>
 					</FlexBox>
 				))}
