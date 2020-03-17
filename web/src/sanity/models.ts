@@ -117,11 +117,21 @@ export type SanityCollapsibleList = SanityObject<
 	}
 >;
 
+export type SanityPartnerPreview = SanityObject<
+	"partnerPreview",
+	{
+		heading: string;
+		subHeading: string;
+		partners: SanityObjectArray<SanityReference>;
+	}
+>;
+
 export type SanityBlock =
 	| SanityAnnouncement
 	| SanityAdvertisement
 	| SanityTextArea
-	| SanityCollapsibleList;
+	| SanityCollapsibleList
+	| SanityPartnerPreview;
 
 /**
  *
@@ -149,6 +159,17 @@ export type SanityPage = SanityDocument<
 			"localeBlocks",
 			Locale<SanityObjectArray<SanityBlock>>
 		>;
+	}
+>;
+
+export type SanityPartner = SanityDocument<
+	"partner",
+	{
+		name: string;
+		type: SanityReference;
+		description: SanityBlockContent;
+		url: string;
+		image: SanityImage;
 	}
 >;
 

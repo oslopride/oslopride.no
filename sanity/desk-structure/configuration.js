@@ -5,7 +5,8 @@ import {
 	MdPublic,
 	MdPlace,
 	MdPinDrop,
-	MdPhoneIphone
+	MdPhoneIphone,
+	MdBusinessCenter
 } from "react-icons/md";
 
 import JSONpreview from "./previews/json-preview";
@@ -54,6 +55,11 @@ export default S.listItem()
 					.title("Venues")
 					.icon(MdPinDrop)
 					.schemaType("venue")
-					.child(S.documentTypeList("venue").title("Venues"))
+					.child(S.documentTypeList("venue").title("Venues")),
+				S.listItem()
+					.title("Partner types")
+					.icon(MdBusinessCenter)
+					.schemaType("partnerType")
+					.child(S.documentTypeList("partnerType").title("Partner types"))
 			])
 	);

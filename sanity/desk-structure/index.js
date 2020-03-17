@@ -21,7 +21,8 @@ const hiddenDocTypes = listItem =>
 		"appConfiguration",
 		"event",
 		"venue",
-		"arena"
+		"arena",
+		"partnerType"
 	].includes(listItem.getId());
 
 export default () =>

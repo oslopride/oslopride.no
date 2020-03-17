@@ -3,6 +3,7 @@ import { SanityBlock, SanityUnknown } from "../sanity/models";
 import Announcement from "./announcement";
 import Advertisement from "./advertisement";
 import CollapsibleList from "./collapsible";
+import PartnerPreview from "./partner-preview";
 import TextArea from "./text-area";
 
 type Props = {
@@ -17,6 +18,8 @@ const Block: React.FC<Props> = props => {
 			return <Advertisement content={props.block} />;
 		case "collapsibleList":
 			return <CollapsibleList content={props.block} />;
+		case "partnerPreview":
+			return <PartnerPreview content={props.block} />;
 		case "textArea":
 			return <TextArea content={props.block} />;
 		default:
