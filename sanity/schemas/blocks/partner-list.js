@@ -1,16 +1,16 @@
 import partner from "../partner";
 
 export default {
-	title: "Partner List", // the title shown in sanity
-	name: "partnerList", // the title to use in web
-	type: "object", // documentation regarding type https://www.sanity.io/docs/object-type
+	title: "Partner List",
+	name: "partnerList",
+	type: "object",
 	fields: [
 		{
 			type: "string",
 			name: "title"
 		},
 		{
-			type: "array", // documentation regarding type https://www.sanity.io/docs/array-type
+			type: "array",
 			name: "partnerList",
 			of: [
 				{
@@ -22,10 +22,9 @@ export default {
 	],
 	preview: {
 		select: {
-			previewTitle: "title" // "title", comes from fields.name
+			previewTitle: "title"
 		},
 		prepare(selection) {
-			// { subtitle: "some string", media: {nwalfna} }
 			const { previewTitle } = selection;
 			return {
 				title: "Partner List",

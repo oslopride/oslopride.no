@@ -9,7 +9,6 @@ type Props = {
 };
 
 const PartnerList: FC<Props> = ({ content }) => {
-	console.log("content", content);
 	const refList = content.partnerList.map(ref => ref._ref);
 	const { data } = useSWR<SanityPartnerList>(
 		`*[_id in ${JSON.stringify(refList)}]`,
