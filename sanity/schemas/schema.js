@@ -24,6 +24,7 @@ import advertisement from "./blocks/advertisement";
 import partnerList from "./blocks/partner-list";
 import collapsible from "./blocks/collapsible";
 import partnerPreview from "./blocks/partner-preview";
+import quote from "./blocks/quote";
 
 // Types
 import externalLink from "./types/external-link";
@@ -54,6 +55,7 @@ export default createSchema({
 		partnerList,
 		collapsible,
 		partnerPreview,
+		quote,
 
 		internalLink,
 		externalLink

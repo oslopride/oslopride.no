@@ -134,13 +134,22 @@ export type SanityPartnerPreview = SanityObject<
 	}
 >;
 
+export type SanityQuote = SanityObject<
+	"quote",
+	{
+		content: Locale<string>;
+		citation: string;
+	}
+>;
+
 export type SanityBlock =
 	| SanityAnnouncement
 	| SanityAdvertisement
 	| SanityTextArea
 	| SanityPartnerList
 	| SanityCollapsibleList
-	| SanityPartnerPreview;
+	| SanityPartnerPreview
+	| SanityQuote;
 
 /**
  *
