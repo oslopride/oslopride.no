@@ -3,6 +3,7 @@ import announcement from "./announcement";
 import textArea from "./text-area";
 import partnerList from "./partner-list";
 import collapsible from "./collapsible";
+import partnerPreview from "./partner-preview";
 
 export default {
 	title: "Blocks",
@@ -23,6 +24,9 @@ export default {
 		},
 		{
 			type: collapsible.name
+		},
+		{
+			type: partnerPreview.name
 		}
 	]
 };
