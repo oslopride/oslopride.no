@@ -2,24 +2,23 @@ import React, { FC } from "react";
 import useSWR from "swr";
 import BlockContentToReact from "@sanity/block-content-to-react";
 import sanity, { urlFor } from "../sanity";
-import { SanityPartner } from "../sanity/models";
+import { SanityPartner, SanityPartnerList } from "../sanity/models";
 import styled from "@emotion/styled";
 
 type Props = {
-	content: SanityPartner;
+	content: SanityPartnerList;
 };
 
 const PartnerList: FC<Props> = ({ content }) => {
-	console.log("partner", content);
-	/* const refList = partners.map(ref => ref._ref);
+	const refList = content.partnerList.map(ref => ref._ref);
 	const { data } = useSWR<SanityPartner[]>(
 		`*[_id in ${JSON.stringify(refList)}]`,
 		query => sanity.fetch(query)
-	); */
+	);
 
 	return (
 		<Wrapper>
-			{/* 			<h1>{partners.title}</h1>
+			<h1>{content.title}</h1>
 			{data &&
 				data.map(partner => (
 					<FlexBox key={partner._id}>
@@ -37,7 +36,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 							<BlockContentToReact blocks={partner.description} />
 						</ContentWrap>
 					</FlexBox>
-				))} */}
+				))}
 		</Wrapper>
 	);
 };
@@ -58,8 +57,10 @@ const Wrapper = styled.div`
 `;
 
 const FlexBox = styled.div`
-	display: flex;
-	flex-flow: row wrap;
+	@media (max-width: 425px) {
+		display: flex;
+		flex-direction: column;
+	}
 `;
 
 const ImgWrap = styled.div`
