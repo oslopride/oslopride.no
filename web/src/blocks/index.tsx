@@ -5,6 +5,7 @@ import Advertisement from "./advertisement";
 import CollapsibleList from "./collapsible";
 import PartnerPreview from "./partner-preview";
 import TextArea from "./text-area";
+import PartnerList from "./partner-list";
 
 type Props = {
 	block: SanityBlock;
@@ -22,6 +23,8 @@ const Block: React.FC<Props> = props => {
 			return <PartnerPreview content={props.block} />;
 		case "textArea":
 			return <TextArea content={props.block} />;
+		case "partnerList":
+			return <PartnerList content={props.block} />;
 		default:
 			console.warn(
 				`Unknown block type: ${(props.block as SanityUnknown)._type}`

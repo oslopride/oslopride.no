@@ -1,7 +1,8 @@
 import advertisement from "./advertisement";
 import announcement from "./announcement";
-import collapsible from "./collapsible";
 import textArea from "./text-area";
+import partnerList from "./partner-list";
+import collapsible from "./collapsible";
 import partnerPreview from "./partner-preview";
 
 export default {
@@ -17,6 +18,9 @@ export default {
 		},
 		{
 			type: advertisement.name
+		},
+		{
+			type: partnerList.name
 		},
 		{
 			type: collapsible.name

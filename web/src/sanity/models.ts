@@ -83,6 +83,14 @@ export type SanityAnnouncement = SanityObject<
 	}
 >;
 
+export type SanityPartnerList = SanityObject<
+	"partnerList",
+	{
+		title: string;
+		partnerList: SanityObjectArray<SanityReference>;
+	}
+>;
+
 export type SanityAdvertisement = SanityObject<
 	"advertisement",
 	{
@@ -130,6 +138,7 @@ export type SanityBlock =
 	| SanityAnnouncement
 	| SanityAdvertisement
 	| SanityTextArea
+	| SanityPartnerList
 	| SanityCollapsibleList
 	| SanityPartnerPreview;
 
