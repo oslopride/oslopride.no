@@ -1,14 +1,14 @@
 import React from "react";
 import { css } from "@emotion/core";
-import Link from "../link";
+import Link from "./link";
 
-import logo from "../../assets/logo-color.svg";
-import logoWhite from "../../assets/logo-white.svg";
-import menu from "../../assets/menu.svg";
-import menuWhite from "../../assets/menu-white.svg";
-import close from "../../assets/close.svg";
+import logo from "../assets/logo-color.svg";
+import logoWhite from "../assets/logo-white.svg";
+import menu from "../assets/menu.svg";
+import menuWhite from "../assets/menu-white.svg";
+import close from "../assets/close.svg";
 
-import useConfig from "../../utils/use-config";
+import useConfig from "../utils/use-config";
 
 type Props = {};
 
