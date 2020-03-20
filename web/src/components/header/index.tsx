@@ -12,13 +12,7 @@ import useConfig from "../../utils/use-config";
 
 type Props = {};
 
-const headerStyle = (
-	logoWhite: string,
-	logoColor: string,
-	menuWhite: string,
-	menuColor: string,
-	fixedHeader: boolean
-) => css`
+const headerStyle = (fixedHeader: boolean) => css`
 	display: block;
 	height: 6rem;
 	width: 100%;
@@ -33,7 +27,7 @@ const headerStyle = (
 		top: 0.5rem;
 		left: 2rem;
 		margin: 0;
-		background-image: url(${fixedHeader ? logoColor : logoWhite});
+		background-image: url(${fixedHeader ? logo : logoWhite});
 		background-size: 160px auto;
 		background-repeat: no-repeat;
 
@@ -54,10 +48,14 @@ const headerStyle = (
 		font-weight: 600;
 		letter-spacing: 0.5px;
 		color: #f7acb3;
+
+		@media (max-width: 700px) {
+			display: none;
+		}
 	}
 
 	button {
-		background-image: url(${fixedHeader ? menuColor : menuWhite});
+		background-image: url(${fixedHeader ? menu : menuWhite});
 	}
 `;
 
@@ -161,10 +159,7 @@ const Header: React.FC<Props> = () => {
 
 	return (
 		<>
-			<header
-				css={headerStyle(logoWhite, logo, menuWhite, menu, fixedHeader)}
-				id="pageHeader"
-			>
+			<header css={headerStyle(fixedHeader)} id="pageHeader">
 				<h1>
 					<span>Oslo Pride</span>
 				</h1>
