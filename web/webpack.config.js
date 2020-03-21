@@ -8,7 +8,11 @@ module.exports = {
 	entry: ["react-hot-loader/patch", "./src/index.tsx"],
 	output: {
 		path: path.resolve(__dirname, "public"),
-		filename: "bundle.js"
+		filename: "bundle.js",
+		publicPath: "/"
+	},
+	devServer: {
+		historyApiFallback: true
 	},
 	resolve: {
 		extensions: [".js", ".jsx", ".tsx", ".ts"],

@@ -2,6 +2,7 @@ import React from "react";
 import { Router } from "@reach/router";
 import Page from "./pages/page";
 import FrontPage from "./pages/front-page";
+import Article from "./pages/article";
 import Footer from "./components/footer";
 import Header from "./components/header";
 import useSWR from "swr";
@@ -31,6 +32,7 @@ const App: React.FC = () => {
 					<Router>
 						<FrontPage path="/" />
 						<Page path="/:slug" />
+						<Article path="article/:slug" />
 					</Router>
 				</main>
 				<Footer />

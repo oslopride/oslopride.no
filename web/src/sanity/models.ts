@@ -152,6 +152,18 @@ export type SanityPage = SanityDocument<
 	}
 >;
 
+export type SanityArticle = SanityDocument<
+	"article",
+	{
+		slug: { current: string };
+		header: SanityPageHeader;
+		blocks: SanityObject<
+			"localeBlocks",
+			Locale<SanityObjectArray<SanityBlock>>
+		>;
+	}
+>;
+
 export type SanityConfiguration = SanityDocument<
 	"configuration",
 	{
