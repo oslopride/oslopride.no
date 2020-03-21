@@ -1,16 +1,25 @@
-name: Nightly
+name: Sanity Reset
 
 on:
   schedule:
-    - cron:  '0 23 * * *'
+    - cron:  '0 3 * * *'
 
 jobs:
-  reset-sanity-dataset:
+  reset-development-dataset:
     runs-on: ubuntu-latest
     steps:
       - uses: oslopride/sanity-mirror-dataset@v0.1.2
         with:
-          dataset_to_reset: dev
+          dataset_to_reset: development
+          dataset_to_mirror: future
+          sanity_project_id: 2ger3rla
+          sanity_token: ${{ secrets.SANITY_TOKEN }}
+  reset-preview-dataset:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: oslopride/sanity-mirror-dataset@v0.1.2
+        with:
+          dataset_to_reset: preview
           dataset_to_mirror: future
           sanity_project_id: 2ger3rla
           sanity_token: ${{ secrets.SANITY_TOKEN }}
