@@ -53,7 +53,8 @@ module.exports = {
 		new ForkTsCheckerWebpackPlugin({ eslint: true }),
 		new EnvironmentPlugin({
 			NODE_ENV: "development",
-			SANITY_PREVIEW: "false"
+			SANITY_PREVIEW: "false",
+			SANITY_STUDIO_API_DATASET: undefined
 		}),
 		new Dotenv()
 	]
