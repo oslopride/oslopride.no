@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: oslopride/sanity-mirror-dataset@v0.1.2
         with:
-          dataset_to_reset: preview
+          dataset_to_reset: staging
           dataset_to_mirror: future
           sanity_project_id: 2ger3rla
           sanity_token: ${{ secrets.SANITY_TOKEN }}
