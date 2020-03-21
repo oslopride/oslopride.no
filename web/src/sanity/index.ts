@@ -6,7 +6,6 @@ import {
 } from "@sanity/image-url/lib/types/types";
 
 export const previewMode = process.env.SANITY_PREVIEW === "true";
-
 if (previewMode) {
 	console.warn("YOU ARE IN PREVIEW MODE");
 }
@@ -18,7 +17,7 @@ export function isEmptyResult(result: object | null): boolean {
 
 const sanity = sanityClient({
 	projectId: "2ger3rla",
-	dataset: "future",
+	dataset: process.env.SANITY_STUDIO_API_DATASET,
 	useCdn: !previewMode,
 	withCredentials: previewMode
 });
