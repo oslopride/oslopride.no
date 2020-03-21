@@ -2,6 +2,7 @@
 const { EnvironmentPlugin } = require("webpack");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 const path = require("path");
 
 module.exports = {
@@ -52,7 +53,9 @@ module.exports = {
 		new ForkTsCheckerWebpackPlugin({ eslint: true }),
 		new EnvironmentPlugin({
 			NODE_ENV: "development",
-			SANITY_PREVIEW: "false"
-		})
+			SANITY_PREVIEW: "false",
+			SANITY_STUDIO_API_DATASET: undefined
+		}),
+		new Dotenv()
 	]
 };
