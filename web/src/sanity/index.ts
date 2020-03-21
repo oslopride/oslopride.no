@@ -17,7 +17,7 @@ export function isEmptyResult(result: object | null): boolean {
 
 const sanity = sanityClient({
 	projectId: "2ger3rla",
-	dataset: process.env.SANITY_STUDIO_API_DATASET,
+	dataset: process.env.SANITY_STUDIO_API_DATASET || "development",
 	useCdn: !previewMode,
 	withCredentials: previewMode
 });
