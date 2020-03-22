@@ -12,17 +12,40 @@ type Props = { slug?: string } & RouteComponentProps;
 
 const hero = css`
 	color: #ffffff;
-	text-align: center;
+	text-align: left;
+	margin-bottom: 3rem;
 
 	h2 {
 		font-size: 2.5rem;
-		margin: 0 0 2rem 0;
+		margin: 0 0 1rem 0;
 	}
 
 	p {
 		font-size: 1rem;
 		margin: 0;
 	}
+`;
+
+const body = css`
+	display: block;
+	width: 720px;
+	margin-left: auto;
+	margin-right: auto;
+`;
+
+const intro = css`
+	display: block;
+	width: 720px;
+	margin-left: auto;
+	margin-right: auto;
+	font-weight: 500;
+`;
+
+const date = css`
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: 0.5rem !important;
+	font-weight: 600;
 `;
 
 const Page: React.FC<Props> = props => {
@@ -35,6 +58,8 @@ const Page: React.FC<Props> = props => {
 	if (error) return <div>{JSON.stringify(error)}</div>;
 	if (page === undefined) return <div>Loading...</div>;
 	if (page === null) return <div>404 - Not found</div>;
+
+	console.log(page);
 
 	return (
 		<>
@@ -50,12 +75,22 @@ const Page: React.FC<Props> = props => {
 				}
 				css={hero}
 			>
+				<p css={date}>{page._createdAt.split("T")[0]}</p>
 				<h2>{page.title.no}</h2>
-				<p>{page.title.no}</p>
+				{page.credits.no.map(block => (
+					<Block key={block._key} block={block} />
+				))}
 			</Hero>
-			{page.body.no.map(block => (
-				<Block key={block._key} block={block} />
-			))}
+			<div css={intro}>
+				{page.intro.no.map(block => (
+					<Block key={block._key} block={block} />
+				))}
+			</div>
+			<div css={body}>
+				{page.body.no.map(block => (
+					<Block key={block._key} block={block} />
+				))}
+			</div>
 		</>
 	);
 };
