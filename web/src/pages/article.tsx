@@ -36,8 +36,6 @@ const Page: React.FC<Props> = props => {
 	if (page === undefined) return <div>Loading...</div>;
 	if (page === null) return <div>404 - Not found</div>;
 
-	console.log(page.body.no);
-
 	return (
 		<>
 			<Hero
