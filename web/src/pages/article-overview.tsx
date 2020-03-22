@@ -30,6 +30,20 @@ const body = css`
 	margin: -200px auto 0 auto;
 	width: 90vw;
 	max-width: 885px;
+
+	p {
+		margin-bottom: 0;
+		color: ${theme.color.text.grey};
+
+		a {
+			color: ${theme.color.main.pink};
+		}
+	}
+
+	h3 {
+		margin: 0;
+		font-size: 2rem;
+	}
 `;
 
 const article = css`
@@ -50,6 +64,13 @@ const image = (image: string) => css`
 
 const preview = css`
 	padding: 1.5rem 3rem;
+`;
+
+const date = css`
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: 0.5rem !important;
+	font-weight: 600;
 `;
 
 const ArticleOverview: React.FC<Props> = props => {
@@ -92,11 +113,14 @@ const ArticleOverview: React.FC<Props> = props => {
 							)}
 						/>
 						<div css={preview}>
+							<p css={date}>{art._createdAt.split("T")[0]}</p>
 							<h3>{art.title.no}</h3>
 							{art.intro.no.map(block => (
 								<Block key={block._key} block={block} />
 							))}
-							<a href={"/article/" + art.slug.current}>Read more</a>
+							<p>
+								<a href={"/article/" + art.slug.current}>Read more</a>
+							</p>
 						</div>
 					</div>
 				))}
