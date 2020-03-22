@@ -27,7 +27,7 @@ const hero = css`
 
 const body = css`
 	display: block;
-	margin: -200px auto 0 auto;
+	margin: -250px auto 0 auto;
 	width: 90vw;
 	max-width: 885px;
 
@@ -76,15 +76,19 @@ const date = css`
 const ArticleOverview: React.FC<Props> = props => {
 	const { slug } = props;
 
-	const { data: articles, error } = useSWR<SanityPage>(
+	const { data: articles } = useSWR<SanityPage>(
 		`*[_type == "article"] | order(_updatedAt desc)`
 	);
 
-	if (error) return <div>{JSON.stringify(error)}</div>;
-	if (articles === undefined) return <div>Loading...</div>;
-	if (articles === null) return <div>404 - Not found</div>;
+	const { data: archive, error } = useSWR<SanityPage>(
+		`*[_type == "articleArchive"] | order(_updatedAt desc) [0]`
+	);
 
-	console.log(articles);
+	if (error) return <div>{JSON.stringify(error)}</div>;
+	if (archive === undefined) return <div>Loading...</div>;
+	if (archive === null) return <div>404 - Not found</div>;
+
+	console.log(articles, archive);
 
 	return (
 		<>
@@ -94,36 +98,42 @@ const ArticleOverview: React.FC<Props> = props => {
 				height="50vh"
 				color={theme.color.main.purple}
 				imageUrl={
-					urlFor({})
+					urlFor(archive.image)
 						.width(window.innerWidth)
 						.url() || ""
 				}
 				css={hero}
 			>
-				<h2>Articles</h2>
+				<h2>{archive.title.no}</h2>
+				<p>{archive.subtitle.no}</p>
 			</Hero>
+
 			<div css={body}>
-				{articles.map(art => (
-					<div css={article} key={art._id}>
-						<div
-							css={image(
-								urlFor(art.image)
-									.width(window.innerWidth)
-									.url() || ""
-							)}
-						/>
-						<div css={preview}>
-							<p css={date}>{art._createdAt.split("T")[0]}</p>
-							<h3>{art.title.no}</h3>
-							{art.intro.no.map(block => (
-								<Block key={block._key} block={block} />
-							))}
-							<p>
-								<a href={"/article/" + art.slug.current}>Read more</a>
-							</p>
+				{articles.length > 0 ? (
+					articles.map(art => (
+						<div css={article} key={art._id}>
+							<div
+								css={image(
+									urlFor(art.image)
+										.width(window.innerWidth)
+										.url() || ""
+								)}
+							/>
+							<div css={preview}>
+								<p css={date}>{art._createdAt.split("T")[0]}</p>
+								<h3>{art.title.no}</h3>
+								{art.intro.no.map(block => (
+									<Block key={block._key} block={block} />
+								))}
+								<p>
+									<a href={"/article/" + art.slug.current}>Read more</a>
+								</p>
+							</div>
 						</div>
-					</div>
-				))}
+					))
+				) : (
+					<p>No articles yet</p>
+				)}
 			</div>
 		</>
 	);

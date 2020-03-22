@@ -8,12 +8,18 @@ import partners from "./partners";
 import configuration from "./configuration";
 
 import JSONpreview from "./previews/json-preview";
+import articleArchive from "./article-archive";
 
 // Hide document types that we already have a structure definition for
 const hiddenDocTypes = listItem =>
-	!["frontPage", "page", "article", "partner", "configuration"].includes(
-		listItem.getId()
-	);
+	![
+		"frontPage",
+		"page",
+		"article",
+		"partner",
+		"configuration",
+		"articleArchive"
+	].includes(listItem.getId());
 
 export default () =>
 	S.list()
@@ -22,6 +28,7 @@ export default () =>
 			frontPage,
 			pages,
 			articles,
+			articleArchive,
 			partners,
 			configuration,
 			...S.documentTypeListItems().filter(hiddenDocTypes)

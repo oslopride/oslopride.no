@@ -9,6 +9,7 @@ import page from "./page";
 import frontPage from "./front-page";
 import configuration from "./configuration";
 import article from "./article";
+import articleArchive from "./article-archive";
 import partner from "./partner";
 
 // Blocks
@@ -32,6 +33,7 @@ export default createSchema({
 		frontPage,
 		page,
 		article,
+		articleArchive,
 		partner,
 		configuration,
 
