@@ -2,7 +2,7 @@
 SANITY_STUDIO_API_DATASET = "future"
 
 [context.deploy-preview]
-ignore = "git diff --quiet HEAD^ HEAD $BASE_DIR"
+ignore = "git diff --quiet HEAD^ HEAD '$BASE_DIR'"
 
 [context.deploy-preview.environment]
 SANITY_STUDIO_API_DATASET = "staging"
