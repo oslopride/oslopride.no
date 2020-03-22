@@ -31,8 +31,8 @@ const App: React.FC = () => {
 				<main>
 					<Router>
 						<FrontPage path="/" />
-						<Page path="/:slug" />
-						<Article path="article/:slug" />
+						{/* <Page path="/:slug" /> */}
+						<Article path="/article/:slug" />
 					</Router>
 				</main>
 				<Footer />

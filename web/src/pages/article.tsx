@@ -6,6 +6,7 @@ import Hero from "../components/hero";
 import theme from "../utils/theme";
 import { urlFor } from "../sanity";
 import { css } from "@emotion/core";
+import Block from "../blocks";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -31,7 +32,11 @@ const Page: React.FC<Props> = props => {
 		`*[_type == "article" && slug.current == "${slug}"] | order(_updatedAt desc) [0]`
 	);
 
-	console.log("PAGE", page);
+	if (error) return <div>{JSON.stringify(error)}</div>;
+	if (page === undefined) return <div>Loading...</div>;
+	if (page === null) return <div>404 - Not found</div>;
+
+	console.log(page.body.no);
 
 	return (
 		<>
@@ -50,6 +55,9 @@ const Page: React.FC<Props> = props => {
 				<h2>{page.title.no}</h2>
 				<p>{page.title.no}</p>
 			</Hero>
+			{page.body.no.map(block => (
+				<Block key={block._key} block={block} />
+			))}
 		</>
 	);
 };
