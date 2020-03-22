@@ -5,7 +5,7 @@ import theme from "../utils/theme";
 import { css } from "@emotion/core";
 import { urlFor } from "../sanity";
 import useSWR from "swr";
-import { SanityPage } from "../sanity/models";
+import { SanityArchive, SanityArticleList } from "../sanity/models";
 import Block from "../blocks";
 
 type Props = { slug?: string } & RouteComponentProps;
@@ -74,13 +74,11 @@ const date = css`
 `;
 
 const ArticleOverview: React.FC<Props> = props => {
-	const { slug } = props;
-
-	const { data: articles } = useSWR<SanityPage>(
+	const { data: articles } = useSWR<SanityArticleList>(
 		`*[_type == "article"] | order(_updatedAt desc)`
 	);
 
-	const { data: archive, error } = useSWR<SanityPage>(
+	const { data: archive, error } = useSWR<SanityArchive>(
 		`*[_type == "articleArchive"] | order(_updatedAt desc) [0]`
 	);
 
@@ -110,7 +108,7 @@ const ArticleOverview: React.FC<Props> = props => {
 
 			<div css={body}>
 				{articles.length > 0 ? (
-					articles.map(art => (
+					articles?.map(art => (
 						<div css={article} key={art._id}>
 							<div
 								css={image(
