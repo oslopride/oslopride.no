@@ -1,0 +1,23 @@
+<svg version="1.1" 
+	xmlns="http://www.w3.org/2000/svg" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 300">
+	<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;fill:#E350A0;}
+	.st2{display:inline;fill:#AEC2E6;}
+	.st3{display:inline;fill:#FFC100;}
+	.st4{fill:#FFC100;}
+	.st5{fill:#E350A0;}
+	.st6{fill:#AEC2E6;}
+	</style>
+	<g id="Layer_1" class="st0">
+		<path id="Path_215" class="st1" d="M298.5,110.3L179.7,99l69.2-97.2L298.5,110.3z"/>
+		<path id="Path_216" class="st2" d="M58.9,60.7l15.9-42.6l28.9,35.1L58.9,60.7z"/>
+		<path id="Path_217" class="st3" d="M213.1,180.6l61.2,74l-94.7,15.9L213.1,180.6z"/>
+	</g>
+	<g id="Layer_2">
+		<path id="Path_220" class="st4" d="M49.7,61.5l45.8,55.4l-70.9,11.9L49.7,61.5z"/>
+		<path id="Path_218" class="st5" d="M237.7,21.8l-4.3,55.9L187.1,46L237.7,21.8z"/>
+		<path id="Path_219" class="st6" d="M82.7,186.8l43.8,15.5l-35.3,30.2L82.7,186.8z"/>
+	</g>
+</svg>
