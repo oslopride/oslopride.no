@@ -2,7 +2,7 @@
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
-## Project structure 🛠
+## Project Structure 🛠
 
 This is a monorepo managed by [yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/). It consists of the following projects:
 
