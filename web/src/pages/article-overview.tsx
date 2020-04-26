@@ -73,7 +73,7 @@ const date = css`
 	font-weight: 600;
 `;
 
-const ArticleOverview: React.FC<Props> = props => {
+const ArticleOverview: React.FC<Props> = () => {
 	const { data: articles } = useSWR<SanityArticleList>(
 		`*[_type == "article"] | order(_updatedAt desc)`
 	);
@@ -85,8 +85,6 @@ const ArticleOverview: React.FC<Props> = props => {
 	if (error) return <div>{JSON.stringify(error)}</div>;
 	if (archive === undefined) return <div>Loading...</div>;
 	if (archive === null) return <div>404 - Not found</div>;
-
-	console.log(articles, archive);
 
 	return (
 		<>
@@ -107,7 +105,7 @@ const ArticleOverview: React.FC<Props> = props => {
 			</Hero>
 
 			<div css={body}>
-				{articles.length > 0 ? (
+				{articles && articles.length > 0 ? (
 					articles?.map(art => (
 						<div css={article} key={art._id}>
 							<div
