@@ -1,0 +1,10 @@
+[context.production.environment]
+SANITY_STUDIO_API_DATASET = "future"
+
+[context.deploy-preview.environment]
+SANITY_STUDIO_API_DATASET = "staging"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

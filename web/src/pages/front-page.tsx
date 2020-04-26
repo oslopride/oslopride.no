@@ -5,6 +5,7 @@ import { urlFor } from "../sanity";
 import { SanityFrontPage } from "../sanity/models";
 import Block from "../blocks";
 import Hero from "../components/hero";
+import SubHeading from "../components/sub-heading";
 import { LinkButton } from "../components/link";
 import { css } from "@emotion/core";
 import useWindowSize from "../utils/use-window-size";
@@ -20,23 +21,6 @@ const date = css`
 
 const hero = css`
 	color: #ffffff;
-
-	span {
-		display: inline-flex;
-		text-transform: uppercase;
-		font-size: 0.85rem;
-		letter-spacing: 2px;
-		font-weight: 600;
-
-		::before {
-			content: "";
-			width: 3em;
-			height: 2px;
-			background-color: #e350a0;
-			place-self: center;
-			margin-right: 1em;
-		}
-	}
 
 	h2 {
 		font-size: calc(2rem + 1.7vw);
@@ -98,7 +82,7 @@ const FrontPage: React.FC<Props> = () => {
 				css={hero}
 			>
 				{width > 700 ? (
-					<span>Oslo Pride</span>
+					<SubHeading>Oslo Pride</SubHeading>
 				) : (
 					<h1 css={date}>{config?.date}</h1>
 				)}

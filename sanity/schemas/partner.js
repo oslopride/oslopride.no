@@ -1,5 +1,3 @@
-import supportedLanguages from "../supported-languages";
-import { getDefaultLanguage } from "../utils/locale";
 import { MdBusinessCenter } from "react-icons/md";
 
 export default {
@@ -13,6 +11,12 @@ export default {
 			title: "Name",
 			type: "string",
 			validation: Rule => Rule.required()
+		},
+		{
+			name: "type",
+			title: "Partner type",
+			type: "reference",
+			to: { type: "partnerType" }
 		},
 		{
 			name: "description",
@@ -40,13 +44,6 @@ export default {
 	preview: {
 		select: {
 			title: "name"
-		},
-		prepare: ({ title }) => ({
-			title: title[getDefaultLanguage().id],
-			subtitle: supportedLanguages
-				.filter(lang => !lang.isDefault)
-				.map(lang => `${lang.id.toUpperCase()}: ${title[lang.id]}`)
-				.join(", ")
-		})
+		}
 	}
 };

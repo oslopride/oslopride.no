@@ -6,6 +6,7 @@ import pages from "./pages";
 import articles from "./articles";
 import partners from "./partners";
 import configuration from "./configuration";
+import events from "./events";
 
 import JSONpreview from "./previews/json-preview";
 import articleArchive from "./article-archive";
@@ -17,8 +18,13 @@ const hiddenDocTypes = listItem =>
 		"page",
 		"article",
 		"partner",
-		"configuration",
 		"articleArchive"
+		"webConfiguration",
+		"appConfiguration",
+		"event",
+		"venue",
+		"arena",
+		"partnerType"
 	].includes(listItem.getId());
 
 export default () =>
@@ -29,6 +35,7 @@ export default () =>
 			pages,
 			articles,
 			articleArchive,
+			events,
 			partners,
 			configuration,
 			...S.documentTypeListItems().filter(hiddenDocTypes)

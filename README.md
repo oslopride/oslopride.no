@@ -1,21 +1,60 @@
 # oslopride.no
 
-This is a monorepo of both the website (frontend) and CMS (backend) used on [oslopride.no](www.oslopride.no). It uses [yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/).
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
-## Development
+## Project Structure 🛠
 
-Install all dependencies using `yarn install`. To run commands within the different packages (`/sanity` and `/web`) prefix the yarn command with the package you want to target. For example: to run `yarn add react` inside the web package, use `yarn web add react`. You can also `cd` into the package, and use yarn regurarly (without the prefix).
+This is a monorepo managed by [yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/). It consists of the following projects:
 
-**Remember that data within sanity studio always is live data. Publishing changes on a sanity studio running locally will be visible and affect everyone else using the same dataset.**
+* [web](https://github.com/oslopride/oslopride.no/tree/master/web): The frontend website (https://www.oslopride.no) written in [TypeScript](https://www.typescriptlang.org) and [React](https://reactjs.org).
+* [sanity](https://github.com/oslopride/oslopride.no/tree/master/sanity): A headless CMS (content management system) using [Sanity](https://www.sanity.io).
 
-## Contributing
+## Contributing 🤝
 
-1. Find or create an issue describing the task. If you don't create an issue yourself, please choose an issue with the `priority` label if one is available.
-2. Assign yourself to the issue. If the issue already has an assignee, please confim with them that it's ok that you take over the issue.
-3. Create a branch for your pull request.
-4. As soon as you have commited anything (preferably as soon as possible), push it and create a draft pull requst. If the issue belonged to a project, add your pull request to the same project (but not milestone).
-5. Continue to work on your branch, and push often.
-6. When you are finnished and ready for review, remove the draft status of your pull request, and request review from one or two people. It's nice to ping them on slack also, as github isn't the best on notifications.
-7. When your pull request is approved, merge it whenever you are ready.
+**Please familiarise yourself with [our code of conduct](https://www.notion.so/Code-of-Conduct-ca45bbd8081e40498f50969588802d94) before contributing.**
 
-🏳️‍🌈
+We welcome all contributions 💕 If you have questions or feature requests, don't hesitate to [open an issue](https://github.com/oslopride/oslopride.no/issues/new/choose). If you haven't contributed to this project before, issues marked with [`good first issue`](https://github.com/oslopride/oslopride.no/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) might be a good place to start.
+
+When you have found (or created) an unassigned issue that describes something you want to try solve, add a comment asking if the issue is available and ready to be worked on. We'll try to reply as soon as possible.
+
+After you've gotten a green light, it's handy to create a draft pull request (PR) as soon as possible. This way you'll have a place to ask questions and get feedback. This also allows others insight to the progress. If you're not comfortable with creating a draft PR, you can use the issue as a place for questions and feedback.
+
+When you're ready for code review, mark the PR ready for review (or create a new PR if you didn't create a draft). Please make the title of your PR as short and concise as possible, as this will be displayed in the changelogs (don't worry too much about it, it can always be changed at a later point).
+
+Now it's time to prepare for constructive feedback! Always keep in mind that the feedback you'll get from a code review is not ment to insult or judge you in any way. It's just another person with a different point of view that want to help you make your PR as good as possible. When it comes to code, most things are subjective, and it's completely fine to disagree to other peoples opinions. If you disagree with something, explaining why in a constructive and collaborative way. The goal is to find a good solution together. And always remember, you're disagreeing with _something_ NOT _someone_.
+
+Iterate and work on you PR base on the feedback and discussions provided by code reviews until your PR gets approved. When it gets approved, we'll merge it as soon as possible.
+
+**Here's a cheat sheet of the contribution steps above:**
+
+1. Find (or create) an unassigned issue you want to work on.
+2. Ask in the issue if it is available and ready to be worked on.
+3. It's encouraged to create a draft PR as early as possible. This way you have a place to ask questions and get feedback. If you don't want to create a draft, that's completely fine. You can use the issue as a place for questions and feedback.
+4. When you're ready for code review, mark the PR as ready for review, or create the PR if you didn't create a draft.
+5. Try making the title of your PR as short and concise as possible, as it will be displayed in the changelogs.
+6. Iterate and work on you PR based on the feedback and discussions provided by code reviews until you PR gets approved.
+7. You're done!
+
+## Development Setup 🚀
+
+To setup the project locally you'll need to have [Node.js](https://nodejs.org/en/) and [Yarn v1.x](https://classic.yarnpkg.com) installed globally on your computer.
+
+Install all dependencies:
+
+```
+yarn install
+```
+
+To run commands within a specific project, prefix the command with the name of the project. For example, to add an additional dependency within [the web project](https://github.com/oslopride/oslopride.no/tree/master/web), run:
+
+```
+yarn web install <the package>
+```
+
+To start the projects locally, use `yarn <project> dev`, for example:
+
+```
+yarn web dev
+```
+
+It's strongly recommended to use an editor with integrated support for [prettier](https://prettier.io), like [Visual Studio Code](https://code.visualstudio.com). If you use Visual Studio Code, you can get a list of recommended extensions using the `Show Recommended Extensions` command.

@@ -83,6 +83,14 @@ export type SanityAnnouncement = SanityObject<
 	}
 >;
 
+export type SanityPartnerList = SanityObject<
+	"partnerList",
+	{
+		title: string;
+		partnerList: SanityObjectArray<SanityReference>;
+	}
+>;
+
 export type SanityAdvertisement = SanityObject<
 	"advertisement",
 	{
@@ -117,11 +125,31 @@ export type SanityCollapsibleList = SanityObject<
 	}
 >;
 
+export type SanityPartnerPreview = SanityObject<
+	"partnerPreview",
+	{
+		heading: string;
+		subHeading: string;
+		partners: SanityObjectArray<SanityReference>;
+	}
+>;
+
+export type SanityQuote = SanityObject<
+	"quote",
+	{
+		content: Locale<string>;
+		citation: string;
+	}
+>;
+
 export type SanityBlock =
 	| SanityAnnouncement
 	| SanityAdvertisement
 	| SanityTextArea
-	| SanityCollapsibleList;
+	| SanityPartnerList
+	| SanityCollapsibleList
+	| SanityPartnerPreview
+	| SanityQuote;
 
 /**
  *
@@ -175,6 +203,17 @@ export type SanityArchive = SanityDocument<
 		slug: { current: string };
 		title: Locale<string>;
 		subtitle: Locale<string>;
+    image: SanityImage;
+	}
+>;
+
+export type SanityPartner = SanityDocument<
+	"partner",
+	{
+		name: string;
+		type: SanityReference;
+		description: SanityBlockContent;
+		url: string;
 		image: SanityImage;
 	}
 >;

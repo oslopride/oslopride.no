@@ -1,22 +1,18 @@
 export default {
-	title: "Configuration",
-	name: "configuration",
+	name: "webConfiguration",
 	type: "document",
 	fields: [
 		{
-			title: "Date",
 			name: "date",
 			type: "string",
 			validate: Rule => Rule.required()
 		},
 		{
-			title: "Navigation Bar",
 			name: "navigationBar",
 			type: "array",
 			of: [{ type: "internalLink" }]
 		},
 		{
-			title: "Footer",
 			name: "footer",
 			type: "object",
 			options: { collapsible: true, collapsed: false },
@@ -26,25 +22,21 @@ export default {
 			],
 			fields: [
 				{
-					title: "Twitter",
 					name: "twitter",
 					type: "url",
 					fieldset: "social"
 				},
 				{
-					title: "Instagram",
 					name: "instagram",
 					type: "url",
 					fieldset: "social"
 				},
 				{
-					title: "Facebook",
 					name: "facebook",
 					type: "url",
 					fieldset: "social"
 				},
 				{
-					title: "Links",
 					name: "links",
 					fieldset: "links",
 					type: "array",
