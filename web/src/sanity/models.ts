@@ -203,7 +203,7 @@ export type SanityArchive = SanityDocument<
 		slug: { current: string };
 		title: Locale<string>;
 		subtitle: Locale<string>;
-    image: SanityImage;
+		image: SanityImage;
 	}
 >;
 

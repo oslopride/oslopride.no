@@ -13,6 +13,8 @@ type Props = {
 };
 
 const Block: React.FC<Props> = props => {
+	console.log("props.block", props.block._type);
+
 	switch (props.block._type) {
 		case "announcement":
 			return <Announcement content={props.block} />;

@@ -38,7 +38,8 @@ export default {
 			{
 				title: "Intro",
 				name: "intro",
-				type: "blocks"
+				type: "array",
+				of: [{ type: "block" }]
 			},
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
 		),
@@ -46,7 +47,8 @@ export default {
 			{
 				title: "Body",
 				name: "body",
-				type: "blocks"
+				type: "array",
+				of: [{ type: "block" }]
 			},
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
 		),
@@ -54,7 +56,8 @@ export default {
 			{
 				title: "Credits",
 				name: "credits",
-				type: "blocks"
+				type: "array",
+				of: [{ type: "block" }]
 			},
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
 		)

@@ -7,6 +7,7 @@ import theme from "../utils/theme";
 import { urlFor } from "../sanity";
 import { css } from "@emotion/core";
 import Block from "../blocks";
+import BlockContentToReact from "@sanity/block-content-to-react";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -59,6 +60,8 @@ const Page: React.FC<Props> = props => {
 	if (page === undefined) return <div>Loading...</div>;
 	if (page === null) return <div>404 - Not found</div>;
 
+	console.log(page);
+
 	return (
 		<>
 			<Hero
@@ -76,17 +79,17 @@ const Page: React.FC<Props> = props => {
 				<p css={date}>{page._createdAt.split("T")[0]}</p>
 				<h2>{page.title.no}</h2>
 				{page.credits.no.map(block => (
-					<Block key={block._key} block={block} />
+					<BlockContentToReact blocks={block} key={block._key} />
 				))}
 			</Hero>
 			<div css={intro}>
 				{page.intro.no.map(block => (
-					<Block key={block._key} block={block} />
+					<BlockContentToReact blocks={block} key={block._key} />
 				))}
 			</div>
 			<div css={body}>
 				{page.body.no.map(block => (
-					<Block key={block._key} block={block} />
+					<BlockContentToReact blocks={block} key={block._key} />
 				))}
 			</div>
 		</>

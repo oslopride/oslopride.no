@@ -18,7 +18,7 @@ const hiddenDocTypes = listItem =>
 		"page",
 		"article",
 		"partner",
-		"articleArchive"
+		"articleArchive",
 		"webConfiguration",
 		"appConfiguration",
 		"event",
