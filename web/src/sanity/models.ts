@@ -128,6 +128,14 @@ export type SanityPartnerPreview = SanityObject<
 	}
 >;
 
+export type SanitySplitPane = SanityObject<
+	"splitPane",
+	{
+		left: SanityTextArea;
+		right: SanityTextArea;
+	}
+>;
+
 export type SanityQuote = SanityObject<
 	"quote",
 	{
@@ -142,6 +150,7 @@ export type SanityBlock =
 	| SanityTextArea
 	| SanityCollapsibleList
 	| SanityPartnerPreview
+	| SanitySplitPane
 	| SanityQuote;
 
 /**
