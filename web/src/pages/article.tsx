@@ -60,8 +60,6 @@ const Page: React.FC<Props> = props => {
 	if (page === undefined) return <div>Loading...</div>;
 	if (page === null) return <div>404 - Not found</div>;
 
-	console.log(page);
-
 	return (
 		<>
 			<Hero
@@ -78,19 +76,13 @@ const Page: React.FC<Props> = props => {
 			>
 				<p css={date}>{page._createdAt.split("T")[0]}</p>
 				<h2>{page.title.no}</h2>
-				{page.credits.no.map(block => (
-					<BlockContentToReact blocks={block} key={block._key} />
-				))}
+				<BlockContentToReact blocks={page.credits.no} />
 			</Hero>
 			<div css={intro}>
-				{page.intro.no.map(block => (
-					<BlockContentToReact blocks={block} key={block._key} />
-				))}
+				<BlockContentToReact blocks={page.intro.no} />
 			</div>
 			<div css={body}>
-				{page.body.no.map(block => (
-					<BlockContentToReact blocks={block} key={block._key} />
-				))}
+				<BlockContentToReact blocks={page.body.no} />
 			</div>
 		</>
 	);

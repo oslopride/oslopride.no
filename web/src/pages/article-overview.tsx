@@ -7,6 +7,7 @@ import { urlFor } from "../sanity";
 import useSWR from "swr";
 import { SanityArchive, SanityArticleList } from "../sanity/models";
 import Block from "../blocks";
+import BlockContentToReact from "@sanity/block-content-to-react";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -118,9 +119,7 @@ const ArticleOverview: React.FC<Props> = () => {
 							<div css={preview}>
 								<p css={date}>{art._createdAt.split("T")[0]}</p>
 								<h3>{art.title.no}</h3>
-								{art.intro.no.map(block => (
-									<Block key={block._key} block={block} />
-								))}
+								<BlockContentToReact blocks={art.intro.no} />
 								<p>
 									<a href={"/article/" + art.slug.current}>Read more</a>
 								</p>
