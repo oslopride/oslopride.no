@@ -119,7 +119,7 @@ const ArticleOverview: React.FC<Props> = () => {
 							<div css={preview}>
 								<p css={date}>{art._createdAt.split("T")[0]}</p>
 								<h3>{art.title.no}</h3>
-								<BlockContentToReact blocks={art.intro.no} />
+								<BlockContentToReact blocks={art.intro?.no} />
 								<p>
 									<a href={"/article/" + art.slug.current}>Read more</a>
 								</p>

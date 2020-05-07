@@ -76,10 +76,10 @@ const Page: React.FC<Props> = props => {
 			>
 				<p css={date}>{page._createdAt.split("T")[0]}</p>
 				<h2>{page.title.no}</h2>
-				<BlockContentToReact blocks={page.credits.no} />
+				<BlockContentToReact blocks={page.credits?.no} />
 			</Hero>
 			<div css={intro}>
-				<BlockContentToReact blocks={page.intro.no} />
+				<BlockContentToReact blocks={page.intro?.no} />
 			</div>
 			<div css={body}>
 				<BlockContentToReact blocks={page.body.no} />
