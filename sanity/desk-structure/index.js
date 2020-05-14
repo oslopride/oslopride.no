@@ -9,6 +9,7 @@ import configuration from "./configuration";
 import events from "./events";
 
 import JSONpreview from "./previews/json-preview";
+import articleArchive from "./article-archive";
 
 // Hide document types that we already have a structure definition for
 const hiddenDocTypes = listItem =>
@@ -17,6 +18,7 @@ const hiddenDocTypes = listItem =>
 		"page",
 		"article",
 		"partner",
+		"articleArchive",
 		"webConfiguration",
 		"appConfiguration",
 		"event",
@@ -32,6 +34,7 @@ export default () =>
 			frontPage,
 			pages,
 			articles,
+			articleArchive,
 			events,
 			partners,
 			configuration,

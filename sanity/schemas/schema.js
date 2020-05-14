@@ -10,6 +10,7 @@ import frontPage from "./front-page";
 import webConfiguration from "./web-configuration";
 import appConfiguration from "./app-configuration";
 import article from "./article";
+import articleArchive from "./article-archive";
 import partner from "./partner";
 import event from "./event";
 import arena from "./arena";
@@ -40,6 +41,7 @@ export default createSchema({
 		frontPage,
 		page,
 		article,
+		articleArchive,
 		partner,
 		webConfiguration,
 		appConfiguration,

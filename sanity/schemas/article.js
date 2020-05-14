@@ -36,8 +36,26 @@ export default {
 		},
 		localize(
 			{
+				title: "Intro",
+				name: "intro",
+				type: "array",
+				of: [{ type: "block" }]
+			},
+			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
+		),
+		localize(
+			{
 				title: "Body",
 				name: "body",
+				type: "array",
+				of: [{ type: "block" }]
+			},
+			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
+		),
+		localize(
+			{
+				title: "Credits",
+				name: "credits",
 				type: "array",
 				of: [{ type: "block" }]
 			},

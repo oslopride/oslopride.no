@@ -180,6 +180,33 @@ export type SanityPage = SanityDocument<
 	}
 >;
 
+export type SanityArticle = SanityDocument<
+	"article",
+	{
+		slug: { current: string };
+		title: Locale<string>;
+		image: SanityImage;
+		intro: SanityObject<"localeBlocks", Locale<SanityObjectArray<SanityBlock>>>;
+		body: SanityObject<"localeBlocks", Locale<SanityObjectArray<SanityBlock>>>;
+		credits: SanityObject<
+			"localeBlocks",
+			Locale<SanityObjectArray<SanityBlock>>
+		>;
+	}
+>;
+
+export type SanityArticleList = Array<SanityArticle>;
+
+export type SanityArchive = SanityDocument<
+	"article",
+	{
+		slug: { current: string };
+		title: Locale<string>;
+		subtitle: Locale<string>;
+		image: SanityImage;
+	}
+>;
+
 export type SanityPartner = SanityDocument<
 	"partner",
 	{
