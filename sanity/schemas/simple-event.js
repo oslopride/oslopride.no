@@ -95,6 +95,11 @@ export default {
 					type: "string"
 				}
 			]
+		},
+		{
+			name: "documentOwner",
+			type: "string",
+			hidden: true
 		}
 	]
 };
