@@ -157,14 +157,37 @@ export type SanityBlock =
  *
  */
 
+export type SanitySimpleEvent = SanityDocument<
+	"simpleEvent",
+	{
+		official: boolean;
+		title: Locale<string>;
+		image: SanityImage;
+		description: SanityBlockContent;
+		occurance: Locale<string>;
+		price: Locale<string>;
+		eventLink: string;
+		organizer: string;
+	}
+>;
+
 export type SanityFrontPage = SanityDocument<
 	"frontPage",
 	{
 		header: SanityPageHeader;
-		blocks: SanityObject<
-			"localeBlocks",
-			Locale<SanityObjectArray<SanityBlock>>
+		headliners: Locale<
+			SanityObjectArray<
+				SanityObject<
+					"headliner",
+					{
+						title?: string;
+						subtitle?: string;
+					}
+				>
+			>
 		>;
+		featuredEvents: SanityObjectArray<SanitySimpleEvent>;
+		callToAction: Locale<SanityAdvertisement>;
 	}
 >;
 

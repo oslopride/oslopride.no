@@ -44,10 +44,40 @@ export default {
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
 		),
 		localize({
-			title: "Blocks",
-			name: "blocks",
-			type: "blocks"
-		})
+			title: "Headliners",
+			name: "headliners",
+			type: "array",
+			of: [
+				{
+					title: "Headliner",
+					name: "headliner",
+					type: "object",
+					fields: [
+						{ title: "Title", name: "title", type: "string" },
+						{ title: "Subtitle", name: "subtitle", type: "string" }
+					]
+				}
+			]
+		}),
+		{
+			title: "Featured Events",
+			name: "featuredEvents",
+			type: "array",
+			of: [{ type: "reference", to: [{ type: "simpleEvent" }] }],
+			validate: Rule => Rule.max(3)
+		},
+		localize({
+			title: "Call to Action",
+			name: "callToAction",
+			type: "advertisement"
+		}),
+		{
+			title: "Featured Articles",
+			name: "featuredArticles",
+			type: "array",
+			of: [{ type: "reference", to: [{ type: "article" }] }],
+			validate: Rule => Rule.max(3)
+		}
 	],
 	preview: {
 		prepare: () => ({ title: "Front Page" })
