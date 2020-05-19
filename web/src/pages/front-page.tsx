@@ -3,7 +3,6 @@ import { RouteComponentProps } from "@reach/router";
 import useSWR from "swr";
 import { urlFor } from "../sanity";
 import { SanityFrontPage } from "../sanity/models";
-import Block from "../blocks";
 import Hero from "../components/hero";
 import SubHeading from "../components/sub-heading";
 import { LinkButton } from "../components/link";
@@ -12,6 +11,7 @@ import useWindowSize from "../utils/use-window-size";
 import theme from "../utils/theme";
 import useConfig from "../utils/use-config";
 import { ClientError, ServerError } from "@sanity/client";
+import Advertisement from "../blocks/advertisement";
 
 const date = css`
 	font-size: 1rem;
@@ -102,9 +102,7 @@ const FrontPage: React.FC<Props> = () => {
 					))}
 				</ul>
 			</Hero>
-			{data.blocks.no.map(block => (
-				<Block key={block._key} block={block} />
-			))}
+			{data.callToAction && <Advertisement content={data.callToAction.no} />}
 		</>
 	);
 };

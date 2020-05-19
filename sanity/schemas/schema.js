@@ -16,6 +16,7 @@ import event from "./event";
 import arena from "./arena";
 import venue from "./venue";
 import partnerType from "./partner-type";
+import simpleEvent from "./simple-event";
 
 // Blocks
 import blocks from "./blocks";
@@ -49,6 +50,7 @@ export default createSchema({
 		arena,
 		venue,
 		partnerType,
+		simpleEvent,
 
 		blocks,
 		textArea,
