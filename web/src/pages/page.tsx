@@ -23,6 +23,12 @@ const hero = css`
 	}
 `;
 
+const body = css`
+	margin: 5vh auto 3rem auto;
+	width: 90vw;
+	max-width: 720px;
+`;
+
 type Props = { slug?: string } & RouteComponentProps;
 
 const Page: React.FC<Props> = props => {
@@ -53,9 +59,11 @@ const Page: React.FC<Props> = props => {
 				<h2>{page.header.no.title}</h2>
 				<p>{page.header.no.subtitle}</p>
 			</Hero>
-			{page.blocks.no.map(block => (
-				<Block key={block._key} block={block} />
-			))}
+			<div css={body}>
+				{page.blocks.no.map(block => (
+					<Block key={block._key} block={block} />
+				))}
+			</div>
 		</>
 	);
 };

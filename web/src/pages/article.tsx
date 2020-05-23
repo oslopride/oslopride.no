@@ -29,7 +29,8 @@ const hero = css`
 
 const body = css`
 	display: block;
-	width: 720px;
+	width: 90vw;
+	max-width: 720px;
 	margin-left: auto;
 	margin-right: auto;
 `;

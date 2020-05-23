@@ -96,12 +96,30 @@ const navigationStyle = css`
 			:before {
 				content: "";
 				display: block;
-				width: 50px;
+				width: 3rem;
 				height: 4px;
 				background-color: #e350a0;
 				position: absolute;
 				left: -0.5em;
 				top: 0.9em;
+			}
+		}
+	}
+
+	@media screen and (max-width: 930px) {
+		padding: 8rem 0rem;
+
+		li {
+			font-size: 2rem;
+
+			a {
+				padding-left: 2rem;
+
+				&:hover {
+					:before {
+						width: 1.5rem;
+					}
+				}
 			}
 		}
 	}

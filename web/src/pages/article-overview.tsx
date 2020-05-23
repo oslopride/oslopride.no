@@ -6,7 +6,6 @@ import { css } from "@emotion/core";
 import { urlFor } from "../sanity";
 import useSWR from "swr";
 import { SanityArchive, SanityArticleList } from "../sanity/models";
-import Block from "../blocks";
 import BlockContentToReact from "@sanity/block-content-to-react";
 
 type Props = { slug?: string } & RouteComponentProps;
@@ -28,9 +27,10 @@ const hero = css`
 
 const body = css`
 	display: block;
-	margin: -250px auto 0 auto;
+	margin: auto;
+	margin-top: calc(0vh - calc(5vh + 10.510423526567646vw));
 	width: 90vw;
-	max-width: 885px;
+	max-width: 720px;
 
 	p {
 		margin-bottom: 0;
@@ -54,9 +54,18 @@ const article = css`
 	min-height: 330px;
 	grid-template-columns: 1fr 1fr;
 	margin-bottom: 2rem;
+
+	div {
+		min-width: 50%;
+	}
+
+	@media screen and (max-width: 700px) {
+		grid-template-columns: 1fr;
+	}
 `;
 
 const image = (image: string) => css`
+	min-height: 330px;
 	height: 100%;
 	background-image: url(${image});
 	background-size: cover;
