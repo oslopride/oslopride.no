@@ -16,6 +16,7 @@ const headerStyle = (fixedHeader: boolean) => css`
 	display: block;
 	height: 6rem;
 	width: 100%;
+	margin: 0 auto;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -36,6 +37,10 @@ const headerStyle = (fixedHeader: boolean) => css`
 
 		span {
 			visibility: hidden;
+		}
+
+		@media screen and (max-width: 850px) {
+			left: 2vw;
 		}
 	}
 
