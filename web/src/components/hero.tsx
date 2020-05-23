@@ -3,12 +3,18 @@ import { css } from "@emotion/core";
 import { rightAngledTriangleHeight } from "../utils";
 import AngledImage, { angleDirection } from "./angled-image";
 
+const hero = (height: string) => css`
+	min-height: 400px;
+	height: ${height};
+`;
+
 const image = (height: string) => css`
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: ${height};
+	min-height: 350px;
 	z-index: -1;
 `;
 
@@ -66,7 +72,7 @@ const Hero: React.FC<Props> = props => {
 			: `calc(${totalImageHeight} - ${contentBottomToPageTop}px)`;
 
 	return (
-		<>
+		<div css={hero(totalImageHeight)}>
 			<AngledImage
 				direction={angleDirection}
 				angleHeight={`${triangleHeight}vw`}
@@ -79,7 +85,7 @@ const Hero: React.FC<Props> = props => {
 					{children}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
