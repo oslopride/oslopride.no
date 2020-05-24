@@ -11,9 +11,15 @@ type Props = {
 	content: SanityAdvertisement;
 };
 
-const articleBackDrop = () => css`
+const advertisementStyle = () => css`
 	margin: 7vw 0;
-
+	padding: 4vw 7vw;
+	display: flex;
+	justify-content: space-between;
+	flex-flow: row no-wrap;
+	@media (max-width: 599px) {
+		flex-flow: column-reverse wrap;
+	}
 	background: linear-gradient(
 		0deg,
 		${theme.color.background.pink} 80%,
@@ -26,18 +32,13 @@ const articleBackDrop = () => css`
 			#fff 30%
 		);
 	}
-	display: flex;
-	justify-content: space-between;
-
-	@media (max-width: 600px) {
-		flex-flow: column-reverse wrap;
-	}
-
-	padding: 3vw 7vw;
 
 	aside {
 		@media (min-width: 600px) {
 			width: 50vw;
+		}
+		@media (min-width: 1200px) {
+			max-height: 600px;
 		}
 		img {
 			width: 100%;
@@ -50,17 +51,16 @@ const articleBackDrop = () => css`
 
 const headerStyle = () => css`
 	margin: 4vw 0;
+	padding: 1rem 0 0 0;
 	@media (min-width: 600px) {
+		padding: 0 10vw 0 0;
 		width: 50vw;
 	}
 
 	h2 {
-		font-size: calc(1rem + 1.7vw);
-		margin: 2rem 0;
-
-		@media (min-width: 600px) {
-			max-width: 40vw;
-		}
+		font-size: 2.34rem;
+		line-height: 2.9rem;
+		margin: 1.5rem 0;
 	}
 
 	p {
@@ -94,7 +94,7 @@ const Advertisement: React.FC<Props> = props => {
 	const { content } = props;
 
 	return (
-		<article css={articleBackDrop()}>
+		<article css={advertisementStyle()}>
 			<header css={headerStyle()}>
 				<SubHeading>{content.category}</SubHeading>
 				<h2>{content.title}</h2>
@@ -118,8 +118,8 @@ const Advertisement: React.FC<Props> = props => {
 					<img
 						src={
 							urlFor(content.image)
-								.width(500)
-								.height(400)
+								.width(1024)
+								.height(768)
 								.url() || undefined
 						}
 					/>
