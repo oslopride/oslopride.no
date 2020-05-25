@@ -36,7 +36,7 @@ const globalStyles = css`
 	}
 
 	*:focus {
-		outline: 3px dotted ${theme.color.main.pink};
+		outline: 2px dotted ${theme.color.main.pink};
 	}
 
 	body {

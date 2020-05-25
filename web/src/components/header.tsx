@@ -8,6 +8,7 @@ import menu from "../assets/menu.svg";
 import menuWhite from "../assets/menu-white.svg";
 import close from "../assets/close.svg";
 import useConfig from "../utils/use-config";
+import theme from "../utils/theme";
 
 type Props = {};
 
@@ -74,7 +75,7 @@ const navigationStyle = css`
 	width: 930px;
 	max-width: 100vw;
 	height: 100vh;
-	background: #352176;
+	background: ${theme.color.main.purple};
 	display: flex;
 	flex-direction: column;
 	align-items: left;
