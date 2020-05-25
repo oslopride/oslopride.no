@@ -18,7 +18,7 @@ const hero = css`
 	}
 
 	p {
-		font-size: 1rem;
+		font-size: 1.1rem;
 		margin: 0;
 	}
 `;
@@ -26,7 +26,12 @@ const hero = css`
 const body = css`
 	margin: 5vh auto 3rem auto;
 	width: 90vw;
-	max-width: 720px;
+	max-width: 900px;
+
+	p {
+		font-size: 1.1rem;
+		margin: 0;
+	}
 `;
 
 type Props = { slug?: string } & RouteComponentProps;
@@ -48,13 +53,14 @@ const Page: React.FC<Props> = props => {
 				angleDirection="<"
 				anglePosition="after"
 				height="50vh"
-				color={theme.color.main.purple}
+				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(page.header.no.image)
 						.width(window.innerWidth)
 						.url() || ""
 				}
 				css={hero}
+				textPosition="center"
 			>
 				<h2>{page.header.no.title}</h2>
 				<p>{page.header.no.subtitle}</p>

@@ -30,16 +30,19 @@ const hero = css`
 const body = css`
 	display: block;
 	width: 90vw;
-	max-width: 720px;
+	max-width: 900px;
 	margin-left: auto;
 	margin-right: auto;
+	p,
+	blockquote,
+	ul {
+		font-size: 1.1rem;
+		line-height: 1.75rem;
+		margin-bottom: 2rem;
+	}
 `;
 
 const intro = css`
-	display: block;
-	width: 720px;
-	margin-left: auto;
-	margin-right: auto;
 	font-weight: 500;
 `;
 
@@ -67,7 +70,7 @@ const Page: React.FC<Props> = props => {
 				angleDirection="<"
 				anglePosition="after"
 				height="50vh"
-				color={theme.color.main.purple}
+				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(page.image)
 						.width(window.innerWidth)
@@ -79,7 +82,7 @@ const Page: React.FC<Props> = props => {
 				<h2>{page.title.no}</h2>
 				<BlockContentToReact blocks={page.credits?.no} />
 			</Hero>
-			<div css={intro}>
+			<div css={[body, intro]}>
 				<BlockContentToReact blocks={page.intro?.no} />
 			</div>
 			<div css={body}>

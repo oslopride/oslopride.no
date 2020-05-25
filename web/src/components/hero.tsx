@@ -6,6 +6,7 @@ import AngledImage, { angleDirection } from "./angled-image";
 const hero = (height: string) => css`
 	min-height: 400px;
 	height: ${height};
+	margin-bottom: -10rem;
 `;
 
 const image = (height: string) => css`
@@ -18,8 +19,18 @@ const image = (height: string) => css`
 	z-index: -1;
 `;
 
-const content = (marginBottom: string) => css`
-	padding: calc(7rem + 7vw) 7vw ${marginBottom};
+const defaultContent = (marginBottom: string) => css`
+	margin: 10rem 0 ${marginBottom} 8rem;
+	width: 90vw;
+	max-width: 900px;
+
+	@media screen and (max-width: 1200px) {
+		margin: 10rem auto ${marginBottom} auto;
+	}
+`;
+
+const centeredContent = (marginBottom: string) => css`
+	margin: 10rem auto ${marginBottom} auto;
 `;
 
 type Props = {
@@ -27,9 +38,10 @@ type Props = {
 	angleDirection: angleDirection;
 	height: string;
 	imageUrl: string;
-	color: string;
+	color: Array<string>;
 	overflow?: boolean;
 	className?: string;
+	textPosition?: "center" | "left";
 };
 
 const Hero: React.FC<Props> = props => {
@@ -69,7 +81,7 @@ const Hero: React.FC<Props> = props => {
 	const childrenWrapper =
 		overflow || contentBottomToPageTop === undefined
 			? "0"
-			: `calc(${totalImageHeight} - ${contentBottomToPageTop}px)`;
+			: `calc(${totalImageHeight} - ${contentBottomToPageTop}px - 0rem)`;
 
 	return (
 		<div css={hero(totalImageHeight)}>
@@ -81,7 +93,17 @@ const Hero: React.FC<Props> = props => {
 				css={image(totalImageHeight)}
 			/>
 			<div className={className}>
-				<div css={content(childrenWrapper)} ref={contentRef}>
+				<div
+					css={
+						props.textPosition === "center"
+							? [
+									defaultContent(childrenWrapper),
+									centeredContent(childrenWrapper)
+							  ]
+							: defaultContent(childrenWrapper)
+					}
+					ref={contentRef}
+				>
 					{children}
 				</div>
 			</div>

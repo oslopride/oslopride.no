@@ -26,6 +26,7 @@ const globalStyles = css`
 	#app {
 		height: 100%;
 		font-size: 18px;
+		color: #252525;
 	}
 
 	body {
@@ -40,6 +41,10 @@ const globalStyles = css`
 	main {
 		flex: 1 0 auto;
 		margin-bottom: 32px;
+
+		p {
+			font-size: 1.1rem;
+		}
 	}
 
 	footer {
