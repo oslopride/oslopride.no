@@ -7,6 +7,7 @@ import { hot } from "react-hot-loader/root";
 import { SWRConfig } from "swr";
 import sanity, { previewMode } from "./sanity";
 import App from "./app";
+import theme from "./utils/theme";
 
 WebFont.load({
 	typekit: {
@@ -27,6 +28,15 @@ const globalStyles = css`
 		height: 100%;
 		font-size: 18px;
 		color: #252525;
+	}
+
+	::selection {
+		background-color: ${theme.color.background.pink};
+		color: ${theme.color.main.purple};
+	}
+
+	*:focus {
+		outline: 3px dotted ${theme.color.main.pink};
 	}
 
 	body {
