@@ -1,22 +1,42 @@
+import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 
 import theme from "../utils/theme";
 
-const SubHeading = styled.span`
+const lineCss = css`
+	content: "";
+	width: 3em;
+	height: 2px;
+	background-color: ${theme.color.main.pink};
+	place-self: center;
+`;
+
+export type SubHeadingProps = { line: "left" | "right" | "both" };
+
+const SubHeading = styled.span<SubHeadingProps>`
 	display: inline-flex;
 	text-transform: uppercase;
 	font-size: 0.85rem;
 	letter-spacing: 2px;
 	font-weight: 600;
 
-	::before {
-		content: "";
-		width: 3em;
-		height: 2px;
-		background-color: ${theme.color.main.pink};
-		place-self: center;
-		margin-right: 1em;
-	}
+	${({ line }) =>
+		(line === "left" || line === "both") &&
+		css`
+			::before {
+				${lineCss}
+				margin-right: 1em;
+			}
+		`}
+
+	${({ line }) =>
+		(line === "right" || line === "both") &&
+		css`
+			::after {
+				${lineCss}
+				margin-left: 1em;
+			}
+		`}
 `;
 
 export default SubHeading;

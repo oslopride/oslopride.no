@@ -82,7 +82,7 @@ const FrontPage: React.FC<Props> = () => {
 				css={hero}
 			>
 				{width > 700 ? (
-					<SubHeading>Oslo Pride</SubHeading>
+					<SubHeading line="left">Oslo Pride</SubHeading>
 				) : (
 					<h1 css={date}>{config?.date}</h1>
 				)}
