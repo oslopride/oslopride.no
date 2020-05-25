@@ -52,7 +52,7 @@ const Page: React.FC<Props> = props => {
 			<Hero
 				angleDirection="<"
 				anglePosition="after"
-				height="50vh"
+				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(page.header.no.image)

@@ -28,7 +28,7 @@ const hero = css`
 const body = css`
 	display: block;
 	margin: auto;
-	margin-top: calc(calc(0vh - calc(5vh + 10.510423526567646vw)) - 10rem);
+	margin-top: calc(0vh - calc(5vh + 10.510423526567646vw));
 	width: 90vw;
 	max-width: 900px;
 
@@ -43,7 +43,7 @@ const body = css`
 
 	h3 {
 		margin: 0;
-		font-size: 2rem;
+		font-size: 1.75rem;
 	}
 `;
 
@@ -54,6 +54,11 @@ const article = css`
 	min-height: 330px;
 	grid-template-columns: 1fr 1fr;
 	margin-bottom: 2rem;
+
+	p {
+		font-size: 1.1rem;
+		line-height: 1.75rem;
+	}
 
 	div {
 		min-width: 50%;
@@ -79,6 +84,7 @@ const preview = css`
 const date = css`
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	font-size: 0.75rem !important;
 	margin-bottom: 0.5rem !important;
 	font-weight: 600;
 `;

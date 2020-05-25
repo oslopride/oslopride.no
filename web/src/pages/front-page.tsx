@@ -24,12 +24,14 @@ const hero = css`
 	color: #ffffff;
 
 	h2 {
-		font-size: 3.5rem;
+		font-size: 3rem;
+		line-height: 3.5rem;
 		margin: 2rem 0;
 	}
 
 	p {
 		font-size: 1.1rem;
+		line-height: 1.75rem;
 		margin: 0;
 	}
 
@@ -73,7 +75,7 @@ const FrontPage: React.FC<Props> = () => {
 			<Hero
 				angleDirection=">"
 				anglePosition="after"
-				height="760px"
+				height="720px"
 				color={[theme.color.main.purple, theme.color.main.pink]}
 				imageUrl={
 					urlFor(data.header.no.image)

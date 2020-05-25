@@ -53,6 +53,11 @@ const date = css`
 	font-weight: 600;
 `;
 
+const credits = css`
+	font-size: 1.1rem;
+	line-height: 1.75rem;
+`;
+
 const Page: React.FC<Props> = props => {
 	const { slug } = props;
 
@@ -69,7 +74,7 @@ const Page: React.FC<Props> = props => {
 			<Hero
 				angleDirection="<"
 				anglePosition="after"
-				height="50vh"
+				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(page.image)
@@ -80,7 +85,7 @@ const Page: React.FC<Props> = props => {
 			>
 				<p css={date}>{page._createdAt.split("T")[0]}</p>
 				<h2>{page.title.no}</h2>
-				<BlockContentToReact blocks={page.credits?.no} />
+				<BlockContentToReact blocks={page.credits?.no} css={credits} />
 			</Hero>
 			<div css={[body, intro]}>
 				<BlockContentToReact blocks={page.intro?.no} />

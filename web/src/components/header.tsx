@@ -41,7 +41,7 @@ const headerStyle = (fixedHeader: boolean) => css`
 		}
 
 		@media screen and (max-width: 850px) {
-			left: 2vw;
+			left: 1vw;
 		}
 	}
 
@@ -153,6 +153,10 @@ const buttonStyle = css`
 
 	background-repeat: no-repeat;
 	background-size: auto 30px;
+
+	@media screen and (max-width: 850px) {
+		right: calc(1vw + 1rem);
+	}
 `;
 
 const closeButton = (close: string) => css`
@@ -186,9 +190,9 @@ const Header: React.FC<Props> = () => {
 
 	React.useEffect(() => {
 		const scrollHandler = () => {
-			if (window.pageYOffset > 100) {
+			if (window.pageYOffset > 70) {
 				setFixedHeader(true);
-			} else if (window.pageYOffset <= 100) {
+			} else if (window.pageYOffset <= 70) {
 				setFixedHeader(false);
 			}
 		};
