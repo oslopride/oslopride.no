@@ -188,6 +188,7 @@ export type SanityFrontPage = SanityDocument<
 		>;
 		featuredEvents: SanityObjectArray<SanitySimpleEvent>;
 		callToAction: Locale<SanityAdvertisement>;
+		featuredArticles: SanityObjectArray<SanityArticle>;
 	}
 >;
 

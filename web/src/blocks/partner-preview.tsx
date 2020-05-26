@@ -63,7 +63,7 @@ const PartnerPreview: React.FC<Props> = ({
 
 	return (
 		<section>
-			<SubHeading>{heading}</SubHeading>
+			<SubHeading line="left">{heading}</SubHeading>
 			<h3>{subHeading}</h3>
 			<ul css={container}>
 				{orderedPartners.map(
