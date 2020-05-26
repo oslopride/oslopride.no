@@ -35,8 +35,8 @@ const globalStyles = css`
 		color: ${theme.color.main.purple};
 	}
 
-	*:focus {
-		outline: 2px dotted ${theme.color.main.pink};
+	button:focus {
+		outline: 1px dotted ${theme.color.background.pink};
 	}
 
 	body {
