@@ -96,7 +96,7 @@ const Advertisement: React.FC<Props> = props => {
 	return (
 		<article css={advertisementStyle()}>
 			<header css={headerStyle()}>
-				<SubHeading>{content.category}</SubHeading>
+				<SubHeading line="left">{content.category}</SubHeading>
 				<h2>{content.title}</h2>
 				<BlockContentToReact blocks={content.content} />
 				<ul>
