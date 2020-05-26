@@ -82,6 +82,7 @@ const navigationStyle = css`
 	padding: 14rem 3rem;
 	z-index: 100;
 	transition: right 0.65s;
+	overflow-y: scroll;
 
 	li {
 		list-style: none;
