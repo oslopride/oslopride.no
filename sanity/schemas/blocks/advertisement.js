@@ -51,7 +51,8 @@ export default {
 		{
 			title: "Color",
 			name: "color",
-			type: "string"
+			type: "string",
+			hidden: true
 		}
 	],
 	preview: {
