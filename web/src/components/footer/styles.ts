@@ -4,15 +4,22 @@ import styled from "@emotion/styled";
 export const StickyFooter = styled.footer`
 	background-color: ${theme.color.main.purple};
 	color: ${theme.color.text.white};
-	font-size: 16px;
+	font-size: 1rem;
 `;
 
 export const Footer = styled.div`
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-around;
-	width: 70%;
-	margin: 50px auto;
+	width: 90vw;
+	max-width: 900px;
+	margin: 2.75rem auto;
+
+	display: -ms-grid;
+	-ms-grid-columns: 3fr 2fr 1fr;
+
+	display: grid;
+	grid-template-columns: 3fr 2fr 1fr;
+	column-gap: 1rem;
+
+	padding: 2.5rem 0;
 
 	a {
 		color: ${theme.color.background.pink};
@@ -20,47 +27,23 @@ export const Footer = styled.div`
 
 	a,
 	p {
-		margin: 5px 0;
-	}
-
-	> div {
-		flex: 1;
-		margin: 0 20px;
-
-		:nth-of-type(1) {
-			flex: 2;
-		}
-	}
-
-	@media (max-width: 767px) {
-		text-align: center;
-
-		> div {
-			flex: 1 0 100%;
-			padding: 20px;
-		}
-
-		ul,
-		h3 {
-			margin-left: 0;
-		}
+		margin: 0.25rem 0;
 	}
 `;
 
 export const Image = styled.div`
 	img {
-		width: 180px;
+		width: 10rem;
 		fill: ${theme.color.text.white};
+		margin-left: -1rem;
 	}
 	h3 {
 		text-transform: uppercase;
-		margin-left: 20px;
 		margin-top: 8px;
 		font-weight: 500;
 	}
 
 	ul {
-		margin-left: 20px;
 		list-style: none;
 		padding: 0;
 	}
@@ -81,7 +64,7 @@ export const Shortcuts = styled.div`
 		padding: 0;
 
 		li {
-			margin: 5px 0;
+			margin: 0.25rem 0;
 		}
 	}
 `;

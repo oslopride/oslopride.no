@@ -31,6 +31,11 @@ const defaultContent = css`
 	@media screen and (max-width: 1200px) {
 		margin: auto;
 	}
+
+	@media screen and (min-width: 2000px) {
+		max-width: 1300px;
+		margin: auto;
+	}
 `;
 
 const centeredContent = css`

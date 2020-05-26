@@ -57,6 +57,17 @@ const hero = css`
 	}
 `;
 
+const body = css`
+	margin: 5vh auto 3rem auto;
+	width: 90vw;
+	max-width: 900px;
+
+	p {
+		font-size: 1.1rem;
+		margin: 0;
+	}
+`;
+
 type Props = {} & RouteComponentProps;
 
 const FrontPage: React.FC<Props> = () => {
@@ -105,10 +116,12 @@ const FrontPage: React.FC<Props> = () => {
 					))}
 				</ul>
 			</Hero>
-			{data.callToAction && <Advertisement content={data.callToAction.no} />}
-			{data.featuredArticles && (
-				<FeaturedArticles content={data.featuredArticles} />
-			)}
+			<div css={body}>
+				{data.callToAction && <Advertisement content={data.callToAction.no} />}
+				{data.featuredArticles && (
+					<FeaturedArticles content={data.featuredArticles} />
+				)}
+			</div>
 		</>
 	);
 };
