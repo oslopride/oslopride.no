@@ -7,6 +7,7 @@ import Hero from "../components/hero";
 import { css } from "@emotion/core";
 import theme from "../utils/theme";
 import useSWR from "swr";
+import Seo from "../components/seo";
 
 const hero = css`
 	color: #ffffff;
@@ -70,6 +71,25 @@ const Page: React.FC<Props> = props => {
 					<Block key={block._key} block={block} />
 				))}
 			</div>
+			{page.blocks.no.map(block => (
+				<Block key={block._key} block={block} />
+			))}
+			<Seo
+				openGraph={{
+					type: "website",
+					title: page.header.no.title,
+					description: page.header.no.subtitle,
+					url: `https://www.oslopride.no/${slug}`,
+					locale: "nb_NO",
+					image: {
+						url:
+							urlFor(page.header.no.image)
+								.width(1200)
+								.url() || "",
+						alt: page.header.no.subtitle
+					}
+				}}
+			/>
 		</>
 	);
 };

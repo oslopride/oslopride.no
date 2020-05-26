@@ -6,8 +6,8 @@ import Hero from "../components/hero";
 import theme from "../utils/theme";
 import { urlFor } from "../sanity";
 import { css } from "@emotion/core";
-import Block from "../blocks";
 import BlockContentToReact from "@sanity/block-content-to-react";
+import Seo from "../components/seo";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -58,16 +58,16 @@ const credits = css`
 	line-height: 1.75rem;
 `;
 
-const Page: React.FC<Props> = props => {
+const Article: React.FC<Props> = props => {
 	const { slug } = props;
 
-	const { data: page, error } = useSWR<SanityArticle>(
+	const { data: article, error } = useSWR<SanityArticle>(
 		`*[_type == "article" && slug.current == "${slug}"] | order(_updatedAt desc) [0]`
 	);
 
 	if (error) return <div>{JSON.stringify(error)}</div>;
-	if (page === undefined) return <div>Loading...</div>;
-	if (page === null) return <div>404 - Not found</div>;
+	if (article === undefined) return <div>Loading...</div>;
+	if (article === null) return <div>404 - Not found</div>;
 
 	return (
 		<>
@@ -77,24 +77,43 @@ const Page: React.FC<Props> = props => {
 				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl={
-					urlFor(page.image)
+					urlFor(article.image)
 						.width(window.innerWidth)
 						.url() || ""
 				}
 				css={hero}
 			>
-				<p css={date}>{page._createdAt.split("T")[0]}</p>
-				<h2>{page.title.no}</h2>
-				<BlockContentToReact blocks={page.credits?.no} css={credits} />
+				<p css={date}>{article._createdAt.split("T")[0]}</p>
+				<h2>{article.title.no}</h2>
+				<BlockContentToReact blocks={article.credits?.no} />
 			</Hero>
 			<div css={[body, intro]}>
-				<BlockContentToReact blocks={page.intro?.no} />
+				<BlockContentToReact blocks={article.intro?.no} />
 			</div>
 			<div css={body}>
-				<BlockContentToReact blocks={page.body.no} />
+				<BlockContentToReact blocks={article.body.no} />
 			</div>
+
+			<Seo
+				openGraph={{
+					type: "article",
+					title: article.title.no,
+					description: article.title.no, // TODO: Either intro must be converted to a string, or we need to add a string in sanity for this field
+					url: `https://www.oslopride.no/article/${slug}`,
+					locale: "nb_NO",
+					publishedAt: article._createdAt,
+					modifiedAt: article._updatedAt,
+					image: {
+						url:
+							urlFor(article.image)
+								.width(1200)
+								.url() || "",
+						alt: article.title.no
+					}
+				}}
+			/>
 		</>
 	);
 };
 
-export default Page;
+export default Article;
