@@ -12,6 +12,7 @@ import theme from "../utils/theme";
 import useConfig from "../utils/use-config";
 import { ClientError, ServerError } from "@sanity/client";
 import Advertisement from "../blocks/advertisement";
+import FeaturedArticles from "../blocks/featured-articles";
 
 const date = css`
 	font-size: 1rem;
@@ -59,7 +60,7 @@ type Props = {} & RouteComponentProps;
 const FrontPage: React.FC<Props> = () => {
 	const { width } = useWindowSize(500);
 	const { data, error } = useSWR<SanityFrontPage, ClientError | ServerError>(
-		`*[_id in ["global_frontPage", "drafts.global_frontPage"]] | order(_updatedAt desc) [0]`
+		`*[_id in ["global_frontPage", "drafts.global_frontPage"]] | order(_updatedAt desc) [0]{..., featuredArticles[]->{image, slug, title, _createdAt}}`
 	);
 	const config = useConfig();
 
@@ -103,6 +104,9 @@ const FrontPage: React.FC<Props> = () => {
 				</ul>
 			</Hero>
 			{data.callToAction && <Advertisement content={data.callToAction.no} />}
+			{data.featuredArticles && (
+				<FeaturedArticles content={data.featuredArticles} />
+			)}
 		</>
 	);
 };
