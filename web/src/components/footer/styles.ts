@@ -29,6 +29,12 @@ export const Footer = styled.div`
 	p {
 		margin: 0.25rem 0;
 	}
+
+	@media screen and (max-width: 720px) {
+		-ms-grid-columns: 1fr;
+		grid-template-columns: 1fr;
+		text-align: center;
+	}
 `;
 
 export const Image = styled.div`
