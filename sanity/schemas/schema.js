@@ -13,6 +13,7 @@ import article from "./article";
 import articleArchive from "./article-archive";
 import partner from "./partner";
 import event from "./event";
+import eventOverview from "./event-overview";
 import arena from "./arena";
 import venue from "./venue";
 import partnerType from "./partner-type";
@@ -47,6 +48,7 @@ export default createSchema({
 		webConfiguration,
 		appConfiguration,
 		event,
+		eventOverview,
 		arena,
 		venue,
 		partnerType,

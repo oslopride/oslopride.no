@@ -157,6 +157,8 @@ export type SanityBlock =
  *
  */
 
+export type SanitySimpleEventList = Array<SanitySimpleEvent>;
+
 export type SanitySimpleEvent = SanityDocument<
 	"simpleEvent",
 	{
@@ -164,7 +166,8 @@ export type SanitySimpleEvent = SanityDocument<
 		title: Locale<string>;
 		image: SanityImage;
 		description: SanityBlockContent;
-		occurance: Locale<string>;
+		startTime: string;
+		endTime: string;
 		price: Locale<string>;
 		eventLink: string;
 		organizer: string;
@@ -223,6 +226,16 @@ export type SanityArticleList = Array<SanityArticle>;
 
 export type SanityArchive = SanityDocument<
 	"article",
+	{
+		slug: { current: string };
+		title: Locale<string>;
+		subtitle: Locale<string>;
+		image: SanityImage;
+	}
+>;
+
+export type SanityEventPage = SanityDocument<
+	"simpleEvent",
 	{
 		slug: { current: string };
 		title: Locale<string>;

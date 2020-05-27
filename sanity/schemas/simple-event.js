@@ -53,37 +53,41 @@ export default {
 			},
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
 		),
-		localize({
-			title: "Occurance",
-			name: "occurance",
-			description: "When does the event occur?",
-			type: "string",
+		{
+			title: "Start time",
+			name: "startTime",
+			description: "When does the event begin?",
+			type: "datetime",
 			validation: Rule => Rule.required()
-		}),
-		localize({
+		},
+		{
+			title: "End time",
+			name: "endTime",
+			description: "When does the event end?",
+			type: "datetime",
+			validation: Rule => Rule.required()
+		},
+		{
 			title: "Price",
 			name: "price",
 			description: "Does the event cost anything?",
-			type: "string",
-			validation: Rule => Rule.required()
-		}),
+			type: "string"
+		},
 		{
 			title: "Event Link",
 			name: "eventLink",
 			type: "url",
 			validation: Rule => Rule.required()
 		},
-		localize({
+		{
 			title: "Organizer",
 			name: "organizer",
-			type: "string",
-			validation: Rule => Rule.required()
-		}),
+			type: "string"
+		},
 		{
 			title: "Contact",
 			name: "contact",
-			description:
-				"Only for internal use (if we need to get in touch with the organizers), not displayed on the website",
+			description: "For internal use, but will be publicly accessible",
 			type: "object",
 			fields: [
 				{
