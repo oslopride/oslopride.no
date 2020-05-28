@@ -3,17 +3,43 @@ import { css } from "@emotion/core";
 import { rightAngledTriangleHeight } from "../utils";
 import AngledImage, { angleDirection } from "./angled-image";
 
+const hero = (height: string) => css`
+	min-height: 400px;
+	height: ${height};
+	padding-top: 13rem;
+
+	@media screen and (max-width: 800px) {
+		padding-top: 8rem;
+	}
+`;
+
 const image = (height: string) => css`
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: ${height};
+	min-height: 350px;
 	z-index: -1;
 `;
 
-const content = (marginBottom: string) => css`
-	padding: calc(7rem + 7vw) 7vw ${marginBottom};
+const defaultContent = css`
+	width: 90vw;
+	max-width: 900px;
+	margin-left: 8rem;
+
+	@media screen and (max-width: 1200px) {
+		margin: auto;
+	}
+
+	@media screen and (min-width: 2000px) {
+		max-width: 1300px;
+		margin: auto;
+	}
+`;
+
+const centeredContent = css`
+	margin: auto;
 `;
 
 type Props = {
@@ -21,9 +47,10 @@ type Props = {
 	angleDirection: angleDirection;
 	height: string;
 	imageUrl: string;
-	color: string;
+	color: Array<string>;
 	overflow?: boolean;
 	className?: string;
+	textPosition?: "center" | "left";
 };
 
 const Hero: React.FC<Props> = props => {
@@ -33,23 +60,11 @@ const Hero: React.FC<Props> = props => {
 		height,
 		imageUrl,
 		color,
-		overflow,
 		className,
 		children
 	} = props;
-	// Distance from the bottom of the content to the top of the page
-	const [contentBottomToPageTop, setContentBottomToPageTop] = React.useState<
-		number | undefined
-	>(undefined);
-	const contentRef = React.useRef<HTMLDivElement>(null);
 
-	React.useLayoutEffect(() => {
-		if (contentRef.current) {
-			setContentBottomToPageTop(
-				contentRef.current.offsetTop + contentRef.current.offsetHeight
-			);
-		}
-	}, []);
+	const contentRef = React.useRef<HTMLDivElement>(null);
 
 	const triangleHeight = rightAngledTriangleHeight(100, 6);
 
@@ -60,13 +75,13 @@ const Hero: React.FC<Props> = props => {
 			? `calc(${height} + ${triangleHeight}vw)`
 			: `calc(${height} + (${triangleHeight}vw / 2))`;
 
-	const childrenWrapper =
-		overflow || contentBottomToPageTop === undefined
-			? "0"
-			: `calc(${totalImageHeight} - ${contentBottomToPageTop}px)`;
+	const contentClass =
+		props.textPosition === "center"
+			? [defaultContent, centeredContent]
+			: defaultContent;
 
 	return (
-		<>
+		<div css={hero(totalImageHeight)}>
 			<AngledImage
 				direction={angleDirection}
 				angleHeight={`${triangleHeight}vw`}
@@ -75,11 +90,11 @@ const Hero: React.FC<Props> = props => {
 				css={image(totalImageHeight)}
 			/>
 			<div className={className}>
-				<div css={content(childrenWrapper)} ref={contentRef}>
+				<div css={contentClass} ref={contentRef}>
 					{children}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

@@ -13,7 +13,7 @@ export default {
 			title: "URL",
 			name: "url",
 			type: "reference",
-			to: [{ type: "page" }, { type: "frontPage" }],
+			to: [{ type: "page" }, { type: "frontPage" }, { type: "articleArchive" }],
 			validate: Rule => Rule.required()
 		}
 	]

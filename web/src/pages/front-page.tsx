@@ -24,12 +24,14 @@ const hero = css`
 	color: #ffffff;
 
 	h2 {
-		font-size: calc(2rem + 1.7vw);
+		font-size: 3rem;
+		line-height: 3.5rem;
 		margin: 2rem 0;
 	}
 
 	p {
-		font-size: 1rem;
+		font-size: 1.1rem;
+		line-height: 1.75rem;
 		margin: 0;
 	}
 
@@ -55,6 +57,17 @@ const hero = css`
 	}
 `;
 
+const body = css`
+	margin: 5vh auto 3rem auto;
+	width: 90vw;
+	max-width: 900px;
+
+	p {
+		font-size: 1.1rem;
+		margin: 0;
+	}
+`;
+
 type Props = {} & RouteComponentProps;
 
 const FrontPage: React.FC<Props> = () => {
@@ -73,8 +86,8 @@ const FrontPage: React.FC<Props> = () => {
 			<Hero
 				angleDirection=">"
 				anglePosition="after"
-				height="100vh"
-				color={theme.color.main.purple}
+				height="720px"
+				color={[theme.color.main.purple, theme.color.main.pink]}
 				imageUrl={
 					urlFor(data.header.no.image)
 						.width(window.innerWidth)
@@ -104,9 +117,11 @@ const FrontPage: React.FC<Props> = () => {
 				</ul>
 			</Hero>
 			{data.callToAction && <Advertisement content={data.callToAction.no} />}
-			{data.featuredArticles && (
-				<FeaturedArticles content={data.featuredArticles} />
-			)}
+			<div css={body}>
+				{data.featuredArticles && (
+					<FeaturedArticles content={data.featuredArticles} />
+				)}
+			</div>
 		</>
 	);
 };

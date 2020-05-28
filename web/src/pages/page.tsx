@@ -18,7 +18,18 @@ const hero = css`
 	}
 
 	p {
-		font-size: 1rem;
+		font-size: 1.1rem;
+		margin: 0;
+	}
+`;
+
+const body = css`
+	margin: 5vh auto 3rem auto;
+	width: 90vw;
+	max-width: 900px;
+
+	p {
+		font-size: 1.1rem;
 		margin: 0;
 	}
 `;
@@ -41,21 +52,24 @@ const Page: React.FC<Props> = props => {
 			<Hero
 				angleDirection="<"
 				anglePosition="after"
-				height="50vh"
-				color={theme.color.main.purple}
+				height="500px"
+				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(page.header.no.image)
 						.width(window.innerWidth)
 						.url() || ""
 				}
 				css={hero}
+				textPosition="center"
 			>
 				<h2>{page.header.no.title}</h2>
 				<p>{page.header.no.subtitle}</p>
 			</Hero>
-			{page.blocks.no.map(block => (
-				<Block key={block._key} block={block} />
-			))}
+			<div css={body}>
+				{page.blocks.no.map(block => (
+					<Block key={block._key} block={block} />
+				))}
+			</div>
 		</>
 	);
 };

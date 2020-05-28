@@ -6,7 +6,6 @@ import { css } from "@emotion/core";
 import { urlFor } from "../sanity";
 import useSWR from "swr";
 import { SanityArchive, SanityArticleList } from "../sanity/models";
-import Block from "../blocks";
 import BlockContentToReact from "@sanity/block-content-to-react";
 
 type Props = { slug?: string } & RouteComponentProps;
@@ -21,16 +20,17 @@ const hero = css`
 	}
 
 	p {
-		font-size: 1rem;
+		font-size: 1.1rem;
 		margin: 0;
 	}
 `;
 
 const body = css`
 	display: block;
-	margin: -250px auto 0 auto;
+	margin: auto;
+	margin-top: calc(0vh - calc(5vh + 10.510423526567646vw));
 	width: 90vw;
-	max-width: 885px;
+	max-width: 900px;
 
 	p {
 		margin-bottom: 0;
@@ -43,7 +43,7 @@ const body = css`
 
 	h3 {
 		margin: 0;
-		font-size: 2rem;
+		font-size: 1.75rem;
 	}
 `;
 
@@ -54,9 +54,23 @@ const article = css`
 	min-height: 330px;
 	grid-template-columns: 1fr 1fr;
 	margin-bottom: 2rem;
+
+	p {
+		font-size: 1.1rem;
+		line-height: 1.75rem;
+	}
+
+	div {
+		min-width: 50%;
+	}
+
+	@media screen and (max-width: 700px) {
+		grid-template-columns: 1fr;
+	}
 `;
 
 const image = (image: string) => css`
+	min-height: 330px;
 	height: 100%;
 	background-image: url(${image});
 	background-size: cover;
@@ -70,6 +84,7 @@ const preview = css`
 const date = css`
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	font-size: 0.75rem !important;
 	margin-bottom: 0.5rem !important;
 	font-weight: 600;
 `;
@@ -92,14 +107,15 @@ const ArticleOverview: React.FC<Props> = () => {
 			<Hero
 				angleDirection="<"
 				anglePosition="after"
-				height="50vh"
-				color={theme.color.main.purple}
+				height="500px"
+				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(archive.image)
 						.width(window.innerWidth)
 						.url() || ""
 				}
 				css={hero}
+				textPosition="center"
 			>
 				<h2>{archive.title.no}</h2>
 				<p>{archive.subtitle.no}</p>

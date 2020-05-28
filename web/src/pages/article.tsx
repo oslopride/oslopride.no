@@ -29,16 +29,20 @@ const hero = css`
 
 const body = css`
 	display: block;
-	width: 720px;
+	width: 90vw;
+	max-width: 900px;
 	margin-left: auto;
 	margin-right: auto;
+	p,
+	blockquote,
+	ul {
+		font-size: 1.1rem;
+		line-height: 1.75rem;
+		margin-bottom: 2rem;
+	}
 `;
 
 const intro = css`
-	display: block;
-	width: 720px;
-	margin-left: auto;
-	margin-right: auto;
 	font-weight: 500;
 `;
 
@@ -47,6 +51,11 @@ const date = css`
 	letter-spacing: 1px;
 	margin-bottom: 0.5rem !important;
 	font-weight: 600;
+`;
+
+const credits = css`
+	font-size: 1.1rem;
+	line-height: 1.75rem;
 `;
 
 const Page: React.FC<Props> = props => {
@@ -65,8 +74,8 @@ const Page: React.FC<Props> = props => {
 			<Hero
 				angleDirection="<"
 				anglePosition="after"
-				height="50vh"
-				color={theme.color.main.purple}
+				height="500px"
+				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(page.image)
 						.width(window.innerWidth)
@@ -76,9 +85,9 @@ const Page: React.FC<Props> = props => {
 			>
 				<p css={date}>{page._createdAt.split("T")[0]}</p>
 				<h2>{page.title.no}</h2>
-				<BlockContentToReact blocks={page.credits?.no} />
+				<BlockContentToReact blocks={page.credits?.no} css={credits} />
 			</Hero>
-			<div css={intro}>
+			<div css={[body, intro]}>
 				<BlockContentToReact blocks={page.intro?.no} />
 			</div>
 			<div css={body}>
