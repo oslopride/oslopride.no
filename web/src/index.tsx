@@ -50,7 +50,6 @@ const globalStyles = css`
 
 	main {
 		flex: 1 0 auto;
-		margin-bottom: 32px;
 
 		p {
 			font-size: 1.1rem;
