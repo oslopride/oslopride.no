@@ -7,6 +7,7 @@ import { urlFor } from "../sanity";
 import useSWR from "swr";
 import { SanityArchive, SanityArticleList } from "../sanity/models";
 import BlockContentToReact from "@sanity/block-content-to-react";
+import Seo from "../components/seo";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -146,6 +147,23 @@ const ArticleOverview: React.FC<Props> = () => {
 					<p>No articles yet</p>
 				)}
 			</div>
+
+			<Seo
+				openGraph={{
+					type: "website",
+					title: archive.title.no,
+					description: archive.subtitle.no,
+					url: `https://www.oslopride.no/articles`,
+					locale: "nb_NO",
+					image: {
+						url:
+							urlFor(archive.image)
+								.width(1200)
+								.url() || "",
+						alt: archive.subtitle.no
+					}
+				}}
+			/>
 		</>
 	);
 };

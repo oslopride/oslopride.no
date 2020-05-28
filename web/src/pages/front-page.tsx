@@ -13,6 +13,7 @@ import useConfig from "../utils/use-config";
 import { ClientError, ServerError } from "@sanity/client";
 import Advertisement from "../blocks/advertisement";
 import FeaturedArticles from "../blocks/featured-articles";
+import Seo from "../components/seo";
 
 const date = css`
 	font-size: 1rem;
@@ -122,6 +123,22 @@ const FrontPage: React.FC<Props> = () => {
 					<FeaturedArticles content={data.featuredArticles} />
 				)}
 			</div>
+			<Seo
+				openGraph={{
+					title: "Hjem",
+					description: data.header.no.subtitle,
+					image: {
+						url:
+							urlFor(data.header.no.image)
+								.width(1200)
+								.url() || "",
+						alt: data.header.no.subtitle
+					},
+					locale: "nb_NO",
+					type: "website",
+					url: "https://www.oslopride.no"
+				}}
+			/>
 		</>
 	);
 };
