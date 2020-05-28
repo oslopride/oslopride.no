@@ -30,8 +30,9 @@ const hero = css`
 `;
 
 const body = css`
-	margin: 2rem auto;
+	margin: 5vh auto 3rem auto;
 	width: 90vw;
+	max-width: 1150px;
 
 	p {
 		margin-bottom: 0;
@@ -52,6 +53,7 @@ const body = css`
 
 const dateGroupHeader = css`
 	text-transform: capitalize;
+	flex: 1 1 100%;
 	@media (min-width: 600px) {
 		font-size: 2rem;
 		margin: 0 2rem;
@@ -62,20 +64,19 @@ const articleGroup = css`
 	display: flex;
 	flex-flow: row wrap;
 	align-content: flex-start;
+	justify-content: space-between;
 `;
 
 const article = css`
+	margin: 1rem 0;
+	@media (min-width: 600px) {
+		margin: 2rem;
+		flex: 0.5 1 0px;
+	}
 	display: flex;
 	flex-direction: column;
 	background-color: #f7f8fa;
-
-	@media (min-width: 600px) {
-		width: 40vw;
-		margin: 2rem;
-	}
-
 	min-height: 330px;
-	margin-bottom: 2rem;
 `;
 
 const organizerStyle = () => css`
@@ -91,7 +92,7 @@ const image = (image: string) => css`
 	align-items: flex-end;
 
 	@media (min-width: 600px) {
-		height: 350px;
+		height: 300px;
 	}
 	background-image: url(${image});
 	background-size: cover;
@@ -200,7 +201,7 @@ const EventOverview: React.FC<Props> = () => {
 				angleDirection="<"
 				anglePosition="after"
 				height="50vh"
-				color={theme.color.main.purple}
+				color={[theme.color.main.purple, theme.color.main.pink]}
 				imageUrl={
 					urlFor(archive.image)
 						.width(window.innerWidth)
@@ -225,7 +226,7 @@ const EventOverview: React.FC<Props> = () => {
 							</h2>
 							<div css={articleGroup}>
 								{group?.map(event => (
-									<div css={article} key={event._id}>
+									<article css={article} key={event._id}>
 										<div
 											css={image(
 												urlFor(event.image)
@@ -247,7 +248,7 @@ const EventOverview: React.FC<Props> = () => {
 											</div>
 											<h3>{event.title.no}</h3>
 											<div css={date}>
-												<time>
+												<time dateTime={event.startTime}>
 													{new Date(event.startTime).toLocaleTimeString(
 														"nb-NO",
 														{
@@ -257,7 +258,7 @@ const EventOverview: React.FC<Props> = () => {
 													)}
 												</time>
 												{" - "}
-												<time>
+												<time dateTime={event.endTime}>
 													{new Date(event.endTime).toLocaleTimeString("nb-NO", {
 														hour: "2-digit",
 														minute: "2-digit"
@@ -270,7 +271,7 @@ const EventOverview: React.FC<Props> = () => {
 										<a css={eventLink} href={event.eventLink}>
 											Gå til event
 										</a>
-									</div>
+									</article>
 								))}
 							</div>
 						</>

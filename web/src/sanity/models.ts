@@ -165,7 +165,7 @@ export type SanitySimpleEvent = SanityDocument<
 		official: boolean;
 		title: Locale<string>;
 		image: SanityImage;
-		description: SanityBlockContent;
+		description: Locale<SanityBlockContent>;
 		startTime: string;
 		endTime: string;
 		price: Locale<string>;
