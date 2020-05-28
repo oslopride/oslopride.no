@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import { css } from "@emotion/core";
-import useSWR from "swr";
 
 import { urlFor } from "../sanity";
 import { SanityPartnerPreview, SanityPartner, Locale } from "../sanity/models";
@@ -42,53 +41,76 @@ const partnerType = css`
 	font-weight: 400;
 `;
 
-type DereferencedSanityPartner = SanityPartner & { type: Locale<string> };
-
-type Props = {
-	content: SanityPartnerPreview;
+export type DereferencedSanityPartner = Omit<SanityPartner, "type"> & {
+	type: { name: Locale<string>; ordinal: number };
 };
 
-const PartnerPreview: React.FC<Props> = ({
-	content: { partners, heading, subHeading }
-}) => {
-	const refList = partners.map(ref => ref._ref);
-	const { data } = useSWR<DereferencedSanityPartner[]>(
-		`*[_id in ${JSON.stringify(refList)}]{..., "type": type->name}`
+type PartnerGroupProps = {
+	name: string;
+	partners: Pick<SanityPartner, "image" | "name" | "url">[];
+};
+
+const PartnerGroup: React.FC<PartnerGroupProps> = ({ name, partners }) => (
+	<ul>
+		{partners.map(partner => (
+			<li key={partner.name} css={partnerItem}>
+				<a
+					href={partner.url}
+					css={css`
+						text-align: center;
+					`}
+				>
+					<img
+						css={logo}
+						src={
+							urlFor(partner.image)
+								.width(300)
+								.url() || undefined
+						}
+					/>
+				</a>
+				<span css={partnerType}>{partner.name}</span>
+			</li>
+		))}
+	</ul>
+);
+
+type PartnerPreviewProps = {
+	content: DereferencedSanityPartner[];
+};
+
+const PartnerPreview: React.FC<PartnerPreviewProps> = ({ content }) => {
+	console.log(content);
+	const groupedPartners = content.reduce<Record<number, PartnerGroupProps>>(
+		(groups, partner) => {
+			const existingGroup = groups[partner.type.ordinal];
+			if (existingGroup) {
+				existingGroup.partners.push(partner);
+			} else {
+				groups[partner.type.ordinal] = {
+					name: partner.type.name.no,
+					partners: [partner]
+				};
+			}
+			return groups;
+		},
+		{}
 	);
 
-	// sanity query does not return documents in same order as reference array
-	const orderedPartners = useMemo(() => {
-		return data ? refList.map(ref => data.find(doc => doc._id === ref)) : [];
-	}, [data]);
+	console.log(groupedPartners);
 
 	return (
 		<section>
-			<SubHeading line="left">{heading}</SubHeading>
-			<h3>{subHeading}</h3>
+			<SubHeading line="left">Støtte og sponsor</SubHeading>
+			<h3>Våre partnere</h3>
 			<ul css={container}>
-				{orderedPartners.map(
-					partner =>
-						partner && (
-							<li key={partner.name} css={partnerItem}>
-								<a
-									href={partner.url}
-									css={css`
-										text-align: center;
-									`}
-								>
-									<img
-										css={logo}
-										src={
-											urlFor(partner.image)
-												.width(300)
-												.url() || undefined
-										}
-									/>
-								</a>
-								<span css={partnerType}>{partner.type.no}</span>
-							</li>
-						)
-				)}
+				{Object.values(groupedPartners).map(group => (
+					<PartnerGroup
+						key={group.name}
+						name={group.name}
+						partners={group.partners}
+					/>
+				))}
 			</ul>
 		</section>
 	);
