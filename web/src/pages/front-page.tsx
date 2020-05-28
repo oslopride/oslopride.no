@@ -116,8 +116,8 @@ const FrontPage: React.FC<Props> = () => {
 					))}
 				</ul>
 			</Hero>
+			{data.callToAction && <Advertisement content={data.callToAction.no} />}
 			<div css={body}>
-				{data.callToAction && <Advertisement content={data.callToAction.no} />}
 				{data.featuredArticles && (
 					<FeaturedArticles content={data.featuredArticles} />
 				)}
