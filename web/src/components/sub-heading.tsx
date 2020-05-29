@@ -11,7 +11,7 @@ const lineCss = css`
 	place-self: center;
 `;
 
-export type SubHeadingProps = { line: "left" | "right" | "both" };
+export type SubHeadingProps = { line: "left" | "right" | "both" | "line-only" };
 
 const SubHeading = styled.span<SubHeadingProps>`
 	display: inline-flex;
@@ -35,6 +35,14 @@ const SubHeading = styled.span<SubHeadingProps>`
 			::after {
 				${lineCss}
 				margin-left: 1em;
+			}
+		`}
+		
+	${({ line }) =>
+		line === "line-only" &&
+		css`
+			::after {
+				${lineCss}
 			}
 		`}
 `;

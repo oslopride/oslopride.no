@@ -24,6 +24,7 @@ const image = (height: string) => css`
 `;
 
 const defaultContent = css`
+	position: relative;
 	width: 90vw;
 	max-width: 900px;
 	margin-left: 8rem;

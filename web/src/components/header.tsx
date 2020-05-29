@@ -20,6 +20,7 @@ const headerStyle = (fixedHeader: boolean) => css`
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: 10;
 
 	background-color: ${fixedHeader ? "#fff" : "transparent"};
 

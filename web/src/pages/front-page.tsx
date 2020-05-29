@@ -17,6 +17,7 @@ import Seo from "../components/seo";
 import PartnerPreview, {
 	DereferencedSanityPartner
 } from "../blocks/partner-preview";
+import Headliners from "../blocks/headliners";
 
 const date = css`
 	font-size: 1rem;
@@ -84,6 +85,7 @@ const FrontPage: React.FC<Props> = () => {
 		`*[_id in ["global_frontPage", "drafts.global_frontPage"]] | order(_updatedAt desc) [0]
 		{...,
 		featuredArticles[]->{image, slug, title, _createdAt},
+		featuredEvents[]->{image, title, description},
 		"partners": *[_type == "partner"]{image, name, url, type->{name, ordinal}}
 		}`
 	);
@@ -128,6 +130,12 @@ const FrontPage: React.FC<Props> = () => {
 					))}
 				</ul>
 			</Hero>
+			{data.headliners.no.length > 0 && (
+				<Headliners
+					content={data.headliners}
+					featuredEvents={data.featuredEvents}
+				/>
+			)}
 			{data.callToAction && <Advertisement content={data.callToAction.no} />}
 			<div css={body}>
 				{data.featuredArticles && (
