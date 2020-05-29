@@ -1,5 +1,5 @@
 import { MdEvent } from "react-icons/md";
-import { localize } from "../utils/locale";
+import { getDefaultLanguage, localize } from "../utils/locale";
 
 export default {
 	title: "Event",
@@ -104,6 +104,25 @@ export default {
 			name: "documentOwner",
 			type: "string",
 			hidden: true
+		}
+	],
+	preview: {
+		select: {
+			title: "title",
+			image: "image",
+			startTime: "startTime"
+		},
+		prepare: ({ title, image, startTime }) => ({
+			title: title[getDefaultLanguage().id],
+			subtitle: new Date(startTime).toLocaleString(),
+			media: image
+		})
+	},
+	orderings: [
+		{
+			title: "Start time",
+			name: "startTime",
+			by: [{ field: "startTime", direction: "asc" }]
 		}
 	]
 };

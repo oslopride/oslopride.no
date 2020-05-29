@@ -33,6 +33,6 @@ export default {
 		}
 	],
 	preview: {
-		prepare: () => ({ title: "Front Page" })
+		prepare: () => ({ title: "Event Overview" })
 	}
 };
