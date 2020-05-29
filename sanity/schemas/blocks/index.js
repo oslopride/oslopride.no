@@ -3,7 +3,6 @@ import announcement from "./announcement";
 import textArea from "./text-area";
 import partnerList from "./partner-list";
 import collapsible from "./collapsible";
-import partnerPreview from "./partner-preview";
 import quote from "./quote";
 
 export default {
@@ -25,9 +24,6 @@ export default {
 		},
 		{
 			type: collapsible.name
-		},
-		{
-			type: partnerPreview.name
 		},
 		{
 			type: quote.name

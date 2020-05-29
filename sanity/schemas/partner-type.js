@@ -13,7 +13,11 @@ export default {
 				type: "string"
 			},
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
-		)
+		),
+		{
+			name: "ordinal",
+			type: "number"
+		}
 	],
 	preview: {
 		select: {

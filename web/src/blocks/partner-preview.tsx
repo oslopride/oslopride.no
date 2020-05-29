@@ -1,94 +1,143 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { css } from "@emotion/core";
-import useSWR from "swr";
 
 import { urlFor } from "../sanity";
-import { SanityPartnerPreview, SanityPartner, Locale } from "../sanity/models";
+import { SanityPartner, Locale } from "../sanity/models";
 import SubHeading from "../components/sub-heading";
+import theme from "../utils/theme";
 
 const container = css`
-	padding: 0;
-	display: flex;
-	flex-wrap: wrap;
-	@media (max-width: 600px) {
-		justify-content: space-between;
+	padding: min(10vw, 100px) 7vw;
+	margin-top: 135px;
+	background-color: ${theme.color.background.lightPurple};
+
+	h3 {
+		font-size: 2.34rem;
 	}
 `;
 
 const logo = css`
-	margin-bottom: 1.3em;
-	max-height: 150px;
-	max-width: 300px;
-	@media (min-width: 600px) {
-		max-height: 125px;
-		max-width: 250px;
+	max-height: 120px;
+	max-width: 220px;
+`;
+
+const partnerContainer = css`
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+	flex-wrap: wrap;
+	padding: 0;
+
+	li:not(:last-child) {
+		margin-right: 40px;
 	}
 `;
 
-const partnerItem = css`
+const groupContainer = css`
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	flex-direction: column;
+`;
+
+const groupItem = css`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-	margin: 1em;
+	align-items: flex-start;
+	padding: 30px 0;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid ${theme.color.text.grey};
+	}
+
+	h4 {
+		margin-top: 0;
+		text-transform: uppercase;
+		font-size: 0.9rem;
+		letter-spacing: 0.05rem;
+	}
+
 	@media (min-width: 600px) {
-		margin: 2em;
+		flex-direction: row;
+		align-items: center;
+
+		h4 {
+			width: 230px;
+			margin-bottom: 0;
+		}
 	}
 `;
 
-const partnerType = css`
-	font-size: 0.9rem;
-	text-transform: uppercase;
-	text-align: center;
-	font-weight: 400;
-`;
-
-type DereferencedSanityPartner = SanityPartner & { type: Locale<string> };
-
-type Props = {
-	content: SanityPartnerPreview;
+export type DereferencedSanityPartner = Omit<SanityPartner, "type"> & {
+	type: { name: Locale<string>; ordinal: number };
 };
 
-const PartnerPreview: React.FC<Props> = ({
-	content: { partners, heading, subHeading }
-}) => {
-	const refList = partners.map(ref => ref._ref);
-	const { data } = useSWR<DereferencedSanityPartner[]>(
-		`*[_id in ${JSON.stringify(refList)}]{..., "type": type->name}`
+type PartnerGroupProps = {
+	name: string;
+	partners: Pick<SanityPartner, "image" | "name" | "url">[];
+};
+
+const PartnerGroup: React.FC<PartnerGroupProps> = ({ name, partners }) => (
+	<li css={groupItem}>
+		<h4>{name}</h4>
+		<ul css={partnerContainer}>
+			{partners.map(partner => (
+				<li key={partner.name}>
+					<a
+						href={partner.url}
+						css={css`
+							text-align: center;
+						`}
+					>
+						<img
+							css={logo}
+							src={
+								urlFor(partner.image)
+									.width(300)
+									.url() || undefined
+							}
+						/>
+					</a>
+				</li>
+			))}
+		</ul>
+	</li>
+);
+
+type PartnerPreviewProps = {
+	content: DereferencedSanityPartner[];
+};
+
+const PartnerPreview: React.FC<PartnerPreviewProps> = ({ content }) => {
+	const groupedPartners = content.reduce<Record<number, PartnerGroupProps>>(
+		(groups, partner) => {
+			const existingGroup = groups[partner.type.ordinal];
+			if (existingGroup) {
+				existingGroup.partners.push(partner);
+			} else {
+				groups[partner.type.ordinal] = {
+					name: partner.type.name.no,
+					partners: [partner]
+				};
+			}
+			return groups;
+		},
+		{}
 	);
 
-	// sanity query does not return documents in same order as reference array
-	const orderedPartners = useMemo(() => {
-		return data ? refList.map(ref => data.find(doc => doc._id === ref)) : [];
-	}, [data]);
-
 	return (
-		<section>
-			<SubHeading line="left">{heading}</SubHeading>
-			<h3>{subHeading}</h3>
-			<ul css={container}>
-				{orderedPartners.map(
-					partner =>
-						partner && (
-							<li key={partner.name} css={partnerItem}>
-								<a
-									href={partner.url}
-									css={css`
-										text-align: center;
-									`}
-								>
-									<img
-										css={logo}
-										src={
-											urlFor(partner.image)
-												.width(300)
-												.url() || undefined
-										}
-									/>
-								</a>
-								<span css={partnerType}>{partner.type.no}</span>
-							</li>
-						)
-				)}
+		<section css={container}>
+			<SubHeading line="left">Støtte og sponsor</SubHeading>
+			<h3>Våre partnere</h3>
+			<ul css={groupContainer}>
+				{Object.values(groupedPartners).map(group => (
+					<PartnerGroup
+						key={group.name}
+						name={group.name}
+						partners={group.partners}
+					/>
+				))}
 			</ul>
 		</section>
 	);
