@@ -14,6 +14,9 @@ import { ClientError, ServerError } from "@sanity/client";
 import Advertisement from "../blocks/advertisement";
 import FeaturedArticles from "../blocks/featured-articles";
 import Seo from "../components/seo";
+import PartnerPreview, {
+	DereferencedSanityPartner
+} from "../blocks/partner-preview";
 
 const date = css`
 	font-size: 1rem;
@@ -71,10 +74,18 @@ const body = css`
 
 type Props = {} & RouteComponentProps;
 
+type SanityQueryResult = SanityFrontPage & {
+	partners: DereferencedSanityPartner[];
+};
+
 const FrontPage: React.FC<Props> = () => {
 	const { width } = useWindowSize(500);
-	const { data, error } = useSWR<SanityFrontPage, ClientError | ServerError>(
-		`*[_id in ["global_frontPage", "drafts.global_frontPage"]] | order(_updatedAt desc) [0]{..., featuredArticles[]->{image, slug, title, _createdAt}}`
+	const { data, error } = useSWR<SanityQueryResult, ClientError | ServerError>(
+		`*[_id in ["global_frontPage", "drafts.global_frontPage"]] | order(_updatedAt desc) [0]
+		{...,
+		featuredArticles[]->{image, slug, title, _createdAt},
+		"partners": *[_type == "partner"]{image, name, url, type->{name, ordinal}}
+		}`
 	);
 	const config = useConfig();
 
@@ -123,6 +134,7 @@ const FrontPage: React.FC<Props> = () => {
 					<FeaturedArticles content={data.featuredArticles} />
 				)}
 			</div>
+			{data.partners && <PartnerPreview content={data.partners} />}
 			<Seo
 				openGraph={{
 					title: "Hjem",
