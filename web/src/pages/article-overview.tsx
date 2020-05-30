@@ -91,7 +91,7 @@ const date = css`
 
 const ArticleOverview: React.FC<Props> = () => {
 	const { data: articles } = useSWR<SanityArticleList>(
-		`*[_type == "article"] | order(_updatedAt desc)`
+		`*[_type == "article"] | order(_createdAt desc)`
 	);
 
 	const { data: archive, error } = useSWR<SanityArchive>(
