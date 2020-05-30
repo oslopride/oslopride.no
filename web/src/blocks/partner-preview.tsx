@@ -7,7 +7,7 @@ import SubHeading from "../components/sub-heading";
 import theme from "../utils/theme";
 
 const container = css`
-	padding: min(10vw, 100px) 7vw;
+	padding: min(10vw, 100px) 7vw min(10vw, 40px) 7vw;
 	margin-top: 135px;
 	background-color: ${theme.color.background.lightPurple};
 
@@ -17,8 +17,11 @@ const container = css`
 `;
 
 const logo = css`
-	max-height: 120px;
-	max-width: 220px;
+	display: block;
+	height: 150px;
+	width: 150px;
+	object-fit: contain;
+	object-position: 50% 50%;
 `;
 
 const partnerContainer = css`
@@ -27,10 +30,20 @@ const partnerContainer = css`
 	list-style: none;
 	flex-wrap: wrap;
 	padding: 0;
+	width: 100%;
 
 	li:not(:last-child) {
-		margin-right: 40px;
+		margin-right: 1rem;
 	}
+
+	justify-content: space-evenly;
+	@media (min-width: 600px) {
+		justify-content: flex-start;
+	}
+`;
+
+const partnerItem = css`
+	margin-bottom: 1rem;
 `;
 
 const groupContainer = css`
@@ -56,6 +69,7 @@ const groupItem = css`
 		text-transform: uppercase;
 		font-size: 0.9rem;
 		letter-spacing: 0.05rem;
+		flex-shrink: 0;
 	}
 
 	@media (min-width: 600px) {
@@ -83,18 +97,13 @@ const PartnerGroup: React.FC<PartnerGroupProps> = ({ name, partners }) => (
 		<h4>{name}</h4>
 		<ul css={partnerContainer}>
 			{partners.map(partner => (
-				<li key={partner.name}>
-					<a
-						href={partner.url}
-						css={css`
-							text-align: center;
-						`}
-					>
+				<li css={partnerItem} key={partner.name}>
+					<a href={partner.url}>
 						<img
 							css={logo}
 							src={
 								urlFor(partner.image)
-									.width(300)
+									.width(200)
 									.url() || undefined
 							}
 						/>
@@ -128,8 +137,7 @@ const PartnerPreview: React.FC<PartnerPreviewProps> = ({ content }) => {
 
 	return (
 		<section css={container}>
-			<SubHeading line="left">Støtte og sponsor</SubHeading>
-			<h3>Våre partnere</h3>
+			<SubHeading line="left">Våre partnere</SubHeading>
 			<ul css={groupContainer}>
 				{Object.values(groupedPartners).map(group => (
 					<PartnerGroup
