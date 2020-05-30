@@ -235,6 +235,12 @@ export type SanityPartnerPage = SanityDocument<
 		title: Locale<string>;
 		subtitle: Locale<string>;
 		image: SanityImage;
+		callToAction: Locale<{
+			title: string;
+			subtitle: string;
+			link?: SanityInternalLink;
+			description: SanityBlockContent;
+		}>;
 	}
 >;
 

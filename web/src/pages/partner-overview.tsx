@@ -8,6 +8,9 @@ import useSWR from "swr";
 import { SanityPartnerList, SanityPartnerPage } from "../sanity/models";
 import Seo from "../components/seo";
 import PartnerList from "../blocks/partner-list";
+import SubHeading from "../components/sub-heading";
+import BlockContentToReact from "@sanity/block-content-to-react";
+import { LinkButton } from "../components/link";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -33,8 +36,6 @@ const body = css`
 	max-width: 900px;
 
 	p {
-		margin-bottom: 0;
-
 		a {
 			color: ${theme.color.main.pink};
 		}
@@ -44,6 +45,20 @@ const body = css`
 		margin: 0;
 		font-size: 1.75rem;
 	}
+`;
+
+const callToActionStyle = css`
+	text-align: center;
+	margin: 0 10vw;
+	
+	h2 {
+		margin: 2rem 0;
+	)
+`;
+
+const linkButtonWrapper = css`
+	display: block;
+	padding: 2rem;
 `;
 
 const PartnerOverview: React.FC<Props> = () => {
@@ -81,6 +96,23 @@ const PartnerOverview: React.FC<Props> = () => {
 
 			<div css={body}>
 				<PartnerList content={partners} />
+
+				{page.callToAction && page.callToAction.no && (
+					<div css={callToActionStyle}>
+						<SubHeading color={theme.color.main.pink} line="both">
+							{page.callToAction.no.title}
+						</SubHeading>
+						<h2>{page.callToAction.no.subtitle}</h2>
+						{page.callToAction.no.description && (
+							<BlockContentToReact blocks={page.callToAction.no.description} />
+						)}
+						{page.callToAction.no.link && (
+							<div css={linkButtonWrapper}>
+								<LinkButton link={page.callToAction.no.link} />
+							</div>
+						)}
+					</div>
+				)}
 			</div>
 
 			<Seo
