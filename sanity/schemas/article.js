@@ -55,7 +55,8 @@ export default {
 						type: "image",
 						options: { hotspot: true }
 					},
-					{ type: "youtube" }
+					{ type: "youtube" },
+					{ type: "iframe" }
 				]
 			},
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)

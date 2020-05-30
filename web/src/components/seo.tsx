@@ -44,16 +44,16 @@ const Seo: React.FC<Props> = props => {
 			<meta property="og:image:alt" content={props.openGraph.image.alt} />
 			<meta property="og:type" content={props.openGraph.type} />
 			{props.openGraph.type === "article" && (
-				<>
-					<meta
-						property="og:article:published_time"
-						content={props.openGraph.publishedAt}
-					/>
-					<meta
-						property="og:article:modified_time"
-						content={props.openGraph.modifiedAt}
-					/>
-				</>
+				<meta
+					property="og:article:published_time"
+					content={props.openGraph.publishedAt.toString()}
+				/>
+			)}
+			{props.openGraph.type === "article" && (
+				<meta
+					property="og:article:modified_time"
+					content={props.openGraph.modifiedAt.toString()}
+				/>
 			)}
 		</Helmet>
 	);

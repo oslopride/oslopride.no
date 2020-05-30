@@ -4,6 +4,16 @@ declare module "@sanity/block-content-to-react" {
 
 	const content: React.FC<{
 		blocks: SanityObjectArray<SanityBlockContent>;
+		serializers?: {
+			types: {
+				[key: string]: React.FC | React.Component;
+			};
+		};
+		imageOptions?: {
+			[key: string]: string | number;
+		};
+		dataset?: string;
+		projectId?: string;
 	}>;
 
 	export default content;
