@@ -5,6 +5,7 @@ import frontPage from "./front-page";
 import pages from "./pages";
 import articles from "./articles";
 import partners from "./partners";
+import partnerOverview from "./partner-overview";
 import configuration from "./configuration";
 import events from "./events";
 import eventOverview from "./event-overview";
@@ -27,7 +28,8 @@ const hiddenDocTypes = listItem =>
 		"simpleEvent",
 		"venue",
 		"arena",
-		"partnerType"
+		"partnerType",
+		"partnerOverview"
 	].includes(listItem.getId());
 
 export default () =>
@@ -37,6 +39,7 @@ export default () =>
 			frontPage,
 			articleArchive,
 			eventOverview,
+			partnerOverview,
 			pages,
 			articles,
 			events,

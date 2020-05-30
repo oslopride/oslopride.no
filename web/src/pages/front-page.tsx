@@ -2,7 +2,7 @@ import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import useSWR from "swr";
 import { urlFor } from "../sanity";
-import { SanityFrontPage } from "../sanity/models";
+import { DereferencedSanityPartner, SanityFrontPage } from "../sanity/models";
 import Hero from "../components/hero";
 import SubHeading from "../components/sub-heading";
 import { LinkButton } from "../components/link";
@@ -14,9 +14,7 @@ import { ClientError, ServerError } from "@sanity/client";
 import Advertisement from "../blocks/advertisement";
 import FeaturedArticles from "../blocks/featured-articles";
 import Seo from "../components/seo";
-import PartnerPreview, {
-	DereferencedSanityPartner
-} from "../blocks/partner-preview";
+import PartnerPreview from "../blocks/partner-preview";
 import Headliners from "../blocks/headliners";
 
 const date = css`

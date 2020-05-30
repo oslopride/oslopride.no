@@ -2,7 +2,7 @@ import React from "react";
 import { css } from "@emotion/core";
 
 import { urlFor } from "../sanity";
-import { SanityPartner, Locale } from "../sanity/models";
+import { SanityPartner, DereferencedSanityPartner } from "../sanity/models";
 import SubHeading from "../components/sub-heading";
 import theme from "../utils/theme";
 
@@ -82,10 +82,6 @@ const groupItem = css`
 		}
 	}
 `;
-
-export type DereferencedSanityPartner = Omit<SanityPartner, "type"> & {
-	type: { name: Locale<string>; ordinal: number };
-};
 
 type PartnerGroupProps = {
 	name: string;

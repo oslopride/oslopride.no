@@ -11,6 +11,7 @@ import { SanityConfiguration } from "./sanity/models";
 import { ClientError, ServerError } from "@sanity/client";
 import { ConfigProvider } from "./utils/use-config";
 import EventOverview from "./pages/event-overview";
+import PartnerOverview from "./pages/partner-overview";
 
 const App: React.FC = () => {
 	const { data, error } = useSWR<
@@ -37,6 +38,7 @@ const App: React.FC = () => {
 						<Article path="/a/:slug" />
 						<ArticleOverview path="/articles" />
 						<EventOverview path="/events" />
+						<PartnerOverview path="/partners" />
 					</Router>
 				</main>
 				<Footer />
