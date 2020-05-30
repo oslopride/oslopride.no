@@ -4,7 +4,10 @@ import {
 	SanityInternalLink,
 	SanityExternalLink,
 	SanityPage,
-	SanityFrontPage
+	SanityFrontPage,
+	SanityArchive,
+	SanityArticle,
+	SanityEventPage
 } from "../sanity/models";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
@@ -22,7 +25,13 @@ type Props = {
 
 const Link: React.FC<Props> = props => {
 	const { link, className } = props;
-	const { data, error } = useSWR<SanityPage | SanityFrontPage>(
+	const { data, error } = useSWR<
+		| SanityPage
+		| SanityFrontPage
+		| SanityArchive
+		| SanityArticle
+		| SanityEventPage
+	>(
 		link._type === "internalLink"
 			? `*[_id == "${link.url._ref}"]  | order(_updatedAt desc) [0]`
 			: null
@@ -46,7 +55,22 @@ const Link: React.FC<Props> = props => {
 		);
 	}
 
-	const url = data._type === "frontPage" ? "/" : `/${data.slug.current}`;
+	let url = "#";
+
+	switch (data._type) {
+		case "frontPage":
+			url = "/";
+			break;
+		case "articleArchive":
+			url = "/articles";
+			break;
+		case "eventOverview":
+			url = "/events";
+			break;
+		case "article":
+		case "page":
+			url = `/${data.slug.current}`;
+	}
 
 	return (
 		<RouterLink className={className} css={base} to={url}>

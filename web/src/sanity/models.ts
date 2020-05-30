@@ -225,9 +225,8 @@ export type SanityArticle = SanityDocument<
 export type SanityArticleList = Array<SanityArticle>;
 
 export type SanityArchive = SanityDocument<
-	"article",
+	"articleArchive",
 	{
-		slug: { current: string };
 		title: Locale<string>;
 		subtitle: Locale<string>;
 		image: SanityImage;
@@ -235,9 +234,8 @@ export type SanityArchive = SanityDocument<
 >;
 
 export type SanityEventPage = SanityDocument<
-	"simpleEvent",
+	"eventOverview",
 	{
-		slug: { current: string };
 		title: Locale<string>;
 		subtitle: Locale<string>;
 		image: SanityImage;
