@@ -6,7 +6,6 @@ import { css } from "@emotion/core";
 import { urlFor } from "../sanity";
 import useSWR from "swr";
 import { SanityArchive, SanityArticleList } from "../sanity/models";
-import BlockContentToReact from "@sanity/block-content-to-react";
 import Seo from "../components/seo";
 
 type Props = { slug?: string } & RouteComponentProps;

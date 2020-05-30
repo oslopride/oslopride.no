@@ -49,11 +49,6 @@ const date = css`
 	font-weight: 600;
 `;
 
-const credits = css`
-	font-size: 1.1rem;
-	line-height: 1.75rem;
-`;
-
 const Article: React.FC<Props> = props => {
 	const { slug } = props;
 
