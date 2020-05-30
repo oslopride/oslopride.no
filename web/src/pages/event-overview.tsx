@@ -278,7 +278,7 @@ const EventOverview: React.FC<Props> = () => {
 						</>
 					))
 				) : (
-					<p>No events yet</p>
+					<p>Ingen eventer enda</p>
 				)}
 			</div>
 		</>

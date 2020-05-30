@@ -143,7 +143,7 @@ const ArticleOverview: React.FC<Props> = () => {
 						</div>
 					))
 				) : (
-					<p>No articles yet</p>
+					<p>Ingen artikler enda</p>
 				)}
 			</div>
 
