@@ -65,8 +65,7 @@ export default {
 			{
 				title: "Credits",
 				name: "credits",
-				type: "array",
-				of: [{ type: "block" }]
+				type: "string"
 			},
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
 		)

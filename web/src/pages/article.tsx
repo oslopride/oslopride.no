@@ -93,9 +93,7 @@ const Article: React.FC<Props> = props => {
 			>
 				<p css={date}>{article._createdAt.split("T")[0]}</p>
 				<h2>{article.title.no}</h2>
-				{article.credits?.no && (
-					<SanityProtableText blocks={article.credits.no} />
-				)}
+				{article.credits?.no && <p>article.credits.no</p>}
 			</Hero>
 			<div css={body}>
 				{article.body?.no && <SanityProtableText blocks={article.body.no} />}

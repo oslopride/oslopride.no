@@ -215,10 +215,7 @@ export type SanityArticle = SanityDocument<
 		image: SanityImage;
 		summary: Locale<string>;
 		body: SanityObject<"localeBlocks", Locale<SanityObjectArray<SanityBlock>>>;
-		credits: SanityObject<
-			"localeBlocks",
-			Locale<SanityObjectArray<SanityBlock>>
-		>;
+		credits: Locale<string>;
 	}
 >;
 
