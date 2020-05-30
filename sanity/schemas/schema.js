@@ -31,6 +31,7 @@ import quote from "./blocks/quote";
 // Types
 import externalLink from "./types/external-link";
 import internalLink from "./types/internal-link";
+import youtube from "./types/youtube";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -62,6 +63,7 @@ export default createSchema({
 		quote,
 
 		internalLink,
-		externalLink
+		externalLink,
+		youtube
 	])
 });
