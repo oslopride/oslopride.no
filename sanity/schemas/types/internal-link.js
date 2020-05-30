@@ -13,7 +13,13 @@ export default {
 			title: "URL",
 			name: "url",
 			type: "reference",
-			to: [{ type: "page" }, { type: "frontPage" }, { type: "articleArchive" }],
+			to: [
+				{ type: "page" },
+				{ type: "article" },
+				{ type: "frontPage" },
+				{ type: "articleArchive" },
+				{ type: "eventOverview" }
+			],
 			validate: Rule => Rule.required()
 		}
 	]
