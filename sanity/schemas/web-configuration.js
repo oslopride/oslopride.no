@@ -43,6 +43,9 @@ export default {
 					of: [
 						{
 							type: "externalLink"
+						},
+						{
+							type: "internalLink"
 						}
 					]
 				}

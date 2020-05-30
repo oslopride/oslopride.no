@@ -2,6 +2,7 @@ import React from "react";
 import * as S from "./styles";
 import WhiteLogo from "../../assets/logo-white.svg";
 import useConfig from "../../utils/use-config";
+import Link from "../link";
 
 type Props = {};
 
@@ -55,7 +56,7 @@ const Footer: React.FC<Props> = () => {
 						<ul>
 							{footer.links.map(link => (
 								<li key={link._key}>
-									<a href={link.url}>{link.text}</a>
+									<Link link={link} />
 								</li>
 							))}
 						</ul>
