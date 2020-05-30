@@ -91,7 +91,7 @@ const Article: React.FC<Props> = props => {
 				openGraph={{
 					type: "article",
 					title: article.title.no,
-					description: article.summary.no,
+					description: article.summary?.no || "",
 					url: `https://www.oslopride.no/article/${slug}`,
 					locale: "nb_NO",
 					publishedAt: article._createdAt,
