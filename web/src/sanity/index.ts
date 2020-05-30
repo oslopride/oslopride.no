@@ -15,9 +15,12 @@ export function isEmptyResult(result: object | null): boolean {
 	return Object.keys(result).length === 0;
 }
 
+export const PROJECT_ID = "2ger3rla";
+export const DATASET = process.env.SANITY_STUDIO_API_DATASET || "development";
+
 const sanity = sanityClient({
-	projectId: "2ger3rla",
-	dataset: process.env.SANITY_STUDIO_API_DATASET || "development",
+	projectId: PROJECT_ID,
+	dataset: DATASET,
 	useCdn: !previewMode,
 	withCredentials: previewMode
 });

@@ -6,8 +6,8 @@ import Hero from "../components/hero";
 import theme from "../utils/theme";
 import { urlFor } from "../sanity";
 import { css } from "@emotion/core";
-import BlockContentToReact from "@sanity/block-content-to-react";
 import Seo from "../components/seo";
+import SanityProtableText from "../components/sanity-portable-text";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -60,6 +60,23 @@ const Article: React.FC<Props> = props => {
 	if (article === undefined) return <div>Loading...</div>;
 	if (article === null) return <div>404 - Not found</div>;
 
+	console.log({
+		type: "article",
+		title: article.title?.no || "Oslo Pride",
+		description: article.summary?.no || "Oslo Pride",
+		url: `https://www.oslopride.no/article/${slug}`,
+		locale: "nb_NO",
+		publishedAt: article._createdAt || "",
+		modifiedAt: article._updatedAt || "",
+		image: {
+			url:
+				urlFor(article.image)
+					.width(1200)
+					.url() || "",
+			alt: article.title?.no || "Oslo Pride"
+		}
+	});
+
 	return (
 		<>
 			<Hero
@@ -76,27 +93,29 @@ const Article: React.FC<Props> = props => {
 			>
 				<p css={date}>{article._createdAt.split("T")[0]}</p>
 				<h2>{article.title.no}</h2>
-				<BlockContentToReact blocks={article.credits?.no} />
+				{article.credits?.no && (
+					<SanityProtableText blocks={article.credits.no} />
+				)}
 			</Hero>
 			<div css={body}>
-				<BlockContentToReact blocks={article.body.no} />
+				{article.body?.no && <SanityProtableText blocks={article.body.no} />}
 			</div>
 
 			<Seo
 				openGraph={{
 					type: "article",
-					title: article.title.no,
-					description: article.summary?.no || "",
+					title: article.title?.no || "Oslo Pride",
+					description: article.summary?.no || "Oslo Pride",
 					url: `https://www.oslopride.no/article/${slug}`,
 					locale: "nb_NO",
-					publishedAt: article._createdAt,
-					modifiedAt: article._updatedAt,
+					publishedAt: article._createdAt || "",
+					modifiedAt: article._updatedAt || "",
 					image: {
 						url:
 							urlFor(article.image)
 								.width(1200)
 								.url() || "",
-						alt: article.title.no
+						alt: article.title?.no || "Oslo Pride"
 					}
 				}}
 			/>
