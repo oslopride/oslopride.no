@@ -140,7 +140,6 @@ export type SanityBlock =
 	| SanityAnnouncement
 	| SanityAdvertisement
 	| SanityTextArea
-	| SanityPartnerList
 	| SanityCollapsibleList
 	| SanityPartnerPreview
 	| SanityQuote;
