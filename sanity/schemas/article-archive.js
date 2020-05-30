@@ -6,14 +6,6 @@ export default {
 	type: "document",
 	fieldsets: [{ name: "header", title: "Header" }],
 	fields: [
-		{
-			title: "URL",
-			name: "slug",
-			type: "slug",
-			options: {
-				source: "header.en.title.id"
-			}
-		},
 		localize(
 			{
 				title: "Title",

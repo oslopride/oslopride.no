@@ -36,10 +36,11 @@ export default {
 		},
 		localize(
 			{
-				title: "Intro",
-				name: "intro",
-				type: "array",
-				of: [{ type: "block" }]
+				title: "Summary",
+				name: "summary",
+				type: "string",
+				description:
+					"Used when previewing the article, and when shared on social media and google search results"
 			},
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
 		),

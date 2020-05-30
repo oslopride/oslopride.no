@@ -213,7 +213,7 @@ export type SanityArticle = SanityDocument<
 		slug: { current: string };
 		title: Locale<string>;
 		image: SanityImage;
-		intro: SanityObject<"localeBlocks", Locale<SanityObjectArray<SanityBlock>>>;
+		summary: Locale<string>;
 		body: SanityObject<"localeBlocks", Locale<SanityObjectArray<SanityBlock>>>;
 		credits: SanityObject<
 			"localeBlocks",
