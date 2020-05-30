@@ -256,7 +256,7 @@ export type SanityConfiguration = SanityDocument<
 			twitter?: string;
 			instagram?: string;
 			facebook?: string;
-			links?: SanityObjectArray<SanityExternalLink>;
+			links?: SanityObjectArray<SanityExternalLink | SanityInternalLink>;
 		};
 	}
 >;
