@@ -7,6 +7,7 @@ import articles from "./articles";
 import partners from "./partners";
 import configuration from "./configuration";
 import events from "./events";
+import eventOverview from "./event-overview";
 
 import JSONpreview from "./previews/json-preview";
 import articleArchive from "./article-archive";
@@ -22,6 +23,7 @@ const hiddenDocTypes = listItem =>
 		"webConfiguration",
 		"appConfiguration",
 		"event",
+		"eventOverview",
 		"simpleEvent",
 		"venue",
 		"arena",
@@ -37,6 +39,7 @@ export default () =>
 			articles,
 			articleArchive,
 			events,
+			eventOverview,
 			partners,
 			configuration,
 			...S.documentTypeListItems().filter(hiddenDocTypes)
