@@ -60,23 +60,6 @@ const Article: React.FC<Props> = props => {
 	if (article === undefined) return <div>Loading...</div>;
 	if (article === null) return <div>404 - Not found</div>;
 
-	console.log({
-		type: "article",
-		title: article.title?.no || "Oslo Pride",
-		description: article.summary?.no || "Oslo Pride",
-		url: `https://www.oslopride.no/article/${slug}`,
-		locale: "nb_NO",
-		publishedAt: article._createdAt || "",
-		modifiedAt: article._updatedAt || "",
-		image: {
-			url:
-				urlFor(article.image)
-					.width(1200)
-					.url() || "",
-			alt: article.title?.no || "Oslo Pride"
-		}
-	});
-
 	return (
 		<>
 			<Hero
@@ -93,7 +76,7 @@ const Article: React.FC<Props> = props => {
 			>
 				<p css={date}>{article._createdAt.split("T")[0]}</p>
 				<h2>{article.title.no}</h2>
-				{article.credits?.no && <p>article.credits.no</p>}
+				{article.credits?.no && <p>{article.credits.no}</p>}
 			</Hero>
 			<div css={body}>
 				{article.body?.no && <SanityProtableText blocks={article.body.no} />}
