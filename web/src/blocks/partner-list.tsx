@@ -1,10 +1,7 @@
 import React, { FC } from "react";
 import BlockContentToReact from "@sanity/block-content-to-react";
 import { urlFor } from "../sanity";
-import {
-	DereferencedSanityPartner,
-	SanityPartnerList
-} from "../sanity/models";
+import { DereferencedSanityPartner, SanityPartnerList } from "../sanity/models";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 
