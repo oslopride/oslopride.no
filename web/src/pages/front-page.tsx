@@ -130,7 +130,7 @@ const FrontPage: React.FC<Props> = () => {
 					))}
 				</ul>
 			</Hero>
-			{data.headliners.no.length > 0 && (
+			{data.headliners?.no?.length > 0 && (
 				<Headliners
 					content={data.headliners}
 					featuredEvents={data.featuredEvents}

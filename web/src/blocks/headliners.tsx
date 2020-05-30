@@ -142,7 +142,7 @@ const SimpleEventCard: React.FC<EventCardProps> = props => {
 const Headliners: React.FC<Props> = props => {
 	const { content, featuredEvents } = props;
 
-	const hasFeaturedEvents = featuredEvents.length > 0;
+	const hasFeaturedEvents = !!featuredEvents?.length;
 
 	return (
 		<div css={headlinersContainer}>
