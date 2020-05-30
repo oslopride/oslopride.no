@@ -14,7 +14,7 @@ const ArticleList = styled.ul`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: baseline;
 	list-style: none;
 	padding: 0;
 	margin-bottom: 50px;
