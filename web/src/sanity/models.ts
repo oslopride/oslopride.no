@@ -200,10 +200,7 @@ export type SanityPage = SanityDocument<
 	{
 		slug: { current: string };
 		header: SanityPageHeader;
-		blocks: SanityObject<
-			"localeBlocks",
-			Locale<SanityObjectArray<SanityBlock>>
-		>;
+		body: Locale<SanityObjectArray<SanityBlock>>;
 	}
 >;
 
@@ -214,7 +211,7 @@ export type SanityArticle = SanityDocument<
 		title: Locale<string>;
 		image: SanityImage;
 		summary: Locale<string>;
-		body: SanityObject<"localeBlocks", Locale<SanityObjectArray<SanityBlock>>>;
+		body: Locale<SanityObjectArray<SanityBlock>>;
 		credits: Locale<string>;
 	}
 >;
