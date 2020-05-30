@@ -17,7 +17,7 @@ const headerStyle = (fixedHeader: boolean) => css`
 	height: 6rem;
 	width: 100%;
 	margin: 0 auto;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: 10;
@@ -180,7 +180,8 @@ const Header: React.FC<Props> = () => {
 	const { date, navigationBar } = useConfig();
 	const [navigationVisible, showNavigation] = React.useState(false);
 	const [hasNavigated, setNavigation] = React.useState(false);
-	const [fixedHeader, setFixedHeader] = React.useState(false);
+	// const [fixedHeader, setFixedHeader] = React.useState(false);
+	const fixedHeader = false;
 	const openMenu = React.createRef<HTMLButtonElement>();
 	const closeMenu = React.createRef<HTMLButtonElement>();
 
@@ -191,19 +192,19 @@ const Header: React.FC<Props> = () => {
 		showNavigation(current => !current);
 	};
 
-	React.useEffect(() => {
-		const scrollHandler = () => {
-			if (window.pageYOffset > 70) {
-				setFixedHeader(true);
-			} else if (window.pageYOffset <= 70) {
-				setFixedHeader(false);
-			}
-		};
+	// React.useEffect(() => {
+	// 	const scrollHandler = () => {
+	// 		if (window.pageYOffset > 70) {
+	// 			setFixedHeader(true);
+	// 		} else if (window.pageYOffset <= 70) {
+	// 			setFixedHeader(false);
+	// 		}
+	// 	};
 
-		window.addEventListener("scroll", scrollHandler);
+	// 	window.addEventListener("scroll", scrollHandler);
 
-		return () => window.removeEventListener("scroll", scrollHandler);
-	}, []);
+	// 	return () => window.removeEventListener("scroll", scrollHandler);
+	// }, []);
 
 	React.useEffect(() => {
 		if (navigationVisible && closeMenu.current) {
