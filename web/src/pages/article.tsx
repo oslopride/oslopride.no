@@ -42,10 +42,6 @@ const body = css`
 	}
 `;
 
-const intro = css`
-	font-weight: 500;
-`;
-
 const date = css`
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -87,9 +83,6 @@ const Article: React.FC<Props> = props => {
 				<h2>{article.title.no}</h2>
 				<BlockContentToReact blocks={article.credits?.no} />
 			</Hero>
-			<div css={[body, intro]}>
-				<BlockContentToReact blocks={article.intro?.no} />
-			</div>
 			<div css={body}>
 				<BlockContentToReact blocks={article.body.no} />
 			</div>
@@ -98,7 +91,7 @@ const Article: React.FC<Props> = props => {
 				openGraph={{
 					type: "article",
 					title: article.title.no,
-					description: article.title.no, // TODO: Either intro must be converted to a string, or we need to add a string in sanity for this field
+					description: article.summary?.no || "",
 					url: `https://www.oslopride.no/article/${slug}`,
 					locale: "nb_NO",
 					publishedAt: article._createdAt,
