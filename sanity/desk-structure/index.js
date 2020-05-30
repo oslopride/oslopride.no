@@ -35,11 +35,11 @@ export default () =>
 		.title("Content")
 		.items([
 			frontPage,
+			articleArchive,
+			eventOverview,
 			pages,
 			articles,
-			articleArchive,
 			events,
-			eventOverview,
 			partners,
 			configuration,
 			...S.documentTypeListItems().filter(hiddenDocTypes)

@@ -87,7 +87,7 @@ const Article: React.FC<Props> = props => {
 					type: "article",
 					title: article.title?.no || "Oslo Pride",
 					description: article.summary?.no || "Oslo Pride",
-					url: `https://www.oslopride.no/article/${slug}`,
+					url: `https://www.oslopride.no/a/${slug}`,
 					locale: "nb_NO",
 					publishedAt: article._createdAt || "",
 					modifiedAt: article._updatedAt || "",

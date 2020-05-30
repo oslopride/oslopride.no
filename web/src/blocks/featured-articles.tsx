@@ -93,7 +93,7 @@ type ArticlePreviewProps = {
 
 const ArticlePreview = ({ article }: ArticlePreviewProps) => (
 	<ArticleStyled>
-		<a href={`/article/${article.slug.current}`}>
+		<a href={`/a/${article.slug.current}`}>
 			{article.image && (
 				<img
 					src={

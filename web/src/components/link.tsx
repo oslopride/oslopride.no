@@ -68,10 +68,10 @@ const Link: React.FC<Props> = props => {
 			url = "/events";
 			break;
 		case "page":
-			url = `/${data.slug.current}`;
+			url = `/p/${data.slug.current}`;
 			break;
 		case "article":
-			url = `/article/${data.slug.current}`;
+			url = `/a/${data.slug.current}`;
 			break;
 	}
 

@@ -74,7 +74,7 @@ const Page: React.FC<Props> = props => {
 					type: "website",
 					title: page.header.no.title,
 					description: page.header.no.subtitle,
-					url: `https://www.oslopride.no/${slug}`,
+					url: `https://www.oslopride.no/p/${slug}`,
 					locale: "nb_NO",
 					image: {
 						url:

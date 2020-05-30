@@ -1,12 +1,12 @@
 import S from "@sanity/desk-tool/structure-builder";
 import EditIcon from "part:@sanity/base/edit-icon";
-import { MdHome } from "react-icons/md";
+import { MdArchive } from "react-icons/md";
 
 import JSONpreview from "./previews/json-preview";
 
 export default S.listItem()
 	.title("Article Archive")
-	.icon(MdHome)
+	.icon(MdArchive)
 	.child(
 		S.document()
 			.title("Article Archive")

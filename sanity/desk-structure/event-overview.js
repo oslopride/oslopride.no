@@ -1,12 +1,12 @@
 import S from "@sanity/desk-tool/structure-builder";
 import EditIcon from "part:@sanity/base/edit-icon";
-import { MdHome } from "react-icons/md";
+import { MdEventNote } from "react-icons/md";
 
 import JSONpreview from "./previews/json-preview";
 
 export default S.listItem()
 	.title("Event Overview")
-	.icon(MdHome)
+	.icon(MdEventNote)
 	.child(
 		S.document()
 			.title("Events Overview")

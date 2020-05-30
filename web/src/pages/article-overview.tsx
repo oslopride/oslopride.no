@@ -137,7 +137,7 @@ const ArticleOverview: React.FC<Props> = () => {
 								<h3>{art.title.no}</h3>
 								<p>{art.summary?.no}</p>
 								<p>
-									<a href={"/article/" + art.slug.current}>Les mer</a>
+									<a href={"/a/" + art.slug.current}>Les mer</a>
 								</p>
 							</div>
 						</div>
