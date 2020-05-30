@@ -1,10 +1,7 @@
 import React from "react";
 import { css } from "@emotion/core";
 import Link from "./link";
-
-import logo from "../assets/logo-color.svg";
 import logoWhite from "../assets/logo-white.svg";
-import menu from "../assets/menu.svg";
 import menuWhite from "../assets/menu-white.svg";
 import close from "../assets/close.svg";
 import useConfig from "../utils/use-config";
@@ -12,7 +9,7 @@ import theme from "../utils/theme";
 
 type Props = {};
 
-const headerStyle = (fixedHeader: boolean) => css`
+const headerStyle = css`
 	display: block;
 	height: 6rem;
 	width: 100%;
@@ -21,15 +18,14 @@ const headerStyle = (fixedHeader: boolean) => css`
 	top: 0;
 	left: 0;
 	z-index: 10;
-
-	background-color: ${fixedHeader ? "#fff" : "transparent"};
+	background-color: "transparent";
 
 	h1 {
 		position: absolute;
 		top: 0.5rem;
 		left: 2rem;
 		margin: 0;
-		background-image: url(${fixedHeader ? logo : logoWhite});
+		background-image: url(${logoWhite});
 		background-size: 160px auto;
 		background-repeat: no-repeat;
 
@@ -63,7 +59,7 @@ const headerStyle = (fixedHeader: boolean) => css`
 	}
 
 	button {
-		background-image: url(${fixedHeader ? menu : menuWhite});
+		background-image: url(${menuWhite});
 	}
 `;
 
@@ -180,8 +176,6 @@ const Header: React.FC<Props> = () => {
 	const { date, navigationBar } = useConfig();
 	const [navigationVisible, showNavigation] = React.useState(false);
 	const [hasNavigated, setNavigation] = React.useState(false);
-	// const [fixedHeader, setFixedHeader] = React.useState(false);
-	const fixedHeader = false;
 	const openMenu = React.createRef<HTMLButtonElement>();
 	const closeMenu = React.createRef<HTMLButtonElement>();
 
@@ -191,20 +185,6 @@ const Header: React.FC<Props> = () => {
 		}
 		showNavigation(current => !current);
 	};
-
-	// React.useEffect(() => {
-	// 	const scrollHandler = () => {
-	// 		if (window.pageYOffset > 70) {
-	// 			setFixedHeader(true);
-	// 		} else if (window.pageYOffset <= 70) {
-	// 			setFixedHeader(false);
-	// 		}
-	// 	};
-
-	// 	window.addEventListener("scroll", scrollHandler);
-
-	// 	return () => window.removeEventListener("scroll", scrollHandler);
-	// }, []);
 
 	React.useEffect(() => {
 		if (navigationVisible && closeMenu.current) {
@@ -216,7 +196,7 @@ const Header: React.FC<Props> = () => {
 
 	return (
 		<>
-			<header css={headerStyle(fixedHeader)} id="pageHeader">
+			<header css={headerStyle} id="pageHeader">
 				<h1>
 					<a href="/">
 						<span css={hidden}>Oslo Pride</span>
