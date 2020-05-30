@@ -2,12 +2,12 @@ import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import { urlFor } from "../sanity";
 import { SanityPage } from "../sanity/models";
-import Block from "../blocks";
 import Hero from "../components/hero";
 import { css } from "@emotion/core";
 import theme from "../utils/theme";
 import useSWR from "swr";
 import Seo from "../components/seo";
+import SanityProtableText from "../components/sanity-portable-text";
 
 const hero = css`
 	color: #ffffff;
@@ -67,13 +67,8 @@ const Page: React.FC<Props> = props => {
 				<p>{page.header.no.subtitle}</p>
 			</Hero>
 			<div css={body}>
-				{page.blocks.no.map(block => (
-					<Block key={block._key} block={block} />
-				))}
+				{page.body?.no && <SanityProtableText blocks={page.body.no} />}
 			</div>
-			{page.blocks.no.map(block => (
-				<Block key={block._key} block={block} />
-			))}
 			<Seo
 				openGraph={{
 					type: "website",
