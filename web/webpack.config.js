@@ -2,6 +2,7 @@
 const { EnvironmentPlugin } = require("webpack");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const path = require("path");
 
@@ -11,9 +12,6 @@ module.exports = {
 		path: path.resolve(__dirname, "public"),
 		filename: "bundle.js",
 		publicPath: "/"
-	},
-	devServer: {
-		historyApiFallback: true
 	},
 	resolve: {
 		extensions: [".js", ".jsx", ".tsx", ".ts"],
@@ -54,6 +52,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: "Oslo Pride"
 		}),
+		new FaviconsWebpackPlugin("./src/assets/prideheart.svg"),
 		new ForkTsCheckerWebpackPlugin({ eslint: true }),
 		new EnvironmentPlugin({
 			NODE_ENV: "development",
