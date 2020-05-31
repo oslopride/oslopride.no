@@ -96,6 +96,7 @@ const ArticlePreview = ({ article }: ArticlePreviewProps) => (
 		<a href={`/a/${article.slug.current}`}>
 			{article.image && (
 				<img
+					alt={article.title.no}
 					src={
 						urlFor(article.image)
 							.width(700)
