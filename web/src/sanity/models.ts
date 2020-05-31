@@ -263,7 +263,7 @@ export type SanityConfiguration = SanityDocument<
 	"configuration",
 	{
 		date: string;
-		navigationBar?: SanityObjectArray<SanityInternalLink>;
+		navigationBar?: SanityObjectArray<SanityInternalLink | SanityExternalLink>;
 		footer?: {
 			twitter?: string;
 			instagram?: string;
