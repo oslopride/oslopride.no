@@ -17,6 +17,7 @@ import Seo from "../components/seo";
 import PartnerPreview from "../blocks/partner-preview";
 import Headliners from "../blocks/headliners";
 import Loading from "../components/loading";
+import NotFound from "./not-found";
 
 const date = css`
 	font-size: 1rem;
@@ -92,7 +93,7 @@ const FrontPage: React.FC<Props> = () => {
 
 	if (error) return <div>{JSON.stringify(error)}</div>;
 	if (data === undefined) return <Loading />;
-	if (data === null) return <div>404 - Not found</div>;
+	if (data === null) return <NotFound />;
 
 	return (
 		<>

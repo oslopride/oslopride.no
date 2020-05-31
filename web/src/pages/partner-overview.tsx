@@ -12,6 +12,7 @@ import SubHeading from "../components/sub-heading";
 import BlockContentToReact from "@sanity/block-content-to-react";
 import { LinkButton } from "../components/link";
 import Loading from "../components/loading";
+import NotFound from "./not-found";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -73,7 +74,7 @@ const PartnerOverview: React.FC<Props> = () => {
 
 	if (error) return <div>{JSON.stringify(error)}</div>;
 	if (page === undefined || partners === undefined) return <Loading />;
-	if (page === null) return <div>404 - Not found</div>;
+	if (page === null) return <NotFound />;
 
 	return (
 		<>
