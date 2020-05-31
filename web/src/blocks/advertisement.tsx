@@ -116,6 +116,7 @@ const Advertisement: React.FC<Props> = props => {
 			{content.image && (
 				<aside>
 					<img
+						alt={content.title}
 						src={
 							urlFor(content.image)
 								.width(1024)
