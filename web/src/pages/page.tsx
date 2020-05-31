@@ -9,6 +9,8 @@ import useSWR from "swr";
 import Seo from "../components/seo";
 import SanityProtableText from "../components/sanity-portable-text";
 import Loading from "../components/loading";
+import NotFound from "./not-found";
+import Error from "./error";
 
 const hero = css`
 	color: #ffffff;
@@ -45,9 +47,9 @@ const Page: React.FC<Props> = props => {
 		`*[_type == "page" && slug.current == "${slug}"] | order(_updatedAt desc) [0]`
 	);
 
-	if (error) return <div>{JSON.stringify(error)}</div>;
+	if (error) return <Error error={JSON.stringify(error)} />;
 	if (page === undefined) return <Loading />;
-	if (page === null) return <div>404 - Not found</div>;
+	if (page === null) return <NotFound />;
 
 	return (
 		<>

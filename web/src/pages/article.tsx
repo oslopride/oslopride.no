@@ -9,6 +9,8 @@ import { css } from "@emotion/core";
 import Seo from "../components/seo";
 import SanityProtableText from "../components/sanity-portable-text";
 import Loading from "../components/loading";
+import NotFound from "./not-found";
+import Error from "./error";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -57,9 +59,9 @@ const Article: React.FC<Props> = props => {
 		`*[_type == "article" && slug.current == "${slug}"] | order(_updatedAt desc) [0]`
 	);
 
-	if (error) return <div>{JSON.stringify(error)}</div>;
+	if (error) return <Error error={JSON.stringify(error)} />;
 	if (article === undefined) return <Loading />;
-	if (article === null) return <div>404 - Not found</div>;
+	if (article === null) return <NotFound />;
 
 	return (
 		<>
