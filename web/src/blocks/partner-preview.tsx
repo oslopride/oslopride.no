@@ -97,6 +97,7 @@ const PartnerGroup: React.FC<PartnerGroupProps> = ({ name, partners }) => (
 					<a href={partner.url}>
 						<img
 							css={logo}
+							alt={name}
 							src={
 								urlFor(partner.image)
 									.width(200)

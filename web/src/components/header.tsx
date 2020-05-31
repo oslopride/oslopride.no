@@ -78,7 +78,7 @@ const navigationStyle = css`
 	align-items: left;
 	padding: 14rem 3rem;
 	z-index: 100;
-	transition: right 0.65s;
+	transition: right 0.4s, visibility 2s, display 2s;
 	overflow-y: scroll;
 
 	li {
@@ -134,7 +134,6 @@ const navigationStyle = css`
 const navigationStyleCollapsed = css`
 	visibility: hidden;
 	right: -100vw;
-	transition: right 1s, visibility 2s, display 2s;
 `;
 
 const buttonStyle = css`

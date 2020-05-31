@@ -8,6 +8,7 @@ import useSWR from "swr";
 import { ReactComponent as Heart } from "../assets/prideheart.svg";
 import { SanityEventPage, SanitySimpleEventList } from "../sanity/models";
 import BlockContentToReact from "@sanity/block-content-to-react";
+import Loading from "../components/loading";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -192,7 +193,7 @@ const EventOverview: React.FC<Props> = () => {
 	);
 
 	if (error) return <div>{JSON.stringify(error)}</div>;
-	if (archive === undefined) return <div>Loading...</div>;
+	if (archive === undefined) return <Loading />;
 	if (archive === null) return <div>404 - Not found</div>;
 
 	return (
@@ -200,7 +201,7 @@ const EventOverview: React.FC<Props> = () => {
 			<Hero
 				angleDirection="<"
 				anglePosition="after"
-				height="50vh"
+				height="60vh"
 				color={[theme.color.main.purple, theme.color.main.pink]}
 				imageUrl={
 					urlFor(archive.image)
@@ -217,7 +218,7 @@ const EventOverview: React.FC<Props> = () => {
 			<div css={body}>
 				{events && events.length > 0 ? (
 					groupEventsByDay(events).map(group => (
-						<>
+						<React.Fragment key={group[0].startTime}>
 							<h2 css={dateGroupHeader}>
 								{new Date(group[0].startTime).toLocaleDateString("nb-NO", {
 									weekday: "long",
@@ -275,7 +276,7 @@ const EventOverview: React.FC<Props> = () => {
 									</article>
 								))}
 							</div>
-						</>
+						</React.Fragment>
 					))
 				) : (
 					<p>Ingen eventer enda</p>
