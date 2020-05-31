@@ -10,7 +10,7 @@ export default {
 		{
 			name: "navigationBar",
 			type: "array",
-			of: [{ type: "internalLink" }]
+			of: [{ type: "internalLink" }, { type: "externalLink" }]
 		},
 		{
 			name: "footer",
