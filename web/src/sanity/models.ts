@@ -83,13 +83,7 @@ export type SanityAnnouncement = SanityObject<
 	}
 >;
 
-export type SanityPartnerList = SanityObject<
-	"partnerList",
-	{
-		title: string;
-		partnerList: SanityObjectArray<SanityReference>;
-	}
->;
+export type SanityPartnerList = SanityObjectArray<DereferencedSanityPartner>;
 
 export type SanityAdvertisement = SanityObject<
 	"advertisement",
@@ -146,7 +140,6 @@ export type SanityBlock =
 	| SanityAnnouncement
 	| SanityAdvertisement
 	| SanityTextArea
-	| SanityPartnerList
 	| SanityCollapsibleList
 	| SanityPartnerPreview
 	| SanityQuote;
@@ -235,6 +228,25 @@ export type SanityEventPage = SanityDocument<
 		image: SanityImage;
 	}
 >;
+
+export type SanityPartnerPage = SanityDocument<
+	"partnerOverview",
+	{
+		title: Locale<string>;
+		subtitle: Locale<string>;
+		image: SanityImage;
+		callToAction: Locale<{
+			title: string;
+			subtitle: string;
+			link?: SanityInternalLink;
+			description: SanityBlockContent;
+		}>;
+	}
+>;
+
+export type DereferencedSanityPartner = Omit<SanityPartner, "type"> & {
+	type: { name: Locale<string>; ordinal: number };
+};
 
 export type SanityPartner = SanityDocument<
 	"partner",

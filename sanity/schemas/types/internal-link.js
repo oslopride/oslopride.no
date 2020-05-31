@@ -18,7 +18,8 @@ export default {
 				{ type: "article" },
 				{ type: "frontPage" },
 				{ type: "articleArchive" },
-				{ type: "eventOverview" }
+				{ type: "eventOverview" },
+				{ type: "partnerOverview" }
 			],
 			validate: Rule => Rule.required()
 		}
