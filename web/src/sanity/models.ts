@@ -259,11 +259,20 @@ export type SanityPartner = SanityDocument<
 	}
 >;
 
+export type SanityReadirect = SanityObject<
+	"redirect",
+	{
+		from: string;
+		to: string;
+	}
+>;
+
 export type SanityConfiguration = SanityDocument<
 	"configuration",
 	{
 		date: string;
 		navigationBar?: SanityObjectArray<SanityInternalLink | SanityExternalLink>;
+		redirects?: SanityObjectArray<SanityReadirect>;
 		footer?: {
 			twitter?: string;
 			instagram?: string;
