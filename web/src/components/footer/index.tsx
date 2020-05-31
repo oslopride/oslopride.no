@@ -3,6 +3,17 @@ import * as S from "./styles";
 import WhiteLogo from "../../assets/logo-white.svg";
 import useConfig from "../../utils/use-config";
 import Link from "../link";
+import { css } from "@emotion/core";
+import theme from "../../utils/theme";
+
+const netlifyLink = css`
+	text-align: center;
+	margin-bottom: 2rem;
+
+	a {
+		color: ${theme.color.background.pink};
+	}
+`;
 
 type Props = {};
 
@@ -63,6 +74,9 @@ const Footer: React.FC<Props> = () => {
 					)}
 				</S.Shortcuts>
 			</S.Footer>
+			<div css={netlifyLink}>
+				<a href="https://www.netlify.com">This site is powered by Netlify</a>
+			</div>
 		</S.StickyFooter>
 	);
 };
