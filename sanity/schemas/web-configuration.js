@@ -52,6 +52,30 @@ export default {
 			]
 		},
 		{
+			title: "Redirects",
+			name: "redirects",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					fields: [
+						{
+							title: "From",
+							name: "from",
+							type: "string",
+							validate: Rule => Rule.required()
+						},
+						{
+							title: "To",
+							name: "to",
+							type: "string",
+							validate: Rule => Rule.required()
+						}
+					]
+				}
+			]
+		},
+		{
 			title: "Advanced",
 			name: "advanced",
 			type: "array",

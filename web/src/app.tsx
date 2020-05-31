@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, globalHistory } from "@reach/router";
+import { Router, globalHistory, Redirect } from "@reach/router";
 import Page from "./pages/page";
 import FrontPage from "./pages/front-page";
 import Article from "./pages/article";
@@ -18,6 +18,7 @@ import {
 	initializeGoogleAnalytics,
 	logPageView
 } from "./utils/google-analytics";
+import ErrorPage from "./pages/error";
 
 const App: React.FC = () => {
 	const { data, error } = useSWR<
@@ -29,16 +30,17 @@ const App: React.FC = () => {
 		[0]
 	`);
 
-	if (error) return <div>500 - Error</div>;
-	if (data === undefined) return <Loading />;
-	if (data === null) return <div>No configuration found.</div>;
-
-	initializeGoogleAnalytics();
-	logPageView();
-
-	globalHistory.listen(() => {
+	React.useEffect(() => {
+		initializeGoogleAnalytics();
 		logPageView();
-	});
+		globalHistory.listen(() => {
+			logPageView();
+		});
+	}, []);
+
+	if (error) return <ErrorPage error="Unable to load configuration" />;
+	if (data === undefined) return <Loading />;
+	if (data === null) return <ErrorPage error="Missing configuration" />;
 
 	return (
 		<>
@@ -46,6 +48,13 @@ const App: React.FC = () => {
 				<Header />
 				<main>
 					<Router>
+						{data.redirects?.map(redirect => (
+							<Redirect
+								key={redirect._key}
+								from={redirect.from}
+								to={redirect.to}
+							/>
+						))}
 						<NotFound default />
 						<FrontPage path="/" />
 						<Page path="/p/:slug" />
