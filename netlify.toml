@@ -5,11 +5,6 @@ SANITY_STUDIO_API_DATASET = "future"
 SANITY_STUDIO_API_DATASET = "staging"
 
 [[redirects]]
-  from = "/program"
-  to = "/events?redirectedFrom=/prorgam"
-  status = 301
-
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

@@ -10,7 +10,7 @@ export const StickyFooter = styled.footer`
 export const Footer = styled.div`
 	width: 90vw;
 	max-width: 900px;
-	margin: 2.75rem auto;
+	margin: 2.75rem auto 0 auto;
 
 	display: -ms-grid;
 	-ms-grid-columns: 3fr 2fr 1fr;
@@ -19,7 +19,7 @@ export const Footer = styled.div`
 	grid-template-columns: 3fr 2fr 1fr;
 	column-gap: 1rem;
 
-	padding: 2.5rem 0;
+	padding: 2.5rem 1rem;
 
 	a {
 		color: ${theme.color.background.pink};
