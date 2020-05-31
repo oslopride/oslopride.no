@@ -23,7 +23,7 @@ const hero = css`
 `;
 
 const NotFound: React.FC<RouteComponentProps> = () => {
-	Sentry.captureException(new Error("404 Not Found"));
+	Sentry.captureException(new Error("404 " + window.location.href));
 	return (
 		<>
 			<Helmet>
