@@ -17,6 +17,8 @@ import Seo from "../components/seo";
 import PartnerPreview from "../blocks/partner-preview";
 import Headliners from "../blocks/headliners";
 import Loading from "../components/loading";
+import NotFound from "./not-found";
+import Error from "./error";
 
 const date = css`
 	font-size: 1rem;
@@ -90,9 +92,9 @@ const FrontPage: React.FC<Props> = () => {
 	);
 	const config = useConfig();
 
-	if (error) return <div>{JSON.stringify(error)}</div>;
+	if (error) return <Error error={JSON.stringify(error)} />;
 	if (data === undefined) return <Loading />;
-	if (data === null) return <div>404 - Not found</div>;
+	if (data === null) return <NotFound />;
 
 	return (
 		<>

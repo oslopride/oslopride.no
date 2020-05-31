@@ -13,6 +13,7 @@ import { ConfigProvider } from "./utils/use-config";
 import EventOverview from "./pages/event-overview";
 import PartnerOverview from "./pages/partner-overview";
 import Loading from "./components/loading";
+import NotFound from "./pages/not-found";
 
 const App: React.FC = () => {
 	const { data, error } = useSWR<
@@ -34,6 +35,7 @@ const App: React.FC = () => {
 				<Header />
 				<main>
 					<Router>
+						<NotFound default />
 						<FrontPage path="/" />
 						<Page path="/p/:slug" />
 						<Article path="/a/:slug" />
