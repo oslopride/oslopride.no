@@ -52,7 +52,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: "Oslo Pride"
 		}),
-		new FaviconsWebpackPlugin("./src/assets/prideheart.svg"),
+		new FaviconsWebpackPlugin("./favicon.png"),
 		new ForkTsCheckerWebpackPlugin({ eslint: true }),
 		new EnvironmentPlugin({
 			NODE_ENV: "development",
