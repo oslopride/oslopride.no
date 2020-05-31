@@ -7,6 +7,7 @@ import { urlFor } from "../sanity";
 import useSWR from "swr";
 import { SanityArchive, SanityArticleList } from "../sanity/models";
 import Seo from "../components/seo";
+import { darken } from "polished";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -37,7 +38,7 @@ const body = css`
 		color: ${theme.color.text.grey};
 
 		a {
-			color: ${theme.color.main.pink};
+			color: ${darken(0.15)(theme.color.main.pink)};
 		}
 	}
 
