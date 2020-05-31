@@ -76,7 +76,8 @@ const navigationStyle = css`
 	display: flex;
 	flex-direction: column;
 	align-items: left;
-	padding: 14rem 3rem;
+	justify-content: center;
+	padding: 0 3rem;
 	z-index: 100;
 	transition: right 0.4s, visibility 2s, display 2s;
 	overflow-y: scroll;
