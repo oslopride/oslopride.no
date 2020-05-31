@@ -8,6 +8,7 @@ import theme from "../utils/theme";
 import useSWR from "swr";
 import Seo from "../components/seo";
 import SanityProtableText from "../components/sanity-portable-text";
+import Loading from "../components/loading";
 
 const hero = css`
 	color: #ffffff;
@@ -45,7 +46,7 @@ const Page: React.FC<Props> = props => {
 	);
 
 	if (error) return <div>{JSON.stringify(error)}</div>;
-	if (page === undefined) return <div>Loading...</div>;
+	if (page === undefined) return <Loading />;
 	if (page === null) return <div>404 - Not found</div>;
 
 	return (

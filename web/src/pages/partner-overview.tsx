@@ -11,6 +11,7 @@ import PartnerList from "../blocks/partner-list";
 import SubHeading from "../components/sub-heading";
 import BlockContentToReact from "@sanity/block-content-to-react";
 import { LinkButton } from "../components/link";
+import Loading from "../components/loading";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -50,10 +51,10 @@ const body = css`
 const callToActionStyle = css`
 	text-align: center;
 	margin: 0 10vw;
-	
+
 	h2 {
 		margin: 2rem 0;
-	)
+	}
 `;
 
 const linkButtonWrapper = css`
@@ -71,8 +72,7 @@ const PartnerOverview: React.FC<Props> = () => {
 	);
 
 	if (error) return <div>{JSON.stringify(error)}</div>;
-	if (page === undefined || partners === undefined)
-		return <div>Loading...</div>;
+	if (page === undefined || partners === undefined) return <Loading />;
 	if (page === null) return <div>404 - Not found</div>;
 
 	return (

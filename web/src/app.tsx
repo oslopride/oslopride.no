@@ -12,6 +12,7 @@ import { ClientError, ServerError } from "@sanity/client";
 import { ConfigProvider } from "./utils/use-config";
 import EventOverview from "./pages/event-overview";
 import PartnerOverview from "./pages/partner-overview";
+import Loading from "./components/loading";
 
 const App: React.FC = () => {
 	const { data, error } = useSWR<
@@ -24,7 +25,7 @@ const App: React.FC = () => {
 	`);
 
 	if (error) return <div>500 - Error</div>;
-	if (data === undefined) return <div>Loading...</div>;
+	if (data === undefined) return <Loading />;
 	if (data === null) return <div>No configuration found.</div>;
 
 	return (

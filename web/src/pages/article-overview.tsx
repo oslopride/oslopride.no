@@ -8,6 +8,7 @@ import useSWR from "swr";
 import { SanityArchive, SanityArticleList } from "../sanity/models";
 import Seo from "../components/seo";
 import { darken } from "polished";
+import Loading from "../components/loading";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -100,7 +101,7 @@ const ArticleOverview: React.FC<Props> = () => {
 	);
 
 	if (error) return <div>{JSON.stringify(error)}</div>;
-	if (archive === undefined) return <div>Loading...</div>;
+	if (archive === undefined) return <Loading />;
 	if (archive === null) return <div>404 - Not found</div>;
 
 	return (

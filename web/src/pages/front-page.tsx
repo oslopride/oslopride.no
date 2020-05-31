@@ -16,6 +16,7 @@ import FeaturedArticles from "../blocks/featured-articles";
 import Seo from "../components/seo";
 import PartnerPreview from "../blocks/partner-preview";
 import Headliners from "../blocks/headliners";
+import Loading from "../components/loading";
 
 const date = css`
 	font-size: 1rem;
@@ -90,7 +91,7 @@ const FrontPage: React.FC<Props> = () => {
 	const config = useConfig();
 
 	if (error) return <div>{JSON.stringify(error)}</div>;
-	if (data === undefined) return <div>Loading...</div>;
+	if (data === undefined) return <Loading />;
 	if (data === null) return <div>404 - Not found</div>;
 
 	return (
