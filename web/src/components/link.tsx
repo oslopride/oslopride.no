@@ -95,6 +95,8 @@ export const LinkButton = styled(Link)<LinkButtonProps>`
 	background-color: ${props =>
 		props.color === "pink" ? theme.color.main.pink : theme.color.main.blue};
 	text-transform: uppercase;
+	text-align: center;
+	display: inline-block;
 	letter-spacing: 1px;
 	padding: 1rem 1.75rem;
 	text-decoration: none;
