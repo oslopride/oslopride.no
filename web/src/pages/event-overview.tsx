@@ -72,9 +72,10 @@ const articleGroup = css`
 
 const article = css`
 	margin: 1rem 0;
+	width: 100%;
+	max-width: 400px;
 	@media (min-width: 600px) {
 		margin: 2rem;
-		flex: 0.5 1 0px;
 	}
 	display: flex;
 	flex-direction: column;
@@ -89,7 +90,7 @@ const organizerStyle = () => css`
 `;
 
 const image = (image: string) => css`
-	height: 200px;
+	height: 250px;
 	display: flex;
 	flex-direction: column-reverse;
 	align-items: flex-end;
