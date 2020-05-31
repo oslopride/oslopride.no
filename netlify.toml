@@ -8,6 +8,7 @@ SANITY_STUDIO_API_DATASET = "staging"
   from = "/program"
   to = "/events?redirectedFrom=/prorgam"
   status = 308
+  force = true
 
 [[redirects]]
   from = "/*"
