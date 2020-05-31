@@ -10,6 +10,7 @@ import Seo from "../components/seo";
 import { darken } from "polished";
 import Loading from "../components/loading";
 import NotFound from "./not-found";
+import Error from "./error";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -101,7 +102,7 @@ const ArticleOverview: React.FC<Props> = () => {
 		`*[_type == "articleArchive"] | order(_updatedAt desc) [0]`
 	);
 
-	if (error) return <div>{JSON.stringify(error)}</div>;
+	if (error) return <Error error={JSON.stringify(error)} />;
 	if (archive === undefined) return <Loading />;
 	if (archive === null) return <NotFound />;
 

@@ -10,6 +10,7 @@ import { SanityEventPage, SanitySimpleEventList } from "../sanity/models";
 import BlockContentToReact from "@sanity/block-content-to-react";
 import Loading from "../components/loading";
 import NotFound from "./not-found";
+import Error from "./error";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -193,7 +194,7 @@ const EventOverview: React.FC<Props> = () => {
 		`*[_type == "eventOverview"] | order(_updatedAt desc) [0]`
 	);
 
-	if (error) return <div>{JSON.stringify(error)}</div>;
+	if (error) return <Error error={JSON.stringify(error)} />;
 	if (archive === undefined) return <Loading />;
 	if (archive === null) return <NotFound />;
 

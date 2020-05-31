@@ -13,6 +13,7 @@ import BlockContentToReact from "@sanity/block-content-to-react";
 import { LinkButton } from "../components/link";
 import Loading from "../components/loading";
 import NotFound from "./not-found";
+import Error from "./error";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -72,7 +73,7 @@ const PartnerOverview: React.FC<Props> = () => {
 		`*[_type == "partnerOverview"] | order(_updatedAt desc) [0]`
 	);
 
-	if (error) return <div>{JSON.stringify(error)}</div>;
+	if (error) return <Error error={JSON.stringify(error)} />;
 	if (page === undefined || partners === undefined) return <Loading />;
 	if (page === null) return <NotFound />;
 
