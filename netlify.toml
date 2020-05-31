@@ -5,6 +5,11 @@ SANITY_STUDIO_API_DATASET = "future"
 SANITY_STUDIO_API_DATASET = "staging"
 
 [[redirects]]
+  from = "/program"
+  to = "https://www.oslopride.no/events?redirectedFrom=/prorgam"
+  status = 308
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
