@@ -7,7 +7,8 @@ import {
 	SanityFrontPage,
 	SanityArchive,
 	SanityArticle,
-	SanityEventPage
+	SanityEventPage,
+	SanityPartnerPage
 } from "../sanity/models";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
@@ -31,6 +32,7 @@ const Link: React.FC<Props> = props => {
 		| SanityArchive
 		| SanityArticle
 		| SanityEventPage
+		| SanityPartnerPage
 	>(
 		link._type === "internalLink"
 			? `*[_id == "${link.url._ref}"]  | order(_updatedAt desc) [0]`
@@ -66,6 +68,9 @@ const Link: React.FC<Props> = props => {
 			break;
 		case "eventOverview":
 			url = "/events";
+			break;
+		case "partnerOverview":
+			url = "/partners";
 			break;
 		case "page":
 			url = `/p/${data.slug.current}`;
