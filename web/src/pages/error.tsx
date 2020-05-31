@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "../components/hero";
 import theme from "../utils/theme";
+import * as Sentry from "@sentry/browser";
 import { css } from "@emotion/core";
 import { RouteComponentProps } from "@reach/router";
 import { Helmet } from "react-helmet";
@@ -25,8 +26,8 @@ type Props = {
 	error: string;
 };
 
-const Error: React.FC<Props & RouteComponentProps> = ({ error }) => {
-	console.error(error); // For sentry
+const ErrorPage: React.FC<Props & RouteComponentProps> = ({ error }) => {
+	Sentry.captureException(new Error(error)); // For sentry
 
 	return (
 		<>
@@ -61,4 +62,4 @@ const Error: React.FC<Props & RouteComponentProps> = ({ error }) => {
 	);
 };
 
-export default Error;
+export default ErrorPage;

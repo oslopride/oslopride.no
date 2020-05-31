@@ -9,6 +9,9 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "noEmit": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "/",
 
     "outDir": "lib",
     "declaration": true

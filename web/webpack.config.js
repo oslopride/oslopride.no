@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { EnvironmentPlugin } = require("webpack");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
@@ -53,6 +54,13 @@ module.exports = {
 			title: "Oslo Pride"
 		}),
 		new FaviconsWebpackPlugin("./favicon.png"),
+		process.env.NODE_ENV === "production" &&
+			new SentryWebpackPlugin({
+				include: ".",
+				ignoreFile: ".sentrycliignore",
+				ignore: ["node_modules", "webpack.config.js"],
+				configFile: "./sentry.properties"
+			}),
 		new ForkTsCheckerWebpackPlugin({ eslint: true }),
 		new EnvironmentPlugin({
 			NODE_ENV: "development",
@@ -60,5 +68,5 @@ module.exports = {
 			SANITY_STUDIO_API_DATASET: undefined
 		}),
 		new Dotenv()
-	]
+	].filter(Boolean)
 };
