@@ -28,13 +28,18 @@ const hero = css`
 `;
 
 const body = css`
-	margin: 5vh auto 3rem auto;
+	display: block;
 	width: 90vw;
 	max-width: 900px;
+	margin-left: auto;
+	margin-right: auto;
 
-	p {
+	p,
+	blockquote,
+	ul {
 		font-size: 1.1rem;
-		margin: 0;
+		line-height: 1.75rem;
+		margin-bottom: 2rem;
 	}
 `;
 
