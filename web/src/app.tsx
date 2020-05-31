@@ -1,5 +1,5 @@
 import React from "react";
-import { Router } from "@reach/router";
+import { Router, globalHistory } from "@reach/router";
 import Page from "./pages/page";
 import FrontPage from "./pages/front-page";
 import Article from "./pages/article";
@@ -14,6 +14,10 @@ import EventOverview from "./pages/event-overview";
 import PartnerOverview from "./pages/partner-overview";
 import Loading from "./components/loading";
 import NotFound from "./pages/not-found";
+import {
+	initializeGoogleAnalytics,
+	logPageView
+} from "./utils/google-analytics";
 
 const App: React.FC = () => {
 	const { data, error } = useSWR<
@@ -28,6 +32,13 @@ const App: React.FC = () => {
 	if (error) return <div>500 - Error</div>;
 	if (data === undefined) return <Loading />;
 	if (data === null) return <div>No configuration found.</div>;
+
+	initializeGoogleAnalytics();
+	logPageView();
+
+	globalHistory.listen(() => {
+		logPageView();
+	});
 
 	return (
 		<>
