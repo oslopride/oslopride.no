@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "../components/hero";
 import theme from "../utils/theme";
+import * as Sentry from "@sentry/browser";
 import { css } from "@emotion/core";
 import { RouteComponentProps } from "@reach/router";
 import { Helmet } from "react-helmet";
@@ -22,6 +23,7 @@ const hero = css`
 `;
 
 const NotFound: React.FC<RouteComponentProps> = () => {
+	Sentry.captureException(new Error("404 Not Found"));
 	return (
 		<>
 			<Helmet>
