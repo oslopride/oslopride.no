@@ -41,7 +41,13 @@ const Link: React.FC<Props> = props => {
 
 	if (link._type === "externalLink") {
 		return (
-			<a className={className} css={base} href={link.url}>
+			<a
+				className={className}
+				css={base}
+				href={link.url}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				{link.text}
 			</a>
 		);
