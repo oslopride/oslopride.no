@@ -11,6 +11,7 @@ import BlockContentToReact from "@sanity/block-content-to-react";
 import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
+import { LinkButton } from "../components/link";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -133,23 +134,7 @@ const date = css`
 const eventLink = css`
 	margin: 1.5rem;
 	width: calc(100% - 3rem);
-	display: block;
-	background-color: ${theme.color.main.blue};
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	padding: 1em 1.7em;
 	margin-top: 1rem;
-	text-decoration: none;
-	text-align: center;
-	cursor: pointer;
-	border-radius: 4px;
-	color: #ffffff;
-	font-weight: bold;
-
-	:hover {
-		color: #ffffff;
-		background-color: ${theme.color.main.purple};
-	}
 `;
 
 const descriptionContainer = css`
@@ -280,9 +265,14 @@ const EventOverview: React.FC<Props> = () => {
 												<BlockContentToReact blocks={event.description.no} />
 											</div>
 										</div>
-										<a css={eventLink} href={event.eventLink}>
-											Gå til event
-										</a>
+										<LinkButton
+											css={eventLink}
+											link={{
+												_type: "externalLink",
+												text: "Gå til event",
+												url: event.eventLink
+											}}
+										/>
 									</article>
 								))}
 							</div>
