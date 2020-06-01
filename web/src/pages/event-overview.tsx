@@ -152,6 +152,11 @@ const eventLink = css`
 	}
 `;
 
+const descriptionContainer = css`
+	max-height: 200px;
+	overflow-y: hidden;
+`;
+
 const groupEventsByDay = (events: SanitySimpleEventList) => {
 	if (events.length === 0) {
 		return [];
@@ -271,7 +276,9 @@ const EventOverview: React.FC<Props> = () => {
 												</time>
 												{event.price && " Pris: " + event.price}
 											</div>
-											<BlockContentToReact blocks={event.description.no} />
+											<div css={descriptionContainer}>
+												<BlockContentToReact blocks={event.description.no} />
+											</div>
 										</div>
 										<a css={eventLink} href={event.eventLink}>
 											Gå til event

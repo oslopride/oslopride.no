@@ -119,6 +119,11 @@ const eventBody = css`
 	}
 `;
 
+const descriptionContainer = css`
+	max-height: 200px;
+	overflow-y: hidden;
+`;
+
 const SimpleEventCard: React.FC<EventCardProps> = props => {
 	const { content } = props;
 
@@ -133,7 +138,9 @@ const SimpleEventCard: React.FC<EventCardProps> = props => {
 			/>
 			<div css={eventBody}>
 				<h3>{content.title.no}</h3>
-				<BlockContentToReact blocks={content.description.no} />
+				<div css={descriptionContainer}>
+					<BlockContentToReact blocks={content.description.no} />
+				</div>
 			</div>
 		</article>
 	);
