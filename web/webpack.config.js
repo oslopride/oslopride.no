@@ -55,6 +55,7 @@ module.exports = {
 		}),
 		new FaviconsWebpackPlugin("./favicon.png"),
 		process.env.NODE_ENV === "production" &&
+			process.env.SANITY_PREVIEW !== "true" &&
 			new SentryWebpackPlugin({
 				include: ".",
 				ignoreFile: ".sentrycliignore",
