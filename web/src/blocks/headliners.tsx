@@ -53,10 +53,20 @@ const headlinersStyle = (hasAttachedEvents: boolean) => css`
 	text-align: center;
 	color: white;
 
+	article {
+		width: 90vw;
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
 	h2 {
-		font-size: 3rem;
+		font-size: 2.5rem;
 		line-height: 3.5rem;
 		margin: 1rem 0;
+
+		@media (min-width: 600px) {
+			font-size: 3rem;
+		}
 	}
 
 	p {
