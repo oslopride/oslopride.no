@@ -88,12 +88,12 @@ const article = css`
 		margin: 2rem 0;
 		max-width: unset;
 		display: grid;
-		grid-template-rows: 1fr 80px;
+		grid-template-rows: 1fr auto;
 		grid-template-columns: 40% 1fr;
 		grid-template-areas:
 			"img text"
 			"img button";
-		grid-column-gap: 3rem;
+		grid-column-gap: 2rem;
 	}
 `;
 
@@ -146,6 +146,8 @@ const preview = css`
 		margin: 0;
 		padding: 0;
 		align-self: start;
+		margin: 2rem 2rem 0 0;
+		padding: 0;
 	}
 `;
 
@@ -160,11 +162,12 @@ const eventLink = css`
 	margin: 1.5rem;
 	width: calc(100% - 3rem);
 	margin: 1rem 0;
-	width: 100%;
+	width: calc(100% - 2rem);
+	margin: 1rem;
 
 	@media (min-width: 800px) {
 		grid-area: button;
-		margin: 0;
+		margin: 2rem 2rem 2rem 0;
 		align-self: end;
 	}
 `;
