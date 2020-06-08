@@ -59,9 +59,13 @@ const body = css`
 const dateGroupHeader = css`
 	text-transform: capitalize;
 	flex: 1 1 100%;
-	@media (min-width: 600px) {
-		font-size: 2rem;
-		margin: 1rem 0;
+	font-size: 1.75rem;
+	margin: 2rem 0;
+	text-align: center;
+
+	@media (min-width: 800px) {
+		font-size: 2.5rem;
+		margin: 4rem 0;
 	}
 `;
 
