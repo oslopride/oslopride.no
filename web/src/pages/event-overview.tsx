@@ -170,6 +170,11 @@ const descriptionContainer = css`
 	overflow-y: hidden;
 `;
 
+const eventPrice = css`
+	margin-top: 0.25rem;
+	font-weight: normal;
+`;
+
 const groupEventsByDay = (events: SanitySimpleEventList) => {
 	if (events.length === 0) {
 		return [];
@@ -287,7 +292,9 @@ const EventOverview: React.FC<Props> = () => {
 														minute: "2-digit"
 													})}
 												</time>
-												{event.price && " Pris: " + event.price}
+												{event.price && (
+													<p css={eventPrice}>{`Pris: ${event.price}`}</p>
+												)}
 											</div>
 											<div css={descriptionContainer}>
 												<BlockContentToReact blocks={event.description.no} />
