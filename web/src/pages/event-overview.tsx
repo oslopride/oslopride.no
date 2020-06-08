@@ -37,6 +37,7 @@ const body = css`
 	margin: 5vh auto 3rem auto;
 	width: 90vw;
 	max-width: 1150px;
+	padding: 0 0.75rem;
 
 	p {
 		margin-bottom: 0;
@@ -50,7 +51,7 @@ const body = css`
 	}
 
 	h3 {
-		margin: 1rem 0 2rem 0;
+		margin: 1rem 0 0 0;
 		font-size: 1.5rem;
 	}
 `;
@@ -60,7 +61,7 @@ const dateGroupHeader = css`
 	flex: 1 1 100%;
 	@media (min-width: 600px) {
 		font-size: 2rem;
-		margin: 0 2rem;
+		margin: 1rem 0;
 	}
 `;
 
@@ -74,20 +75,32 @@ const articleGroup = css`
 const article = css`
 	margin: 1rem 0;
 	width: 100%;
-	max-width: 400px;
-	@media (min-width: 600px) {
-		margin: 2rem;
-	}
 	display: flex;
 	flex-direction: column;
 	background-color: #f7f8fa;
-	min-height: 330px;
+
+	@media (min-width: 800px) {
+		width: 100%;
+		margin: 2rem 0;
+		max-width: unset;
+		display: grid;
+		grid-template-rows: 1fr 80px;
+		grid-template-columns: 40% 1fr;
+		grid-template-areas:
+			"img text"
+			"img button";
+		grid-column-gap: 3rem;
+	}
 `;
 
 const organizerStyle = () => css`
 	color: ${theme.color.main.purple};
 	margin: 1rem 0;
 	font-weight: 600;
+
+	@media (min-width: 800px) {
+		margin-top: 0;
+	}
 `;
 
 const image = (image: string) => css`
@@ -96,8 +109,9 @@ const image = (image: string) => css`
 	flex-direction: column-reverse;
 	align-items: flex-end;
 
-	@media (min-width: 600px) {
-		height: 300px;
+	@media (min-width: 800px) {
+		grid-area: img;
+		height: 100%;
 	}
 	background-image: url(${image});
 	background-size: cover;
@@ -120,8 +134,15 @@ const officialBadge = css`
 `;
 
 const preview = css`
-	padding: 1.5rem 1.5rem 0 1.5rem;
+	padding: 1.5rem 0 0 0;
 	flex-grow: 1;
+
+	@media (min-width: 800px) {
+		grid-area: text;
+		margin: 0;
+		padding: 0;
+		align-self: start;
+	}
 `;
 
 const date = css`
@@ -134,7 +155,14 @@ const date = css`
 const eventLink = css`
 	margin: 1.5rem;
 	width: calc(100% - 3rem);
-	margin-top: 1rem;
+	margin: 1rem 0;
+	width: 100%;
+
+	@media (min-width: 800px) {
+		grid-area: button;
+		margin: 0;
+		align-self: end;
+	}
 `;
 
 const descriptionContainer = css`
