@@ -81,7 +81,7 @@ const article = css`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	background-color: #f7f8fa;
+	background-color: #eaebee;
 
 	@media (min-width: 800px) {
 		width: 100%;
