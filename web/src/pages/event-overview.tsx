@@ -138,16 +138,14 @@ const officialBadge = css`
 `;
 
 const preview = css`
-	padding: 1.5rem 0 0 0;
+	margin: 1rem;
 	flex-grow: 1;
 
 	@media (min-width: 800px) {
 		grid-area: text;
 		margin: 0;
-		padding: 0;
 		align-self: start;
 		margin: 2rem 2rem 0 0;
-		padding: 0;
 	}
 `;
 
