@@ -22,7 +22,7 @@ export default {
 			options: {
 				isHighlighted: true
 			},
-			validate: Rule => Rule.required()
+			validation: Rule => Rule.required()
 		}
 	],
 	preview: {

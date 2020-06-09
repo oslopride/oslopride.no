@@ -23,7 +23,7 @@ export default {
 			options: {
 				source: "title.en.id"
 			},
-			validate: Rule => Rule.required()
+			validation: Rule => Rule.required()
 		},
 		{
 			title: "Image",
@@ -32,7 +32,7 @@ export default {
 			options: {
 				hotspot: true
 			},
-			validate: Rule => Rule.required()
+			validation: Rule => Rule.required()
 		},
 		localize(
 			{

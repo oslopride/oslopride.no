@@ -7,7 +7,7 @@ export default {
 			title: "Title",
 			name: "title",
 			type: "string",
-			validate: Rule => Rule.required()
+			validation: Rule => Rule.required()
 		},
 		{
 			title: "List Items",

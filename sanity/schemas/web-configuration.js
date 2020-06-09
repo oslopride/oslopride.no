@@ -5,7 +5,7 @@ export default {
 		{
 			name: "date",
 			type: "string",
-			validate: Rule => Rule.required()
+			validation: Rule => Rule.required()
 		},
 		{
 			name: "navigationBar",
@@ -63,13 +63,13 @@ export default {
 							title: "From",
 							name: "from",
 							type: "string",
-							validate: Rule => Rule.required()
+							validation: Rule => Rule.required()
 						},
 						{
 							title: "To",
 							name: "to",
 							type: "string",
-							validate: Rule => Rule.required()
+							validation: Rule => Rule.required()
 						}
 					]
 				}
@@ -87,7 +87,7 @@ export default {
 							title: "Key",
 							name: "key",
 							type: "string",
-							validate: Rule => Rule.required()
+							validation: Rule => Rule.required()
 						},
 						{
 							title: "Value",

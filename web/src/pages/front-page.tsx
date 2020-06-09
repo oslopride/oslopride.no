@@ -66,7 +66,7 @@ const hero = css`
 const body = css`
 	margin: 5vh auto 3rem auto;
 	width: 90vw;
-	max-width: 900px;
+	max-width: 1200px;
 
 	p {
 		font-size: 1.1rem;
@@ -86,7 +86,7 @@ const FrontPage: React.FC<Props> = () => {
 		`*[_id in ["global_frontPage", "drafts.global_frontPage"]] | order(_updatedAt desc) [0]
 		{...,
 		featuredArticles[]->{image, slug, title, _createdAt},
-		featuredEvents[]->{image, title, description},
+		featuredEvents[]->{image, title, description, startTime, endTime, eventLink},
 		"partners": *[_type == "partner"]{image, name, url, type->{name, ordinal}}
 		}`
 	);

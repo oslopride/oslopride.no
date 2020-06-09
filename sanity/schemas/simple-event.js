@@ -64,8 +64,7 @@ export default {
 			title: "End time",
 			name: "endTime",
 			description: "When does the event end?",
-			type: "datetime",
-			validation: Rule => Rule.required()
+			type: "datetime"
 		},
 		{
 			title: "Price",

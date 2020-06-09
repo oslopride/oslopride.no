@@ -10,6 +10,7 @@ import { css } from "@emotion/core";
 import { urlFor } from "../sanity";
 import BlockContentToReact from "@sanity/block-content-to-react";
 import { LinkButton } from "../components/link";
+import theme from "../utils/theme";
 
 type EventCardProps = {
 	content: SanitySimpleEvent;
@@ -35,7 +36,9 @@ const lineCss = css`
 `;
 
 const buttonCenter = css`
-	margin: 90px 0;
+	margin: 3rem 0 1rem 0;
+	width: 90vw;
+	max-width: 500px;
 `;
 
 const headlinersContainer = () => css`
@@ -76,17 +79,17 @@ const headlinersStyle = (hasAttachedEvents: boolean) => css`
 	}
 `;
 
-const featuredEventsContainer = () => css`
+const featuredEventsContainer = css`
 	max-width: 1200px;
-	margin: -200px 1rem 3rem 1rem;
+	margin: -200px 1rem 4rem 1rem;
 
-	@media (min-width: 600px) {
-		margin: -200px auto 5rem auto;
+	@media (min-width: 800px) {
+		margin: -200px auto 2rem auto;
 		display: flex;
 		flex-flow: row wrap;
 	}
 	align-content: flex-start;
-	justify-content: space-between;
+	justify-content: space-around;
 `;
 
 const eventItem = css`
@@ -103,13 +106,13 @@ const eventItem = css`
 `;
 
 const image = (image: string) => css`
-	height: 200px;
+	height: 300px;
 	display: flex;
 	flex-direction: column-reverse;
 	align-items: flex-end;
 
-	@media (min-width: 600px) {
-		height: 220px;
+	@media (min-width: 800px) {
+		height: 300px;
 	}
 	background-image: url(${image});
 	background-size: cover;
@@ -118,24 +121,68 @@ const image = (image: string) => css`
 
 const eventBody = css`
 	padding: 1.5rem;
+	color: ${theme.color.text.grey};
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	flex-grow: 1;
 
-	h3 {
+	& h3 {
 		margin: 0;
+		color: black;
 	}
 
-	p {
-		font-size: 1rem;
+	& time {
+		text-transform: capitalize;
+		display: block;
+		margin-top: 0.25rem;
+		font-size: 0.9rem;
+		font-weight: bold;
 	}
+
+	& div {
+		font-size: 1rem;
+		line-height: 1.3rem;
+		flex-grow: 1;
+		a {
+			color: ${theme.color.main.pink};
+		}
+	}
+`;
+
+const eventLink = css`
+	width: 100%;
+	margin-top: 2rem;
 `;
 
 const descriptionContainer = css`
 	max-height: 200px;
 	overflow-y: hidden;
+	flex-grow: 1;
 `;
 
 const SimpleEventCard: React.FC<EventCardProps> = props => {
 	const { content } = props;
+
+	console.log(content);
+
+	const date = new Date(content.startTime).toLocaleDateString("nb-NO", {
+		weekday: "long",
+		day: "numeric",
+		month: "long"
+	});
+	const startTime = new Date(content.startTime).toLocaleTimeString("nb-NO", {
+		hour: "2-digit",
+		minute: "2-digit"
+	});
+	const endTime = content.endTime
+		? new Date(content.endTime).toLocaleTimeString("nb-NO", {
+				hour: "2-digit",
+				minute: "2-digit"
+		  })
+		: undefined;
+
+	const time = `${date} ${startTime} ${endTime ? `- ${endTime}` : ""}`;
 
 	return (
 		<article css={eventItem} key={content._id}>
@@ -148,9 +195,18 @@ const SimpleEventCard: React.FC<EventCardProps> = props => {
 			/>
 			<div css={eventBody}>
 				<h3>{content.title.no}</h3>
+				<time>{time}</time>
 				<div css={descriptionContainer}>
 					<BlockContentToReact blocks={content.description.no} />
 				</div>
+				<LinkButton
+					css={eventLink}
+					link={{
+						_type: "externalLink",
+						text: "Gå til event",
+						url: content.eventLink
+					}}
+				/>
 			</div>
 		</article>
 	);
@@ -185,8 +241,9 @@ const Headliners: React.FC<Props> = props => {
 
 					<LinkButton
 						css={buttonCenter}
+						color="pink"
 						link={{
-							_type: "externalLink",
+							_type: "internalInternalLink",
 							text: "Se alle arrangementer",
 							url: "/events"
 						}}

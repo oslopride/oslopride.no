@@ -27,7 +27,6 @@ const ArticleList = styled.ul`
 		width: 100%;
 		@media (min-width: 750px) {
 			width: 33.33%;
-			max-width: 300px;
 		}
 	}
 `;
@@ -64,8 +63,20 @@ const ArticleStyled = styled.article`
 
 	img {
 		max-width: 100%;
-		height: 160px;
+		height: 200px;
 		object-fit: cover;
+
+		@media (min-width: 400px) {
+			height: 300px;
+		}
+
+		@media (min-width: 750px) {
+			height: 200px;
+		}
+
+		@media (min-width: 1100px) {
+			height: 250px;
+		}
 	}
 
 	time {

@@ -16,13 +16,13 @@ export default {
 						name: "title",
 						title: "Title",
 						type: "string",
-						validate: Rule => Rule.required()
+						validation: Rule => Rule.required()
 					},
 					{
 						name: "subtitle",
 						title: "Subtitle",
 						type: "string",
-						validate: Rule => Rule.required()
+						validation: Rule => Rule.required()
 					},
 					{
 						title: "Links",
@@ -37,7 +37,7 @@ export default {
 						options: {
 							hotspot: true
 						},
-						validate: Rule => Rule.required()
+						validation: Rule => Rule.required()
 					}
 				]
 			},
@@ -57,14 +57,15 @@ export default {
 						{ title: "Subtitle", name: "subtitle", type: "string" }
 					]
 				}
-			]
+			],
+			validation: Rule => Rule.max(5)
 		}),
 		{
 			title: "Featured Events",
 			name: "featuredEvents",
 			type: "array",
 			of: [{ type: "reference", to: [{ type: "simpleEvent" }] }],
-			validate: Rule => Rule.max(3)
+			validation: Rule => Rule.unique().max(2)
 		},
 		localize({
 			title: "Call to Action",
@@ -76,7 +77,10 @@ export default {
 			name: "featuredArticles",
 			type: "array",
 			of: [{ type: "reference", to: [{ type: "article" }] }],
-			validate: Rule => Rule.max(3)
+			validation: Rule =>
+				Rule.unique()
+					.max(3)
+					.min(3)
 		}
 	],
 	preview: {
