@@ -52,7 +52,7 @@ const body = css`
 
 const callToActionStyle = css`
 	text-align: center;
-	margin: 0 10vw;
+	margin: 0 5vw;
 
 	h2 {
 		margin: 2rem 0;

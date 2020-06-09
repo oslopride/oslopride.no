@@ -14,6 +14,14 @@ type PartnerGroupProps = {
 	partners: DereferencedSanityPartner[];
 };
 
+const SupporterFlexBox = css`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 2rem 0;
+	align-items: center;
+`;
+
 const FlexBox = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -72,7 +80,23 @@ const PartnerList: FC<Props> = ({ content }) => {
 			{Object.values(groupedPartners).map(group => (
 				<div key={group.name}>
 					<h2 css={groupHeader}>{group.name}</h2>
-					{group.partners &&
+					{group.name.toLocaleLowerCase() === "støttespillere" ? (
+						<div css={SupporterFlexBox}>
+							{group.partners &&
+								group.partners.map(partner => (
+									<ImgWrap key={partner._id}>
+										<img
+											src={
+												urlFor(partner.image)
+													.width(200)
+													.url() || undefined
+											}
+										/>
+									</ImgWrap>
+								))}
+						</div>
+					) : (
+						group.partners &&
 						group.partners.map(partner => (
 							<FlexBox key={partner._id}>
 								<ImgWrap>
@@ -89,7 +113,8 @@ const PartnerList: FC<Props> = ({ content }) => {
 									<BlockContentToReact blocks={partner.description} />
 								</ContentWrap>
 							</FlexBox>
-						))}
+						))
+					)}
 				</div>
 			))}
 		</>
