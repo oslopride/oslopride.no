@@ -89,7 +89,7 @@ const featuredEventsContainer = css`
 		flex-flow: row wrap;
 	}
 	align-content: flex-start;
-	justify-content: space-between;
+	justify-content: space-around;
 `;
 
 const eventItem = css`
