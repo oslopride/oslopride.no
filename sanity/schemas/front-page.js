@@ -77,7 +77,10 @@ export default {
 			name: "featuredArticles",
 			type: "array",
 			of: [{ type: "reference", to: [{ type: "article" }] }],
-			validation: Rule => Rule.unique().max(3)
+			validation: Rule =>
+				Rule.unique()
+					.max(3)
+					.min(3)
 		}
 	],
 	preview: {
