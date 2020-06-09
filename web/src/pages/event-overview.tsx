@@ -1,5 +1,7 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
+import differenceInHours from "date-fns/differenceInHours";
+import endOfDay from "date-fns/endOfDay";
 import Hero from "../components/hero";
 import theme from "../utils/theme";
 import { css } from "@emotion/core";
@@ -180,6 +182,18 @@ const eventPrice = css`
 	font-weight: normal;
 `;
 
+const oldEventButtonContainer = css`
+	display: flex;
+	justify-content: flex-end;
+
+	& > button {
+		border: none;
+		background: inherit;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+`;
+
 const groupEventsByDay = (events: SanitySimpleEventList) => {
 	if (events.length === 0) {
 		return [];
@@ -211,7 +225,21 @@ const groupEventsByDay = (events: SanitySimpleEventList) => {
 			groupedEvents.push([event]);
 		}
 	});
-	return groupedEvents;
+
+	const upcommingEvents: typeof groupedEvents = [];
+	const oldEvents: typeof groupedEvents = [];
+	const currentDate = new Date();
+
+	groupedEvents.forEach(group => {
+		const groupDate = new Date(group[0].startTime);
+		if (differenceInHours(currentDate, endOfDay(groupDate)) >= 5) {
+			oldEvents.push(group);
+		} else {
+			upcommingEvents.push(group);
+		}
+	});
+
+	return [oldEvents, upcommingEvents];
 };
 
 const EventOverview: React.FC<Props> = () => {
@@ -223,9 +251,18 @@ const EventOverview: React.FC<Props> = () => {
 		`*[_type == "eventOverview"] | order(_updatedAt desc) [0]`
 	);
 
+	const [showOldEevnts, setShowOldEvents] = React.useState(false);
+
 	if (error) return <Error error={JSON.stringify(error)} />;
 	if (archive === undefined) return <Loading />;
 	if (archive === null) return <NotFound />;
+
+	const [oldEvent, upcommingEvents] =
+		events && events.length > 0 ? groupEventsByDay(events) : [[], []];
+
+	const displayEvents = showOldEevnts
+		? [...oldEvent, ...upcommingEvents]
+		: upcommingEvents;
 
 	return (
 		<>
@@ -247,8 +284,15 @@ const EventOverview: React.FC<Props> = () => {
 			</Hero>
 
 			<div css={body}>
-				{events && events.length > 0 ? (
-					groupEventsByDay(events).map(group => (
+				{oldEvent.length > 0 && !showOldEevnts ? (
+					<div css={oldEventButtonContainer}>
+						<button onClick={() => setShowOldEvents(true)}>
+							Vis tidligere eventer
+						</button>
+					</div>
+				) : null}
+				{displayEvents && displayEvents.length > 0 ? (
+					displayEvents.map(group => (
 						<React.Fragment key={group[0].startTime}>
 							<h2 css={dateGroupHeader}>
 								{new Date(group[0].startTime).toLocaleDateString("nb-NO", {
