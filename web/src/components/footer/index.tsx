@@ -75,7 +75,12 @@ const Footer: React.FC<Props> = () => {
 				</S.Shortcuts>
 			</S.Footer>
 			<div css={netlifyLink}>
-				<a href="https://www.netlify.com">This site is powered by Netlify</a>
+				<a href="https://www.netlify.com">
+					<img
+						src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"
+						alt="Deploys by Netlify"
+					/>
+				</a>
 			</div>
 		</S.StickyFooter>
 	);
