@@ -17,9 +17,17 @@ type PartnerGroupProps = {
 const SupporterFlexBox = css`
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-around;
 	margin: 2rem 0;
 	align-items: center;
+
+	img {
+		margin: 1rem;
+		width: 200px;
+		height: 200px;
+		object-fit: contain;
+		object-position: 50% 50%;
+	}
 `;
 
 const FlexBox = styled.div`
@@ -35,7 +43,10 @@ const FlexBox = styled.div`
 `;
 
 const ImgWrap = styled.div`
-	margin: 1rem 2rem 1rem 0;
+	margin: 1rem auto;
+	@media (min-width: 600px) {
+		margin: 1rem 2rem 1rem 0;
+	}
 
 	img {
 		width: 200px;
@@ -84,15 +95,14 @@ const PartnerList: FC<Props> = ({ content }) => {
 						<div css={SupporterFlexBox}>
 							{group.partners &&
 								group.partners.map(partner => (
-									<ImgWrap key={partner._id}>
-										<img
-											src={
-												urlFor(partner.image)
-													.width(200)
-													.url() || undefined
-											}
-										/>
-									</ImgWrap>
+									<img
+										key={partner._id}
+										src={
+											urlFor(partner.image)
+												.width(200)
+												.url() || undefined
+										}
+									/>
 								))}
 						</div>
 					) : (
