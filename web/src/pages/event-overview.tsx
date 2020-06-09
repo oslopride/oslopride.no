@@ -334,13 +334,21 @@ const EventOverview: React.FC<Props> = () => {
 														}
 													)}
 												</time>
-												{" - "}
-												<time dateTime={event.endTime}>
-													{new Date(event.endTime).toLocaleTimeString("nb-NO", {
-														hour: "2-digit",
-														minute: "2-digit"
-													})}
-												</time>
+												{event.endTime && (
+													<>
+														{" "}
+														{" - "}
+														<time dateTime={event.endTime}>
+															{new Date(event.endTime).toLocaleTimeString(
+																"nb-NO",
+																{
+																	hour: "2-digit",
+																	minute: "2-digit"
+																}
+															)}
+														</time>
+													</>
+												)}
 												{event.price && (
 													<p css={eventPrice}>{`Pris: ${event.price}`}</p>
 												)}
