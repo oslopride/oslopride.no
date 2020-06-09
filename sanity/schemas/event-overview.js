@@ -29,7 +29,7 @@ export default {
 			options: {
 				hotspot: true
 			},
-			validate: Rule => Rule.required()
+			validation: Rule => Rule.required()
 		}
 	],
 	preview: {

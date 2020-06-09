@@ -7,7 +7,7 @@ export default {
 			title: "Text",
 			name: "text",
 			type: "string",
-			validate: Rule => Rule.required()
+			validation: Rule => Rule.required()
 		},
 		{
 			title: "URL",
@@ -21,7 +21,7 @@ export default {
 				{ type: "eventOverview" },
 				{ type: "partnerOverview" }
 			],
-			validate: Rule => Rule.required()
+			validation: Rule => Rule.required()
 		}
 	]
 };

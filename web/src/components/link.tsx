@@ -19,8 +19,14 @@ const base = css`
 	color: inherit;
 `;
 
+type InternalInternalLink = {
+	_type: "internalInternalLink";
+	url: string;
+	text: string;
+};
+
 type Props = {
-	link: SanityInternalLink | SanityExternalLink;
+	link: SanityInternalLink | SanityExternalLink | InternalInternalLink;
 	className?: string;
 };
 
@@ -50,6 +56,14 @@ const Link: React.FC<Props> = props => {
 			>
 				{link.text}
 			</a>
+		);
+	}
+
+	if (link._type === "internalInternalLink") {
+		return (
+			<RouterLink className={className} css={base} to={link.url}>
+				{link.text}
+			</RouterLink>
 		);
 	}
 

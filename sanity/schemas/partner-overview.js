@@ -29,7 +29,7 @@ export default {
 			options: {
 				hotspot: true
 			},
-			validate: Rule => Rule.required()
+			validation: Rule => Rule.required()
 		},
 		localize({
 			title: "Call to action",
@@ -40,13 +40,13 @@ export default {
 					name: "title",
 					title: "Title",
 					type: "string",
-					validate: Rule => Rule.required()
+					validation: Rule => Rule.required()
 				},
 				{
 					name: "subtitle",
 					title: "Subtitle",
 					type: "string",
-					validate: Rule => Rule.required()
+					validation: Rule => Rule.required()
 				},
 				{
 					title: "Description",
