@@ -346,7 +346,7 @@ const EventOverview: React.FC<Props> = () => {
 												)}
 											</div>
 											<div css={descriptionContainer}>
-												<BlockContentToReact blocks={event.description.no} />
+												<BlockContentToReact blocks={event.description?.no} />
 											</div>
 										</div>
 										<LinkButton
