@@ -38,7 +38,10 @@ const App: React.FC = () => {
 		});
 	}, []);
 
-	if (error) return <ErrorPage error="Unable to load configuration" />;
+	if (error)
+		return (
+			<ErrorPage error={`Unable to load configuration. Error: ${error}`} />
+		);
 	if (data === undefined) return <Loading />;
 	if (data === null) return <ErrorPage error="Missing configuration" />;
 
