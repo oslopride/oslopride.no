@@ -11,7 +11,10 @@ module.exports = {
 	entry: ["react-hot-loader/patch", "./src/index.tsx"],
 	output: {
 		path: path.resolve(__dirname, "public"),
-		filename: "[name].[contenthash].js",
+		filename:
+			process.env.NODE_ENV === "production"
+				? "[name].[chunkhash].js"
+				: "[name].[hash].js",
 		publicPath: "/"
 	},
 	optimization: {
@@ -24,8 +27,8 @@ module.exports = {
 					name: "vendors",
 					chunks: "all"
 				}
- 			}
- 		}
+			}
+		}
 	},
 	resolve: {
 		extensions: [".js", ".jsx", ".tsx", ".ts"],

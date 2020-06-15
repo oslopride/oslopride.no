@@ -173,7 +173,6 @@ const eventLink = css`
 `;
 
 const descriptionContainer = css`
-	max-height: 200px;
 	overflow-y: hidden;
 `;
 
