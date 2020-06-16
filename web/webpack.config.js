@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { EnvironmentPlugin, SourceMapDevToolPlugin } = require("webpack");
+const { EnvironmentPlugin } = require("webpack");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -65,22 +65,18 @@ module.exports = {
 		historyApiFallback: true,
 		port: 8080
 	},
+	devtool: "source-map",
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: "Oslo Pride"
 		}),
 		new FaviconsWebpackPlugin("./favicon.png"),
-		new SourceMapDevToolPlugin({
-			filename: "[name].[hash].js.map",
-			exclude: ["vendor"],
-			append: "//# sourceMappingURL=[url]"
-		}),
 		process.env.NODE_ENV === "production" &&
-			process.env.SANITY_PREVIEW !== "true" &&
 			new SentryWebpackPlugin({
 				include: ".",
 				ignore: ["node_modules", "webpack.config.js"],
-				configFile: "./sentry.properties"
+				configFile: "./sentry.properties",
+				dryRun: process.env.SANITY_PREVIEW === "true"
 			}),
 		new ForkTsCheckerWebpackPlugin({ eslint: true }),
 		new EnvironmentPlugin({
