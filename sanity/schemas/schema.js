@@ -27,6 +27,7 @@ import announcement from "./blocks/announcement";
 import advertisement from "./blocks/advertisement";
 import partnerList from "./blocks/partner-list";
 import collapsible from "./blocks/collapsible";
+import splitPane from "./blocks/split-pane";
 import quote from "./blocks/quote";
 
 // Types
@@ -63,6 +64,7 @@ export default createSchema({
 		advertisement,
 		partnerList,
 		collapsible,
+		splitPane,
 		quote,
 
 		internalLink,
