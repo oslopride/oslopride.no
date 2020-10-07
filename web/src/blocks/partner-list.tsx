@@ -102,6 +102,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 												.width(200)
 												.url() || undefined
 										}
+										alt={`${partner.name} logo`}
 									/>
 								))}
 						</div>
@@ -116,6 +117,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 												.width(200)
 												.url() || undefined
 										}
+										alt={`${partner.name} logo`}
 									/>
 								</ImgWrap>
 								<ContentWrap>
