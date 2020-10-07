@@ -29,10 +29,16 @@ type InternalInternalLink = {
 type Props = {
 	link: SanityInternalLink | SanityExternalLink | InternalInternalLink;
 	className?: string;
-};
+} & Omit<
+	React.DetailedHTMLProps<
+		React.AnchorHTMLAttributes<HTMLAnchorElement>,
+		HTMLAnchorElement
+	>,
+	"ref"
+>;
 
 const Link: React.FC<Props> = props => {
-	const { link, className } = props;
+	const { link, className, ...anchorProps } = props;
 	const { data, error } = useSWR<
 		| SanityPage
 		| SanityFrontPage
@@ -54,6 +60,7 @@ const Link: React.FC<Props> = props => {
 				href={link.url}
 				target="_blank"
 				rel="noopener noreferrer"
+				{...anchorProps}
 			>
 				{link.text}
 			</a>
@@ -62,7 +69,12 @@ const Link: React.FC<Props> = props => {
 
 	if (link._type === "internalInternalLink") {
 		return (
-			<RouterLink className={className} css={base} to={link.url}>
+			<RouterLink
+				className={className}
+				css={base}
+				to={link.url}
+				{...anchorProps}
+			>
 				{link.text}
 			</RouterLink>
 		);
@@ -73,7 +85,7 @@ const Link: React.FC<Props> = props => {
 	// display link text while resolving data
 	if (data === undefined) {
 		return (
-			<a className={className} css={base} href="#">
+			<a className={className} css={base} href="#" {...anchorProps}>
 				{link.text}
 			</a>
 		);
@@ -103,7 +115,7 @@ const Link: React.FC<Props> = props => {
 	}
 
 	return (
-		<RouterLink className={className} css={base} to={url}>
+		<RouterLink className={className} css={base} to={url} {...anchorProps}>
 			{link.text}
 		</RouterLink>
 	);
