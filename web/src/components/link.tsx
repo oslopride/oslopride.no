@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Link as RouterLink } from "@reach/router";
 import {
@@ -69,6 +70,7 @@ const Link: React.FC<Props> = props => {
 
 	if (error) return <span>[broken link]</span>;
 	if (data === null) return <span>[broken link]</span>;
+	// display link text while resolving data
 	if (data === undefined) {
 		return (
 			<a className={className} css={base} href="#">
