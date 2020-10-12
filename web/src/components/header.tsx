@@ -120,7 +120,7 @@ const navigationStyle = css`
 			font-size: 2rem;
 
 			a {
-				padding-left: 2rem;
+				padding-left: 0;
 
 				&:hover {
 					:before {
