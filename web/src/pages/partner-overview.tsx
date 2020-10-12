@@ -83,7 +83,7 @@ const PartnerOverview: React.FC<Props> = () => {
 				angleDirection="<"
 				anglePosition="after"
 				height="400px"
-				color={[theme.color.main.pink, theme.color.main.blue]}
+				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(page.image)
 						.width(window.innerWidth)
