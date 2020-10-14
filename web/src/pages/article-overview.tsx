@@ -82,6 +82,9 @@ const image = (image: string) => css`
 `;
 
 const preview = css`
+	@media screen and (max-width: 700px) {
+		padding: 1.5rem;
+	}
 	padding: 1.5rem 3rem;
 `;
 
