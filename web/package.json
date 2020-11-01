@@ -13,6 +13,7 @@
     "dev:preview": "cross-env SANITY_PREVIEW=true yarn dev",
     "build": "cross-env NODE_ENV=production webpack -p --mode=production",
     "build:preview": "cross-env SANITY_PREVIEW=true yarn build",
+    "lint": "eslint ./src --ext .ts,.tsx",
     "type-check": "tsc"
   },
   "dependencies": {
@@ -62,6 +63,7 @@
     "eslint-config-standard": "^14.1.0",
     "eslint-config-standard-react": "^9.2.0",
     "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.2.1",

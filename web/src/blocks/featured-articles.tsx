@@ -51,7 +51,7 @@ const Header = styled.header`
 `;
 
 const ArticleStyled = styled.article`
-	margin: 25px;
+	margin: 1rem;
 	text-align: left;
 
 	a {
