@@ -21,6 +21,16 @@ const CollapsibleList: React.FC<Props> = ({
 		setActive(index === active ? null : index);
 	};
 
+	// trigger key handler if key pressed is Enter or Space
+	const onKeyHandler = (
+		event: React.KeyboardEvent<HTMLHeadingElement>,
+		index: number
+	): void => {
+		if (["Enter", " "].includes(event.key)) {
+			setActive(index === active ? null : index);
+		}
+	};
+
 	const { white, black } = theme.color.text;
 	const purple = theme.color.main.purple;
 	const lightPurple = theme.color.background.purple;
@@ -43,29 +53,38 @@ const CollapsibleList: React.FC<Props> = ({
 					const Icon = isActive ? Minus : Plus;
 					return (
 						<li key={`${idx}-${item.title}`} ref={itemRefs[idx]}>
-							<h3
-								css={css`
-									display: flex;
-									justify-content: space-between;
-									align-items: center;
-									background-color: ${isActive ? purple : lightPurple};
-									color: ${isActive ? white : black};
-									padding: 15px;
-									margin: 5px 0;
-									cursor: pointer;
-								`}
-								onClick={() => onClickHandler(idx)}
-							>
-								{item.title}
-								<Icon
-									height="1em"
-									width="1em"
-									css={css`
-										stroke: ${isActive ? white : purple};
-									`}
-								/>
-							</h3>
 							<div
+								onClick={() => onClickHandler(idx)}
+								onKeyDown={event => onKeyHandler(event, idx)}
+								role="button"
+								aria-controls={`${item.title}-content`}
+								aria-expanded={isActive}
+								tabIndex={0}
+							>
+								<h3
+									css={css`
+										display: flex;
+										justify-content: space-between;
+										align-items: center;
+										background-color: ${isActive ? purple : lightPurple};
+										color: ${isActive ? white : black};
+										padding: 15px;
+										margin: 5px 0;
+										cursor: pointer;
+									`}
+								>
+									{item.title}
+									<Icon
+										height="1em"
+										width="1em"
+										css={css`
+											stroke: ${isActive ? white : purple};
+										`}
+									/>
+								</h3>
+							</div>
+							<div
+								id={`${item.title}-content`}
 								css={css`
 									padding: 3px 15px;
 									visibility: ${isActive ? "visible" : "hidden"};

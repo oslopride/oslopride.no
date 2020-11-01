@@ -44,7 +44,12 @@ const NotFound: React.FC<RouteComponentProps> = () => {
 				<h1>404 - Siden finnes ikke</h1>
 			</Hero>
 			<div css={body}>
-				<p>Siden du leter etter finnes dessverre ikke 😿</p>
+				<p>
+					Siden du leter etter finnes dessverre ikke{" "}
+					<span role="img" aria-label="Crying cat">
+						😿
+					</span>
+				</p>
 			</div>
 		</>
 	);
