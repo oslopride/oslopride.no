@@ -120,7 +120,7 @@ const navigationStyle = css`
 			font-size: 2rem;
 
 			a {
-				padding-left: 2rem;
+				padding-left: 0;
 
 				&:hover {
 					:before {
@@ -231,8 +231,8 @@ const Header: React.FC<Props> = () => {
 				</button>
 				<ul>
 					{navigationBar?.map(item => (
-						<li key={item._key} onClick={toggleNavigation}>
-							<Link link={item} />
+						<li key={item._key}>
+							<Link link={item} onClick={toggleNavigation} />
 						</li>
 					))}
 				</ul>

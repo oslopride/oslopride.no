@@ -4,6 +4,7 @@ import Announcement from "./announcement";
 import Advertisement from "./advertisement";
 import CollapsibleList from "./collapsible";
 import TextArea from "./text-area";
+import SplitPane from "./split-pane";
 import Quote from "./quote";
 
 type Props = {
@@ -20,6 +21,8 @@ const Block: React.FC<Props> = props => {
 			return <CollapsibleList content={props.block} />;
 		case "textArea":
 			return <TextArea content={props.block} />;
+		case "splitPane":
+			return <SplitPane content={props.block} />;
 		case "quote":
 			return <Quote content={props.block} />;
 		default:
