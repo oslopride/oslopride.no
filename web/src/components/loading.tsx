@@ -18,7 +18,15 @@ const Loading: React.FC<{}> = () => {
 		return () => clearTimeout(timer);
 	}, []);
 
-	return <div css={wrapper}>{showRainbows && <span>🏳️‍🌈</span>}</div>;
+	return (
+		<div css={wrapper}>
+			{showRainbows && (
+				<span role="img" aria-label="Pride flag">
+					🏳️‍🌈
+				</span>
+			)}
+		</div>
+	);
 };
 
 export default Loading;

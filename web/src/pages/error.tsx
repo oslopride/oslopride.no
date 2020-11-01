@@ -49,13 +49,28 @@ const ErrorPage: React.FC<Props & RouteComponentProps> = ({ error }) => {
 				textPosition="center"
 				css={hero}
 			>
-				<h1>500 - Error 🚨</h1>
+				<h1>
+					500 - Error{" "}
+					<span role="img" aria-label="Police car light">
+						🚨
+					</span>
+				</h1>
 			</Hero>
 			<div css={body}>
-				<p>Heisann, her gikk det visst i ball for oss 😧 Beklager det!</p>
+				<p>
+					Heisann, her gikk det visst i ball for oss{" "}
+					<span role="img" aria-label="Anguished face">
+						😧
+					</span>{" "}
+					Beklager det!
+				</p>
 				<p>
 					Alle feil blir automatisk rapportert inn, så alle varsellapene våre
-					uler nok nå 🚨 Vi fikser det så fort vi greier!
+					uler nok nå{" "}
+					<span role="img" aria-label="Police car light">
+						🚨
+					</span>{" "}
+					Vi fikser det så fort vi greier!
 				</p>
 			</div>
 		</>
