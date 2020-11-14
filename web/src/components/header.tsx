@@ -46,7 +46,7 @@ const headerStyle = css`
 	p {
 		position: absolute;
 		top: 1rem;
-		right: 6rem;
+		right: 8rem;
 		text-transform: uppercase;
 		font-size: 1.2rem;
 		font-weight: 600;
