@@ -62,6 +62,7 @@ export type SanityInternalLink = SanityObject<
 >;
 
 export type SanityPageHeader = Locale<{
+	subHeading: string;
 	title: string;
 	subtitle: string;
 	links?: SanityObjectArray<SanityInternalLink | SanityExternalLink>;
