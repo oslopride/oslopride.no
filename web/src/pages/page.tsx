@@ -22,7 +22,6 @@ const hero = css`
 	}
 
 	p {
-		font-size: 1.1rem;
 		margin: 0;
 	}
 `;

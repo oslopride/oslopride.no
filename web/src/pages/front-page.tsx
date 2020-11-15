@@ -67,7 +67,6 @@ const body = css`
 	max-width: 1200px;
 
 	p {
-		font-size: 1.1rem;
 		margin: 0;
 	}
 `;

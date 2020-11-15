@@ -27,7 +27,6 @@ const hero = css`
 	}
 
 	p {
-		font-size: 1rem;
 		margin: 0 auto;
 		@media (min-width: 600px) {
 			max-width: 50vw;
