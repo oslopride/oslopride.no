@@ -44,8 +44,6 @@ const body = css`
 	p {
 		margin-bottom: 0;
 		color: ${theme.color.text.grey};
-		font-size: 1rem;
-		line-height: 1.3rem;
 
 		a {
 			color: ${theme.color.main.pink};

@@ -59,11 +59,6 @@ const article = css`
 	grid-template-columns: 1fr 1fr;
 	margin-bottom: 2rem;
 
-	p {
-		font-size: 1.1rem;
-		line-height: 1.75rem;
-	}
-
 	div {
 		min-width: 50%;
 	}

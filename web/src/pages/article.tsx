@@ -41,8 +41,6 @@ const body = css`
 	p,
 	blockquote,
 	ul {
-		font-size: 1.1rem;
-		line-height: 1.75rem;
 		margin-bottom: 2rem;
 	}
 `;
