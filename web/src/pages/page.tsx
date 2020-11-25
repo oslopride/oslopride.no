@@ -34,6 +34,7 @@ const body = css`
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 2rem;
+	padding-bottom: 5rem;
 
 	p,
 	blockquote,
