@@ -19,6 +19,7 @@ import Headliners from "../blocks/headliners";
 import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
+import SanityPortableText from "../components/sanity-portable-text";
 
 const date = css`
 	font-size: 1rem;
@@ -131,6 +132,9 @@ const FrontPage: React.FC<Props> = () => {
 					))}
 				</ul>
 			</Hero>
+			<div css={body}>
+				{data.body?.no && <SanityPortableText blocks={data.body.no} />}
+			</div>
 			{data.headliners?.no?.length > 0 && (
 				<Headliners
 					content={data.headliners}
