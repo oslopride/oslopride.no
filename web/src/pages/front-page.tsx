@@ -37,8 +37,6 @@ const hero = css`
 	}
 
 	p {
-		font-size: 1.1rem;
-		line-height: 1.75rem;
 		margin: 0;
 	}
 
@@ -70,7 +68,6 @@ const body = css`
 	max-width: 1200px;
 
 	p {
-		font-size: 1.1rem;
 		margin: 0;
 	}
 `;
