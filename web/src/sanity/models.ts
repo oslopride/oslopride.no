@@ -144,6 +144,16 @@ export type SanityQuote = SanityObject<
 	}
 >;
 
+export type SanityYoutubeEmbed = SanityObject<"youtube", { url: string }>;
+
+export type SanityLiveEmbed = SanityObject<
+	"liveEmbed",
+	{
+		active: boolean;
+		embed: SanityObjectArray<SanityYoutubeEmbed>;
+	}
+>;
+
 export type SanityBlock =
 	| SanityAnnouncement
 	| SanityAdvertisement
@@ -151,7 +161,8 @@ export type SanityBlock =
 	| SanityCollapsibleList
 	| SanityPartnerPreview
 	| SanitySplitPane
-	| SanityQuote;
+	| SanityQuote
+	| SanityLiveEmbed;
 
 /**
  *
@@ -180,6 +191,7 @@ export type SanityFrontPage = SanityDocument<
 	"frontPage",
 	{
 		body: Locale<SanityObjectArray<SanityBlock>>;
+		liveEmbed: SanityLiveEmbed;
 		header: SanityPageHeader;
 		headliners: Locale<
 			SanityObjectArray<

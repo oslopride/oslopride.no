@@ -6,6 +6,25 @@ export default {
 	type: "document",
 	fieldsets: [{ name: "header", title: "Header" }],
 	fields: [
+		{
+			title: "Live Embed",
+			name: "liveEmbed",
+			type: "object",
+			fields: [
+				{
+					name: "active",
+					title: "Active",
+					type: "boolean",
+					validation: Rule => Rule.required()
+				},
+				{
+					name: "embed",
+					title: "Embed",
+					type: "array",
+					of: [{ type: "youtube" }]
+				}
+			]
+		},
 		localize(
 			{
 				title: "Header",

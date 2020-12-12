@@ -20,6 +20,7 @@ import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
 import SanityPortableText from "../components/sanity-portable-text";
+import LiveEmbed from "../blocks/live-embed";
 
 const date = css`
 	font-size: 1rem;
@@ -94,6 +95,10 @@ const FrontPage: React.FC<Props> = () => {
 	if (data === undefined) return <Loading />;
 	if (data === null) return <NotFound />;
 
+	const liveEmbed = data.liveEmbed?.active && (
+		<LiveEmbed content={data.liveEmbed} />
+	);
+
 	return (
 		<>
 			<Hero
@@ -107,27 +112,32 @@ const FrontPage: React.FC<Props> = () => {
 						.url() || ""
 				}
 				css={hero}
+				textPosition={liveEmbed ? "center" : "left"}
 			>
-				{width > 700 ? (
-					<SubHeading line="left">Oslo Pride</SubHeading>
-				) : (
-					<h1 css={date}>{config?.date}</h1>
+				{liveEmbed || (
+					<>
+						{width > 700 ? (
+							<SubHeading line="left">Oslo Pride</SubHeading>
+						) : (
+							<h1 css={date}>{config?.date}</h1>
+						)}
+						<h2>{data.header.no.title}</h2>
+						<p>{data.header.no.subtitle}</p>
+						<ul>
+							{data.header.no.links?.map((link, idx) => (
+								<li key={link._key}>
+									<LinkButton
+										link={link}
+										color={idx === 0 ? "pink" : "blue"}
+										css={css`
+											width: 100%;
+										`}
+									/>
+								</li>
+							))}
+						</ul>
+					</>
 				)}
-				<h2>{data.header.no.title}</h2>
-				<p>{data.header.no.subtitle}</p>
-				<ul>
-					{data.header.no.links?.map((link, idx) => (
-						<li key={link._key}>
-							<LinkButton
-								link={link}
-								color={idx === 0 ? "pink" : "blue"}
-								css={css`
-									width: 100%;
-								`}
-							/>
-						</li>
-					))}
-				</ul>
 			</Hero>
 			<div css={body}>
 				{data.body?.no && <SanityPortableText blocks={data.body.no} />}
