@@ -13,6 +13,12 @@ export default {
 				type: "object",
 				fields: [
 					{
+						name: "subHeading",
+						title: "Sub heading",
+						type: "string",
+						validation: Rule => Rule.required()
+					},
+					{
 						name: "title",
 						title: "Title",
 						type: "string",
