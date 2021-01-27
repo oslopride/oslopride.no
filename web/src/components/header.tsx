@@ -48,7 +48,6 @@ const headerStyle = css`
 		top: 1rem;
 		right: 6rem;
 		text-transform: uppercase;
-		font-size: 1.2rem;
 		font-weight: 600;
 		letter-spacing: 0.5px;
 		color: #f7acb3;

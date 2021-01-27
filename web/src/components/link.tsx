@@ -138,7 +138,6 @@ export const LinkButton = styled(Link)<LinkButtonProps>`
 	border-radius: 4px;
 	color: ${props => (props.color === "pink" ? "#2b193c" : "#ffffff")};
 	font-weight: bold;
-	font-size: 1rem;
 	transition: color 0.3s, background 0.3s;
 
 	:hover {

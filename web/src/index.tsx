@@ -59,10 +59,13 @@ const globalStyles = css`
 
 	main {
 		flex: 1 0 auto;
+	}
 
-		p {
-			font-size: 1.1rem;
-		}
+	p,
+	blockquote,
+	ul {
+		font-size: 1.1rem;
+		line-height: 1.75rem;
 	}
 
 	footer {

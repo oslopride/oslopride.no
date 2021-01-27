@@ -22,7 +22,6 @@ const hero = css`
 	}
 
 	p {
-		font-size: 1.1rem;
 		margin: 0;
 	}
 `;
@@ -34,12 +33,11 @@ const body = css`
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 2rem;
+	padding-bottom: 5rem;
 
 	p,
 	blockquote,
 	ul {
-		font-size: 1.1rem;
-		line-height: 1.75rem;
 		margin-bottom: 2rem;
 	}
 `;
