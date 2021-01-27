@@ -15,7 +15,7 @@ const headerStyle = css`
 	width: 100%;
 	margin: 0 auto;
 	position: absolute;
-	top: 0;
+	top: 0.85rem;
 	left: 0;
 	z-index: 10;
 	background-color: transparent;
@@ -46,7 +46,7 @@ const headerStyle = css`
 	p {
 		position: absolute;
 		top: 1rem;
-		right: 6rem;
+		right: 8rem;
 		text-transform: uppercase;
 		font-weight: 600;
 		letter-spacing: 0.5px;
@@ -164,6 +164,7 @@ const buttonStyle = css`
 
 const closeButton = (close: string) => css`
 	background-image: url(${close});
+	top: 2.85rem;
 `;
 
 const hidden = css`
