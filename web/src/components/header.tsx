@@ -48,7 +48,6 @@ const headerStyle = css`
 		top: 1rem;
 		right: 8rem;
 		text-transform: uppercase;
-		font-size: 1.2rem;
 		font-weight: 600;
 		letter-spacing: 0.5px;
 		color: #f7acb3;
@@ -99,17 +98,22 @@ const navigationStyle = css`
 		}
 
 		a:hover {
-			color: #e350a0;
+			color: ${theme.color.main.pink};
 			:before {
 				content: "";
 				display: block;
 				width: 3rem;
 				height: 4px;
-				background-color: #e350a0;
+				background-color: ${theme.color.main.pink};
 				position: absolute;
 				left: -0.5em;
 				top: 0.9em;
 			}
+		}
+
+		a[aria-current] {
+			color: ${theme.color.main.pink};
+			text-decoration: underline;
 		}
 	}
 

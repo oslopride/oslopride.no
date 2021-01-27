@@ -6,7 +6,8 @@ const theme = {
 			white: "#f7f8fa",
 			pink: "#f7acb3",
 			purple: "#bfb4d3",
-			lightPurple: "#ebe7f1"
+			lightPurple: "#ebe7f1",
+			lightYellow: "#ffecac"
 		}
 	}
 };
