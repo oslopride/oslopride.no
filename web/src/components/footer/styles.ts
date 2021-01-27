@@ -22,6 +22,10 @@ export const Footer = styled.div`
 
 	a {
 		color: ${theme.color.background.pink};
+		&:hover,
+		&:focus {
+			color: ${theme.color.background.lightYellow};
+		}
 	}
 
 	a,
