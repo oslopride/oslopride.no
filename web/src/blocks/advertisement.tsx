@@ -64,7 +64,6 @@ const headerStyle = () => css`
 	}
 
 	p {
-		font-size: 1rem;
 		margin: 0;
 	}
 

@@ -13,6 +13,12 @@ export default {
 				type: "object",
 				fields: [
 					{
+						name: "subHeading",
+						title: "Sub heading",
+						type: "string",
+						validation: Rule => Rule.required()
+					},
+					{
 						name: "title",
 						title: "Title",
 						type: "string",
@@ -40,6 +46,15 @@ export default {
 						validation: Rule => Rule.required()
 					}
 				]
+			},
+			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
+		),
+		localize(
+			{
+				title: "Body",
+				name: "body",
+				type: "array",
+				of: [{ type: "block" }]
 			},
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
 		),
