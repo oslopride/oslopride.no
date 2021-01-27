@@ -18,6 +18,11 @@ SANITY_STUDIO_API_DATASET = "staging"
   from = "/program"
   to = "/events?redirectedFrom=/program"
   status = 301
+  
+[[redirects]]
+  from = "/p/pride-art"
+  to = "https://www.prideart.no"
+  status = 301
 
 [[redirects]]
   from = "/*"

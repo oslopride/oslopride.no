@@ -179,6 +179,7 @@ export type SanitySimpleEvent = SanityDocument<
 export type SanityFrontPage = SanityDocument<
 	"frontPage",
 	{
+		body: Locale<SanityObjectArray<SanityBlock>>;
 		header: SanityPageHeader;
 		headliners: Locale<
 			SanityObjectArray<

@@ -73,8 +73,6 @@ const headlinersStyle = (hasAttachedEvents: boolean) => css`
 	}
 
 	p {
-		font-size: 1rem;
-		line-height: 1.75rem;
 		margin: 1rem 0;
 	}
 `;
@@ -142,7 +140,6 @@ const eventBody = css`
 
 	& div {
 		font-size: 1rem;
-		line-height: 1.3rem;
 		flex-grow: 1;
 		a {
 			color: ${theme.color.main.pink};
