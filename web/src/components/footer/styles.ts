@@ -4,7 +4,6 @@ import styled from "@emotion/styled";
 export const StickyFooter = styled.footer`
 	background-color: ${theme.color.main.purple};
 	color: ${theme.color.text.white};
-	font-size: 1rem;
 `;
 
 export const Footer = styled.div`
@@ -23,6 +22,10 @@ export const Footer = styled.div`
 
 	a {
 		color: ${theme.color.background.pink};
+		&:hover,
+		&:focus {
+			color: ${theme.color.background.lightYellow};
+		}
 	}
 
 	a,

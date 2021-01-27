@@ -12,7 +12,6 @@ const body = css`
 	max-width: 900px;
 
 	p {
-		font-size: 1.1rem;
 		margin: 0;
 	}
 `;

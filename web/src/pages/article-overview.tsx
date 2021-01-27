@@ -24,7 +24,6 @@ const hero = css`
 	}
 
 	p {
-		font-size: 1.1rem;
 		margin: 0;
 	}
 `;
@@ -58,11 +57,6 @@ const article = css`
 	min-height: 330px;
 	grid-template-columns: 1fr 1fr;
 	margin-bottom: 2rem;
-
-	p {
-		font-size: 1.1rem;
-		line-height: 1.75rem;
-	}
 
 	div {
 		min-width: 50%;

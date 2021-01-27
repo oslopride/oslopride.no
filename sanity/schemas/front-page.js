@@ -49,6 +49,15 @@ export default {
 			},
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
 		),
+		localize(
+			{
+				title: "Body",
+				name: "body",
+				type: "array",
+				of: [{ type: "block" }]
+			},
+			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
+		),
 		localize({
 			title: "Headliners",
 			name: "headliners",

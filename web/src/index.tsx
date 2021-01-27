@@ -49,12 +49,23 @@ const globalStyles = css`
 		flex-direction: column;
 	}
 
+	a {
+		color: ${theme.color.main.purple};
+		&:hover,
+		&:focus {
+			color: ${theme.color.main.blue};
+		}
+	}
+
 	main {
 		flex: 1 0 auto;
+	}
 
-		p {
-			font-size: 1.1rem;
-		}
+	p,
+	blockquote,
+	ul {
+		font-size: 1.1rem;
+		line-height: 1.75rem;
 	}
 
 	footer {
