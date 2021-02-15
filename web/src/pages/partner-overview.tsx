@@ -89,6 +89,7 @@ const PartnerOverview: React.FC<Props> = () => {
 				}
 				css={hero}
 				textPosition="center"
+				displayScrollButton
 			>
 				<h2>{page.title.no}</h2>
 				<p>{page.subtitle && page.subtitle.no}</p>
