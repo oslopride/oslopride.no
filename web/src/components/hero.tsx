@@ -1,6 +1,5 @@
 import React from "react";
 import { css } from "@emotion/core";
-import { rightAngledTriangleHeight } from "../utils";
 import AngledImage, { angleDirection } from "./angled-image";
 
 const hero = (height: string) => css`
@@ -44,7 +43,6 @@ const centeredContent = css`
 `;
 
 type Props = {
-	anglePosition: "before" | "after" | "center";
 	angleDirection: angleDirection;
 	height: string;
 	imageUrl: string;
@@ -56,7 +54,6 @@ type Props = {
 
 const Hero: React.FC<Props> = props => {
 	const {
-		anglePosition,
 		angleDirection,
 		height,
 		imageUrl,
@@ -67,28 +64,18 @@ const Hero: React.FC<Props> = props => {
 
 	const contentRef = React.useRef<HTMLDivElement>(null);
 
-	const triangleHeight = rightAngledTriangleHeight(100, 6);
-
-	const totalImageHeight =
-		anglePosition === "before"
-			? height
-			: anglePosition === "after"
-			? `calc(${height} + ${triangleHeight}vw)`
-			: `calc(${height} + (${triangleHeight}vw / 2))`;
-
 	const contentClass =
 		props.textPosition === "center"
 			? [defaultContent, centeredContent]
 			: defaultContent;
 
 	return (
-		<div css={hero(totalImageHeight)}>
+		<div css={hero(height)}>
 			<AngledImage
 				direction={angleDirection}
-				angleHeight={`${triangleHeight}vw`}
 				imageUrl={imageUrl}
 				overlayColor={color}
-				css={image(totalImageHeight)}
+				css={image(height)}
 			/>
 			<div className={className}>
 				<div css={contentClass} ref={contentRef}>
