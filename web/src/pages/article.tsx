@@ -20,7 +20,7 @@ const hero = css`
 	margin-bottom: 3rem;
 
 	h2 {
-		font-size: 2.5rem;
+		font-size: 4rem;
 		margin: 0 0 1rem 0;
 	}
 
