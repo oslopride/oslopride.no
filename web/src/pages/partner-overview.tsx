@@ -80,7 +80,6 @@ const PartnerOverview: React.FC<Props> = () => {
 		<>
 			<Hero
 				angleDirection="<"
-				anglePosition="after"
 				height="400px"
 				color={[theme.color.main.purple]}
 				imageUrl={

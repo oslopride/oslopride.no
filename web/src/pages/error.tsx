@@ -41,7 +41,6 @@ const ErrorPage: React.FC<Props & RouteComponentProps> = ({ error }) => {
 			</Helmet>
 			<Hero
 				angleDirection="<"
-				anglePosition="after"
 				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl=""

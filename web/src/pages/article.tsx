@@ -66,7 +66,6 @@ const Article: React.FC<Props> = props => {
 		<>
 			<Hero
 				angleDirection="<"
-				anglePosition="after"
 				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl={

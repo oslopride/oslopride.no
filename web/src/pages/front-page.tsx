@@ -98,7 +98,6 @@ const FrontPage: React.FC<Props> = () => {
 		<>
 			<Hero
 				angleDirection=">"
-				anglePosition="after"
 				height="720px"
 				color={[theme.color.main.purple, theme.color.main.pink]}
 				imageUrl={
