@@ -4,7 +4,6 @@ export type angleDirection = "<" | ">";
 
 type Props = {
 	direction: angleDirection;
-	angleHeight: string;
 	overlayColor: Array<string>;
 	imageUrl: string;
 };
