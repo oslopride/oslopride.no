@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 
-export type SubHeadingProps = { line: "left" | "right" | "both" | "line-only" };
-
-const SubHeading = styled.span<SubHeadingProps>`
+const SubHeading = styled.span`
 	display: inline-flex;
 	text-transform: uppercase;
 	font-size: 0.85rem;
