@@ -32,7 +32,7 @@ const body = css`
 	max-width: 900px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 2rem;
+	margin-top: 4rem;
 	padding-bottom: 5rem;
 
 	p,
