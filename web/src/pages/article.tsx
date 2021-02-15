@@ -74,6 +74,7 @@ const Article: React.FC<Props> = props => {
 						.url() || ""
 				}
 				css={hero}
+				displayScrollButton
 			>
 				<p css={date}>{article._createdAt.split("T")[0]}</p>
 				<h2>{article.title.no}</h2>

@@ -68,6 +68,7 @@ const Page: React.FC<Props> = props => {
 				}
 				css={hero}
 				textPosition="center"
+				displayScrollButton
 			>
 				<h2>{page.header.no.title}</h2>
 				<p>{page.header.no.subtitle}</p>
