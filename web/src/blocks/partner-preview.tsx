@@ -134,7 +134,7 @@ const PartnerPreview: React.FC<PartnerPreviewProps> = ({ content }) => {
 
 	return (
 		<section css={container}>
-			<SubHeading line="left">Våre partnere</SubHeading>
+			<SubHeading>Våre partnere</SubHeading>
 			<ul css={groupContainer}>
 				{Object.values(groupedPartners).map(group => (
 					<PartnerGroup

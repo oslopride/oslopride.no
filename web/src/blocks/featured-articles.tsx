@@ -129,7 +129,7 @@ const FeaturedArticles: React.FC<Props> = ({ content }: Props) => (
 	<SectionStyled>
 		<Header>
 			<h2>
-				<SubHeading line="both">Artikler</SubHeading>
+				<SubHeading>Artikler</SubHeading>
 			</h2>
 			<h3>
 				Viktige intervju, rørende historier, og veien mot et mer åpent samfunn i
