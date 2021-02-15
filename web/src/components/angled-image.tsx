@@ -39,10 +39,6 @@ const AngledImage = styled.figure<Props>`
 	background-image: url("${props => props.imageUrl}");
 	background-size: cover;
 	background-position: center;
-	clip-path: ${props =>
-		props.direction === "<"
-			? `polygon(0 0, 100% 0, 100% calc(100% - ${props.angleHeight}), 0 100%);`
-			: `polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - ${props.angleHeight}));`};
 
 	::after {
 		content: "";
