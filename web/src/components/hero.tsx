@@ -117,12 +117,12 @@ const Hero: React.FC<Props> = props => {
 
 			{props.displayScrollButton && (
 				<button
-					title="Scroll to main content"
+					title="Bla ned til hovedinnholdet"
 					ref={scrollButtonRef}
 					css={scrollButton(height)}
 					onClick={scrollToContent}
 				>
-					<span role="img" aria-label="Arrow pointing down">
+					<span role="img" aria-label="Nedoverpil">
 						↓
 					</span>
 				</button>
