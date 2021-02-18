@@ -7,6 +7,11 @@ const hero = (height: string) => css`
 	min-height: 400px;
 	height: ${height};
 	padding-top: 13rem;
+	color: #ffffff;
+
+	h2 {
+		font-size: 4rem;
+	}
 
 	@media screen and (max-width: 800px) {
 		padding-top: 8rem;

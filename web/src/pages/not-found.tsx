@@ -17,7 +17,6 @@ const body = css`
 `;
 
 const hero = css`
-	color: white;
 	text-align: center;
 `;
 

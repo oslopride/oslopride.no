@@ -18,11 +18,9 @@ import { LinkButton } from "../components/link";
 type Props = { slug?: string } & RouteComponentProps;
 
 const hero = css`
-	color: #ffffff;
 	text-align: center;
 
 	h2 {
-		font-size: 4rem;
 		margin: 0 0 2rem 0;
 	}
 

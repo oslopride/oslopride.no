@@ -13,11 +13,9 @@ import NotFound from "./not-found";
 import Error from "./error";
 
 const hero = css`
-	color: #ffffff;
 	text-align: center;
 
 	h2 {
-		font-size: 4rem;
 		margin: 0 0 2rem 0;
 	}
 

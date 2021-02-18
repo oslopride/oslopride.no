@@ -28,10 +28,7 @@ const date = css`
 `;
 
 const hero = css`
-	color: #ffffff;
-
 	h2 {
-		font-size: 4rem;
 		line-height: 3.5rem;
 		margin: 2rem 0;
 	}
