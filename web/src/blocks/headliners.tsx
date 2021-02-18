@@ -221,9 +221,7 @@ const Headliners: React.FC<Props> = props => {
 					<article key={_idx}>
 						<h2>{item.title}</h2>
 						<p>{item.subtitle}</p>
-						{_idx + 1 < content.no.length && (
-							<SubHeading css={lineCss} line="line-only" />
-						)}
+						{_idx + 1 < content.no.length && <SubHeading css={lineCss} />}
 					</article>
 				))}
 			</section>
