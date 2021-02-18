@@ -100,7 +100,7 @@ const PartnerOverview: React.FC<Props> = () => {
 
 				{page.callToAction && page.callToAction.no && (
 					<div css={callToActionStyle}>
-						<SubHeading color={theme.color.main.pink} line="both">
+						<SubHeading color={theme.color.main.pink}>
 							{page.callToAction.no.title}
 						</SubHeading>
 						<h2>{page.callToAction.no.subtitle}</h2>
