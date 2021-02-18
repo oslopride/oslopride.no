@@ -20,7 +20,7 @@ const hero = css`
 	margin-bottom: 3rem;
 
 	h2 {
-		font-size: 2.5rem;
+		font-size: 4rem;
 		margin: 0 0 1rem 0;
 	}
 
@@ -35,7 +35,7 @@ const body = css`
 	max-width: 900px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 2rem;
+	margin-top: 4rem;
 
 	p,
 	blockquote,
@@ -66,7 +66,6 @@ const Article: React.FC<Props> = props => {
 		<>
 			<Hero
 				angleDirection="<"
-				anglePosition="after"
 				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl={
@@ -75,6 +74,7 @@ const Article: React.FC<Props> = props => {
 						.url() || ""
 				}
 				css={hero}
+				displayScrollButton
 			>
 				<p css={date}>{article._createdAt.split("T")[0]}</p>
 				<h2>{article.title.no}</h2>

@@ -19,7 +19,7 @@ const hero = css`
 	text-align: center;
 
 	h2 {
-		font-size: 2.5rem;
+		font-size: 4rem;
 		margin: 0 0 2rem 0;
 	}
 
@@ -31,7 +31,7 @@ const hero = css`
 const body = css`
 	display: block;
 	margin: auto;
-	margin-top: calc(0vh - calc(5vh + 10.510423526567646vw));
+	margin-top: -8rem;
 	width: 90vw;
 	max-width: 900px;
 
@@ -107,8 +107,7 @@ const ArticleOverview: React.FC<Props> = () => {
 		<>
 			<Hero
 				angleDirection="<"
-				anglePosition="after"
-				height="500px"
+				height="600px"
 				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(archive.image)

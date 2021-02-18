@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/core";
-import { rightAngledTriangleHeight } from "../utils";
 import AngledImage, { angleDirection } from "./angled-image";
+import theme from "../utils/theme";
 
 const hero = (height: string) => css`
 	min-height: 400px;
@@ -21,6 +21,27 @@ const image = (height: string) => css`
 	height: ${height};
 	min-height: 350px;
 	z-index: -1;
+`;
+
+const scrollButton = (height: string) => css`
+	display: block;
+	position: absolute;
+	top: calc(${height} - 1.5rem);
+	left: 50%;
+	transform: translateX(-50%);
+	height: 3rem;
+	width: 3rem;
+	color: #fff;
+	background: ${theme.color.main.pink};
+	border: 3px solid #fff;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: background 0.3s;
+
+	:hover,
+	:focus {
+		background: ${theme.color.main.purple};
+	}
 `;
 
 const defaultContent = css`
@@ -44,7 +65,6 @@ const centeredContent = css`
 `;
 
 type Props = {
-	anglePosition: "before" | "after" | "center";
 	angleDirection: angleDirection;
 	height: string;
 	imageUrl: string;
@@ -52,11 +72,11 @@ type Props = {
 	overflow?: boolean;
 	className?: string;
 	textPosition?: "center" | "left";
+	displayScrollButton?: boolean;
 };
 
 const Hero: React.FC<Props> = props => {
 	const {
-		anglePosition,
 		angleDirection,
 		height,
 		imageUrl,
@@ -66,35 +86,47 @@ const Hero: React.FC<Props> = props => {
 	} = props;
 
 	const contentRef = React.useRef<HTMLDivElement>(null);
-
-	const triangleHeight = rightAngledTriangleHeight(100, 6);
-
-	const totalImageHeight =
-		anglePosition === "before"
-			? height
-			: anglePosition === "after"
-			? `calc(${height} + ${triangleHeight}vw)`
-			: `calc(${height} + (${triangleHeight}vw / 2))`;
+	const scrollButtonRef = React.useRef<HTMLButtonElement>(null);
 
 	const contentClass =
 		props.textPosition === "center"
 			? [defaultContent, centeredContent]
 			: defaultContent;
 
+	function scrollToContent(): void {
+		const buttonDistanceFromTop = scrollButtonRef.current?.offsetTop as number;
+		const buttonHeight = scrollButtonRef.current?.offsetHeight as number;
+		const scrollOffsetFromTop = buttonDistanceFromTop + buttonHeight;
+
+		window.scrollTo({ top: scrollOffsetFromTop, behavior: "smooth" });
+	}
+
 	return (
-		<div css={hero(totalImageHeight)}>
+		<div css={hero(height)}>
 			<AngledImage
 				direction={angleDirection}
-				angleHeight={`${triangleHeight}vw`}
 				imageUrl={imageUrl}
 				overlayColor={color}
-				css={image(totalImageHeight)}
+				css={image(height)}
 			/>
 			<div className={className}>
 				<div css={contentClass} ref={contentRef}>
 					{children}
 				</div>
 			</div>
+
+			{props.displayScrollButton && (
+				<button
+					title="Bla ned til hovedinnholdet"
+					ref={scrollButtonRef}
+					css={scrollButton(height)}
+					onClick={scrollToContent}
+				>
+					<span role="img" aria-label="Nedoverpil">
+						↓
+					</span>
+				</button>
+			)}
 		</div>
 	);
 };

@@ -22,7 +22,7 @@ const hero = css`
 	text-align: center;
 
 	h2 {
-		font-size: 2.5rem;
+		font-size: 4rem;
 		margin: 0 0 2rem 0;
 	}
 
@@ -80,7 +80,6 @@ const PartnerOverview: React.FC<Props> = () => {
 		<>
 			<Hero
 				angleDirection="<"
-				anglePosition="after"
 				height="400px"
 				color={[theme.color.main.purple]}
 				imageUrl={
@@ -90,6 +89,7 @@ const PartnerOverview: React.FC<Props> = () => {
 				}
 				css={hero}
 				textPosition="center"
+				displayScrollButton
 			>
 				<h2>{page.title.no}</h2>
 				<p>{page.subtitle && page.subtitle.no}</p>

@@ -22,7 +22,7 @@ const hero = css`
 	text-align: center;
 
 	h2 {
-		font-size: 2.5rem;
+		font-size: 4rem;
 		margin: 0 0 2rem 0;
 	}
 
@@ -264,7 +264,6 @@ const EventOverview: React.FC<Props> = () => {
 		<>
 			<Hero
 				angleDirection="<"
-				anglePosition="after"
 				height="60vh"
 				color={[theme.color.main.purple, theme.color.main.pink]}
 				imageUrl={
