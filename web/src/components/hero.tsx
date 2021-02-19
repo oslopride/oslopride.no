@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/core";
-import AngledImage, { angleDirection } from "./angled-image";
+import AngledImage from "./angled-image";
 import theme from "../utils/theme";
 
 const hero = (height: string) => css`
@@ -70,7 +70,6 @@ const centeredContent = css`
 `;
 
 type Props = {
-	angleDirection: angleDirection;
 	height: string;
 	imageUrl: string;
 	color: Array<string>;
@@ -81,14 +80,7 @@ type Props = {
 };
 
 const Hero: React.FC<Props> = props => {
-	const {
-		angleDirection,
-		height,
-		imageUrl,
-		color,
-		className,
-		children
-	} = props;
+	const { height, imageUrl, color, className, children } = props;
 
 	const contentRef = React.useRef<HTMLDivElement>(null);
 	const scrollButtonRef = React.useRef<HTMLButtonElement>(null);
@@ -109,7 +101,6 @@ const Hero: React.FC<Props> = props => {
 	return (
 		<div css={hero(height)}>
 			<AngledImage
-				direction={angleDirection}
 				imageUrl={imageUrl}
 				overlayColor={color}
 				css={image(height)}

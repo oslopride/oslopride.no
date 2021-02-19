@@ -31,7 +31,6 @@ const NotFound: React.FC<RouteComponentProps> = () => {
 				<meta name="robots" content="noindex" />
 			</Helmet>
 			<Hero
-				angleDirection="<"
 				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl=""

@@ -104,7 +104,6 @@ const ArticleOverview: React.FC<Props> = () => {
 	return (
 		<>
 			<Hero
-				angleDirection="<"
 				height="600px"
 				color={[theme.color.main.purple]}
 				imageUrl={

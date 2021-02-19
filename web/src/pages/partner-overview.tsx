@@ -77,7 +77,6 @@ const PartnerOverview: React.FC<Props> = () => {
 	return (
 		<>
 			<Hero
-				angleDirection="<"
 				height="400px"
 				color={[theme.color.main.purple]}
 				imageUrl={

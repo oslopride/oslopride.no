@@ -261,7 +261,6 @@ const EventOverview: React.FC<Props> = () => {
 	return (
 		<>
 			<Hero
-				angleDirection="<"
 				height="60vh"
 				color={[theme.color.main.purple, theme.color.main.pink]}
 				imageUrl={
