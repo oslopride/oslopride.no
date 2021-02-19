@@ -24,7 +24,7 @@ const getGradient = (colorList: Array<string>) => {
 	}
 };
 
-const AngledImage = styled.figure<Props>`
+const BackgroundImage = styled.figure<Props>`
 	position: relative;
 	margin: 0;
 	background-image: url("${props => props.imageUrl}");
@@ -46,4 +46,4 @@ const AngledImage = styled.figure<Props>`
 	}
 `;
 
-export default AngledImage;
+export default BackgroundImage;

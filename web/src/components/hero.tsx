@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/core";
-import AngledImage from "./angled-image";
+import BackgroundImage from "./background-image";
 import theme from "../utils/theme";
 
 const hero = (height: string) => css`
@@ -100,7 +100,7 @@ const Hero: React.FC<Props> = props => {
 
 	return (
 		<div css={hero(height)}>
-			<AngledImage
+			<BackgroundImage
 				imageUrl={imageUrl}
 				overlayColor={color}
 				css={image(height)}
