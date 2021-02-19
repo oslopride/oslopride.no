@@ -64,7 +64,7 @@ const Page: React.FC<Props> = props => {
 						.url() || ""
 				}
 				css={hero}
-				textPosition="center"
+				centerContent
 				displayScrollButton
 			>
 				<h2>{page.header.no.title}</h2>

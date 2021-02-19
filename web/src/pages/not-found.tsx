@@ -34,7 +34,7 @@ const NotFound: React.FC<RouteComponentProps> = () => {
 				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl=""
-				textPosition="center"
+				centerContent
 				css={hero}
 			>
 				<h1>404 - Siden finnes ikke</h1>

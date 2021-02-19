@@ -85,7 +85,7 @@ const PartnerOverview: React.FC<Props> = () => {
 						.url() || ""
 				}
 				css={hero}
-				textPosition="center"
+				centerContent
 				displayScrollButton
 			>
 				<h2>{page.title.no}</h2>

@@ -75,7 +75,7 @@ type Props = {
 	color: Array<string>;
 	overflow?: boolean;
 	className?: string;
-	textPosition?: "center" | "left";
+	centerContent?: boolean;
 	displayScrollButton?: boolean;
 };
 
@@ -83,11 +83,6 @@ const Hero: React.FC<Props> = props => {
 	const { height, imageUrl, color, className, children } = props;
 
 	const scrollButtonRef = React.useRef<HTMLButtonElement>(null);
-
-	const contentClass =
-		props.textPosition === "center"
-			? [defaultContent, centeredContent]
-			: defaultContent;
 
 	function scrollToContent(): void {
 		const buttonDistanceFromTop = scrollButtonRef.current?.offsetTop as number;
@@ -105,7 +100,9 @@ const Hero: React.FC<Props> = props => {
 				css={image(height)}
 			/>
 			<div className={className}>
-				<div css={contentClass}>{children}</div>
+				<div css={[defaultContent, props.centerContent && centeredContent]}>
+					{children}
+				</div>
 			</div>
 
 			{props.displayScrollButton && (

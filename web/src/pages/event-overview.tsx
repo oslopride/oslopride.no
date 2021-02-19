@@ -269,7 +269,7 @@ const EventOverview: React.FC<Props> = () => {
 						.url() || ""
 				}
 				css={hero}
-				textPosition="center"
+				centerContent
 			>
 				<h2>{archive.title.no}</h2>
 				<p>{archive.subtitle && archive.subtitle.no}</p>
