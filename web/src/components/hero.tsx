@@ -82,7 +82,6 @@ type Props = {
 const Hero: React.FC<Props> = props => {
 	const { height, imageUrl, color, className, children } = props;
 
-	const contentRef = React.useRef<HTMLDivElement>(null);
 	const scrollButtonRef = React.useRef<HTMLButtonElement>(null);
 
 	const contentClass =
@@ -106,9 +105,7 @@ const Hero: React.FC<Props> = props => {
 				css={image(height)}
 			/>
 			<div className={className}>
-				<div css={contentClass} ref={contentRef}>
-					{children}
-				</div>
+				<div css={contentClass}>{children}</div>
 			</div>
 
 			{props.displayScrollButton && (
