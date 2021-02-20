@@ -28,10 +28,7 @@ const date = css`
 `;
 
 const hero = css`
-	color: #ffffff;
-
 	h2 {
-		font-size: 4rem;
 		line-height: 3.5rem;
 		margin: 2rem 0;
 	}
@@ -66,10 +63,11 @@ const body = css`
 	margin: 5vh auto 3rem auto;
 	width: 90vw;
 	max-width: 1200px;
+`;
 
-	p {
-		margin: 0;
-	}
+const bodyText = css`
+	max-width: clamp(20rem, 60%, 40rem);
+	margin: 6rem auto;
 `;
 
 type Props = {} & RouteComponentProps;
@@ -97,7 +95,6 @@ const FrontPage: React.FC<Props> = () => {
 	return (
 		<>
 			<Hero
-				angleDirection=">"
 				height="720px"
 				color={[theme.color.main.purple, theme.color.main.pink]}
 				imageUrl={
@@ -128,22 +125,30 @@ const FrontPage: React.FC<Props> = () => {
 					))}
 				</ul>
 			</Hero>
+
 			<div css={body}>
-				{data.body?.no && <SanityPortableText blocks={data.body.no} />}
+				{data.body?.no && (
+					<SanityPortableText blocks={data.body.no} css={bodyText} />
+				)}
 			</div>
+
 			{data.headliners?.no?.length > 0 && (
 				<Headliners
 					content={data.headliners}
 					featuredEvents={data.featuredEvents}
 				/>
 			)}
+
 			{data.callToAction && <Advertisement content={data.callToAction.no} />}
+
 			<div css={body}>
 				{data.featuredArticles && (
 					<FeaturedArticles content={data.featuredArticles} />
 				)}
 			</div>
+
 			{data.partners && <PartnerPreview content={data.partners} />}
+
 			<Seo
 				openGraph={{
 					title: "Hjem",

@@ -1,12 +1,17 @@
 import React from "react";
 import { css } from "@emotion/core";
-import AngledImage, { angleDirection } from "./angled-image";
+import BackgroundImage from "./background-image";
 import theme from "../utils/theme";
 
 const hero = (height: string) => css`
 	min-height: 400px;
 	height: ${height};
 	padding-top: 13rem;
+	color: #ffffff;
+
+	h2 {
+		font-size: 4rem;
+	}
 
 	@media screen and (max-width: 800px) {
 		padding-top: 8rem;
@@ -65,33 +70,19 @@ const centeredContent = css`
 `;
 
 type Props = {
-	angleDirection: angleDirection;
 	height: string;
 	imageUrl: string;
 	color: Array<string>;
 	overflow?: boolean;
 	className?: string;
-	textPosition?: "center" | "left";
+	centerContent?: boolean;
 	displayScrollButton?: boolean;
 };
 
 const Hero: React.FC<Props> = props => {
-	const {
-		angleDirection,
-		height,
-		imageUrl,
-		color,
-		className,
-		children
-	} = props;
+	const { height, imageUrl, color, className, children } = props;
 
-	const contentRef = React.useRef<HTMLDivElement>(null);
 	const scrollButtonRef = React.useRef<HTMLButtonElement>(null);
-
-	const contentClass =
-		props.textPosition === "center"
-			? [defaultContent, centeredContent]
-			: defaultContent;
 
 	function scrollToContent(): void {
 		const buttonDistanceFromTop = scrollButtonRef.current?.offsetTop as number;
@@ -103,14 +94,13 @@ const Hero: React.FC<Props> = props => {
 
 	return (
 		<div css={hero(height)}>
-			<AngledImage
-				direction={angleDirection}
+			<BackgroundImage
 				imageUrl={imageUrl}
 				overlayColor={color}
 				css={image(height)}
 			/>
 			<div className={className}>
-				<div css={contentClass} ref={contentRef}>
+				<div css={[defaultContent, props.centerContent && centeredContent]}>
 					{children}
 				</div>
 			</div>

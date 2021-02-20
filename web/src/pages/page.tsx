@@ -13,11 +13,9 @@ import NotFound from "./not-found";
 import Error from "./error";
 
 const hero = css`
-	color: #ffffff;
 	text-align: center;
 
 	h2 {
-		font-size: 4rem;
 		margin: 0 0 2rem 0;
 	}
 
@@ -58,7 +56,6 @@ const Page: React.FC<Props> = props => {
 	return (
 		<>
 			<Hero
-				angleDirection="<"
 				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl={
@@ -67,7 +64,7 @@ const Page: React.FC<Props> = props => {
 						.url() || ""
 				}
 				css={hero}
-				textPosition="center"
+				centerContent
 				displayScrollButton
 			>
 				<h2>{page.header.no.title}</h2>

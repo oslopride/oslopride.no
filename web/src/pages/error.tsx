@@ -17,7 +17,6 @@ const body = css`
 `;
 
 const hero = css`
-	color: white;
 	text-align: center;
 `;
 
@@ -40,11 +39,10 @@ const ErrorPage: React.FC<Props & RouteComponentProps> = ({ error }) => {
 				<meta name="robots" content="noindex" />
 			</Helmet>
 			<Hero
-				angleDirection="<"
 				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl=""
-				textPosition="center"
+				centerContent
 				css={hero}
 			>
 				<h1>

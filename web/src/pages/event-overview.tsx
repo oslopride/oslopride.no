@@ -18,11 +18,9 @@ import { LinkButton } from "../components/link";
 type Props = { slug?: string } & RouteComponentProps;
 
 const hero = css`
-	color: #ffffff;
 	text-align: center;
 
 	h2 {
-		font-size: 4rem;
 		margin: 0 0 2rem 0;
 	}
 
@@ -263,7 +261,6 @@ const EventOverview: React.FC<Props> = () => {
 	return (
 		<>
 			<Hero
-				angleDirection="<"
 				height="60vh"
 				color={[theme.color.main.purple, theme.color.main.pink]}
 				imageUrl={
@@ -272,7 +269,7 @@ const EventOverview: React.FC<Props> = () => {
 						.url() || ""
 				}
 				css={hero}
-				textPosition="center"
+				centerContent
 			>
 				<h2>{archive.title.no}</h2>
 				<p>{archive.subtitle && archive.subtitle.no}</p>

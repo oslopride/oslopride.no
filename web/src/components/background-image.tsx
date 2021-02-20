@@ -1,21 +1,13 @@
 import styled from "@emotion/styled";
 
-export type angleDirection = "<" | ">";
-
 type Props = {
-	direction: angleDirection;
 	overlayColor: Array<string>;
 	imageUrl: string;
 };
 
-const getGradient = (colorList: Array<string>, direction: string) => {
+const getGradient = (colorList: Array<string>) => {
 	if (colorList.length > 1) {
-		let output = "background-image: linear-gradient(";
-		if (direction === "<") {
-			output += "190deg, ";
-		} else {
-			output += "170deg, ";
-		}
+		let output = "background-image: linear-gradient(170deg, ";
 		colorList.forEach((color, index) => {
 			output += color;
 			if (index === 0) {
@@ -32,7 +24,7 @@ const getGradient = (colorList: Array<string>, direction: string) => {
 	}
 };
 
-const AngledImage = styled.figure<Props>`
+const BackgroundImage = styled.figure<Props>`
 	position: relative;
 	margin: 0;
 	background-image: url("${props => props.imageUrl}");
@@ -47,11 +39,11 @@ const AngledImage = styled.figure<Props>`
 		right: 0;
 		bottom: 0;
 		background-color: ${props => props.overlayColor[0]};
-		${props => getGradient(props.overlayColor, props.direction)};
+		${props => getGradient(props.overlayColor)};
 		background-size: 150% 150%;
 		background-position: top left;
 		opacity: 0.85;
 	}
 `;
 
-export default AngledImage;
+export default BackgroundImage;

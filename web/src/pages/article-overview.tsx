@@ -15,11 +15,9 @@ import Error from "./error";
 type Props = { slug?: string } & RouteComponentProps;
 
 const hero = css`
-	color: #ffffff;
 	text-align: center;
 
 	h2 {
-		font-size: 4rem;
 		margin: 0 0 2rem 0;
 	}
 
@@ -106,7 +104,6 @@ const ArticleOverview: React.FC<Props> = () => {
 	return (
 		<>
 			<Hero
-				angleDirection="<"
 				height="600px"
 				color={[theme.color.main.purple]}
 				imageUrl={
@@ -115,7 +112,7 @@ const ArticleOverview: React.FC<Props> = () => {
 						.url() || ""
 				}
 				css={hero}
-				textPosition="center"
+				centerContent
 			>
 				<h2>{archive.title.no}</h2>
 				<p>{archive.subtitle.no}</p>
