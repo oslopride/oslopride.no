@@ -33,6 +33,7 @@ const body = css`
 	margin-top: -8rem;
 	width: 90vw;
 	max-width: 900px;
+	overflow-wrap: break-word;
 
 	p {
 		margin-bottom: 0;

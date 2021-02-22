@@ -33,6 +33,7 @@ const body = css`
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 4rem;
+	overflow-wrap: break-word;
 
 	p,
 	blockquote,

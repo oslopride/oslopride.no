@@ -9,6 +9,7 @@ const hero = css`
 	padding-top: 13rem;
 	padding-bottom: 7rem;
 	color: #ffffff;
+	overflow-wrap: break-word;
 
 	h2 {
 		font-size: 4rem;
