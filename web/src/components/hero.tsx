@@ -99,10 +99,11 @@ const Hero: React.FC<Props> = props => {
 				overlayColor={color}
 				css={image(height)}
 			/>
-			<div className={className}>
-				<div css={[defaultContent, props.centerContent && centeredContent]}>
-					{children}
-				</div>
+			<div
+				className={className}
+				css={[defaultContent, props.centerContent && centeredContent]}
+			>
+				{children}
 			</div>
 
 			{props.displayScrollButton && (
