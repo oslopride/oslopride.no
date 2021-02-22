@@ -3,10 +3,11 @@ import { css } from "@emotion/core";
 import BackgroundImage from "./background-image";
 import theme from "../utils/theme";
 
-const hero = (height: string) => css`
+const hero = css`
+	position: relative;
 	min-height: 400px;
-	height: ${height};
 	padding-top: 13rem;
+	padding-bottom: 7rem;
 	color: #ffffff;
 
 	h2 {
@@ -15,23 +16,22 @@ const hero = (height: string) => css`
 
 	@media screen and (max-width: 800px) {
 		padding-top: 8rem;
+		padding-bottom: 2rem;
 	}
 `;
 
-const image = (height: string) => css`
+const image = css`
 	position: absolute;
 	top: 0;
-	left: 0;
 	width: 100%;
-	height: ${height};
-	min-height: 350px;
+	height: 100%;
 	z-index: -1;
 `;
 
-const scrollButton = (height: string) => css`
+const scrollButton = css`
 	display: block;
 	position: absolute;
-	top: calc(${height} - 1.5rem);
+	top: calc(100% - 1.5rem);
 	left: 50%;
 	transform: translateX(-50%);
 	height: 3rem;
@@ -70,7 +70,6 @@ const centeredContent = css`
 `;
 
 type Props = {
-	height: string;
 	imageUrl: string;
 	color: Array<string>;
 	overflow?: boolean;
@@ -80,7 +79,7 @@ type Props = {
 };
 
 const Hero: React.FC<Props> = props => {
-	const { height, imageUrl, color, className, children } = props;
+	const { imageUrl, color, className, children } = props;
 
 	const scrollButtonRef = React.useRef<HTMLButtonElement>(null);
 
@@ -93,12 +92,8 @@ const Hero: React.FC<Props> = props => {
 	}
 
 	return (
-		<div css={hero(height)}>
-			<BackgroundImage
-				imageUrl={imageUrl}
-				overlayColor={color}
-				css={image(height)}
-			/>
+		<div css={hero}>
+			<BackgroundImage imageUrl={imageUrl} overlayColor={color} css={image} />
 			<div
 				className={className}
 				css={[defaultContent, props.centerContent && centeredContent]}
@@ -110,7 +105,7 @@ const Hero: React.FC<Props> = props => {
 				<button
 					title="Bla ned til hovedinnholdet"
 					ref={scrollButtonRef}
-					css={scrollButton(height)}
+					css={scrollButton}
 					onClick={scrollToContent}
 				>
 					<span role="img" aria-label="Nedoverpil">

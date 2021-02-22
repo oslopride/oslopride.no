@@ -62,7 +62,6 @@ const Article: React.FC<Props> = props => {
 	return (
 		<>
 			<Hero
-				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(article.image)

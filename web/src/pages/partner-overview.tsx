@@ -77,7 +77,6 @@ const PartnerOverview: React.FC<Props> = () => {
 	return (
 		<>
 			<Hero
-				height="400px"
 				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(page.image)
