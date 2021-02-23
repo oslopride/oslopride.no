@@ -32,7 +32,7 @@ const image = css`
 const scrollButton = css`
 	display: block;
 	position: absolute;
-	top: calc(100% - 1.5rem);
+	bottom: -1.5rem;
 	left: 50%;
 	transform: translateX(-50%);
 	height: 3rem;
