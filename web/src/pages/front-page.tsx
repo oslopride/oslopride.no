@@ -95,7 +95,6 @@ const FrontPage: React.FC<Props> = () => {
 	return (
 		<>
 			<Hero
-				height="720px"
 				color={[theme.color.main.purple, theme.color.main.pink]}
 				imageUrl={
 					urlFor(data.header.no.image)

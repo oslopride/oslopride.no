@@ -33,6 +33,7 @@ const body = css`
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 4rem;
+	overflow-wrap: break-word;
 
 	p,
 	blockquote,
@@ -62,7 +63,6 @@ const Article: React.FC<Props> = props => {
 	return (
 		<>
 			<Hero
-				height="500px"
 				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(article.image)

@@ -16,6 +16,7 @@ type Props = { slug?: string } & RouteComponentProps;
 
 const hero = css`
 	text-align: center;
+	padding-bottom: 4rem;
 
 	h2 {
 		margin: 0 0 2rem 0;
@@ -32,6 +33,7 @@ const body = css`
 	margin-top: -8rem;
 	width: 90vw;
 	max-width: 900px;
+	overflow-wrap: break-word;
 
 	p {
 		margin-bottom: 0;
@@ -45,6 +47,10 @@ const body = css`
 	h3 {
 		margin: 0;
 		font-size: 1.75rem;
+	}
+
+	@media screen and (max-width: 800px) {
+		margin-top: -3rem;
 	}
 `;
 
@@ -104,7 +110,6 @@ const ArticleOverview: React.FC<Props> = () => {
 	return (
 		<>
 			<Hero
-				height="600px"
 				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(archive.image)
