@@ -5,7 +5,7 @@ import theme from "../utils/theme";
 
 const hero = css`
 	position: relative;
-	min-height: 400px;
+	min-height: 100vh;
 	padding-top: 13rem;
 	padding-bottom: 7rem;
 	color: #ffffff;
