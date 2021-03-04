@@ -7,7 +7,7 @@ import theme from "../utils/theme";
 import { urlFor } from "../sanity";
 import { css } from "@emotion/core";
 import Seo from "../components/seo";
-import SanityProtableText from "../components/sanity-portable-text";
+import SanityPortableText from "../components/sanity-portable-text";
 import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
@@ -51,11 +51,22 @@ const date = css`
 `;
 
 const nav = css`
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
 
 	h3 {
 		color: ${theme.color.text.grey};
+	}
+`;
+
+const articleFooter = css`
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+
+	hr {
+		border: none;
+		border-top: 1px solid rgba(101, 103, 129, 0.4);
 	}
 `;
 
@@ -106,27 +117,38 @@ const Article: React.FC<Props> = props => {
 				{article.credits?.no && <p>{article.credits.no}</p>}
 			</Hero>
 			<div css={body}>
-				{article.body?.no && <SanityProtableText blocks={article.body.no} />}
+				{article.body?.no && <SanityPortableText blocks={article.body.no} />}
 			</div>
-			<nav css={nav}>
-				{prevArticle && (
+			<footer css={articleFooter}>
+				<hr />
+				<nav css={nav}>
 					<div>
-						<h3>Forrige artikkel</h3>
-						<a href={`https://www.oslopride.no/a/${prevArticle.slug.current}`}>
-							{prevArticle.title.no}
-						</a>
+						{prevArticle && (
+							<>
+								<h3>Forrige artikkel</h3>
+								<a
+									href={`https://www.oslopride.no/a/${prevArticle.slug.current}`}
+								>
+									{prevArticle.title.no}
+								</a>
+							</>
+						)}
 					</div>
-				)}
-				<ScrollUpButton />
-				{nextArticle && (
+					<ScrollUpButton />
 					<div>
-						<h3>Neste artikkel</h3>
-						<a href={`https://www.oslopride.no/a/${nextArticle.slug.current}`}>
-							{nextArticle.title.no}
-						</a>
+						{nextArticle && (
+							<>
+								<h3>Neste artikkel</h3>
+								<a
+									href={`https://www.oslopride.no/a/${nextArticle.slug.current}`}
+								>
+									{nextArticle.title.no}
+								</a>
+							</>
+						)}
 					</div>
-				)}
-			</nav>
+				</nav>
+			</footer>
 
 			<Seo
 				openGraph={{
