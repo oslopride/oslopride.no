@@ -179,9 +179,7 @@ const Article: React.FC<Props> = props => {
 					{prevArticle && (
 						<div css={prev}>
 							<h3>Forrige artikkel</h3>
-							<a
-								href={`https://www.oslopride.no/a/${prevArticle.slug.current}`}
-							>
+							<a href={`/a/${prevArticle.slug.current}`}>
 								{prevArticle.title.no}
 							</a>
 						</div>
@@ -190,9 +188,7 @@ const Article: React.FC<Props> = props => {
 					{nextArticle && (
 						<div css={next}>
 							<h3>Neste artikkel</h3>
-							<a
-								href={`https://www.oslopride.no/a/${nextArticle.slug.current}`}
-							>
+							<a href={`/a/${nextArticle.slug.current}`}>
 								{nextArticle.title.no}
 							</a>
 						</div>
