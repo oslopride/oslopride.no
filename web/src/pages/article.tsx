@@ -12,18 +12,21 @@ import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
 import ScrollUpButton from "../components/scroll-up-button";
+import { format } from "date-fns";
+import { nb } from "date-fns/locale";
 
 type Props = { slug?: string } & RouteComponentProps;
 
 const hero = css`
 	margin-bottom: 3rem;
+	text-align: center;
 
 	h2 {
 		margin: 0 0 1rem 0;
 	}
 
-	p {
-		margin: 0;
+	time {
+		color: ${theme.color.background.pink};
 	}
 `;
 
@@ -52,17 +55,61 @@ const date = css`
 
 const nav = css`
 	display: grid;
+	grid-column-gap: 1rem;
 	grid-template-columns: 1fr auto 1fr;
 
 	h3 {
 		color: ${theme.color.text.grey};
+		text-transform: uppercase;
+		font-size: 0.85rem;
+		letter-spacing: 1px;
 	}
+
+	> div {
+		max-width: 15rem;
+	}
+
+	a:link,
+	a:visited {
+		color: ${theme.color.text.black};
+		font-weight: 600;
+		text-decoration: none;
+		@media (min-width: 700px) {
+			line-height: 1.5;
+			font-size: 1.4rem;
+		}
+	}
+`;
+
+const next = css`
+	grid-column-start: 3;
+	justify-self: end;
+
+	h3 {
+		text-align: right;
+	}
+`;
+
+const scrollUpButton = css`
+	grid-column-start: 2;
+	align-self: center;
+`;
+
+const prev = css`
+	grid-column-start: 1;
+`;
+
+const divider = css`
+	margin-bottom: 1.5em;
 `;
 
 const articleFooter = css`
 	max-width: 1200px;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto 3rem;
+
+	@media (max-width: 1250px) {
+		margin: 0 1rem 3rem;
+	}
 
 	hr {
 		border: none;
@@ -78,9 +125,9 @@ const Article: React.FC<Props> = props => {
 	);
 
 	// get all articles in order to get next and prev from currently viewed article
-	const { data: articleList, error: _articleListError } = useSWR<
-		Array<SanityArticle>
-	>(`*[_type == "article"]{ _id, title, slug }  | order(_createdAt desc)`);
+	const { data: articleList } = useSWR<Array<SanityArticle>>(
+		`*[_type == "article"]{ _id, title, slug }  | order(_createdAt desc)`
+	);
 
 	const indexOfCurrentArticle =
 		articleList?.findIndex(articleItem => articleItem._id === article?._id) ??
@@ -100,6 +147,10 @@ const Article: React.FC<Props> = props => {
 	if (article === undefined) return <Loading />;
 	if (article === null) return <NotFound />;
 
+	const formattedDate = format(new Date(article._createdAt), "do MMMM yyyy", {
+		locale: nb
+	});
+
 	return (
 		<>
 			<Hero
@@ -111,8 +162,11 @@ const Article: React.FC<Props> = props => {
 				}
 				css={hero}
 				displayScrollButton
+				centerContent
 			>
-				<p css={date}>{article._createdAt.split("T")[0]}</p>
+				<time css={date} dateTime={article._createdAt}>
+					{formattedDate}
+				</time>
 				<h2>{article.title.no}</h2>
 				{article.credits?.no && <p>{article.credits.no}</p>}
 			</Hero>
@@ -120,33 +174,29 @@ const Article: React.FC<Props> = props => {
 				{article.body?.no && <SanityPortableText blocks={article.body.no} />}
 			</div>
 			<footer css={articleFooter}>
-				<hr />
+				<hr css={divider} />
 				<nav css={nav}>
-					<div>
-						{prevArticle && (
-							<>
-								<h3>Forrige artikkel</h3>
-								<a
-									href={`https://www.oslopride.no/a/${prevArticle.slug.current}`}
-								>
-									{prevArticle.title.no}
-								</a>
-							</>
-						)}
-					</div>
-					<ScrollUpButton />
-					<div>
-						{nextArticle && (
-							<>
-								<h3>Neste artikkel</h3>
-								<a
-									href={`https://www.oslopride.no/a/${nextArticle.slug.current}`}
-								>
-									{nextArticle.title.no}
-								</a>
-							</>
-						)}
-					</div>
+					{prevArticle && (
+						<div css={prev}>
+							<h3>Forrige artikkel</h3>
+							<a
+								href={`https://www.oslopride.no/a/${prevArticle.slug.current}`}
+							>
+								{prevArticle.title.no}
+							</a>
+						</div>
+					)}
+					<ScrollUpButton css={scrollUpButton} />
+					{nextArticle && (
+						<div css={next}>
+							<h3>Neste artikkel</h3>
+							<a
+								href={`https://www.oslopride.no/a/${nextArticle.slug.current}`}
+							>
+								{nextArticle.title.no}
+							</a>
+						</div>
+					)}
 				</nav>
 			</footer>
 

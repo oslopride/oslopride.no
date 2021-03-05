@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import { css } from "@emotion/core";
 
 import theme from "../utils/theme";
@@ -20,7 +20,9 @@ const scrollButton = css`
 	}
 `;
 
-const ScrollUpButton = () => {
+type ScrollUpButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+
+const ScrollUpButton = (props: ScrollUpButtonProps) => {
 	const scrollButtonRef = React.useRef<HTMLButtonElement>(null);
 
 	function scrollToContent(): void {
@@ -37,6 +39,7 @@ const ScrollUpButton = () => {
 			ref={scrollButtonRef}
 			css={scrollButton}
 			onClick={scrollToContent}
+			{...props}
 		>
 			<span role="img" aria-label="Oppoverpil">
 				↑
