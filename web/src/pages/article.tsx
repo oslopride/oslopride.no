@@ -66,7 +66,7 @@ const nav = css`
 	}
 
 	> div {
-		max-width: 15rem;
+		max-width: 18rem;
 	}
 
 	a:link,
