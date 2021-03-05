@@ -84,10 +84,7 @@ const nav = css`
 const next = css`
 	grid-column-start: 3;
 	justify-self: end;
-
-	h3 {
-		text-align: right;
-	}
+	text-align: end;
 `;
 
 const scrollUpButton = css`
