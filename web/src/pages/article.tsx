@@ -102,7 +102,7 @@ const divider = css`
 
 const articleFooter = css`
 	max-width: 1200px;
-	margin: 0 auto 3rem;
+	margin: 3rem auto;
 
 	@media (max-width: 1250px) {
 		margin: 0 1rem 3rem;
