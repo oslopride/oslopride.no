@@ -64,7 +64,6 @@ const headerStyle = css`
 
 const navigationStyle = css`
 	visibility: visible;
-	padding-top: 100px;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -76,7 +75,7 @@ const navigationStyle = css`
 	flex-direction: column;
 	align-items: left;
 	justify-content: center;
-	padding: 0 2rem;
+	padding: 100px 2rem 0;
 	z-index: 100;
 	transition: right 0.4s, visibility 2s, display 2s;
 	overflow-y: auto;
@@ -237,6 +236,9 @@ const Header: React.FC<Props> = () => {
 				<ul>
 					{navigationBar?.map(item => (
 						<li key={item._key}>
+							<Link link={item} onClick={toggleNavigation} />
+							<Link link={item} onClick={toggleNavigation} />
+							<Link link={item} onClick={toggleNavigation} />
 							<Link link={item} onClick={toggleNavigation} />
 						</li>
 					))}
