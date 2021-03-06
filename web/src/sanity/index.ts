@@ -1,9 +1,6 @@
 import sanityClient from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
-import {
-	SanityClient,
-	SanityImageSource
-} from "@sanity/image-url/lib/types/types";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 export const previewMode = process.env.SANITY_PREVIEW === "true";
 if (previewMode) {
@@ -25,7 +22,7 @@ const sanity = sanityClient({
 	withCredentials: previewMode
 });
 
-const builder = imageUrlBuilder(sanity as SanityClient);
+const builder = imageUrlBuilder(sanity);
 
 export function urlFor(source: SanityImageSource) {
 	return builder.image(source);

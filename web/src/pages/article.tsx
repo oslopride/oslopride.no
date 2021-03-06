@@ -7,22 +7,26 @@ import theme from "../utils/theme";
 import { urlFor } from "../sanity";
 import { css } from "@emotion/core";
 import Seo from "../components/seo";
-import SanityProtableText from "../components/sanity-portable-text";
+import SanityPortableText from "../components/sanity-portable-text";
 import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
+import ScrollUpButton from "../components/scroll-up-button";
+import { format } from "date-fns";
+import { nb } from "date-fns/locale";
 
 type Props = { slug?: string } & RouteComponentProps;
 
 const hero = css`
 	margin-bottom: 3rem;
+	text-align: center;
 
 	h2 {
 		margin: 0 0 1rem 0;
 	}
 
-	p {
-		margin: 0;
+	time {
+		color: ${theme.color.background.pink};
 	}
 `;
 
@@ -49,6 +53,67 @@ const date = css`
 	font-weight: 600;
 `;
 
+const nav = css`
+	display: grid;
+	grid-column-gap: 1rem;
+	grid-template-columns: 1fr auto 1fr;
+
+	h3 {
+		color: ${theme.color.text.grey};
+		text-transform: uppercase;
+		font-size: 0.85rem;
+		letter-spacing: 1px;
+	}
+
+	> div {
+		max-width: 18rem;
+	}
+
+	a:link,
+	a:visited {
+		color: ${theme.color.text.black};
+		font-weight: 600;
+		text-decoration: none;
+		@media (min-width: 700px) {
+			line-height: 1.5;
+			font-size: 1.4rem;
+		}
+	}
+`;
+
+const next = css`
+	grid-column-start: 3;
+	justify-self: end;
+	text-align: end;
+`;
+
+const scrollUpButton = css`
+	grid-column-start: 2;
+	align-self: center;
+`;
+
+const prev = css`
+	grid-column-start: 1;
+`;
+
+const divider = css`
+	margin-bottom: 1.5em;
+`;
+
+const articleFooter = css`
+	max-width: 1200px;
+	margin: 3rem auto;
+
+	@media (max-width: 1250px) {
+		margin: 0 1rem 3rem;
+	}
+
+	hr {
+		border: none;
+		border-top: 1px solid rgba(101, 103, 129, 0.4);
+	}
+`;
+
 const Article: React.FC<Props> = props => {
 	const { slug } = props;
 
@@ -56,9 +121,32 @@ const Article: React.FC<Props> = props => {
 		`*[_type == "article" && slug.current == "${slug}"] | order(_updatedAt desc) [0]`
 	);
 
+	// get all articles in order to get next and prev from currently viewed article
+	const { data: articleList } = useSWR<Array<SanityArticle>>(
+		`*[_type == "article"]{ _id, title, slug }  | order(_createdAt desc)`
+	);
+
+	const indexOfCurrentArticle =
+		articleList?.findIndex(articleItem => articleItem._id === article?._id) ??
+		-1;
+
+	const nextArticle =
+		indexOfCurrentArticle >= 1
+			? articleList?.[indexOfCurrentArticle - 1]
+			: null;
+
+	const prevArticle =
+		indexOfCurrentArticle < (articleList?.length || 0) - 1
+			? articleList?.[indexOfCurrentArticle + 1]
+			: null;
+
 	if (error) return <Error error={JSON.stringify(error)} />;
 	if (article === undefined) return <Loading />;
 	if (article === null) return <NotFound />;
+
+	const formattedDate = format(new Date(article._createdAt), "do MMMM yyyy", {
+		locale: nb
+	});
 
 	return (
 		<>
@@ -71,14 +159,39 @@ const Article: React.FC<Props> = props => {
 				}
 				css={hero}
 				displayScrollButton
+				centerContent
 			>
-				<p css={date}>{article._createdAt.split("T")[0]}</p>
+				<time css={date} dateTime={article._createdAt}>
+					{formattedDate}
+				</time>
 				<h2>{article.title.no}</h2>
 				{article.credits?.no && <p>{article.credits.no}</p>}
 			</Hero>
 			<div css={body}>
-				{article.body?.no && <SanityProtableText blocks={article.body.no} />}
+				{article.body?.no && <SanityPortableText blocks={article.body.no} />}
 			</div>
+			<footer css={articleFooter}>
+				<hr css={divider} />
+				<nav css={nav}>
+					{prevArticle && (
+						<div css={prev}>
+							<h3>Forrige artikkel</h3>
+							<a href={`/a/${prevArticle.slug.current}`}>
+								{prevArticle.title.no}
+							</a>
+						</div>
+					)}
+					<ScrollUpButton css={scrollUpButton} />
+					{nextArticle && (
+						<div css={next}>
+							<h3>Neste artikkel</h3>
+							<a href={`/a/${nextArticle.slug.current}`}>
+								{nextArticle.title.no}
+							</a>
+						</div>
+					)}
+				</nav>
+			</footer>
 
 			<Seo
 				openGraph={{
