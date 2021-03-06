@@ -20,23 +20,16 @@ const scrollButton = css`
 	}
 `;
 
+function scrollToContent(): void {
+	window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 type ScrollUpButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ScrollUpButton = (props: ScrollUpButtonProps) => {
-	const scrollButtonRef = React.useRef<HTMLButtonElement>(null);
-
-	function scrollToContent(): void {
-		// const buttonDistanceFromTop = scrollButtonRef.current?.offsetTop;
-		// const buttonHeight = scrollButtonRef.current?.offsetHeight;
-		// const scrollOffsetFromTop = buttonDistanceFromTop + buttonHeight;
-
-		window.scrollTo({ top: 0, behavior: "smooth" });
-	}
-
 	return (
 		<button
 			title="Bla opp til hovedinnholdet"
-			ref={scrollButtonRef}
 			css={scrollButton}
 			onClick={scrollToContent}
 			{...props}
