@@ -237,9 +237,6 @@ const Header: React.FC<Props> = () => {
 					{navigationBar?.map(item => (
 						<li key={item._key}>
 							<Link link={item} onClick={toggleNavigation} />
-							<Link link={item} onClick={toggleNavigation} />
-							<Link link={item} onClick={toggleNavigation} />
-							<Link link={item} onClick={toggleNavigation} />
 						</li>
 					))}
 				</ul>
