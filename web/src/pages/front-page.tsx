@@ -28,6 +28,7 @@ const date = css`
 `;
 
 const hero = css`
+	min-height: calc(100vh - 20rem);
 	h2 {
 		line-height: 3.5rem;
 		margin: 2rem 0;
