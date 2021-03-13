@@ -145,7 +145,7 @@ const FeaturedArticles: React.FC<Props> = ({ content }: Props) => (
 		</ArticleList>
 		<LinkButton
 			link={{
-				_type: "externalLink",
+				_type: "internalInternalLink",
 				text: "Se alle artikler",
 				url: "/articles"
 			}}
