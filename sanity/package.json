@@ -7,7 +7,7 @@
   "author": "Oslo Pride <teknologi@oslopride.no>",
   "license": "MPL-2.0",
   "scripts": {
-    "dev": "sanity start",
+    "dev": "SANITY_STUDIO_API_DATASET=development sanity start",
     "lint": "eslint --quiet . --ext js --ext jsx",
     "lint:fix": "yarn lint --fix",
     "test": "sanity check",
