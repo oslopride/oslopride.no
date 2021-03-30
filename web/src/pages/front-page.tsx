@@ -2,7 +2,7 @@ import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import useSWR from "swr";
 import { urlFor } from "../sanity";
-import { DereferencedSanityPartner, SanityFrontPage } from "../sanity/models";
+import { SanityPartner, SanityFrontPage } from "../sanity/models";
 import Hero from "../components/hero";
 import SubHeading from "../components/sub-heading";
 import { LinkButton } from "../components/link";
@@ -74,7 +74,7 @@ const bodyText = css`
 type Props = {} & RouteComponentProps;
 
 type SanityQueryResult = SanityFrontPage & {
-	partners: DereferencedSanityPartner[];
+	partners: SanityPartner[];
 };
 
 const FrontPage: React.FC<Props> = () => {

@@ -63,7 +63,7 @@ const linkButtonWrapper = css`
 
 const PartnerOverview: React.FC<Props> = () => {
 	const { data: partners } = useSWR<SanityPartnerList>(
-		`*[_type == "partner"]{image, name, url, description, type->{name, ordinal}}`
+		`*[_type == "partner"]{_id, image, name, url, description, type}`
 	);
 
 	const { data: page, error } = useSWR<SanityPartnerPage>(
