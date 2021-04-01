@@ -11,6 +11,8 @@ import { darken } from "polished";
 import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
+import { format } from "date-fns";
+import { nb } from "date-fns/locale";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -87,16 +89,18 @@ const preview = css`
 `;
 
 const date = css`
+	color: ${theme.color.text.grey};
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	font-size: 0.75rem !important;
-	margin-bottom: 0.5rem !important;
+	font-size: 0.75rem;
+	margin-bottom: 0.5rem;
 	font-weight: 600;
+	display: block;
 `;
 
 const ArticleOverview: React.FC<Props> = () => {
 	const { data: articles } = useSWR<SanityArticleList>(
-		`*[_type == "article"] | order(_createdAt desc)`
+		`*[_type == "article"] | order(publishedAt desc, _createdAt desc)`
 	);
 
 	const { data: archive, error } = useSWR<SanityArchive>(
@@ -125,25 +129,37 @@ const ArticleOverview: React.FC<Props> = () => {
 
 			<div css={body}>
 				{articles && articles.length > 0 ? (
-					articles?.map(art => (
-						<div css={article} key={art._id}>
-							<div
-								css={image(
-									urlFor(art.image)
-										.width(window.innerWidth)
-										.url() || ""
-								)}
-							/>
-							<div css={preview}>
-								<p css={date}>{art._createdAt.split("T")[0]}</p>
-								<h3>{art.title.no}</h3>
-								<p>{art.summary?.no}</p>
-								<p>
-									<a href={"/a/" + art.slug.current}>Les mer</a>
-								</p>
+					articles?.map(art => {
+						// Try using publishedAt date if it exists first, otherwise fall back to _createdAt date
+						const formattedDate = format(
+							new Date(art.publishedAt || art._createdAt),
+							"do MMMM yyyy",
+							{
+								locale: nb
+							}
+						);
+						return (
+							<div css={article} key={art._id}>
+								<div
+									css={image(
+										urlFor(art.image)
+											.width(window.innerWidth)
+											.url() || ""
+									)}
+								/>
+								<div css={preview}>
+									<time css={date} dateTime={art.publishedAt || art._createdAt}>
+										{formattedDate}
+									</time>
+									<h3>{art.title.no}</h3>
+									<p>{art.summary?.no}</p>
+									<p>
+										<a href={"/a/" + art.slug.current}>Les mer</a>
+									</p>
+								</div>
 							</div>
-						</div>
-					))
+						);
+					})
 				) : (
 					<p>Ingen artikler enda</p>
 				)}
