@@ -123,7 +123,7 @@ const Article: React.FC<Props> = props => {
 
 	// get all articles in order to get next and prev from currently viewed article
 	const { data: articleList } = useSWR<Array<SanityArticle>>(
-		`*[_type == "article"]{ _id, title, slug }  | order(_createdAt desc)`
+		`*[_type == "article"]{ _id, title, slug }  | order(publishedAt desc, _createdAt desc)`
 	);
 
 	const indexOfCurrentArticle =
@@ -144,9 +144,14 @@ const Article: React.FC<Props> = props => {
 	if (article === undefined) return <Loading />;
 	if (article === null) return <NotFound />;
 
-	const formattedDate = format(new Date(article._createdAt), "do MMMM yyyy", {
-		locale: nb
-	});
+	// Try using publishedAt date if it exists first, otherwise fall back to _createdAt date
+	const formattedDate = format(
+		new Date(article.publishedAt || article._createdAt),
+		"do MMMM yyyy",
+		{
+			locale: nb
+		}
+	);
 
 	return (
 		<>
@@ -161,7 +166,7 @@ const Article: React.FC<Props> = props => {
 				displayScrollButton
 				centerContent
 			>
-				<time css={date} dateTime={article._createdAt}>
+				<time css={date} dateTime={article.publishedAt || article._createdAt}>
 					{formattedDate}
 				</time>
 				<h2>{article.title.no}</h2>
@@ -200,7 +205,7 @@ const Article: React.FC<Props> = props => {
 					description: article.summary?.no || "Oslo Pride",
 					url: `https://www.oslopride.no/a/${slug}`,
 					locale: "nb_NO",
-					publishedAt: article._createdAt || "",
+					publishedAt: article.publishedAt || article._createdAt || "",
 					modifiedAt: article._updatedAt || "",
 					image: {
 						url:

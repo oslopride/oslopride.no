@@ -26,6 +26,13 @@ export default {
 			validation: Rule => Rule.required()
 		},
 		{
+			title: "Publish date",
+			name: "publishedAt",
+			type: "date",
+			description: "Set the publishing date of article",
+			validation: Rule => Rule.required()
+		},
+		{
 			title: "Image",
 			name: "image",
 			type: "image",
