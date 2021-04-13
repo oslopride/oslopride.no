@@ -111,15 +111,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 									/>
 								</ImgWrap>
 								<ContentWrap>
-									<h2>
-										<Link
-											link={{
-												_type: "internalInternalLink",
-												text: partner.name,
-												url: `/partner/${partner._id}`
-											}}
-										/>
-									</h2>
+									<h2>{partner.name}</h2>
 									<BlockContentToReact blocks={partner.description} />
 								</ContentWrap>
 							</FlexBox>
