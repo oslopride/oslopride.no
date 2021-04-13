@@ -15,8 +15,8 @@ export default {
 		{
 			name: "type",
 			title: "Partner type",
-			type: "reference",
-			to: { type: "partnerType" }
+			type: "string",
+			options: { list: ["owner", "main", "regular", "supporter"] }
 		},
 		{
 			name: "description",

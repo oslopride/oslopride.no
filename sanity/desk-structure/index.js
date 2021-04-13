@@ -28,7 +28,6 @@ const hiddenDocTypes = listItem =>
 		"simpleEvent",
 		"venue",
 		"arena",
-		"partnerType",
 		"partnerOverview"
 	].includes(listItem.getId());
 

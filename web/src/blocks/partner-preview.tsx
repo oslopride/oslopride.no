@@ -2,7 +2,7 @@ import React from "react";
 import { css } from "@emotion/core";
 
 import { urlFor } from "../sanity";
-import { SanityPartner, DereferencedSanityPartner } from "../sanity/models";
+import { SanityPartner } from "../sanity/models";
 import SubHeading from "../components/sub-heading";
 import theme from "../utils/theme";
 
@@ -112,37 +112,30 @@ const PartnerGroup: React.FC<PartnerGroupProps> = ({ name, partners }) => (
 );
 
 type PartnerPreviewProps = {
-	content: DereferencedSanityPartner[];
+	content: SanityPartner[];
 };
 
 const PartnerPreview: React.FC<PartnerPreviewProps> = ({ content }) => {
-	const groupedPartners = content.reduce<Record<number, PartnerGroupProps>>(
-		(groups, partner) => {
-			const existingGroup = groups[partner.type.ordinal];
-			if (existingGroup) {
-				existingGroup.partners.push(partner);
-			} else {
-				groups[partner.type.ordinal] = {
-					name: partner.type.name.no,
-					partners: [partner]
-				};
-			}
-			return groups;
-		},
-		{}
-	);
-
 	return (
 		<section css={container}>
 			<SubHeading>Våre partnere</SubHeading>
 			<ul css={groupContainer}>
-				{Object.values(groupedPartners).map(group => (
-					<PartnerGroup
-						key={group.name}
-						name={group.name}
-						partners={group.partners}
-					/>
-				))}
+				<PartnerGroup
+					name="Eier og arrangør"
+					partners={content.filter(p => p.type === "owner")}
+				/>
+				<PartnerGroup
+					name="Hovedpartnere"
+					partners={content.filter(p => p.type === "main")}
+				/>
+				<PartnerGroup
+					name="Partnere"
+					partners={content.filter(p => p.type === "regular")}
+				/>
+				<PartnerGroup
+					name="Støttespillere"
+					partners={content.filter(p => p.type === "supporter")}
+				/>
 			</ul>
 		</section>
 	);

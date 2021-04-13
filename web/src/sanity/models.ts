@@ -84,7 +84,7 @@ export type SanityAnnouncement = SanityObject<
 	}
 >;
 
-export type SanityPartnerList = SanityObjectArray<DereferencedSanityPartner>;
+export type SanityPartnerList = SanityObjectArray<SanityPartner>;
 
 export type SanityAdvertisement = SanityObject<
 	"advertisement",
@@ -256,15 +256,11 @@ export type SanityPartnerPage = SanityDocument<
 	}
 >;
 
-export type DereferencedSanityPartner = Omit<SanityPartner, "type"> & {
-	type: { name: Locale<string>; ordinal: number };
-};
-
 export type SanityPartner = SanityDocument<
 	"partner",
 	{
 		name: string;
-		type: SanityReference;
+		type: string;
 		description: SanityBlockContent;
 		url: string;
 		image: SanityImage;

@@ -1,17 +1,13 @@
 import React, { FC } from "react";
 import BlockContentToReact from "@sanity/block-content-to-react";
 import { urlFor } from "../sanity";
-import { DereferencedSanityPartner, SanityPartnerList } from "../sanity/models";
+import { SanityPartnerList } from "../sanity/models";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
+import Link from "../components/link";
 
 type Props = {
 	content: SanityPartnerList;
-};
-
-type PartnerGroupProps = {
-	name: string;
-	partners: DereferencedSanityPartner[];
 };
 
 const SupporterFlexBox = css`
@@ -70,45 +66,14 @@ const groupHeader = css`
 `;
 
 const PartnerList: FC<Props> = ({ content }) => {
-	const groupedPartners = content.reduce<Record<number, PartnerGroupProps>>(
-		(groups, partner) => {
-			const existingGroup = groups[partner.type.ordinal];
-			if (existingGroup) {
-				existingGroup.partners.push(partner);
-			} else {
-				groups[partner.type.ordinal] = {
-					name: partner.type.name.no,
-					partners: [partner]
-				};
-			}
-			return groups;
-		},
-		{}
-	);
-
 	return (
 		<>
-			{Object.values(groupedPartners).map(group => (
-				<div key={group.name}>
-					<h2 css={groupHeader}>{group.name}</h2>
-					{group.name.toLocaleLowerCase() === "støttespillere" ? (
-						<div css={SupporterFlexBox}>
-							{group.partners &&
-								group.partners.map(partner => (
-									<img
-										key={partner._id}
-										src={
-											urlFor(partner.image)
-												.width(200)
-												.url() || undefined
-										}
-										alt={`${partner.name} logo`}
-									/>
-								))}
-						</div>
-					) : (
-						group.partners &&
-						group.partners.map(partner => (
+			<div>
+				<h2 css={groupHeader}>Eier og arrangør</h2>
+				<div css={SupporterFlexBox}>
+					{content
+						.filter(p => p.type === "owner")
+						.map(partner => (
 							<FlexBox key={partner._id}>
 								<ImgWrap>
 									<img
@@ -125,10 +90,85 @@ const PartnerList: FC<Props> = ({ content }) => {
 									<BlockContentToReact blocks={partner.description} />
 								</ContentWrap>
 							</FlexBox>
-						))
-					)}
+						))}
 				</div>
-			))}
+			</div>
+			<div>
+				<h2 css={groupHeader}>Hovedpartnere</h2>
+				<div css={SupporterFlexBox}>
+					{content
+						.filter(p => p.type === "main")
+						.map(partner => (
+							<FlexBox key={partner._id}>
+								<ImgWrap>
+									<img
+										src={
+											urlFor(partner.image)
+												.width(200)
+												.url() || undefined
+										}
+										alt={`${partner.name} logo`}
+									/>
+								</ImgWrap>
+								<ContentWrap>
+									<h2>
+										<Link
+											link={{
+												_type: "internalInternalLink",
+												text: partner.name,
+												url: `/partner/${partner._id}`
+											}}
+										/>
+									</h2>
+									<BlockContentToReact blocks={partner.description} />
+								</ContentWrap>
+							</FlexBox>
+						))}
+				</div>
+			</div>
+			<div>
+				<h2 css={groupHeader}>Partnere</h2>
+				<div css={SupporterFlexBox}>
+					{content
+						.filter(p => p.type === "regular")
+						.map(partner => (
+							<FlexBox key={partner._id}>
+								<ImgWrap>
+									<img
+										src={
+											urlFor(partner.image)
+												.width(200)
+												.url() || undefined
+										}
+										alt={`${partner.name} logo`}
+									/>
+								</ImgWrap>
+								<ContentWrap>
+									<h2>{partner.name}</h2>
+									<BlockContentToReact blocks={partner.description} />
+								</ContentWrap>
+							</FlexBox>
+						))}
+				</div>
+			</div>
+			<div>
+				<h2 css={groupHeader}>Støttespillere</h2>
+				<div css={SupporterFlexBox}>
+					{content
+						.filter(p => p.type === "supporter")
+						.map(partner => (
+							<img
+								key={partner._id}
+								src={
+									urlFor(partner.image)
+										.width(200)
+										.url() || undefined
+								}
+								alt={`${partner.name} logo`}
+							/>
+						))}
+				</div>
+			</div>
 		</>
 	);
 };
