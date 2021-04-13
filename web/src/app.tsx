@@ -19,7 +19,6 @@ import {
 	logPageView
 } from "./utils/google-analytics";
 import ErrorPage from "./pages/error";
-import Partner from "./pages/partner";
 
 const App: React.FC = () => {
 	const { data, error } = useSWR<
@@ -66,7 +65,6 @@ const App: React.FC = () => {
 						<ArticleOverview path="/articles" />
 						<EventOverview path="/events" />
 						<PartnerOverview path="/partners" />
-						<Partner path="/partner/:slug" />
 					</Router>
 				</main>
 				<Footer />
