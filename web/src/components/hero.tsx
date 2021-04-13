@@ -11,7 +11,7 @@ const hero = css`
 	overflow-wrap: break-word;
 
 	h2 {
-		font-size: 4rem;
+		font-size: clamp(2rem, 0.668rem + 7.4vw, 4rem);
 	}
 
 	@media screen and (max-width: 800px) {
