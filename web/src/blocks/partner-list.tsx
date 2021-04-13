@@ -1,18 +1,13 @@
 import React, { FC } from "react";
 import BlockContentToReact from "@sanity/block-content-to-react";
 import { urlFor } from "../sanity";
-import { SanityPartner, SanityPartnerList } from "../sanity/models";
+import { SanityPartnerList } from "../sanity/models";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import Link from "../components/link";
 
 type Props = {
 	content: SanityPartnerList;
-};
-
-type PartnerGroupProps = {
-	name: string;
-	partners: SanityPartner[];
 };
 
 const SupporterFlexBox = css`

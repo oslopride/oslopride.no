@@ -84,7 +84,7 @@ const FrontPage: React.FC<Props> = () => {
 		{...,
 		featuredArticles[]->{image, slug, title, _createdAt},
 		featuredEvents[]->{image, title, description, startTime, endTime, eventLink},
-		"partners": *[_type == "partner"]{image, name, url, type->{name, ordinal}}
+		"partners": *[_type == "partner"]{image, name, url, type}
 		}`
 	);
 	const config = useConfig();
