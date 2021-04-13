@@ -4,7 +4,6 @@ import { urlFor } from "../sanity";
 import { SanityPartnerList } from "../sanity/models";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
-import Link from "../components/link";
 
 type Props = {
 	content: SanityPartnerList;
