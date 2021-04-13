@@ -94,7 +94,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 				</div>
 			</div>
 			<div>
-				<h2 css={groupHeader}>Eier og arrangør</h2>
+				<h2 css={groupHeader}>Hovedpartnere</h2>
 				<div css={SupporterFlexBox}>
 					{content
 						.filter(p => p.type === "main")
@@ -127,7 +127,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 				</div>
 			</div>
 			<div>
-				<h2 css={groupHeader}>Eier og arrangør</h2>
+				<h2 css={groupHeader}>Partnere</h2>
 				<div css={SupporterFlexBox}>
 					{content
 						.filter(p => p.type === "regular")
@@ -152,7 +152,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 				</div>
 			</div>
 			<div>
-				<h2 css={groupHeader}>Eier og arrangør</h2>
+				<h2 css={groupHeader}>Støttespillere</h2>
 				<div css={SupporterFlexBox}>
 					{content
 						.filter(p => p.type === "supporter")
