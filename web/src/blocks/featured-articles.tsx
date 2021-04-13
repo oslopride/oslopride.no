@@ -6,9 +6,13 @@ import { SanityArticle } from "../sanity/models";
 import { urlFor } from "../sanity";
 import theme from "../utils/theme";
 import { LinkButton } from "../components/link";
+import { format } from "date-fns";
+import { nb } from "date-fns/locale";
 
-const formatDate = (date: Date): string =>
-	date.toLocaleDateString("nb-NO", { month: "long", year: "numeric" });
+const formatDate = (date: string): string =>
+	format(new Date(date), "do MMMM yyyy", {
+		locale: nb
+	});
 
 const ArticleList = styled.ul`
 	display: flex;
@@ -115,7 +119,7 @@ const ArticlePreview = ({ article }: ArticlePreviewProps) => (
 					}
 				/>
 			)}
-			<time>{formatDate(new Date(article._createdAt))}</time>
+			<time>{formatDate(article.publishedAt || article._createdAt)}</time>
 			<h4>{article.title.no}</h4>
 		</a>
 	</ArticleStyled>

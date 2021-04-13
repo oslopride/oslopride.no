@@ -140,7 +140,8 @@ export const LinkButton = styled(Link)<LinkButtonProps>`
 	font-weight: bold;
 	transition: color 0.3s, background 0.3s;
 
-	:hover {
+	:hover,
+	:focus {
 		color: #ffffff;
 		background-color: ${theme.color.main.purple};
 	}
