@@ -39,6 +39,14 @@ export default {
 				hotspot: false
 			},
 			validation: Rule => Rule.required()
+		},
+		{
+			title: "URL",
+			name: "slug",
+			type: "slug",
+			options: {
+				source: "name"
+			}
 		}
 	],
 	preview: {
