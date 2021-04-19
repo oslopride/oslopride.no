@@ -19,11 +19,12 @@ const wrapper = css`
 
 type Props = {
 	blocks: any[];
+	className?: string;
 };
 
 const SanityProtableText: React.FC<Props> = props => {
 	return (
-		<div css={wrapper}>
+		<div className={props.className} css={wrapper}>
 			<BlockContentToReact
 				blocks={props.blocks}
 				projectId={PROJECT_ID}
