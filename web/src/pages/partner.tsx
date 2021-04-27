@@ -11,7 +11,6 @@ import Hero from "../components/hero";
 import theme from "../utils/theme";
 import { urlFor } from "../sanity";
 import { ClientError, ServerError } from "@sanity/client";
-import FeaturedArticles from "../blocks/featured-articles";
 import BlockContentToReact from "@sanity/block-content-to-react";
 
 type Props = { slug?: string } & RouteComponentProps;
