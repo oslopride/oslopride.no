@@ -264,6 +264,7 @@ export type SanityPartner = SanityDocument<
 		description: SanityBlockContent;
 		url: string;
 		image: SanityImage;
+		slug: { current: string };
 	}
 >;
 
