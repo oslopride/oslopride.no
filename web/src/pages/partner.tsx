@@ -94,11 +94,7 @@ const Partner: React.FC<Props> = props => {
 		<>
 			<Hero
 				color={[theme.color.main.purple]}
-				imageUrl={
-					urlFor(partner.image)
-						.width(window.innerWidth)
-						.url() || ""
-				}
+				imageUrl=""
 				css={hero}
 				centerContent
 				displayScrollButton
