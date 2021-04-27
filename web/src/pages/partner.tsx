@@ -148,10 +148,6 @@ const Partner: React.FC<Props> = props => {
 						/>
 					</ImgWrap>
 				</div>
-
-				{data.featuredArticles && (
-					<FeaturedArticles content={data.featuredArticles} />
-				)}
 			</div>
 		</>
 	);
