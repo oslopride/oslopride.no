@@ -48,6 +48,21 @@ export default {
 				source: "name"
 			},
 			validation: Rule => Rule.required()
+		},
+		{
+			title: "Facebook social link",
+			name: "facebookLink",
+			type: "string"
+		},
+		{
+			title: "Instagram social link",
+			name: "instagramLink",
+			type: "string"
+		},
+		{
+			title: "LinkedIn social link",
+			name: "linkedinLink",
+			type: "string"
 		}
 	],
 	preview: {
