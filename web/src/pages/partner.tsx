@@ -12,6 +12,9 @@ import theme from "../utils/theme";
 import { urlFor } from "../sanity";
 import { ClientError, ServerError } from "@sanity/client";
 import BlockContentToReact from "@sanity/block-content-to-react";
+import { ReactComponent as FBSocialLink } from "../assets/facebook.svg";
+import { ReactComponent as IGSocialLink } from "../assets/insta.svg";
+import { ReactComponent as LinkedInSocialLink } from "../assets/linkedin.svg";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -63,6 +66,9 @@ const Partner: React.FC<Props> = props => {
       url,
       description,
       type,
+	  facebookLink,
+	  instagramLink,
+	  linkedinLink
     }[0]`
 	);
 
@@ -135,6 +141,29 @@ const Partner: React.FC<Props> = props => {
 							{partner.name}
 						</h2>
 						<BlockContentToReact blocks={partner.description} />
+						<div>
+							{partner.facebookLink && (
+								<FBSocialLink
+									css={css`
+										margin-right: 1rem;
+									`}
+								/>
+							)}
+							{partner.instagramLink && (
+								<IGSocialLink
+									css={css`
+										margin-right: 1rem;
+									`}
+								/>
+							)}
+							{partner.linkedinLink && (
+								<LinkedInSocialLink
+									css={css`
+										margin-right: 1rem;
+									`}
+								/>
+							)}
+						</div>
 					</div>
 					<ImgWrap>
 						<img
