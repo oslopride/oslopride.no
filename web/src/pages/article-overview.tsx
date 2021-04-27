@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RouteComponentProps } from "@reach/router";
 import Hero from "../components/hero";
 import theme from "../utils/theme";
@@ -32,7 +32,7 @@ const hero = css`
 const body = css`
 	display: block;
 	margin: auto;
-	margin-top: -8rem;
+	margin-top: 7rem;
 	width: 90vw;
 	max-width: 900px;
 	overflow-wrap: break-word;
@@ -52,7 +52,7 @@ const body = css`
 	}
 
 	@media screen and (max-width: 800px) {
-		margin-top: -3rem;
+		margin-top: 4rem;
 	}
 `;
 
@@ -98,7 +98,39 @@ const date = css`
 	display: block;
 `;
 
+const buttonWrapper = css`
+	display: flex;
+	justify-content: center;
+	margin: 4rem 0;
+`;
+
+const button = css`
+	background-color: ${theme.color.main.blue};
+	text-transform: uppercase;
+	text-align: center;
+	display: inline-block;
+	letter-spacing: 1px;
+	padding: 1rem 1.75rem;
+	text-decoration: none;
+	cursor: pointer;
+	border-radius: 4px;
+	color: #ffffff;
+	font-weight: bold;
+	transition: color 0.3s, background 0.3s;
+	border: none;
+
+
+	:hover,
+	:focus {
+		color: #ffffff;
+		background-color: ${theme.color.main.purple};
+	}s
+`;
+
 const ArticleOverview: React.FC<Props> = () => {
+	const articlesToDisplay = 3;
+	const [numberOfArticles, setNumberOfArticles] = useState(articlesToDisplay);
+
 	const { data: articles } = useSWR<SanityArticleList>(
 		`*[_type == "article"] | order(publishedAt desc, _createdAt desc)`
 	);
@@ -114,6 +146,7 @@ const ArticleOverview: React.FC<Props> = () => {
 	return (
 		<>
 			<Hero
+				displayScrollButton
 				color={[theme.color.main.purple]}
 				imageUrl={
 					urlFor(archive.image)
@@ -129,8 +162,10 @@ const ArticleOverview: React.FC<Props> = () => {
 
 			<div css={body}>
 				{articles && articles.length > 0 ? (
-					articles?.map(art => {
+					articles?.map((art, i) => {
+						console.log(art.title.no, art.publishedAt);
 						// Try using publishedAt date if it exists first, otherwise fall back to _createdAt date
+						if (i >= numberOfArticles) return;
 						const formattedDate = format(
 							new Date(art.publishedAt || art._createdAt),
 							"do MMMM yyyy",
@@ -163,6 +198,16 @@ const ArticleOverview: React.FC<Props> = () => {
 				) : (
 					<p>Ingen artikler enda</p>
 				)}
+				<div css={buttonWrapper}>
+					<button
+						css={button}
+						onClick={() =>
+							setNumberOfArticles(numberOfArticles + articlesToDisplay)
+						}
+					>
+						Last inn flere artikler
+					</button>
+				</div>
 			</div>
 
 			<Seo
