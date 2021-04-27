@@ -265,6 +265,9 @@ export type SanityPartner = SanityDocument<
 		url: string;
 		image: SanityImage;
 		slug: { current: string };
+		facebookLink?: string;
+		instagramLink?: string;
+		linkedinLink?: string;
 	}
 >;
 
