@@ -4,6 +4,7 @@ import { urlFor } from "../sanity";
 import { SanityPartnerList } from "../sanity/models";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
+import Link from "../components/link";
 
 type Props = {
 	content: SanityPartnerList;
@@ -87,6 +88,15 @@ const PartnerList: FC<Props> = ({ content }) => {
 								<ContentWrap>
 									<h2>{partner.name}</h2>
 									<BlockContentToReact blocks={partner.description} />
+									{partner.slug && (
+										<Link
+											link={{
+												_type: "internalInternalLink",
+												url: `/partner/${partner.slug.current}`,
+												text: `Les mer om ${partner.name}`
+											}}
+										/>
+									)}
 								</ContentWrap>
 							</FlexBox>
 						))}
@@ -112,6 +122,15 @@ const PartnerList: FC<Props> = ({ content }) => {
 								<ContentWrap>
 									<h2>{partner.name}</h2>
 									<BlockContentToReact blocks={partner.description} />
+									{partner.slug && (
+										<Link
+											link={{
+												_type: "internalInternalLink",
+												url: `/partner/${partner.slug.current}`,
+												text: `Les mer om ${partner.name}`
+											}}
+										/>
+									)}
 								</ContentWrap>
 							</FlexBox>
 						))}
@@ -137,6 +156,15 @@ const PartnerList: FC<Props> = ({ content }) => {
 								<ContentWrap>
 									<h2>{partner.name}</h2>
 									<BlockContentToReact blocks={partner.description} />
+									{partner.slug && (
+										<Link
+											link={{
+												_type: "internalInternalLink",
+												url: `/partner/${partner.slug.current}`,
+												text: `Les mer om ${partner.name}`
+											}}
+										/>
+									)}
 								</ContentWrap>
 							</FlexBox>
 						))}
