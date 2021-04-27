@@ -46,7 +46,8 @@ export default {
 			type: "slug",
 			options: {
 				source: "name"
-			}
+			},
+			validation: Rule => Rule.required()
 		}
 	],
 	preview: {
