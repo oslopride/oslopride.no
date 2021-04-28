@@ -55,6 +55,10 @@ const ImgWrap = styled.div`
 		object-fit: contain;
 		object-position: 50% 50%;
 	}
+
+	@media screen and (max-width: 800px) {
+		margin-bottom: 2rem;
+	}
 `;
 
 const Partner: React.FC<Props> = props => {
@@ -124,6 +128,12 @@ const Partner: React.FC<Props> = props => {
 						justify-content: space-between;
 						align-items: flex-start;
 						margin: 10rem 1rem;
+
+						@media screen and (max-width: 800px) {
+							flex-direction: column-reverse;
+							align-items: center;
+							margin-top: 0;
+						}
 					`}
 				>
 					<div
@@ -131,6 +141,13 @@ const Partner: React.FC<Props> = props => {
 							display: flex;
 							flex-direction: column;
 							width: 25rem;
+							margin-right: 2rem;
+
+							@media screen and (max-width: 800px) {
+								text-align: center;
+								margin-right: 0;
+								width: auto;
+							}
 						`}
 					>
 						<h2
