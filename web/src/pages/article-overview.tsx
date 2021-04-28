@@ -162,10 +162,8 @@ const ArticleOverview: React.FC<Props> = () => {
 
 			<div css={body}>
 				{articles && articles.length > 0 ? (
-					articles?.map((art, i) => {
-						console.log(art.title.no, art.publishedAt);
+					articles.slice(0, numberOfArticles).map(art => {
 						// Try using publishedAt date if it exists first, otherwise fall back to _createdAt date
-						if (i >= numberOfArticles) return;
 						const formattedDate = format(
 							new Date(art.publishedAt || art._createdAt),
 							"do MMMM yyyy",
@@ -198,16 +196,18 @@ const ArticleOverview: React.FC<Props> = () => {
 				) : (
 					<p>Ingen artikler enda</p>
 				)}
-				<div css={buttonWrapper}>
-					<button
-						css={button}
-						onClick={() =>
-							setNumberOfArticles(numberOfArticles + articlesToDisplay)
-						}
-					>
-						Last inn flere artikler
-					</button>
-				</div>
+				{articles && articles?.length > numberOfArticles && (
+					<div css={buttonWrapper}>
+						<button
+							css={button}
+							onClick={() =>
+								setNumberOfArticles(numberOfArticles + articlesToDisplay)
+							}
+						>
+							Last inn flere artikler
+						</button>
+					</div>
+				)}
 			</div>
 
 			<Seo
