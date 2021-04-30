@@ -15,6 +15,7 @@ import BlockContentToReact from "@sanity/block-content-to-react";
 import { ReactComponent as FBSocialLink } from "../assets/facebook.svg";
 import { ReactComponent as IGSocialLink } from "../assets/insta.svg";
 import { ReactComponent as LinkedInSocialLink } from "../assets/linkedin.svg";
+import SanityPortableText from "../components/sanity-portable-text";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -69,6 +70,7 @@ const Partner: React.FC<Props> = props => {
       name,
       url,
       description,
+	  content,
       type,
 	  facebookLink,
 	  instagramLink,
@@ -123,75 +125,82 @@ const Partner: React.FC<Props> = props => {
 			<div css={body}>
 				<div
 					css={css`
-						display: flex;
-						flex-direction: row;
-						justify-content: space-between;
-						align-items: flex-start;
 						margin: 10rem 1rem;
-
-						@media screen and (max-width: 800px) {
-							flex-direction: column-reverse;
-							align-items: center;
-							margin-top: 0;
-						}
 					`}
 				>
 					<div
 						css={css`
 							display: flex;
-							flex-direction: column;
-							width: 25rem;
-							margin-right: 2rem;
+							flex-direction: row;
+							justify-content: space-between;
+							align-items: flex-start;
 
 							@media screen and (max-width: 800px) {
-								text-align: center;
-								margin-right: 0;
-								width: auto;
+								flex-direction: column-reverse;
+								align-items: center;
+								margin-top: 0;
 							}
 						`}
 					>
-						<h2
+						<div
 							css={css`
-								margin: 0;
+								display: flex;
+								flex-direction: column;
+								width: 25rem;
+								margin-right: 2rem;
+
+								@media screen and (max-width: 800px) {
+									text-align: center;
+									margin-right: 0;
+									width: auto;
+								}
 							`}
 						>
-							{partner.name}
-						</h2>
-						<BlockContentToReact blocks={partner.description} />
-						<div>
-							{partner.facebookLink && (
-								<FBSocialLink
-									css={css`
-										margin-right: 1rem;
-									`}
-								/>
-							)}
-							{partner.instagramLink && (
-								<IGSocialLink
-									css={css`
-										margin-right: 1rem;
-									`}
-								/>
-							)}
-							{partner.linkedinLink && (
-								<LinkedInSocialLink
-									css={css`
-										margin-right: 1rem;
-									`}
-								/>
-							)}
+							<h2
+								css={css`
+									margin: 0;
+								`}
+							>
+								{partner.name}
+							</h2>
+							<BlockContentToReact blocks={partner.description} />
+
+							<div>
+								{partner.facebookLink && (
+									<FBSocialLink
+										css={css`
+											margin-right: 1rem;
+										`}
+									/>
+								)}
+								{partner.instagramLink && (
+									<IGSocialLink
+										css={css`
+											margin-right: 1rem;
+										`}
+									/>
+								)}
+								{partner.linkedinLink && (
+									<LinkedInSocialLink
+										css={css`
+											margin-right: 1rem;
+										`}
+									/>
+								)}
+							</div>
 						</div>
+						<ImgWrap>
+							<img
+								src={
+									urlFor(partner.image)
+										.width(window.innerWidth)
+										.url() || ""
+								}
+								alt=""
+							/>
+						</ImgWrap>
 					</div>
-					<ImgWrap>
-						<img
-							src={
-								urlFor(partner.image)
-									.width(window.innerWidth)
-									.url() || ""
-							}
-							alt=""
-						/>
-					</ImgWrap>
+					{partner.content && <SanityPortableText blocks={partner.content} />}
 				</div>
 			</div>
 		</>
