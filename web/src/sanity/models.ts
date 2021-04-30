@@ -268,6 +268,7 @@ export type SanityPartner = SanityDocument<
 		facebookLink?: string;
 		instagramLink?: string;
 		linkedinLink?: string;
+		content?: SanityObjectArray<SanityBlockContent>;
 	}
 >;
 
