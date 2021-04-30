@@ -52,17 +52,17 @@ export default {
 		{
 			title: "Facebook social link",
 			name: "facebookLink",
-			type: "string"
+			type: "url"
 		},
 		{
 			title: "Instagram social link",
 			name: "instagramLink",
-			type: "string"
+			type: "url"
 		},
 		{
 			title: "LinkedIn social link",
 			name: "linkedinLink",
-			type: "string"
+			type: "url"
 		}
 	],
 	preview: {
