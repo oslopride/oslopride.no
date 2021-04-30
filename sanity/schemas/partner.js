@@ -25,6 +25,21 @@ export default {
 			of: [{ type: "block", styles: [], lists: [] }],
 			validation: Rule => Rule.required()
 		},
+
+		{
+			name: "content",
+			title: "Content",
+			type: "array",
+			of: [
+				{
+					type: "block",
+					styles: [
+						{ title: "Heading", value: "h2" },
+						{ title: "Subheading", value: "h3" }
+					]
+				}
+			]
+		},
 		{
 			name: "url",
 			title: "Partner's website",
