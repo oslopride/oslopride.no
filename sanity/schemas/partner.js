@@ -22,7 +22,7 @@ export default {
 			name: "description",
 			title: "Description",
 			type: "array",
-			of: [{ type: "block" }],
+			of: [{ type: "block", styles: [], lists: [] }],
 			validation: Rule => Rule.required()
 		},
 		{
