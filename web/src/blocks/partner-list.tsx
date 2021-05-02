@@ -64,6 +64,10 @@ const groupHeader = css`
 	}
 `;
 
+const AlliedWrap = styled.div`
+	margin-top: 5rem;
+`;
+
 const PartnerList: FC<Props> = ({ content }) => {
 	return (
 		<>
@@ -160,7 +164,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 						))}
 				</div>
 			</div>
-			<div>
+			<AlliedWrap>
 				<h2 css={groupHeader}>Allierte</h2>
 				<div css={PartnerFlexBox}>
 					{content
@@ -177,7 +181,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 							/>
 						))}
 				</div>
-			</div>
+			</AlliedWrap>
 		</>
 	);
 };
