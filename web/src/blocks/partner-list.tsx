@@ -160,6 +160,24 @@ const PartnerList: FC<Props> = ({ content }) => {
 						))}
 				</div>
 			</div>
+			<div>
+				<h2 css={groupHeader}>Allierte</h2>
+				<div css={SupporterFlexBox}>
+					{content
+						.filter(p => p.type === "allied")
+						.map(partner => (
+							<img
+								key={partner._id}
+								src={
+									urlFor(partner.image)
+										.width(200)
+										.url() || undefined
+								}
+								alt={`${partner.name} logo`}
+							/>
+						))}
+				</div>
+			</div>
 		</>
 	);
 };
