@@ -16,7 +16,7 @@ export default {
 			name: "type",
 			title: "Partner type",
 			type: "string",
-			options: { list: ["owner", "main", "regular", "supporter"] }
+			options: { list: ["owner", "main", "regular", "supporter", "allied"] }
 		},
 		{
 			name: "description",
