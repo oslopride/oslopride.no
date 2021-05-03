@@ -67,17 +67,32 @@ export default {
 		{
 			title: "Facebook social link",
 			name: "facebookLink",
-			type: "url"
+			type: "url",
+			description: "Format: 'https://www.example.com'",
+			validation: Rule =>
+				Rule.uri({
+					scheme: ["http", "https"]
+				})
 		},
 		{
 			title: "Instagram social link",
 			name: "instagramLink",
-			type: "url"
+			type: "url",
+			description: "Format: 'https://www.example.com'",
+			validation: Rule =>
+				Rule.uri({
+					scheme: ["http", "https"]
+				})
 		},
 		{
 			title: "LinkedIn social link",
 			name: "linkedinLink",
-			type: "url"
+			type: "url",
+			description: "Format: 'https://www.example.com'",
+			validation: Rule =>
+				Rule.uri({
+					scheme: ["http", "https"]
+				})
 		}
 	],
 	preview: {
