@@ -167,25 +167,31 @@ const Partner: React.FC<Props> = props => {
 
 							<div>
 								{partner.facebookLink && (
-									<FBSocialLink
-										css={css`
-											margin-right: 1rem;
-										`}
-									/>
+									<a href={partner.facebookLink}>
+										<FBSocialLink
+											css={css`
+												margin-right: 1rem;
+											`}
+										/>
+									</a>
 								)}
 								{partner.instagramLink && (
-									<IGSocialLink
-										css={css`
-											margin-right: 1rem;
-										`}
-									/>
+									<a href={partner.instagramLink}>
+										<IGSocialLink
+											css={css`
+												margin-right: 1rem;
+											`}
+										/>
+									</a>
 								)}
 								{partner.linkedinLink && (
-									<LinkedInSocialLink
-										css={css`
-											margin-right: 1rem;
-										`}
-									/>
+									<a href={partner.linkedinLink}>
+										<LinkedInSocialLink
+											css={css`
+												margin-right: 1rem;
+											`}
+										/>
+									</a>
 								)}
 							</div>
 						</div>
