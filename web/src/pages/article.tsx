@@ -56,7 +56,7 @@ const date = css`
 const nav = css`
 	display: grid;
 	grid-column-gap: 1rem;
-	grid-template-columns: 1fr auto 1fr;
+	grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
 
 	h3 {
 		color: ${theme.color.text.grey};
@@ -74,6 +74,7 @@ const nav = css`
 		color: ${theme.color.text.black};
 		font-weight: 600;
 		text-decoration: none;
+		word-wrap: break-word;
 		@media (min-width: 700px) {
 			line-height: 1.5;
 			font-size: 1.4rem;
@@ -82,18 +83,13 @@ const nav = css`
 `;
 
 const next = css`
-	grid-column-start: 3;
 	justify-self: end;
 	text-align: end;
+	width: 100%;
 `;
 
 const scrollUpButton = css`
-	grid-column-start: 2;
-	align-self: center;
-`;
-
-const prev = css`
-	grid-column-start: 1;
+	place-self: center;
 `;
 
 const divider = css`
@@ -179,7 +175,7 @@ const Article: React.FC<Props> = props => {
 				<hr css={divider} />
 				<nav css={nav}>
 					{prevArticle && (
-						<div css={prev}>
+						<div>
 							<h3>Forrige artikkel</h3>
 							<a href={`/a/${prevArticle.slug.current}`}>
 								{prevArticle.title.no}
