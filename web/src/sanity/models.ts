@@ -264,6 +264,11 @@ export type SanityPartner = SanityDocument<
 		description: SanityBlockContent;
 		url: string;
 		image: SanityImage;
+		slug: { current: string };
+		facebookLink?: string;
+		instagramLink?: string;
+		linkedinLink?: string;
+		content?: SanityObjectArray<SanityBlockContent>;
 	}
 >;
 

@@ -22,8 +22,23 @@ export default {
 			name: "description",
 			title: "Description",
 			type: "array",
-			of: [{ type: "block" }],
+			of: [{ type: "block", styles: [], lists: [] }],
 			validation: Rule => Rule.required()
+		},
+
+		{
+			name: "content",
+			title: "Content",
+			type: "array",
+			of: [
+				{
+					type: "block",
+					styles: [
+						{ title: "Heading", value: "h2" },
+						{ title: "Subheading", value: "h3" }
+					]
+				}
+			]
 		},
 		{
 			name: "url",
@@ -39,6 +54,45 @@ export default {
 				hotspot: false
 			},
 			validation: Rule => Rule.required()
+		},
+		{
+			title: "URL",
+			name: "slug",
+			type: "slug",
+			options: {
+				source: "name"
+			},
+			validation: Rule => Rule.required()
+		},
+		{
+			title: "Facebook social link",
+			name: "facebookLink",
+			type: "url",
+			description: "Format: 'https://www.example.com'",
+			validation: Rule =>
+				Rule.uri({
+					scheme: ["http", "https"]
+				})
+		},
+		{
+			title: "Instagram social link",
+			name: "instagramLink",
+			type: "url",
+			description: "Format: 'https://www.example.com'",
+			validation: Rule =>
+				Rule.uri({
+					scheme: ["http", "https"]
+				})
+		},
+		{
+			title: "LinkedIn social link",
+			name: "linkedinLink",
+			type: "url",
+			description: "Format: 'https://www.example.com'",
+			validation: Rule =>
+				Rule.uri({
+					scheme: ["http", "https"]
+				})
 		}
 	],
 	preview: {
