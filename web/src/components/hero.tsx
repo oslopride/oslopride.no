@@ -15,8 +15,7 @@ const hero = css`
 	}
 
 	@media screen and (max-width: 800px) {
-		padding-top: 8rem;
-		padding-bottom: 2rem;
+		padding-top: 10rem;
 	}
 `;
 
