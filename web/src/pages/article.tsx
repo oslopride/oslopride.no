@@ -86,10 +86,16 @@ const next = css`
 	justify-self: end;
 	text-align: end;
 	width: 100%;
+	grid-column-start: 3;
+`;
+
+const prev = css`
+	grid-column-start: 1;
 `;
 
 const scrollUpButton = css`
 	place-self: center;
+	grid-column-start: 2;
 `;
 
 const divider = css`
@@ -175,7 +181,7 @@ const Article: React.FC<Props> = props => {
 				<hr css={divider} />
 				<nav css={nav}>
 					{prevArticle && (
-						<div>
+						<div css={prev}>
 							<h3>Forrige artikkel</h3>
 							<a href={`/a/${prevArticle.slug.current}`}>
 								{prevArticle.title.no}
