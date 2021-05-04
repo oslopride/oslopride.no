@@ -136,6 +136,13 @@ const PartnerPreview: React.FC<PartnerPreviewProps> = ({ content }) => {
 					name="Støttespillere"
 					partners={content.filter(p => p.type === "supporter")}
 				/>
+
+				{content.filter(p => p.type === "allied").length > 0 && (
+					<PartnerGroup
+						name="Allierte"
+						partners={content.filter(p => p.type === "allied")}
+					/>
+				)}
 			</ul>
 		</section>
 	);

@@ -9,7 +9,7 @@ type Props = {
 	content: SanityPartnerList;
 };
 
-const SupporterFlexBox = css`
+const PartnerFlexBox = css`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
@@ -64,12 +64,16 @@ const groupHeader = css`
 	}
 `;
 
+const AlliedWrap = styled.div`
+	margin-top: 5rem;
+`;
+
 const PartnerList: FC<Props> = ({ content }) => {
 	return (
 		<>
 			<div>
 				<h2 css={groupHeader}>Eier og arrangør</h2>
-				<div css={SupporterFlexBox}>
+				<div css={PartnerFlexBox}>
 					{content
 						.filter(p => p.type === "owner")
 						.map(partner => (
@@ -94,7 +98,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 			</div>
 			<div>
 				<h2 css={groupHeader}>Hovedpartnere</h2>
-				<div css={SupporterFlexBox}>
+				<div css={PartnerFlexBox}>
 					{content
 						.filter(p => p.type === "main")
 						.map(partner => (
@@ -119,7 +123,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 			</div>
 			<div>
 				<h2 css={groupHeader}>Partnere</h2>
-				<div css={SupporterFlexBox}>
+				<div css={PartnerFlexBox}>
 					{content
 						.filter(p => p.type === "regular")
 						.map(partner => (
@@ -144,7 +148,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 			</div>
 			<div>
 				<h2 css={groupHeader}>Støttespillere</h2>
-				<div css={SupporterFlexBox}>
+				<div css={PartnerFlexBox}>
 					{content
 						.filter(p => p.type === "supporter")
 						.map(partner => (
@@ -160,6 +164,27 @@ const PartnerList: FC<Props> = ({ content }) => {
 						))}
 				</div>
 			</div>
+
+			{content.filter(p => p.type === "allied").length > 0 && (
+				<AlliedWrap>
+					<h2 css={groupHeader}>Allierte</h2>
+					<div css={PartnerFlexBox}>
+						{content
+							.filter(p => p.type === "allied")
+							.map(partner => (
+								<img
+									key={partner._id}
+									src={
+										urlFor(partner.image)
+											.width(200)
+											.url() || undefined
+									}
+									alt={`${partner.name} logo`}
+								/>
+							))}
+					</div>
+				</AlliedWrap>
+			)}
 		</>
 	);
 };
