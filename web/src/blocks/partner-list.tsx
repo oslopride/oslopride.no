@@ -5,17 +5,29 @@ import { SanityPartnerList } from "../sanity/models";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import Link from "../components/link";
+import theme from "../utils/theme";
 
 type Props = {
 	content: SanityPartnerList;
 };
 
-const PartnerFlexBox = css`
+const MainPartnerContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
-	margin: 2rem 0;
+	margin: 1rem 0;
 	align-items: center;
+
+	&:after {
+		content: "";
+		width: 100%;
+		margin: 2rem 4rem;
+		height: 1px;
+		background-color: ${theme.color.text.grey};
+
+		@media (max-width: 599px) {
+			margin: 2rem 0;
+		}
+	}
 
 	img {
 		margin: 1rem;
@@ -26,11 +38,43 @@ const PartnerFlexBox = css`
 	}
 `;
 
-const FlexBox = styled.div`
+const MainPartnerFlex = styled.div`
 	display: flex;
 	flex-direction: row;
-	margin: 2rem 0;
+	margin: 2rem 4rem;
 	align-items: center;
+
+	@media (max-width: 599px) {
+		flex-direction: column;
+		align-items: flex-start;
+		margin: 1rem 0;
+	}
+`;
+
+const RegularPartnerContainer = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 0 4rem;
+
+	& > div {
+		flex-basis: 50%;
+	}
+
+	&:after {
+		content: "";
+		width: 100%;
+		margin: 5rem 0;
+		height: 1px;
+		background-color: ${theme.color.text.grey};
+	}
+`;
+
+const RegularPartnerFlex = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
 	@media (max-width: 599px) {
 		flex-direction: column;
 		align-items: flex-start;
@@ -40,6 +84,7 @@ const FlexBox = styled.div`
 
 const ImgWrap = styled.div`
 	margin: 1rem auto;
+
 	@media (min-width: 600px) {
 		margin: 1rem 2rem 1rem 0;
 	}
@@ -53,7 +98,23 @@ const ImgWrap = styled.div`
 `;
 
 const ContentWrap = styled.div`
-	padding-bottom: 2rem;
+	h2 {
+		font-size: 2rem;
+		margin-top: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	h3 {
+		font-size: 0.9rem;
+		letter-spacing: 0.15rem;
+		text-transform: uppercase;
+		color: ${theme.color.main.purple};
+	}
+
+	a {
+		font-weight: bold;
+		color: ${theme.color.main.purple};
+	}
 `;
 
 const groupHeader = css`
@@ -73,12 +134,11 @@ const PartnerList: FC<Props> = ({ content }) => {
 	return (
 		<>
 			<div>
-				<h2 css={groupHeader}>Eier og arrangør</h2>
-				<div css={PartnerFlexBox}>
+				<MainPartnerContainer>
 					{content
 						.filter(p => p.type === "owner")
 						.map(partner => (
-							<FlexBox key={partner._id}>
+							<MainPartnerFlex key={partner._id}>
 								<ImgWrap>
 									<img
 										src={
@@ -90,6 +150,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 									/>
 								</ImgWrap>
 								<ContentWrap>
+									<h3>Eier og arrangør</h3>
 									<h2>{partner.name}</h2>
 									<BlockContentToReact blocks={partner.description} />
 									{partner.slug && (
@@ -97,22 +158,21 @@ const PartnerList: FC<Props> = ({ content }) => {
 											link={{
 												_type: "internalInternalLink",
 												url: `/partner/${partner.slug.current}`,
-												text: `Les mer om ${partner.name}`
+												text: `Les mer om ${partner.name} »`
 											}}
 										/>
 									)}
 								</ContentWrap>
-							</FlexBox>
+							</MainPartnerFlex>
 						))}
-				</div>
+				</MainPartnerContainer>
 			</div>
 			<div>
-				<h2 css={groupHeader}>Hovedpartnere</h2>
-				<div css={PartnerFlexBox}>
+				<MainPartnerContainer>
 					{content
 						.filter(p => p.type === "main")
 						.map(partner => (
-							<FlexBox key={partner._id}>
+							<MainPartnerFlex key={partner._id}>
 								<ImgWrap>
 									<img
 										src={
@@ -124,6 +184,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 									/>
 								</ImgWrap>
 								<ContentWrap>
+									<h3>Hovedpartner</h3>
 									<h2>{partner.name}</h2>
 									<BlockContentToReact blocks={partner.description} />
 									{partner.slug && (
@@ -131,22 +192,21 @@ const PartnerList: FC<Props> = ({ content }) => {
 											link={{
 												_type: "internalInternalLink",
 												url: `/partner/${partner.slug.current}`,
-												text: `Les mer om ${partner.name}`
+												text: `Les mer om ${partner.name} »`
 											}}
 										/>
 									)}
 								</ContentWrap>
-							</FlexBox>
+							</MainPartnerFlex>
 						))}
-				</div>
+				</MainPartnerContainer>
 			</div>
 			<div>
-				<h2 css={groupHeader}>Partnere</h2>
-				<div css={PartnerFlexBox}>
+				<RegularPartnerContainer>
 					{content
 						.filter(p => p.type === "regular")
 						.map(partner => (
-							<FlexBox key={partner._id}>
+							<RegularPartnerFlex key={partner._id}>
 								<ImgWrap>
 									<img
 										src={
@@ -158,45 +218,48 @@ const PartnerList: FC<Props> = ({ content }) => {
 									/>
 								</ImgWrap>
 								<ContentWrap>
+									<h3>Partner</h3>
 									<h2>{partner.name}</h2>
-									<BlockContentToReact blocks={partner.description} />
 									{partner.slug && (
 										<Link
 											link={{
 												_type: "internalInternalLink",
 												url: `/partner/${partner.slug.current}`,
-												text: `Les mer om ${partner.name}`
+												text: `Les mer om ${partner.name} »`
 											}}
 										/>
 									)}
 								</ContentWrap>
-							</FlexBox>
+							</RegularPartnerFlex>
 						))}
-				</div>
+				</RegularPartnerContainer>
 			</div>
 			<div>
 				<h2 css={groupHeader}>Støttespillere</h2>
-				<div css={PartnerFlexBox}>
+				<RegularPartnerContainer>
 					{content
 						.filter(p => p.type === "supporter")
 						.map(partner => (
-							<img
-								key={partner._id}
-								src={
-									urlFor(partner.image)
-										.width(200)
-										.url() || undefined
-								}
-								alt={`${partner.name} logo`}
-							/>
+							<RegularPartnerFlex key={partner._id}>
+								<ImgWrap>
+									<img
+										src={
+											urlFor(partner.image)
+												.width(200)
+												.url() || undefined
+										}
+										alt={`${partner.name} logo`}
+									/>
+								</ImgWrap>
+							</RegularPartnerFlex>
 						))}
-				</div>
+				</RegularPartnerContainer>
 			</div>
 
 			{content.filter(p => p.type === "allied").length > 0 && (
 				<AlliedWrap>
 					<h2 css={groupHeader}>Allierte</h2>
-					<div css={PartnerFlexBox}>
+					<MainPartnerContainer>
 						{content
 							.filter(p => p.type === "allied")
 							.map(partner => (
@@ -210,7 +273,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 									alt={`${partner.name} logo`}
 								/>
 							))}
-					</div>
+					</MainPartnerContainer>
 				</AlliedWrap>
 			)}
 		</>
