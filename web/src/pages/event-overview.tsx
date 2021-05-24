@@ -7,17 +7,14 @@ import theme from "../utils/theme";
 import { css } from "@emotion/core";
 import { urlFor } from "../sanity";
 import useSWR from "swr";
-import { ReactComponent as Heart } from "../assets/prideheart.svg";
 import {
 	SanityEventPage,
 	SanitySimpleEvent,
 	SanitySimpleEventList
 } from "../sanity/models";
-import BlockContentToReact from "@sanity/block-content-to-react";
 import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
-import { LinkButton } from "../components/link";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -85,12 +82,10 @@ const articleGroup = css`
 
 	@media (min-width: 650px) {
 		grid-template-columns: 1fr 1fr;
-
 	}
 
 	@media (min-width: 1200px) {
 		grid-template-columns: 1fr 1fr 1fr;
-
 	}
 `;
 
@@ -149,7 +144,7 @@ const article = css`
 		flex-flow: row wrap;
 		justify-content: space-evenly;
 		align-items: center;
-    	margin-bottom: 0;
+		margin-bottom: 0;
 
 		li {
 			margin: 8px;
@@ -316,6 +311,7 @@ const EventOverview: React.FC<Props> = () => {
 														.width(window.innerWidth)
 														.url() || ""
 												}
+												alt={event.title.no}
 											/>
 										</div>
 
@@ -331,16 +327,20 @@ const EventOverview: React.FC<Props> = () => {
 													)}
 												</time>
 												{getArenaName(event.arena) && (
-													<span className="tag">{getArenaName(event.arena)}</span>
+													<span className="tag">
+														{getArenaName(event.arena)}
+													</span>
 												)}
 											</div>
 											<h3>{event.title.no}</h3>
 											<ul>
 												{event.liveStream && <li className="tag">strømmes</li>}
-												{event.wheelchairFriendly && <li className="tag">rullestolvennlig</li>}
+												{event.wheelchairFriendly && (
+													<li className="tag">rullestolvennlig</li>
+												)}
 												{event.signLanguageInterpreted && (
 													<li className="tag">tegnspråktolket</li>
-													)}
+												)}
 											</ul>
 											<a href={`/event/${event.slug.current}`}>Se detaljer</a>
 										</div>

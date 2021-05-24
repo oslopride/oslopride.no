@@ -216,10 +216,14 @@ const Event: React.FC<Props> = props => {
 						<span>Strømmes</span>
 						<span>{event.liveStream ? "Ja" : "Nei"}</span>
 					</li>
-					{event.eventLink && <li>
-						<span>Arrangement-lenke</span>
-						<span><a href={event.eventLink}>{event.eventLink}</a></span>
-					</li>}
+					{event.eventLink && (
+						<li>
+							<span>Arrangement-lenke</span>
+							<span>
+								<a href={event.eventLink}>{event.eventLink}</a>
+							</span>
+						</li>
+					)}
 				</ul>
 			</div>
 
