@@ -179,7 +179,7 @@ export type SanitySimpleEvent = SanityDocument<
 		signLanguageInterpreted: boolean;
 		wheelchairFriendly: boolean;
 		liveStream: boolean;
-		eventWebsite?: string;
+		eventLink?: string;
 		organizer: string;
 	}
 >;

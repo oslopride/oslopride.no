@@ -250,21 +250,6 @@ const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
 	}
 };
 
-const getCategoryName = (category: SanitySimpleEvent["category"]) => {
-	switch (category) {
-		case "concert":
-			return "Konsert";
-		case "debate":
-			return "Debatt";
-		case "talk":
-			return "Foredrag";
-		case "party":
-			return "Fest";
-		default:
-			return undefined;
-	}
-};
-
 const EventOverview: React.FC<Props> = () => {
 	const { data: events } = useSWR<SanitySimpleEventList>(
 		`*[_type == "simpleEvent"] | order(startTime asc)`

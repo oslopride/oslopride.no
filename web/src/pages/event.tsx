@@ -41,6 +41,48 @@ const body = css`
 	ul {
 		margin-bottom: 2rem;
 	}
+
+	.detailsHeadline {
+		font-size: 2rem;
+	}
+
+	.details {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+
+		@media (min-width: 700px) {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		li {
+			display: flex;
+			flex-direction: column;
+			border-bottom: 1px solid black;
+			padding-bottom: 0.5rem;
+
+			max-width: 100%;
+			min-width: 300px;
+		}
+
+		span:first-of-type {
+			color: ${theme.color.main.purple};
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: 0.75rem;
+			line-height: 1.5;
+		}
+
+		span:last-of-type {
+		}
+
+		a {
+			cursor: pointer;
+			color: inherit;
+		}
+	}
 `;
 
 const date = css`
@@ -49,6 +91,36 @@ const date = css`
 	margin-bottom: 0.5rem !important;
 	font-weight: 600;
 `;
+
+function isSameDay(date1: Date, date2: Date) {
+	return (
+		date1.toLocaleDateString("nb-NO", {
+			year: "numeric",
+			month: "numeric",
+			day: "numeric"
+		}) ===
+		date2.toLocaleDateString("nb-NO", {
+			year: "numeric",
+			month: "numeric",
+			day: "numeric"
+		})
+	);
+}
+
+const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
+	switch (arena) {
+		case "park":
+			return "Pride Park";
+		case "house":
+			return "Pride House";
+		case "parade":
+			return "Pride Parade";
+		case "external":
+			return "Eksternt arrangement";
+		default:
+			return "Annet";
+	}
+};
 
 const Event: React.FC<Props> = props => {
 	const { slug } = props;
@@ -61,13 +133,32 @@ const Event: React.FC<Props> = props => {
 	if (event === undefined) return <Loading />;
 	if (event === null) return <NotFound />;
 
-	const formattedDate = new Date(event.startTime).toLocaleDateString("nb-NO", {
+	const startTime = new Date(event.startTime).toLocaleDateString("nb-NO", {
 		weekday: "long",
 		day: "numeric",
 		month: "long",
 		hour: "2-digit",
 		minute: "2-digit"
 	});
+
+	const sameDayEvent =
+		!!event.endTime &&
+		isSameDay(new Date(event.startTime), new Date(event.endTime));
+
+	const endTime =
+		event.endTime &&
+		(sameDayEvent
+			? new Date(event.endTime).toLocaleTimeString("nb-NO", {
+					hour: "2-digit",
+					minute: "2-digit"
+			  })
+			: new Date(event.endTime).toLocaleDateString("nb-NO", {
+					weekday: "long",
+					day: "numeric",
+					month: "long",
+					hour: "2-digit",
+					minute: "2-digit"
+			  }));
 
 	return (
 		<>
@@ -83,7 +174,7 @@ const Event: React.FC<Props> = props => {
 				centerContent
 			>
 				<time css={date} dateTime={event.startTime}>
-					{formattedDate}
+					{startTime}
 				</time>
 				<h2>{event.title.no}</h2>
 			</Hero>
@@ -91,6 +182,45 @@ const Event: React.FC<Props> = props => {
 				{event.description?.no && (
 					<SanityPortableText blocks={event.description.no} />
 				)}
+				<h3 className="detailsHeadline">Arrangementdetaljer</h3>
+				<ul className="details">
+					<li>
+						<span>Arrangør</span>
+						<span>{event.official ? "Oslo Pride" : event.organizer}</span>
+					</li>
+					<li>
+						<span>Dato og tid</span>
+						<span>
+							{startTime} {endTime && `- ${endTime}`}
+						</span>
+					</li>
+					<li>
+						<span>Arena</span>
+						<span>{getArenaName(event.arena)}</span>
+					</li>
+					{event.address && (
+						<li>
+							<span>Adresse</span>
+							<span>{event.address}</span>
+						</li>
+					)}
+					<li>
+						<span>Rullestolvennlig</span>
+						<span>{event.wheelchairFriendly ? "Ja" : "Nei"}</span>
+					</li>
+					<li>
+						<span>Tegnspråktolket</span>
+						<span>{event.signLanguageInterpreted ? "Ja" : "Nei"}</span>
+					</li>
+					<li>
+						<span>Strømmes</span>
+						<span>{event.liveStream ? "Ja" : "Nei"}</span>
+					</li>
+					{event.eventLink && <li>
+						<span>Arrangement-lenke</span>
+						<span><a href={event.eventLink}>{event.eventLink}</a></span>
+					</li>}
+				</ul>
 			</div>
 
 			<Seo
