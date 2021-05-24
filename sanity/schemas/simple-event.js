@@ -44,6 +44,15 @@ export default {
 			(lang, Rule) => (lang.isDefault ? Rule.required().max(80) : Rule.max(80))
 		),
 		{
+			title: "URL",
+			name: "slug",
+			type: "slug",
+			options: {
+				source: "title.en.id"
+			},
+			validation: Rule => Rule.required()
+		},
+		{
 			title: "Image",
 			name: "image",
 			type: "image",
