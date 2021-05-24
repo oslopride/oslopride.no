@@ -15,6 +15,7 @@ import {
 import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
+import Select from "react-select";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -184,6 +185,36 @@ const article = css`
 	}
 `;
 
+const filter = css`
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
+	margin: 0 auto 2rem;
+	padding: 0 1rem;
+	max-width: 1000px;
+
+	@media (min-width: 650px) {
+		grid-template-columns: 1fr 1fr;
+
+		div:last-of-type {
+			grid-column-end: span 2;
+		}
+	}
+
+	@media (min-width: 900px) {
+		grid-template-columns: 1fr 1fr 1fr;
+
+		div:last-of-type {
+			grid-column-end: span 1;
+		}
+	}
+`;
+
+const filterHeader = css`
+	text-align: center;
+	margin-top: 2rem;
+`;
+
 const groupEventsByDay = (events: SanitySimpleEventList) => {
 	if (events.length === 0) {
 		return [];
@@ -245,6 +276,71 @@ const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
 	}
 };
 
+type Filter = {
+	value: string;
+	label: string;
+	predicate: (event: SanitySimpleEvent) => boolean;
+};
+
+const arenaFilters: Filter[] = [
+	{
+		value: "park",
+		label: "Pride Park",
+		predicate: event => event.arena === "park"
+	},
+	{
+		value: "house",
+		label: "Pride House",
+		predicate: event => event.arena === "house"
+	},
+	{
+		value: "parade",
+		label: "Pride Parade",
+		predicate: event => event.arena === "parade"
+	}
+];
+
+const categoryFilters: Filter[] = [
+	{
+		value: "concert",
+		label: "Konsert",
+		predicate: event => event.category === "concert"
+	},
+	{
+		value: "talk",
+		label: "Foredrag",
+		predicate: event => event.category === "talk"
+	},
+	{
+		value: "debate",
+		label: "Debatt",
+		predicate: event => event.category === "debate"
+	},
+	{
+		value: "party",
+		label: "Fest",
+		predicate: event => event.category === "party"
+	}
+];
+
+const accessibilityFilters: Filter[] = [
+	{
+		value: "liveStream",
+		label: "Strømmes",
+		predicate: event => event.liveStream
+	},
+	{
+		value: "wheelChairFriendly",
+		label: "Rullestolvennlig",
+		predicate: event => event.wheelchairFriendly
+	},
+	{
+		value: "signLanguageInterpreted",
+		label: "Tegnspråktolket",
+		predicate: event => event.signLanguageInterpreted
+	}
+];
+
 const EventOverview: React.FC<Props> = () => {
 	const { data: events } = useSWR<SanitySimpleEventList>(
 		`*[_type == "simpleEvent"] | order(startTime asc)`
@@ -254,14 +350,47 @@ const EventOverview: React.FC<Props> = () => {
 		`*[_type == "eventOverview"] | order(_updatedAt desc) [0]`
 	);
 
+	const [selectedArenaFilters, setArenaFilters] = React.useState<Filter[]>([]);
+	const [selectedCategoryFilters, setCategoryFilters] = React.useState<
+		Filter[]
+	>([]);
+	const [
+		selectedAccessibilityFilters,
+		setAccessibilityFilters
+	] = React.useState<Filter[]>([]);
+
 	const [showOldEevnts, setShowOldEvents] = React.useState(false);
 
 	if (error) return <Error error={JSON.stringify(error)} />;
 	if (archive === undefined) return <Loading />;
 	if (archive === null) return <NotFound />;
 
+	const filteredEvents =
+		events &&
+		events.filter(e => {
+			return (
+				(selectedArenaFilters.length < 1 ||
+					selectedArenaFilters.reduce<boolean>(
+						(prev, filter) => prev || filter.predicate(e),
+						false
+					)) &&
+				(selectedCategoryFilters.length < 1 ||
+					selectedCategoryFilters.reduce<boolean>(
+						(prev, filter) => prev || filter.predicate(e),
+						false
+					)) &&
+				(selectedAccessibilityFilters.length < 1 ||
+					selectedAccessibilityFilters.reduce<boolean>(
+						(prev, filter) => prev && filter.predicate(e),
+						true
+					))
+			);
+		});
+
 	const [oldEvent, upcommingEvents] =
-		events && events.length > 0 ? groupEventsByDay(events) : [[], []];
+		filteredEvents && filteredEvents.length > 0
+			? groupEventsByDay(filteredEvents)
+			: [[], []];
 
 	const displayEvents = showOldEevnts
 		? [...oldEvent, ...upcommingEvents]
@@ -282,6 +411,28 @@ const EventOverview: React.FC<Props> = () => {
 				<h2>{archive.title.no}</h2>
 				<p>{archive.subtitle && archive.subtitle.no}</p>
 			</Hero>
+
+			<h3 css={filterHeader}>Filtrering</h3>
+			<section css={filter}>
+				<Select
+					placeholder="Arena"
+					onChange={setArenaFilters}
+					options={arenaFilters}
+					isMulti
+				/>
+				<Select
+					placeholder="Programtype"
+					onChange={setCategoryFilters}
+					options={categoryFilters}
+					isMulti
+				/>
+				<Select
+					placeholder="Tilgjengelighet"
+					onChange={setAccessibilityFilters}
+					options={accessibilityFilters}
+					isMulti
+				/>
+			</section>
 
 			<div css={body}>
 				{oldEvent.length > 0 && !showOldEevnts ? (
