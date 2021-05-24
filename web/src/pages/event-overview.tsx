@@ -401,18 +401,21 @@ const EventOverview: React.FC<Props> = () => {
 					placeholder="Arena"
 					onChange={setArenaFilters}
 					options={arenaFilters}
+					isSearchable={false}
 					isMulti
 				/>
 				<Select
 					placeholder="Programtype"
 					onChange={setCategoryFilters}
 					options={categoryFilters}
+					isSearchable={false}
 					isMulti
 				/>
 				<Select
 					placeholder="Tilgjengelighet"
 					onChange={setAccessibilityFilters}
 					options={accessibilityFilters}
+					isSearchable={false}
 					isMulti
 				/>
 			</section>

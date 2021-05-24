@@ -12,6 +12,7 @@ declare module "react-select" {
 		options: option[];
 		placeholder?: string;
 		isMulti?: boolean;
+		isSearchable?: boolean;
 	}>;
 
 	export default content;
