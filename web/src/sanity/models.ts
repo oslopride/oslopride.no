@@ -170,9 +170,15 @@ export type SanitySimpleEvent = SanityDocument<
 		image: SanityImage;
 		description: Locale<SanityObjectArray<SanityBlockContent>>;
 		startTime: string;
-		endTime: string;
-		price: Locale<string>;
-		eventLink: string;
+		endTime?: string;
+		blurb: Locale<string>;
+		category: "concert" | "debate" | "talk" | "party" | "other";
+		arena: "park" | "house" | "parade" | "external" | "other";
+		address?: string;
+		signLanguageInterpreted: boolean;
+		wheelchairFriendly: boolean;
+		liveStream: boolean;
+		eventWebsite?: string;
 		organizer: string;
 	}
 >;
