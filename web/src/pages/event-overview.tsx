@@ -78,19 +78,30 @@ const dateGroupHeader = css`
 `;
 
 const articleGroup = css`
-	display: flex;
-	flex-flow: row wrap;
-	align-content: flex-start;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-items: center;
+	gap: 1.35rem 1rem;
+
+	@media (min-width: 650px) {
+		grid-template-columns: 1fr 1fr;
+
+	}
+
+	@media (min-width: 1200px) {
+		grid-template-columns: 1fr 1fr 1fr;
+
+	}
 `;
 
 const article = css`
-	max-width: 500px;
-	min-width: 300px;
 	width: 100%;
-	margin: 1.35rem 1rem;
+	height: 100%;
+	max-width: 500px;
 	overflow: hidden;
-	flex: 1;
+	display: flex;
+	flex-direction: column;
+	border-radius: 8px;
 
 	.imageWrapper {
 		padding-bottom: 56.2%;
@@ -107,6 +118,9 @@ const article = css`
 	.contentWrapper {
 		background: #f7f8fa;
 		padding: 24px;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.timeAndPlace {
@@ -128,11 +142,13 @@ const article = css`
 	}
 
 	ul {
+		flex: 1;
 		list-style: none;
 		padding: 0;
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: space-evenly;
+		align-items: center;
     	margin-bottom: 0;
 
 		li {
@@ -147,6 +163,29 @@ const article = css`
 		font-size: 0.75rem;
 		line-height: 1.2;
 		font-weight: bold;
+	}
+
+	a {
+		margin-top: 1rem;
+		width: 100%;
+		background-color: ${theme.color.main.blue};
+		text-transform: uppercase;
+		text-align: center;
+		display: inline-block;
+		letter-spacing: 1px;
+		padding: 1rem 1.75rem;
+		text-decoration: none;
+		cursor: pointer;
+		border-radius: 4px;
+		color: #ffffff;
+		font-weight: bold;
+		transition: color 0.3s, background 0.3s;
+
+		&:hover,
+		&:focus {
+			color: #ffffff;
+			background-color: ${theme.color.main.purple};
+		}
 	}
 `;
 
@@ -316,8 +355,9 @@ const EventOverview: React.FC<Props> = () => {
 												{event.wheelchairFriendly && <li className="tag">rullestolvennlig</li>}
 												{event.signLanguageInterpreted && (
 													<li className="tag">tegnspråktolket</li>
-												)}
+													)}
 											</ul>
+											<a href={`/event/${event.slug.current}`}>Se detaljer</a>
 										</div>
 									</article>
 								))}
