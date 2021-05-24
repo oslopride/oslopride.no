@@ -56,9 +56,6 @@ const Footer: React.FC<Props> = () => {
 							986 625 860
 						</a>
 					</p>
-					<p>
-						Tlf: <a href="tel:91544090">915 44 090</a>
-					</p>
 				</S.Info>
 
 				<S.Shortcuts>
