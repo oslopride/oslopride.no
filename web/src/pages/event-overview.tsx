@@ -8,7 +8,11 @@ import { css } from "@emotion/core";
 import { urlFor } from "../sanity";
 import useSWR from "swr";
 import { ReactComponent as Heart } from "../assets/prideheart.svg";
-import { SanityEventPage, SanitySimpleEventList } from "../sanity/models";
+import {
+	SanityEventPage,
+	SanitySimpleEvent,
+	SanitySimpleEventList
+} from "../sanity/models";
 import BlockContentToReact from "@sanity/block-content-to-react";
 import Loading from "../components/loading";
 import NotFound from "./not-found";
@@ -26,17 +30,17 @@ const hero = css`
 
 	p {
 		margin: 0 auto;
-		@media (min-width: 600px) {
-			max-width: 50vw;
-		}
 	}
 `;
 
 const body = css`
 	margin: 5vh auto 3rem auto;
-	width: 90vw;
-	max-width: 1150px;
-	padding: 0 0.75rem;
+	width: 95vw;
+	max-width: 1200px;
+
+	@media (min-width: 800px) {
+		width: 90vw;
+	}
 
 	p {
 		margin-bottom: 0;
@@ -53,17 +57,24 @@ const body = css`
 	}
 `;
 
+const oldEventButtonContainer = css`
+	display: flex;
+	justify-content: flex-end;
+
+	& > button {
+		border: none;
+		background: inherit;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+`;
+
 const dateGroupHeader = css`
 	text-transform: capitalize;
 	flex: 1 1 100%;
 	font-size: 1.75rem;
 	margin: 2rem 0;
 	text-align: center;
-
-	@media (min-width: 800px) {
-		font-size: 2.5rem;
-		margin: 4rem 0;
-	}
 `;
 
 const articleGroup = css`
@@ -74,117 +85,68 @@ const articleGroup = css`
 `;
 
 const article = css`
-	margin: 1rem 0;
+	max-width: 500px;
+	min-width: 300px;
 	width: 100%;
-	display: flex;
-	flex-direction: column;
-	background-color: #f7f8fa;
+	margin: 1.35rem 1rem;
+	overflow: hidden;
+	flex: 1;
 
-	@media (min-width: 800px) {
+	.imageWrapper {
+		padding-bottom: 56.2%;
+		position: relative;
+	}
+
+	img {
+		position: absolute;
 		width: 100%;
-		margin: 2rem 0;
-		max-width: unset;
-		display: grid;
-		grid-template-rows: 1fr auto;
-		grid-template-columns: 40% 1fr;
-		grid-template-areas:
-			"img text"
-			"img button";
-		grid-column-gap: 2rem;
-	}
-`;
-
-const organizerStyle = () => css`
-	color: ${theme.color.main.purple};
-	margin: 1rem 0;
-	font-weight: 600;
-
-	@media (min-width: 800px) {
-		margin-top: 0;
-	}
-`;
-
-const image = (image: string) => css`
-	height: 250px;
-	display: flex;
-	flex-direction: column-reverse;
-	align-items: flex-end;
-
-	@media (min-width: 800px) {
-		grid-area: img;
 		height: 100%;
+		object-fit: cover;
 	}
-	background-image: url(${image});
-	background-size: cover;
-	background-position: center center;
-`;
 
-const officialBadge = css`
-	height: 65px;
-	width: 65px;
-	display: block;
-	margin: 25px;
-	border-radius: 40px;
-	background-color: white;
-	svg {
-		display: block;
-		height: 35px;
-		width: 35px;
-		margin: 1.175rem 0.97rem;
+	.contentWrapper {
+		background: #f7f8fa;
+		padding: 24px;
 	}
-`;
 
-const preview = css`
-	margin: 1rem;
-	flex-grow: 1;
+	.timeAndPlace {
+		display: flex;
+		justify-content: space-between;
 
-	@media (min-width: 800px) {
-		grid-area: text;
-		margin: 0;
-		align-self: start;
-		margin: 2rem 2rem 0 0;
+		time {
+			color: #656781;
+		}
+
+		span {
+			background: ${theme.color.background.lightYellow};
+		}
 	}
-`;
 
-const date = css`
-	letter-spacing: 1px;
-	margin: 0.5rem 0;
-	font-weight: 600;
-	font-size: 1rem;
-`;
-
-const eventLink = css`
-	margin: 1.5rem;
-	width: calc(100% - 3rem);
-	margin: 1rem 0;
-	width: calc(100% - 2rem);
-	margin: 1rem;
-
-	@media (min-width: 800px) {
-		grid-area: button;
-		margin: 2rem 2rem 2rem 0;
-		align-self: end;
+	h3 {
+		font-size: 1.3rem;
+		line-height: 1.4;
 	}
-`;
 
-const descriptionContainer = css`
-	overflow-y: hidden;
-`;
+	ul {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-evenly;
+    	margin-bottom: 0;
 
-const eventPrice = css`
-	margin-top: 0.25rem;
-	font-weight: normal;
-`;
+		li {
+			margin: 8px;
+		}
+	}
 
-const oldEventButtonContainer = css`
-	display: flex;
-	justify-content: flex-end;
-
-	& > button {
-		border: none;
-		background: inherit;
-		text-decoration: underline;
-		cursor: pointer;
+	.tag {
+		padding: 8px 16px;
+		background: #ebe7f1;
+		border-radius: 50px;
+		font-size: 0.75rem;
+		line-height: 1.2;
+		font-weight: bold;
 	}
 `;
 
@@ -234,6 +196,34 @@ const groupEventsByDay = (events: SanitySimpleEventList) => {
 	});
 
 	return [oldEvents, upcommingEvents];
+};
+
+const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
+	switch (arena) {
+		case "park":
+			return "Pride Park";
+		case "house":
+			return "Pride House";
+		case "parade":
+			return "Pride Parade";
+		default:
+			return undefined;
+	}
+};
+
+const getCategoryName = (category: SanitySimpleEvent["category"]) => {
+	switch (category) {
+		case "concert":
+			return "Konsert";
+		case "debate":
+			return "Debatt";
+		case "talk":
+			return "Foredrag";
+		case "party":
+			return "Fest";
+		default:
+			return undefined;
+	}
 };
 
 const EventOverview: React.FC<Props> = () => {
@@ -295,27 +285,18 @@ const EventOverview: React.FC<Props> = () => {
 							<div css={articleGroup}>
 								{group?.map(event => (
 									<article css={article} key={event._id}>
-										<div
-											css={image(
-												urlFor(event.image)
-													.width(window.innerWidth)
-													.url() || ""
-											)}
-										>
-											{event.official && (
-												<div css={officialBadge}>
-													<Heart />
-												</div>
-											)}
+										<div className="imageWrapper">
+											<img
+												src={
+													urlFor(event.image)
+														.width(window.innerWidth)
+														.url() || ""
+												}
+											/>
 										</div>
-										<div css={preview}>
-											<div css={organizerStyle}>
-												{event.organizer
-													? `Arrangeres av ${event.organizer}`
-													: `Arrangeres av Oslo Pride`}
-											</div>
-											<h3>{event.title.no}</h3>
-											<div css={date}>
+
+										<div className="contentWrapper">
+											<div className="timeAndPlace">
 												<time dateTime={event.startTime}>
 													{new Date(event.startTime).toLocaleTimeString(
 														"nb-NO",
@@ -325,37 +306,19 @@ const EventOverview: React.FC<Props> = () => {
 														}
 													)}
 												</time>
-												{event.endTime && (
-													<>
-														{" "}
-														{" - "}
-														<time dateTime={event.endTime}>
-															{new Date(event.endTime).toLocaleTimeString(
-																"nb-NO",
-																{
-																	hour: "2-digit",
-																	minute: "2-digit"
-																}
-															)}
-														</time>
-													</>
-												)}
-												{event.price && (
-													<p css={eventPrice}>{`Pris: ${event.price}`}</p>
+												{getArenaName(event.arena) && (
+													<span className="tag">{getArenaName(event.arena)}</span>
 												)}
 											</div>
-											<div css={descriptionContainer}>
-												<BlockContentToReact blocks={event.description?.no} />
-											</div>
+											<h3>{event.title.no}</h3>
+											<ul>
+												{event.liveStream && <li className="tag">strømmes</li>}
+												{event.wheelchairFriendly && <li className="tag">rullestolvennlig</li>}
+												{event.signLanguageInterpreted && (
+													<li className="tag">tegnspråktolket</li>
+												)}
+											</ul>
 										</div>
-										<LinkButton
-											css={eventLink}
-											link={{
-												_type: "externalLink",
-												text: "Gå til event",
-												url: event.eventLink
-											}}
-										/>
 									</article>
 								))}
 							</div>
