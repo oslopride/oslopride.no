@@ -11,6 +11,7 @@ import { SanityConfiguration } from "./sanity/models";
 import { ClientError, ServerError } from "@sanity/client";
 import { ConfigProvider } from "./utils/use-config";
 import EventOverview from "./pages/event-overview";
+import Event from "./pages/event";
 import PartnerOverview from "./pages/partner-overview";
 import Loading from "./components/loading";
 import NotFound from "./pages/not-found";
@@ -65,6 +66,7 @@ const App: React.FC = () => {
 						<Article path="/a/:slug" />
 						<ArticleOverview path="/articles" />
 						<EventOverview path="/events" />
+						<Event path="/event/:slug" />
 						<PartnerOverview path="/partners" />
 						<Partner path="/partner/:slug" />
 					</Router>
