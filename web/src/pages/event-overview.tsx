@@ -16,6 +16,7 @@ import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
 import Select from "react-select";
+import { LinkButton } from "../components/link";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -164,24 +165,6 @@ const article = css`
 	a {
 		margin-top: 1rem;
 		width: 100%;
-		background-color: ${theme.color.main.blue};
-		text-transform: uppercase;
-		text-align: center;
-		display: inline-block;
-		letter-spacing: 1px;
-		padding: 1rem 1.75rem;
-		text-decoration: none;
-		cursor: pointer;
-		border-radius: 4px;
-		color: #ffffff;
-		font-weight: bold;
-		transition: color 0.3s, background 0.3s;
-
-		&:hover,
-		&:focus {
-			color: #ffffff;
-			background-color: ${theme.color.main.purple};
-		}
 	}
 `;
 
@@ -493,7 +476,15 @@ const EventOverview: React.FC<Props> = () => {
 													<li className="tag">tegnspråktolket</li>
 												)}
 											</ul>
-											<a href={`/event/${event.slug.current}`}>Se detaljer</a>
+											<LinkButton
+												// css={eventLink}
+												link={{
+													_type: "internalInternalLink",
+													text: "Se detaljer",
+													url: `/event/${event.slug.current}`
+												}}
+											/>
+											{/* <a href={`/event/${event.slug.current}`}>Se detaljer</a> */}
 										</div>
 									</article>
 								))}
