@@ -208,6 +208,8 @@ const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
 			return "Youngs";
 		case "melahuset":
 			return "Melahuset";
+		case "online":
+			return "Dititalt";
 		default:
 			return "Annet";
 	}

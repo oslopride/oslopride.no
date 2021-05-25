@@ -152,7 +152,8 @@ export default {
 					{ title: "Stage 1", value: "stage1" },
 					{ title: "Stage 2", value: "stage2" },
 					{ title: "Youngs", value: "youngs" },
-					{ title: "Melahuset", value: "melahuset" }
+					{ title: "Melahuset", value: "melahuset" },
+					{ title: "Online", value: "online" }
 				]
 			},
 			fieldset: "location"
