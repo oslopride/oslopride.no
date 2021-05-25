@@ -122,6 +122,21 @@ const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
 	}
 };
 
+const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
+	switch (venue) {
+		case "stage1":
+			return "Scene 1";
+		case "stage2":
+			return "Scene 2";
+		case "youngs":
+			return "Youngs";
+		case "melahuset":
+			return "Melahuset";
+		default:
+			return "Annet";
+	}
+};
+
 const Event: React.FC<Props> = props => {
 	const { slug } = props;
 
@@ -198,6 +213,12 @@ const Event: React.FC<Props> = props => {
 						<span>Arena</span>
 						<span>{getArenaName(event.arena)}</span>
 					</li>
+					{event.venue && (
+						<li>
+							<span>Lokasjon</span>
+							<span>{getVenueName(event.venue)}</span>
+						</li>
+					)}
 					{event.address && (
 						<li>
 							<span>Adresse</span>

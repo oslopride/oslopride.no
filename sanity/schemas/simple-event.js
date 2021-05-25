@@ -145,6 +145,19 @@ export default {
 			validation: Rule => Rule.required()
 		},
 		{
+			name: "venue",
+			type: "string",
+			options: {
+				list: [
+					{ title: "Stage 1", value: "stage1" },
+					{ title: "Stage 2", value: "stage2" },
+					{ title: "Youngs", value: "youngs" },
+					{ title: "Melahuset", value: "melahuset" }
+				]
+			},
+			fieldset: "location"
+		},
+		{
 			name: "address",
 			type: "string",
 			fieldset: "location"

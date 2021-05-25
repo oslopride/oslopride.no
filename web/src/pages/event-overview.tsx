@@ -198,6 +198,21 @@ const filterHeader = css`
 	margin-top: 2rem;
 `;
 
+const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
+	switch (venue) {
+		case "stage1":
+			return "Scene 1";
+		case "stage2":
+			return "Scene 2";
+		case "youngs":
+			return "Youngs";
+		case "melahuset":
+			return "Melahuset";
+		default:
+			return "Annet";
+	}
+};
+
 const groupEventsByDay = (events: SanitySimpleEventList) => {
 	if (events.length === 0) {
 		return [];
@@ -462,6 +477,7 @@ const EventOverview: React.FC<Props> = () => {
 															minute: "2-digit"
 														}
 													)}
+													{event.venue ? `, ${getVenueName(event.venue)}` : ""}
 												</time>
 												{getArenaName(event.arena) && (
 													<span className="tag">
@@ -480,14 +496,12 @@ const EventOverview: React.FC<Props> = () => {
 												)}
 											</ul>
 											<LinkButton
-												// css={eventLink}
 												link={{
 													_type: "internalInternalLink",
 													text: "Se detaljer",
 													url: `/event/${event.slug.current}`
 												}}
 											/>
-											{/* <a href={`/event/${event.slug.current}`}>Se detaljer</a> */}
 										</div>
 									</article>
 								))}
