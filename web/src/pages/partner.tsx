@@ -182,7 +182,15 @@ const Partner: React.FC<Props> = props => {
 					</div>
 				)}
 				{partner.content && <SanityPortableText blocks={partner.content} />}
-				<div>
+				<div
+					css={css`
+						margin-top: 1rem;
+
+						@media screen and (max-width: 800px) {
+							text-align: center;
+						}
+					`}
+				>
 					{partner.facebookLink && (
 						<a href={partner.facebookLink}>
 							<FBSocialLink
