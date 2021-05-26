@@ -99,19 +99,20 @@ const ImgWrap = styled.div`
 
 const ContentWrap = styled.div`
 	h2 {
-		font-size: 2rem;
+		font-size: 1.75rem;
 		margin-top: 1rem;
 		margin-bottom: 1.5rem;
 	}
 
 	h3 {
-		font-size: 0.9rem;
-		letter-spacing: 0.15rem;
+		font-size: 0.75rem;
+		letter-spacing: 2px;
 		text-transform: uppercase;
 		color: ${theme.color.main.purple};
 	}
 
 	a {
+		font-size: 1.1rem;
 		font-weight: bold;
 		color: ${theme.color.main.purple};
 	}
@@ -133,128 +134,121 @@ const AlliedWrap = styled.div`
 const PartnerList: FC<Props> = ({ content }) => {
 	return (
 		<>
-			<div>
-				<MainPartnerContainer>
-					{content
-						.filter(p => p.type === "owner")
-						.map(partner => (
-							<MainPartnerFlex key={partner._id}>
-								<ImgWrap>
-									<img
-										src={
-											urlFor(partner.image)
-												.width(200)
-												.url() || undefined
-										}
-										alt={`${partner.name} logo`}
+			<MainPartnerContainer>
+				{content
+					.filter(p => p.type === "owner")
+					.map(partner => (
+						<MainPartnerFlex key={partner._id}>
+							<ImgWrap>
+								<img
+									src={
+										urlFor(partner.image)
+											.width(200)
+											.url() || undefined
+									}
+									alt={`${partner.name} logo`}
+								/>
+							</ImgWrap>
+							<ContentWrap>
+								<h3>Eier og arrangør</h3>
+								<h2>{partner.name}</h2>
+								<BlockContentToReact blocks={partner.description} />
+								{partner.slug && (
+									<Link
+										link={{
+											_type: "internalInternalLink",
+											url: `/partner/${partner.slug.current}`,
+											text: `Les mer om ${partner.name} »`
+										}}
 									/>
-								</ImgWrap>
-								<ContentWrap>
-									<h3>Eier og arrangør</h3>
-									<h2>{partner.name}</h2>
-									<BlockContentToReact blocks={partner.description} />
-									{partner.slug && (
-										<Link
-											link={{
-												_type: "internalInternalLink",
-												url: `/partner/${partner.slug.current}`,
-												text: `Les mer om ${partner.name} »`
-											}}
-										/>
-									)}
-								</ContentWrap>
-							</MainPartnerFlex>
-						))}
-				</MainPartnerContainer>
-			</div>
-			<div>
-				<MainPartnerContainer>
-					{content
-						.filter(p => p.type === "main")
-						.map(partner => (
-							<MainPartnerFlex key={partner._id}>
-								<ImgWrap>
-									<img
-										src={
-											urlFor(partner.image)
-												.width(200)
-												.url() || undefined
-										}
-										alt={`${partner.name} logo`}
+								)}
+							</ContentWrap>
+						</MainPartnerFlex>
+					))}
+
+				{content
+					.filter(p => p.type === "main")
+					.map(partner => (
+						<MainPartnerFlex key={partner._id}>
+							<ImgWrap>
+								<img
+									src={
+										urlFor(partner.image)
+											.width(200)
+											.url() || undefined
+									}
+									alt={`${partner.name} logo`}
+								/>
+							</ImgWrap>
+							<ContentWrap>
+								<h3>Hovedpartner</h3>
+								<h2>{partner.name}</h2>
+								<BlockContentToReact blocks={partner.description} />
+								{partner.slug && (
+									<Link
+										link={{
+											_type: "internalInternalLink",
+											url: `/partner/${partner.slug.current}`,
+											text: `Les mer om ${partner.name} »`
+										}}
 									/>
-								</ImgWrap>
-								<ContentWrap>
-									<h3>Hovedpartner</h3>
-									<h2>{partner.name}</h2>
-									<BlockContentToReact blocks={partner.description} />
-									{partner.slug && (
-										<Link
-											link={{
-												_type: "internalInternalLink",
-												url: `/partner/${partner.slug.current}`,
-												text: `Les mer om ${partner.name} »`
-											}}
-										/>
-									)}
-								</ContentWrap>
-							</MainPartnerFlex>
-						))}
-				</MainPartnerContainer>
-			</div>
-			<div>
-				<RegularPartnerContainer>
-					{content
-						.filter(p => p.type === "regular")
-						.map(partner => (
-							<RegularPartnerFlex key={partner._id}>
-								<ImgWrap>
-									<img
-										src={
-											urlFor(partner.image)
-												.width(200)
-												.url() || undefined
-										}
-										alt={`${partner.name} logo`}
+								)}
+							</ContentWrap>
+						</MainPartnerFlex>
+					))}
+			</MainPartnerContainer>
+
+			<RegularPartnerContainer>
+				{content
+					.filter(p => p.type === "regular")
+					.map(partner => (
+						<RegularPartnerFlex key={partner._id}>
+							<ImgWrap>
+								<img
+									src={
+										urlFor(partner.image)
+											.width(200)
+											.url() || undefined
+									}
+									alt={`${partner.name} logo`}
+								/>
+							</ImgWrap>
+							<ContentWrap>
+								<h3>Partner</h3>
+								<h2>{partner.name}</h2>
+								{partner.slug && (
+									<Link
+										link={{
+											_type: "internalInternalLink",
+											url: `/partner/${partner.slug.current}`,
+											text: `Les mer om ${partner.name} »`
+										}}
 									/>
-								</ImgWrap>
-								<ContentWrap>
-									<h3>Partner</h3>
-									<h2>{partner.name}</h2>
-									{partner.slug && (
-										<Link
-											link={{
-												_type: "internalInternalLink",
-												url: `/partner/${partner.slug.current}`,
-												text: `Les mer om ${partner.name} »`
-											}}
-										/>
-									)}
-								</ContentWrap>
-							</RegularPartnerFlex>
-						))}
-				</RegularPartnerContainer>
-			</div>
-			<div>
-				<h2 css={groupHeader}>Støttespillere</h2>
-				<RegularPartnerContainer>
-					{content
-						.filter(p => p.type === "supporter")
-						.map(partner => (
-							<RegularPartnerFlex key={partner._id}>
-								<ImgWrap>
-									<img
-										src={
-											urlFor(partner.image)
-												.width(200)
-												.url() || undefined
-										}
-										alt={`${partner.name} logo`}
-									/>
-								</ImgWrap>
-							</RegularPartnerFlex>
-						))}
-				</RegularPartnerContainer>
-			</div>
+								)}
+							</ContentWrap>
+						</RegularPartnerFlex>
+					))}
+			</RegularPartnerContainer>
+
+			<h2 css={groupHeader}>Støttespillere</h2>
+			<RegularPartnerContainer>
+				{content
+					.filter(p => p.type === "supporter")
+					.map(partner => (
+						<RegularPartnerFlex key={partner._id}>
+							<ImgWrap>
+								<img
+									src={
+										urlFor(partner.image)
+											.width(200)
+											.url() || undefined
+									}
+									alt={`${partner.name} logo`}
+								/>
+							</ImgWrap>
+						</RegularPartnerFlex>
+					))}
+			</RegularPartnerContainer>
 
 			{content.filter(p => p.type === "allied").length > 0 && (
 				<AlliedWrap>
