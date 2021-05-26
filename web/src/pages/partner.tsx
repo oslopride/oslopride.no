@@ -44,8 +44,11 @@ const body = css`
 	}
 
 	h3 {
-		margin: 0;
 		font-size: 1.75rem;
+	}
+
+	h4 {
+		font-size: 1.2rem;
 	}
 `;
 
@@ -123,17 +126,18 @@ const Partner: React.FC<Props> = props => {
 				<h2>{partner.name}</h2>
 			</Hero>
 			<div css={body}>
-				<div
-					css={css`
-						margin: 10rem 1rem;
-					`}
-				>
+				{!(partner.content && partner.content.length > 0) && (
 					<div
 						css={css`
 							display: flex;
 							flex-direction: row;
 							justify-content: space-between;
 							align-items: flex-start;
+
+							h3 {
+								margin: 0;
+								font-size: 1.75rem;
+							}
 
 							@media screen and (max-width: 800px) {
 								flex-direction: column-reverse;
@@ -164,36 +168,6 @@ const Partner: React.FC<Props> = props => {
 								{partner.name}
 							</h2>
 							<BlockContentToReact blocks={partner.description} />
-
-							<div>
-								{partner.facebookLink && (
-									<a href={partner.facebookLink}>
-										<FBSocialLink
-											css={css`
-												margin-right: 1rem;
-											`}
-										/>
-									</a>
-								)}
-								{partner.instagramLink && (
-									<a href={partner.instagramLink}>
-										<IGSocialLink
-											css={css`
-												margin-right: 1rem;
-											`}
-										/>
-									</a>
-								)}
-								{partner.linkedinLink && (
-									<a href={partner.linkedinLink}>
-										<LinkedInSocialLink
-											css={css`
-												margin-right: 1rem;
-											`}
-										/>
-									</a>
-								)}
-							</div>
 						</div>
 						<ImgWrap>
 							<img
@@ -206,7 +180,44 @@ const Partner: React.FC<Props> = props => {
 							/>
 						</ImgWrap>
 					</div>
-					{partner.content && <SanityPortableText blocks={partner.content} />}
+				)}
+				{partner.content && <SanityPortableText blocks={partner.content} />}
+				<div
+					css={css`
+						margin-top: 1rem;
+
+						@media screen and (max-width: 800px) {
+							text-align: center;
+						}
+					`}
+				>
+					{partner.facebookLink && (
+						<a href={partner.facebookLink}>
+							<FBSocialLink
+								css={css`
+									margin-right: 1rem;
+								`}
+							/>
+						</a>
+					)}
+					{partner.instagramLink && (
+						<a href={partner.instagramLink}>
+							<IGSocialLink
+								css={css`
+									margin-right: 1rem;
+								`}
+							/>
+						</a>
+					)}
+					{partner.linkedinLink && (
+						<a href={partner.linkedinLink}>
+							<LinkedInSocialLink
+								css={css`
+									margin-right: 1rem;
+								`}
+							/>
+						</a>
+					)}
 				</div>
 			</div>
 		</>

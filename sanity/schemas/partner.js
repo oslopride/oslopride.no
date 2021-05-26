@@ -34,10 +34,15 @@ export default {
 				{
 					type: "block",
 					styles: [
-						{ title: "Heading", value: "h2" },
-						{ title: "Subheading", value: "h3" }
+						{ title: "Heading", value: "h3" },
+						{ title: "Subheading", value: "h4" }
 					]
-				}
+				},
+				{
+					type: "image",
+					options: { hotspot: true }
+				},
+				{ type: "youtube" }
 			]
 		},
 		{
