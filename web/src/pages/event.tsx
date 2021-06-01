@@ -235,10 +235,10 @@ const Event: React.FC<Props> = props => {
 						<span>Tegnspråktolket</span>
 						<span>{event.signLanguageInterpreted ? "Ja" : "Nei"}</span>
 					</li>
-					<li>
+					{/* <li>
 						<span>Strømmes</span>
 						<span>{event.liveStream ? "Ja" : "Nei"}</span>
-					</li>
+					</li> */}
 					{event.eventLink && (
 						<li>
 							<span>Arrangement-lenke</span>
