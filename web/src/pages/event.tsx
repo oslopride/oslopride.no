@@ -235,6 +235,10 @@ const Event: React.FC<Props> = props => {
 						<span>Tegnspråktolket</span>
 						<span>{event.signLanguageInterpreted ? "Ja" : "Nei"}</span>
 					</li>
+					<li>
+						<span>Rusfritt</span>
+						<span>{event.alcoholFree ? "Ja" : "Nei"}</span>
+					</li>
 					{/* <li>
 						<span>Strømmes</span>
 						<span>{event.liveStream ? "Ja" : "Nei"}</span>

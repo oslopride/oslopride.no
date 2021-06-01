@@ -338,6 +338,11 @@ const accessibilityFilters: Filter[] = [
 		value: "signLanguageInterpreted",
 		label: "Tegnspråktolket",
 		predicate: event => event.signLanguageInterpreted
+	},
+	{
+		value: "alcoholFree",
+		label: "Rusfritt",
+		predicate: event => event.alcoholFree
 	}
 ];
 
@@ -490,6 +495,7 @@ const EventOverview: React.FC<Props> = () => {
 											<h3>{event.title.no}</h3>
 											<ul>
 												{event.liveStream && <li className="tag">strømmes</li>}
+												{event.alcoholFree && <li className="tag">rusfritt</li>}
 												{event.wheelchairFriendly && (
 													<li className="tag">rullestolvennlig</li>
 												)}

@@ -180,6 +180,7 @@ export type SanitySimpleEvent = SanityDocument<
 		signLanguageInterpreted: boolean;
 		wheelchairFriendly: boolean;
 		liveStream: boolean;
+		alcoholFree: boolean;
 		eventLink?: string;
 		organizer: string;
 	}

@@ -184,6 +184,12 @@ export default {
 			validation: Rule => Rule.required()
 		},
 		{
+			name: "alcoholFree",
+			type: "boolean",
+			fieldset: "accessibility",
+			validation: Rule => Rule.required()
+		},
+		{
 			name: "eventLink",
 			description: "URL to the event website (e.g. facebook, youtube etc)",
 			type: "url"
