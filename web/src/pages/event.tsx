@@ -203,7 +203,7 @@ const Event: React.FC<Props> = props => {
 				<ul className="details">
 					<li>
 						<span>Arrangør</span>
-						<span>{event.official ? "Oslo Pride" : event.organizer}</span>
+						<span>{event.organizer}</span>
 					</li>
 					<li>
 						<span>Dato og tid</span>
