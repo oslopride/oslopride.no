@@ -125,15 +125,15 @@ const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
 const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
 	switch (venue) {
 		case "stage1":
-			return "Scene 1";
+			return "Hovedscenen";
 		case "stage2":
-			return "Scene 2";
+			return "BamseScenen";
 		case "youngs":
 			return "Youngs";
 		case "melahuset":
 			return "Melahuset";
 		case "online":
-			return "Dititalt";
+			return "Digitalt";
 		default:
 			return "Annet";
 	}
