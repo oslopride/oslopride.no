@@ -20,7 +20,7 @@ const MainPartnerContainer = styled.div`
 	&:after {
 		content: "";
 		width: 100%;
-		margin: 2rem 4rem;
+		margin: 2rem 3.5rem;
 		height: 1px;
 		background-color: ${theme.color.text.grey};
 
@@ -41,7 +41,7 @@ const MainPartnerContainer = styled.div`
 const MainPartnerFlex = styled.div`
 	display: flex;
 	flex-direction: row;
-	margin: 2rem 4rem;
+	margin: 2rem 3.5rem;
 	align-items: center;
 
 	@media (max-width: 599px) {
@@ -55,10 +55,14 @@ const RegularPartnerContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	margin: 0 4rem;
+	margin: -2rem 2.5rem;
 
 	& > div {
 		flex-basis: 50%;
+	}
+
+	@media (max-width: 599px) {
+		margin: 0;
 	}
 
 	&:after {
@@ -67,22 +71,26 @@ const RegularPartnerContainer = styled.div`
 		margin: 5rem 0;
 		height: 1px;
 		background-color: ${theme.color.text.grey};
+
+		@media (max-width: 599px) {
+			margin: 2rem 0;
+		}
 	}
 `;
 
 const RegularPartnerFlex = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	padding: 3rem 1rem;
 
 	@media (max-width: 599px) {
-		flex-direction: column;
 		align-items: flex-start;
 		margin: 1rem 0;
+		padding: 0;
 	}
 `;
 
-const ImgWrap = styled.div`
+const ImgWrapMain = styled.div`
 	margin: 1rem auto;
 
 	@media (min-width: 600px) {
@@ -94,6 +102,20 @@ const ImgWrap = styled.div`
 		height: 200px;
 		object-fit: contain;
 		object-position: 50% 50%;
+	}
+`;
+
+const ImgWrapRegular = styled.div`
+	width: 100%;
+	height: 11rem;
+	margin-bottom: 1.5rem;
+
+	img {
+		display: block;
+		margin: 0 auto;
+		height: 100%;
+		width: auto;
+		object-fit: contain;
 	}
 `;
 
@@ -139,7 +161,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 					.filter(p => p.type === "owner")
 					.map(partner => (
 						<MainPartnerFlex key={partner._id}>
-							<ImgWrap>
+							<ImgWrapMain>
 								<img
 									src={
 										urlFor(partner.image)
@@ -148,7 +170,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 									}
 									alt={`${partner.name} logo`}
 								/>
-							</ImgWrap>
+							</ImgWrapMain>
 							<ContentWrap>
 								<h3>Eier og arrangør</h3>
 								<h2>{partner.name}</h2>
@@ -170,7 +192,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 					.filter(p => p.type === "main")
 					.map(partner => (
 						<MainPartnerFlex key={partner._id}>
-							<ImgWrap>
+							<ImgWrapMain>
 								<img
 									src={
 										urlFor(partner.image)
@@ -179,7 +201,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 									}
 									alt={`${partner.name} logo`}
 								/>
-							</ImgWrap>
+							</ImgWrapMain>
 							<ContentWrap>
 								<h3>Hovedpartner</h3>
 								<h2>{partner.name}</h2>
@@ -203,7 +225,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 					.filter(p => p.type === "regular")
 					.map(partner => (
 						<RegularPartnerFlex key={partner._id}>
-							<ImgWrap>
+							<ImgWrapRegular>
 								<img
 									src={
 										urlFor(partner.image)
@@ -212,7 +234,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 									}
 									alt={`${partner.name} logo`}
 								/>
-							</ImgWrap>
+							</ImgWrapRegular>
 							<ContentWrap>
 								<h3>Partner</h3>
 								<h2>{partner.name}</h2>
@@ -236,7 +258,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 					.filter(p => p.type === "supporter")
 					.map(partner => (
 						<RegularPartnerFlex key={partner._id}>
-							<ImgWrap>
+							<ImgWrapRegular>
 								<img
 									src={
 										urlFor(partner.image)
@@ -245,7 +267,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 									}
 									alt={`${partner.name} logo`}
 								/>
-							</ImgWrap>
+							</ImgWrapRegular>
 						</RegularPartnerFlex>
 					))}
 			</RegularPartnerContainer>
