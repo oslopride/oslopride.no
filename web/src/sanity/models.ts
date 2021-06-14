@@ -180,6 +180,7 @@ export type SanitySimpleEvent = SanityDocument<
 		signLanguageInterpreted: boolean;
 		wheelchairFriendly: boolean;
 		liveStream: boolean;
+		alcoholFree: boolean;
 		eventLink?: string;
 		organizer: string;
 	}
@@ -255,6 +256,7 @@ export type SanityPartnerPage = SanityDocument<
 		title: Locale<string>;
 		subtitle: Locale<string>;
 		image: SanityImage;
+		partnerProgramLink?: SanityInternalLink;
 		callToAction: Locale<{
 			title: string;
 			subtitle: string;

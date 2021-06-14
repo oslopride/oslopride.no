@@ -125,15 +125,15 @@ const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
 const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
 	switch (venue) {
 		case "stage1":
-			return "Scene 1";
+			return "Hovedscenen";
 		case "stage2":
-			return "Scene 2";
+			return "BamseScenen";
 		case "youngs":
 			return "Youngs";
 		case "melahuset":
 			return "Melahuset";
 		case "online":
-			return "Dititalt";
+			return "Digitalt";
 		default:
 			return "Annet";
 	}
@@ -203,7 +203,7 @@ const Event: React.FC<Props> = props => {
 				<ul className="details">
 					<li>
 						<span>Arrangør</span>
-						<span>{event.official ? "Oslo Pride" : event.organizer}</span>
+						<span>{event.organizer}</span>
 					</li>
 					<li>
 						<span>Dato og tid</span>
@@ -236,9 +236,13 @@ const Event: React.FC<Props> = props => {
 						<span>{event.signLanguageInterpreted ? "Ja" : "Nei"}</span>
 					</li>
 					<li>
+						<span>Rusfritt</span>
+						<span>{event.alcoholFree ? "Ja" : "Nei"}</span>
+					</li>
+					{/* <li>
 						<span>Strømmes</span>
 						<span>{event.liveStream ? "Ja" : "Nei"}</span>
-					</li>
+					</li> */}
 					{event.eventLink && (
 						<li>
 							<span>Arrangement-lenke</span>

@@ -201,15 +201,15 @@ const filterHeader = css`
 const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
 	switch (venue) {
 		case "stage1":
-			return "Scene 1";
+			return "Hovedscenen";
 		case "stage2":
-			return "Scene 2";
+			return "BamseScenen";
 		case "youngs":
 			return "Youngs";
 		case "melahuset":
 			return "Melahuset";
 		case "online":
-			return "Dititalt";
+			return "Digitalt";
 		default:
 			return "Annet";
 	}
@@ -324,11 +324,11 @@ const categoryFilters: Filter[] = [
 ];
 
 const accessibilityFilters: Filter[] = [
-	{
-		value: "liveStream",
-		label: "Strømmes",
-		predicate: event => event.liveStream
-	},
+	// {
+	// 	value: "liveStream",
+	// 	label: "Strømmes",
+	// 	predicate: event => event.liveStream
+	// },
 	{
 		value: "wheelChairFriendly",
 		label: "Rullestolvennlig",
@@ -338,6 +338,11 @@ const accessibilityFilters: Filter[] = [
 		value: "signLanguageInterpreted",
 		label: "Tegnspråktolket",
 		predicate: event => event.signLanguageInterpreted
+	},
+	{
+		value: "alcoholFree",
+		label: "Rusfritt",
+		predicate: event => event.alcoholFree
 	}
 ];
 
@@ -490,6 +495,7 @@ const EventOverview: React.FC<Props> = () => {
 											<h3>{event.title.no}</h3>
 											<ul>
 												{event.liveStream && <li className="tag">strømmes</li>}
+												{event.alcoholFree && <li className="tag">rusfritt</li>}
 												{event.wheelchairFriendly && (
 													<li className="tag">rullestolvennlig</li>
 												)}

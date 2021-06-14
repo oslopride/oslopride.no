@@ -149,8 +149,8 @@ export default {
 			type: "string",
 			options: {
 				list: [
-					{ title: "Stage 1", value: "stage1" },
-					{ title: "Stage 2", value: "stage2" },
+					{ title: "Hovedscenen", value: "stage1" },
+					{ title: "BamseScenen", value: "stage2" },
 					{ title: "Youngs", value: "youngs" },
 					{ title: "Melahuset", value: "melahuset" },
 					{ title: "Online", value: "online" }
@@ -179,6 +179,12 @@ export default {
 			name: "liveStream",
 			description:
 				"This indicates that the event will be streamed on the official Oslo Pride live stream",
+			type: "boolean",
+			fieldset: "accessibility",
+			validation: Rule => Rule.required()
+		},
+		{
+			name: "alcoholFree",
 			type: "boolean",
 			fieldset: "accessibility",
 			validation: Rule => Rule.required()
