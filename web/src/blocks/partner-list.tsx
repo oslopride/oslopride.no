@@ -144,13 +144,26 @@ const groupHeader = css`
 	font-size: 2rem;
 	text-align: center;
 	margin-bottom: 3rem;
+`;
 
-	@media (min-width: 600px) {
+const SupporterContainer = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	margin: 2rem 0;
+	align-items: center;
+
+	img {
+		margin: 1rem;
+		width: 200px;
+		height: 200px;
+		object-fit: contain;
+		object-position: 50% 50%;
 	}
 `;
 
 const AlliedWrap = styled.div`
-	margin-top: 5rem;
+	margin: 5rem 0;
 `;
 
 const PartnerList: FC<Props> = ({ content }) => {
@@ -253,29 +266,26 @@ const PartnerList: FC<Props> = ({ content }) => {
 			</RegularPartnerContainer>
 
 			<h2 css={groupHeader}>Støttespillere</h2>
-			<RegularPartnerContainer>
+			<SupporterContainer>
 				{content
 					.filter(p => p.type === "supporter")
 					.map(partner => (
-						<RegularPartnerFlex key={partner._id}>
-							<ImgWrapRegular>
-								<img
-									src={
-										urlFor(partner.image)
-											.width(200)
-											.url() || undefined
-									}
-									alt={`${partner.name} logo`}
-								/>
-							</ImgWrapRegular>
-						</RegularPartnerFlex>
+						<img
+							key={partner._id}
+							src={
+								urlFor(partner.image)
+									.width(200)
+									.url() || undefined
+							}
+							alt={`${partner.name} logo`}
+						/>
 					))}
-			</RegularPartnerContainer>
+			</SupporterContainer>
 
 			{content.filter(p => p.type === "allied").length > 0 && (
 				<AlliedWrap>
 					<h2 css={groupHeader}>Allierte</h2>
-					<MainPartnerContainer>
+					<SupporterContainer>
 						{content
 							.filter(p => p.type === "allied")
 							.map(partner => (
@@ -289,7 +299,7 @@ const PartnerList: FC<Props> = ({ content }) => {
 									alt={`${partner.name} logo`}
 								/>
 							))}
-					</MainPartnerContainer>
+					</SupporterContainer>
 				</AlliedWrap>
 			)}
 		</>
