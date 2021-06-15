@@ -21,6 +21,7 @@ import {
 } from "./utils/google-analytics";
 import ErrorPage from "./pages/error";
 import Partner from "./pages/partner";
+import Live from "./pages/live";
 
 const App: React.FC = () => {
 	const { data, error } = useSWR<
@@ -66,6 +67,7 @@ const App: React.FC = () => {
 						<Article path="/a/:slug" />
 						<ArticleOverview path="/articles" />
 						<EventOverview path="/events" />
+						<Live path="/live" />
 						<Event path="/event/:slug" />
 						<PartnerOverview path="/partners" />
 						<Partner path="/partner/:slug" />

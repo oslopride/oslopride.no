@@ -6,6 +6,7 @@ import pages from "./pages";
 import articles from "./articles";
 import partners from "./partners";
 import partnerOverview from "./partner-overview";
+import livestream from "./livestream";
 import configuration from "./configuration";
 import events from "./events";
 import eventOverview from "./event-overview";
@@ -28,7 +29,8 @@ const hiddenDocTypes = listItem =>
 		"simpleEvent",
 		"venue",
 		"arena",
-		"partnerOverview"
+		"partnerOverview",
+		"livestream"
 	].includes(listItem.getId());
 
 export default () =>
@@ -44,6 +46,7 @@ export default () =>
 			events,
 			partners,
 			configuration,
+			livestream,
 			...S.documentTypeListItems().filter(hiddenDocTypes)
 		]);
 

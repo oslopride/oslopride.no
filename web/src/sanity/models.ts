@@ -250,6 +250,18 @@ export type SanityEventPage = SanityDocument<
 	}
 >;
 
+export type SanityLivePage = SanityDocument<
+	"livestream",
+	{
+		title: Locale<string>;
+		subtitle: Locale<string>;
+		body: Locale<string>;
+		header: SanityPageHeader;
+		image: SanityImage;
+		url: string;
+	}
+>;
+
 export type SanityPartnerPage = SanityDocument<
 	"partnerOverview",
 	{
