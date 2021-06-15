@@ -96,7 +96,7 @@ const FrontPage: React.FC<Props> = () => {
 	if (error) return <Error error={JSON.stringify(error)} />;
 	if (data === undefined) return <Loading />;
 	if (data === null) return <NotFound />;
-	console.log(data.header);
+
 	return (
 		<>
 			<Hero
