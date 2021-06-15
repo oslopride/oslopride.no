@@ -119,7 +119,6 @@ const FrontPage: React.FC<Props> = () => {
 								color={idx === 0 ? "pink" : "blue"}
 								css={css`
 									width: 100%;
-									border-radius: 50px;
 								`}
 							/>
 						</li>
