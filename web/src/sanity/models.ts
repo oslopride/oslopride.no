@@ -167,12 +167,21 @@ export type SanitySimpleEvent = SanityDocument<
 	{
 		official: boolean;
 		title: Locale<string>;
+		slug: { current: string };
 		image: SanityImage;
 		description: Locale<SanityObjectArray<SanityBlockContent>>;
 		startTime: string;
-		endTime: string;
-		price: Locale<string>;
-		eventLink: string;
+		endTime?: string;
+		blurb: Locale<string>;
+		category: "concert" | "debate" | "talk" | "party" | "other";
+		arena: "park" | "house" | "parade" | "external" | "other";
+		venue?: "stage1" | "stage2" | "youngs" | "melahuset" | "online";
+		address?: string;
+		signLanguageInterpreted: boolean;
+		wheelchairFriendly: boolean;
+		liveStream: boolean;
+		alcoholFree: boolean;
+		eventLink?: string;
 		organizer: string;
 	}
 >;
@@ -247,6 +256,7 @@ export type SanityPartnerPage = SanityDocument<
 		title: Locale<string>;
 		subtitle: Locale<string>;
 		image: SanityImage;
+		partnerProgramLink?: SanityInternalLink;
 		callToAction: Locale<{
 			title: string;
 			subtitle: string;
@@ -264,6 +274,11 @@ export type SanityPartner = SanityDocument<
 		description: SanityBlockContent;
 		url: string;
 		image: SanityImage;
+		slug: { current: string };
+		facebookLink?: string;
+		instagramLink?: string;
+		linkedinLink?: string;
+		content?: SanityObjectArray<SanityBlockContent>;
 	}
 >;
 

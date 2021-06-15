@@ -31,6 +31,11 @@ export default {
 			},
 			validation: Rule => Rule.required()
 		},
+		{
+			title: "Partner program link",
+			name: "partnerProgramLink",
+			type: "internalLink"
+		},
 		localize({
 			title: "Call to action",
 			name: "callToAction",
