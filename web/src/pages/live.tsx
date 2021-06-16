@@ -156,8 +156,8 @@ const Live: React.FC<Props> = () => {
 					</>
 				) : (
 					<p className="notStarted">
-						Direktesendingen har ikke startet enda. Du finner programmet for
-						hele festivalen under.
+						Ingen direktesending for øyeblikket. Du finner programmet for hele
+						festivalen under.
 					</p>
 				)}
 			</section>
