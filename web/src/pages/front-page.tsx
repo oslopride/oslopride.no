@@ -29,8 +29,9 @@ const date = css`
 
 const hero = css`
 	min-height: calc(100vh - 20rem);
+	max-width: 1000px;
 	h2 {
-		line-height: 3.5rem;
+		line-height: 1em;
 		margin: 2rem 0;
 	}
 
