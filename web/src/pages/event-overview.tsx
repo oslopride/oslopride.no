@@ -7,12 +7,15 @@ import theme from "../utils/theme";
 import { css } from "@emotion/core";
 import { urlFor } from "../sanity";
 import useSWR from "swr";
-import { ReactComponent as Heart } from "../assets/prideheart.svg";
-import { SanityEventPage, SanitySimpleEventList } from "../sanity/models";
-import BlockContentToReact from "@sanity/block-content-to-react";
+import {
+	SanityEventPage,
+	SanitySimpleEvent,
+	SanitySimpleEventList
+} from "../sanity/models";
 import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
+import Select from "react-select";
 import { LinkButton } from "../components/link";
 
 type Props = { slug?: string } & RouteComponentProps;
@@ -26,17 +29,17 @@ const hero = css`
 
 	p {
 		margin: 0 auto;
-		@media (min-width: 600px) {
-			max-width: 50vw;
-		}
 	}
 `;
 
 const body = css`
 	margin: 5vh auto 3rem auto;
-	width: 90vw;
-	max-width: 1150px;
-	padding: 0 0.75rem;
+	width: 95vw;
+	max-width: 1200px;
+
+	@media (min-width: 800px) {
+		width: 90vw;
+	}
 
 	p {
 		margin-bottom: 0;
@@ -53,129 +56,6 @@ const body = css`
 	}
 `;
 
-const dateGroupHeader = css`
-	text-transform: capitalize;
-	flex: 1 1 100%;
-	font-size: 1.75rem;
-	margin: 2rem 0;
-	text-align: center;
-
-	@media (min-width: 800px) {
-		font-size: 2.5rem;
-		margin: 4rem 0;
-	}
-`;
-
-const articleGroup = css`
-	display: flex;
-	flex-flow: row wrap;
-	align-content: flex-start;
-	justify-content: space-between;
-`;
-
-const article = css`
-	margin: 1rem 0;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	background-color: #f7f8fa;
-
-	@media (min-width: 800px) {
-		width: 100%;
-		margin: 2rem 0;
-		max-width: unset;
-		display: grid;
-		grid-template-rows: 1fr auto;
-		grid-template-columns: 40% 1fr;
-		grid-template-areas:
-			"img text"
-			"img button";
-		grid-column-gap: 2rem;
-	}
-`;
-
-const organizerStyle = () => css`
-	color: ${theme.color.main.purple};
-	margin: 1rem 0;
-	font-weight: 600;
-
-	@media (min-width: 800px) {
-		margin-top: 0;
-	}
-`;
-
-const image = (image: string) => css`
-	height: 250px;
-	display: flex;
-	flex-direction: column-reverse;
-	align-items: flex-end;
-
-	@media (min-width: 800px) {
-		grid-area: img;
-		height: 100%;
-	}
-	background-image: url(${image});
-	background-size: cover;
-	background-position: center center;
-`;
-
-const officialBadge = css`
-	height: 65px;
-	width: 65px;
-	display: block;
-	margin: 25px;
-	border-radius: 40px;
-	background-color: white;
-	svg {
-		display: block;
-		height: 35px;
-		width: 35px;
-		margin: 1.175rem 0.97rem;
-	}
-`;
-
-const preview = css`
-	margin: 1rem;
-	flex-grow: 1;
-
-	@media (min-width: 800px) {
-		grid-area: text;
-		margin: 0;
-		align-self: start;
-		margin: 2rem 2rem 0 0;
-	}
-`;
-
-const date = css`
-	letter-spacing: 1px;
-	margin: 0.5rem 0;
-	font-weight: 600;
-	font-size: 1rem;
-`;
-
-const eventLink = css`
-	margin: 1.5rem;
-	width: calc(100% - 3rem);
-	margin: 1rem 0;
-	width: calc(100% - 2rem);
-	margin: 1rem;
-
-	@media (min-width: 800px) {
-		grid-area: button;
-		margin: 2rem 2rem 2rem 0;
-		align-self: end;
-	}
-`;
-
-const descriptionContainer = css`
-	overflow-y: hidden;
-`;
-
-const eventPrice = css`
-	margin-top: 0.25rem;
-	font-weight: normal;
-`;
-
 const oldEventButtonContainer = css`
 	display: flex;
 	justify-content: flex-end;
@@ -187,6 +67,160 @@ const oldEventButtonContainer = css`
 		cursor: pointer;
 	}
 `;
+
+const dateGroupHeader = css`
+	text-transform: capitalize;
+	flex: 1 1 100%;
+	font-size: 1.75rem;
+	margin: 2rem 0;
+	text-align: center;
+`;
+
+const articleGroup = css`
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-items: center;
+	gap: 1.35rem 1rem;
+
+	@media (min-width: 650px) {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	@media (min-width: 1200px) {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+`;
+
+const article = css`
+	width: 100%;
+	height: 100%;
+	max-width: 500px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	border-radius: 8px;
+
+	.imageWrapper {
+		padding-bottom: 56.2%;
+		position: relative;
+	}
+
+	img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.external {
+		text-align: center;
+		padding: 0.5em;
+		background: ${theme.color.background.lightYellow};
+		font-weight: bold;
+	}
+
+	.contentWrapper {
+		background: #f7f8fa;
+		padding: 24px;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.timeAndPlace {
+		display: flex;
+		justify-content: space-between;
+
+		time {
+			color: #656781;
+		}
+
+		span {
+			background: ${theme.color.background.lightYellow};
+		}
+	}
+
+	h3 {
+		font-size: 1.3rem;
+		line-height: 1.4;
+	}
+
+	ul {
+		flex: 1;
+		list-style: none;
+		padding: 0;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-evenly;
+		align-items: center;
+		margin-bottom: 0;
+
+		li {
+			margin: 8px;
+		}
+	}
+
+	.tag {
+		padding: 8px 16px;
+		background: #ebe7f1;
+		border-radius: 50px;
+		font-size: 0.75rem;
+		line-height: 1.2;
+		font-weight: bold;
+	}
+
+	a {
+		margin-top: 1rem;
+		width: 100%;
+	}
+`;
+
+const filter = css`
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
+	margin: 0 auto 2rem;
+	padding: 0 1rem;
+	max-width: 1000px;
+
+	@media (min-width: 650px) {
+		grid-template-columns: 1fr 1fr;
+
+		div:last-of-type {
+			grid-column-end: span 2;
+		}
+	}
+
+	@media (min-width: 900px) {
+		grid-template-columns: 1fr 1fr 1fr;
+
+		div:last-of-type {
+			grid-column-end: span 1;
+		}
+	}
+`;
+
+const filterHeader = css`
+	text-align: center;
+	margin-top: 2rem;
+`;
+
+const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
+	switch (venue) {
+		case "stage1":
+			return "Hovedscenen";
+		case "stage2":
+			return "BamseScenen";
+		case "youngs":
+			return "Youngs";
+		case "melahuset":
+			return "Melahuset";
+		case "online":
+			return "Digitalt";
+		default:
+			return "Annet";
+	}
+};
 
 const groupEventsByDay = (events: SanitySimpleEventList) => {
 	if (events.length === 0) {
@@ -236,6 +270,89 @@ const groupEventsByDay = (events: SanitySimpleEventList) => {
 	return [oldEvents, upcommingEvents];
 };
 
+const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
+	switch (arena) {
+		case "park":
+			return "Pride Park";
+		case "house":
+			return "Pride House";
+		case "parade":
+			return "Pride Parade";
+		default:
+			return undefined;
+	}
+};
+
+type Filter = {
+	value: string;
+	label: string;
+	predicate: (event: SanitySimpleEvent) => boolean;
+};
+
+const arenaFilters: Filter[] = [
+	{
+		value: "park",
+		label: "Pride Park",
+		predicate: event => event.arena === "park"
+	},
+	{
+		value: "house",
+		label: "Pride House",
+		predicate: event => event.arena === "house"
+	},
+	{
+		value: "parade",
+		label: "Pride Parade",
+		predicate: event => event.arena === "parade"
+	}
+];
+
+const categoryFilters: Filter[] = [
+	{
+		value: "concert",
+		label: "Konsert",
+		predicate: event => event.category === "concert"
+	},
+	{
+		value: "talk",
+		label: "Foredrag",
+		predicate: event => event.category === "talk"
+	},
+	{
+		value: "debate",
+		label: "Debatt",
+		predicate: event => event.category === "debate"
+	},
+	{
+		value: "party",
+		label: "Fest",
+		predicate: event => event.category === "party"
+	}
+];
+
+const accessibilityFilters: Filter[] = [
+	// {
+	// 	value: "liveStream",
+	// 	label: "Strømmes",
+	// 	predicate: event => event.liveStream
+	// },
+	{
+		value: "wheelChairFriendly",
+		label: "Rullestolvennlig",
+		predicate: event => event.wheelchairFriendly
+	},
+	{
+		value: "signLanguageInterpreted",
+		label: "Tegnspråktolket",
+		predicate: event => event.signLanguageInterpreted
+	},
+	{
+		value: "alcoholFree",
+		label: "Rusfritt",
+		predicate: event => event.alcoholFree
+	}
+];
+
 const EventOverview: React.FC<Props> = () => {
 	const { data: events } = useSWR<SanitySimpleEventList>(
 		`*[_type == "simpleEvent"] | order(startTime asc)`
@@ -245,14 +362,47 @@ const EventOverview: React.FC<Props> = () => {
 		`*[_type == "eventOverview"] | order(_updatedAt desc) [0]`
 	);
 
+	const [selectedArenaFilters, setArenaFilters] = React.useState<Filter[]>([]);
+	const [selectedCategoryFilters, setCategoryFilters] = React.useState<
+		Filter[]
+	>([]);
+	const [
+		selectedAccessibilityFilters,
+		setAccessibilityFilters
+	] = React.useState<Filter[]>([]);
+
 	const [showOldEevnts, setShowOldEvents] = React.useState(false);
 
 	if (error) return <Error error={JSON.stringify(error)} />;
 	if (archive === undefined) return <Loading />;
 	if (archive === null) return <NotFound />;
 
+	const filteredEvents =
+		events &&
+		events.filter(e => {
+			return (
+				(selectedArenaFilters.length < 1 ||
+					selectedArenaFilters.reduce<boolean>(
+						(prev, filter) => prev || filter.predicate(e),
+						false
+					)) &&
+				(selectedCategoryFilters.length < 1 ||
+					selectedCategoryFilters.reduce<boolean>(
+						(prev, filter) => prev || filter.predicate(e),
+						false
+					)) &&
+				(selectedAccessibilityFilters.length < 1 ||
+					selectedAccessibilityFilters.reduce<boolean>(
+						(prev, filter) => prev && filter.predicate(e),
+						true
+					))
+			);
+		});
+
 	const [oldEvent, upcommingEvents] =
-		events && events.length > 0 ? groupEventsByDay(events) : [[], []];
+		filteredEvents && filteredEvents.length > 0
+			? groupEventsByDay(filteredEvents)
+			: [[], []];
 
 	const displayEvents = showOldEevnts
 		? [...oldEvent, ...upcommingEvents]
@@ -273,6 +423,31 @@ const EventOverview: React.FC<Props> = () => {
 				<h2>{archive.title.no}</h2>
 				<p>{archive.subtitle && archive.subtitle.no}</p>
 			</Hero>
+
+			<h3 css={filterHeader}>Filtrering</h3>
+			<section css={filter}>
+				<Select
+					placeholder="Arena"
+					onChange={setArenaFilters}
+					options={arenaFilters}
+					isSearchable={false}
+					isMulti
+				/>
+				<Select
+					placeholder="Programtype"
+					onChange={setCategoryFilters}
+					options={categoryFilters}
+					isSearchable={false}
+					isMulti
+				/>
+				<Select
+					placeholder="Tilgjengelighet"
+					onChange={setAccessibilityFilters}
+					options={accessibilityFilters}
+					isSearchable={false}
+					isMulti
+				/>
+			</section>
 
 			<div css={body}>
 				{oldEvent.length > 0 && !showOldEevnts ? (
@@ -295,27 +470,23 @@ const EventOverview: React.FC<Props> = () => {
 							<div css={articleGroup}>
 								{group?.map(event => (
 									<article css={article} key={event._id}>
-										<div
-											css={image(
-												urlFor(event.image)
-													.width(window.innerWidth)
-													.url() || ""
-											)}
-										>
-											{event.official && (
-												<div css={officialBadge}>
-													<Heart />
-												</div>
-											)}
+										<div className="imageWrapper">
+											<img
+												src={
+													urlFor(event.image)
+														.width(window.innerWidth)
+														.url() || ""
+												}
+												alt={event.title.no}
+											/>
 										</div>
-										<div css={preview}>
-											<div css={organizerStyle}>
-												{event.organizer
-													? `Arrangeres av ${event.organizer}`
-													: `Arrangeres av Oslo Pride`}
-											</div>
-											<h3>{event.title.no}</h3>
-											<div css={date}>
+
+										{!event.official && (
+											<div className="external">Eksternt arrangement</div>
+										)}
+
+										<div className="contentWrapper">
+											<div className="timeAndPlace">
 												<time dateTime={event.startTime}>
 													{new Date(event.startTime).toLocaleTimeString(
 														"nb-NO",
@@ -324,38 +495,33 @@ const EventOverview: React.FC<Props> = () => {
 															minute: "2-digit"
 														}
 													)}
+													{event.venue ? `, ${getVenueName(event.venue)}` : ""}
 												</time>
-												{event.endTime && (
-													<>
-														{" "}
-														{" - "}
-														<time dateTime={event.endTime}>
-															{new Date(event.endTime).toLocaleTimeString(
-																"nb-NO",
-																{
-																	hour: "2-digit",
-																	minute: "2-digit"
-																}
-															)}
-														</time>
-													</>
-												)}
-												{event.price && (
-													<p css={eventPrice}>{`Pris: ${event.price}`}</p>
+												{getArenaName(event.arena) && (
+													<span className="tag">
+														{getArenaName(event.arena)}
+													</span>
 												)}
 											</div>
-											<div css={descriptionContainer}>
-												<BlockContentToReact blocks={event.description?.no} />
-											</div>
+											<h3>{event.title.no}</h3>
+											<ul>
+												{event.liveStream && <li className="tag">strømmes</li>}
+												{event.alcoholFree && <li className="tag">rusfritt</li>}
+												{event.wheelchairFriendly && (
+													<li className="tag">rullestolvennlig</li>
+												)}
+												{event.signLanguageInterpreted && (
+													<li className="tag">tegnspråktolket</li>
+												)}
+											</ul>
+											<LinkButton
+												link={{
+													_type: "internalInternalLink",
+													text: "Se detaljer",
+													url: `/event/${event.slug.current}`
+												}}
+											/>
 										</div>
-										<LinkButton
-											css={eventLink}
-											link={{
-												_type: "externalLink",
-												text: "Gå til event",
-												url: event.eventLink
-											}}
-										/>
 									</article>
 								))}
 							</div>

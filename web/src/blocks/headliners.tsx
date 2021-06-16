@@ -199,9 +199,9 @@ const SimpleEventCard: React.FC<EventCardProps> = props => {
 				<LinkButton
 					css={eventLink}
 					link={{
-						_type: "externalLink",
+						_type: "internalInternalLink",
 						text: "Gå til event",
-						url: content.eventLink
+						url: `/event/${content.slug.current}`
 					}}
 				/>
 			</div>

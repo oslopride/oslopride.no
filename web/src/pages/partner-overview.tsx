@@ -63,7 +63,7 @@ const linkButtonWrapper = css`
 
 const PartnerOverview: React.FC<Props> = () => {
 	const { data: partners } = useSWR<SanityPartnerList>(
-		`*[_type == "partner"]{_id, image, name, url, description, type}`
+		`*[_type == "partner"]{_id, image, name, url, description, type, slug}`
 	);
 
 	const { data: page, error } = useSWR<SanityPartnerPage>(
@@ -92,6 +92,17 @@ const PartnerOverview: React.FC<Props> = () => {
 			</Hero>
 
 			<div css={body}>
+				<div
+					css={css`
+						text-align: center;
+						margin: 4rem 0;
+					`}
+				>
+					{page.partnerProgramLink && (
+						<LinkButton link={page.partnerProgramLink} />
+					)}
+				</div>
+
 				<PartnerList content={partners} />
 
 				{page.callToAction && page.callToAction.no && (
