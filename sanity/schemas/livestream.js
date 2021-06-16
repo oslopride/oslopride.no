@@ -40,13 +40,9 @@ export default {
 			validation: Rule => Rule.required()
 		},
 		{
-			title: "url",
-			name: "url",
-			type: "string",
-			options: {
-				hotspot: true
-			},
-			validation: Rule => Rule.required()
+			title: "YouTube",
+			name: "youtube",
+			type: "youtube"
 		}
 	],
 	preview: {
