@@ -68,6 +68,25 @@ const Live: React.FC<Props> = () => {
 			<div css={body}>
 				<p>{live.body.no}</p>
 			</div>
+
+			<Seo
+				openGraph={{
+					type: "article",
+					title: live.title?.no || "Oslo Pride",
+					description: live.subtitle?.no || "Oslo Pride",
+					url: `https://www.oslopride.no/live`,
+					locale: "nb_NO",
+					publishedAt: live._createdAt || "",
+					modifiedAt: live._updatedAt || "",
+					image: {
+						url:
+							urlFor(live.image)
+								.width(1200)
+								.url() || "",
+						alt: live.title?.no || "Oslo Pride"
+					}
+				}}
+			/>
 		</>
 	);
 };
