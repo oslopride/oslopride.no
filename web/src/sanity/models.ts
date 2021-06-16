@@ -171,7 +171,7 @@ export type SanitySimpleEvent = SanityDocument<
 		image: SanityImage;
 		description: Locale<SanityObjectArray<SanityBlockContent>>;
 		startTime: string;
-		endTime?: string;
+		endTime: string;
 		blurb: Locale<string>;
 		category: "concert" | "debate" | "talk" | "party" | "other";
 		arena: "park" | "house" | "parade" | "external" | "other";
@@ -255,7 +255,8 @@ export type SanityLivePage = SanityDocument<
 	{
 		title: Locale<string>;
 		subtitle: Locale<string>;
-		body: Locale<SanityObjectArray<SanityBlock>>;
+		youtube: { url: string };
+		active: boolean;
 		header: SanityPageHeader;
 		image: SanityImage;
 	}

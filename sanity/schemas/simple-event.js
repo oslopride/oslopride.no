@@ -113,7 +113,8 @@ export default {
 			name: "endTime",
 			description: "When does the event end?",
 			fieldset: "time",
-			type: "datetime"
+			type: "datetime",
+			validation: Rule => Rule.required()
 		},
 		{
 			name: "category",

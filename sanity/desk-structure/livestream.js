@@ -12,7 +12,7 @@ export default S.listItem()
 			.title("Livestream")
 			.id("livestream")
 			.schemaType("livestream")
-			.documentId("livestream")
+			.documentId("global_livestream")
 			.views([
 				S.view.form().icon(EditIcon),
 				S.view.component(JSONpreview).title("JSON")

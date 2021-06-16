@@ -16,7 +16,7 @@ import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
 import Select from "react-select";
-import { LinkButton } from "../components/link";
+import EventCard from "../components/event-card";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -91,83 +91,6 @@ const articleGroup = css`
 	}
 `;
 
-const article = css`
-	width: 100%;
-	height: 100%;
-	max-width: 500px;
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
-	border-radius: 8px;
-
-	.imageWrapper {
-		padding-bottom: 56.2%;
-		position: relative;
-	}
-
-	img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-
-	.contentWrapper {
-		background: #f7f8fa;
-		padding: 24px;
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.timeAndPlace {
-		display: flex;
-		justify-content: space-between;
-
-		time {
-			color: #656781;
-		}
-
-		span {
-			background: ${theme.color.background.lightYellow};
-		}
-	}
-
-	h3 {
-		font-size: 1.3rem;
-		line-height: 1.4;
-	}
-
-	ul {
-		flex: 1;
-		list-style: none;
-		padding: 0;
-		display: flex;
-		flex-flow: row wrap;
-		justify-content: space-evenly;
-		align-items: center;
-		margin-bottom: 0;
-
-		li {
-			margin: 8px;
-		}
-	}
-
-	.tag {
-		padding: 8px 16px;
-		background: #ebe7f1;
-		border-radius: 50px;
-		font-size: 0.75rem;
-		line-height: 1.2;
-		font-weight: bold;
-	}
-
-	a {
-		margin-top: 1rem;
-		width: 100%;
-	}
-`;
-
 const filter = css`
 	display: grid;
 	grid-template-columns: 1fr;
@@ -197,23 +120,6 @@ const filterHeader = css`
 	text-align: center;
 	margin-top: 2rem;
 `;
-
-const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
-	switch (venue) {
-		case "stage1":
-			return "Hovedscenen";
-		case "stage2":
-			return "BamseScenen";
-		case "youngs":
-			return "Youngs";
-		case "melahuset":
-			return "Melahuset";
-		case "online":
-			return "Digitalt";
-		default:
-			return "Annet";
-	}
-};
 
 const groupEventsByDay = (events: SanitySimpleEventList) => {
 	if (events.length === 0) {
@@ -261,19 +167,6 @@ const groupEventsByDay = (events: SanitySimpleEventList) => {
 	});
 
 	return [oldEvents, upcommingEvents];
-};
-
-const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
-	switch (arena) {
-		case "park":
-			return "Pride Park";
-		case "house":
-			return "Pride House";
-		case "parade":
-			return "Pride Parade";
-		default:
-			return undefined;
-	}
 };
 
 type Filter = {
@@ -351,7 +244,7 @@ const EventOverview: React.FC<Props> = () => {
 		`*[_type == "simpleEvent"] | order(startTime asc)`
 	);
 
-	const { data: archive, error } = useSWR<SanityEventPage>(
+	const { data: page, error } = useSWR<SanityEventPage>(
 		`*[_type == "eventOverview"] | order(_updatedAt desc) [0]`
 	);
 
@@ -367,8 +260,8 @@ const EventOverview: React.FC<Props> = () => {
 	const [showOldEevnts, setShowOldEvents] = React.useState(false);
 
 	if (error) return <Error error={JSON.stringify(error)} />;
-	if (archive === undefined) return <Loading />;
-	if (archive === null) return <NotFound />;
+	if (page === undefined || events === undefined) return <Loading />;
+	if (page === null) return <NotFound />;
 
 	const filteredEvents =
 		events &&
@@ -406,15 +299,15 @@ const EventOverview: React.FC<Props> = () => {
 			<Hero
 				color={[theme.color.main.purple, theme.color.main.pink]}
 				imageUrl={
-					urlFor(archive.image)
+					urlFor(page.image)
 						.width(window.innerWidth)
 						.url() || ""
 				}
 				css={hero}
 				centerContent
 			>
-				<h2>{archive.title.no}</h2>
-				<p>{archive.subtitle && archive.subtitle.no}</p>
+				<h2>{page.title.no}</h2>
+				<p>{page.subtitle && page.subtitle.no}</p>
 			</Hero>
 
 			<h3 css={filterHeader}>Filtrering</h3>
@@ -462,56 +355,7 @@ const EventOverview: React.FC<Props> = () => {
 							</h2>
 							<div css={articleGroup}>
 								{group?.map(event => (
-									<article css={article} key={event._id}>
-										<div className="imageWrapper">
-											<img
-												src={
-													urlFor(event.image)
-														.width(window.innerWidth)
-														.url() || ""
-												}
-												alt={event.title.no}
-											/>
-										</div>
-
-										<div className="contentWrapper">
-											<div className="timeAndPlace">
-												<time dateTime={event.startTime}>
-													{new Date(event.startTime).toLocaleTimeString(
-														"nb-NO",
-														{
-															hour: "2-digit",
-															minute: "2-digit"
-														}
-													)}
-													{event.venue ? `, ${getVenueName(event.venue)}` : ""}
-												</time>
-												{getArenaName(event.arena) && (
-													<span className="tag">
-														{getArenaName(event.arena)}
-													</span>
-												)}
-											</div>
-											<h3>{event.title.no}</h3>
-											<ul>
-												{event.liveStream && <li className="tag">strømmes</li>}
-												{event.alcoholFree && <li className="tag">rusfritt</li>}
-												{event.wheelchairFriendly && (
-													<li className="tag">rullestolvennlig</li>
-												)}
-												{event.signLanguageInterpreted && (
-													<li className="tag">tegnspråktolket</li>
-												)}
-											</ul>
-											<LinkButton
-												link={{
-													_type: "internalInternalLink",
-													text: "Se detaljer",
-													url: `/event/${event.slug.current}`
-												}}
-											/>
-										</div>
-									</article>
+									<EventCard key={event._id} event={event} />
 								))}
 							</div>
 						</React.Fragment>

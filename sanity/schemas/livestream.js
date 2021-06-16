@@ -6,6 +6,17 @@ export default {
 	type: "document",
 	fieldsets: [{ name: "header", title: "Header" }],
 	fields: [
+		{
+			name: "active",
+			type: "boolean",
+			description: "This indicates that the livestream is ongoing",
+			validation: Rule => Rule.required()
+		},
+		{
+			title: "YouTube",
+			name: "youtube",
+			type: "youtube"
+		},
 		localize(
 			{
 				title: "Title",
@@ -30,24 +41,7 @@ export default {
 				hotspot: true
 			},
 			validation: Rule => Rule.required()
-		},
-		localize(
-			{
-				title: "Body",
-				name: "body",
-				type: "array",
-				of: [
-					{ type: "block" },
-					{
-						type: "image",
-						options: { hotspot: true }
-					},
-					{ type: "youtube" },
-					{ type: "iframe" }
-				]
-			},
-			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
-		)
+		}
 	],
 	preview: {
 		prepare: () => ({ title: "Livestream" })
