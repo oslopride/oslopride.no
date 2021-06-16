@@ -56,6 +56,13 @@ const style = css`
 		object-fit: cover;
 	}
 
+	.external {
+		text-align: center;
+		padding: 0.5em;
+		background: ${theme.color.background.lightYellow};
+		font-weight: bold;
+	}
+
 	.contentWrapper {
 		background: #f7f8fa;
 		padding: 24px;
@@ -124,6 +131,8 @@ const EventCard: React.FC<{ event: SanitySimpleEvent }> = ({ event }) => (
 				alt={event.title.no}
 			/>
 		</div>
+
+		{!event.official && <div className="external">Eksternt arrangement</div>}
 
 		<div className="contentWrapper">
 			<div className="timeAndPlace">

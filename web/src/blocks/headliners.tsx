@@ -64,7 +64,7 @@ const headlinersStyle = (hasAttachedEvents: boolean) => css`
 
 	h2 {
 		font-size: 2.5rem;
-		line-height: 3.5rem;
+		line-height: 1em;
 		margin: 1rem 0;
 
 		@media (min-width: 600px) {
