@@ -4,7 +4,6 @@ import useSWR from "swr";
 import { urlFor } from "../sanity";
 import { SanityPartner, SanityFrontPage } from "../sanity/models";
 import Hero from "../components/hero";
-import SubHeading from "../components/sub-heading";
 import { LinkButton } from "../components/link";
 import { css } from "@emotion/core";
 import useWindowSize from "../utils/use-window-size";
@@ -21,13 +20,14 @@ import NotFound from "./not-found";
 import Error from "./error";
 import SanityPortableText from "../components/sanity-portable-text";
 
-const date = css`
+const subHeading = css`
 	font-size: 1rem;
 	text-transform: uppercase;
 	color: ${theme.color.background.pink};
 `;
 
 const hero = css`
+	text-align: center;
 	min-height: calc(100vh - 20rem);
 	max-width: 1000px;
 	h2 {
@@ -37,6 +37,7 @@ const hero = css`
 
 	p {
 		margin: 0;
+		font-size: 16px;
 	}
 
 	ul {
@@ -45,6 +46,7 @@ const hero = css`
 		flex-direction: column;
 		margin: 1rem 0;
 		padding: 0;
+		justify-content: center;
 
 		@media (min-width: 600px) {
 			flex-direction: row;
@@ -105,13 +107,9 @@ const FrontPage: React.FC<Props> = () => {
 				}
 				css={hero}
 			>
-				{width > 700 ? (
-					<SubHeading>{data.header.no.subHeading}</SubHeading>
-				) : (
-					<h1 css={date}>{config?.date}</h1>
-				)}
+				<h1 css={subHeading}>{data.header.no.subHeading}</h1>
 				<h2>{data.header.no.title}</h2>
-				<p>{data.header.no.subtitle}</p>
+				{width < 700 && <p>{config?.date}</p>}
 				<ul>
 					{data.header.no.links?.map((link, idx) => (
 						<li key={link._key}>
