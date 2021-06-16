@@ -31,7 +31,6 @@ const hero = css`
 	min-height: calc(100vh - 20rem);
 	max-width: 1000px;
 	h2 {
-		font-size: 2.5rem;
 		line-height: 1em;
 		margin: 2rem 0;
 	}
