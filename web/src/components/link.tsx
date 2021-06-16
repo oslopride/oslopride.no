@@ -105,7 +105,7 @@ const Link: React.FC<Props> = props => {
 		case "eventOverview":
 			url = "/events";
 			break;
-		case "live":
+		case "livestream":
 			url = "/live";
 			break;
 		case "partnerOverview":
