@@ -22,14 +22,6 @@ export default {
 			},
 			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
 		),
-		localize(
-			{
-				title: "Body",
-				name: "body",
-				type: "string"
-			},
-			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
-		),
 		{
 			title: "Image",
 			name: "image",
@@ -39,11 +31,23 @@ export default {
 			},
 			validation: Rule => Rule.required()
 		},
-		{
-			title: "YouTube",
-			name: "youtube",
-			type: "youtube"
-		}
+		localize(
+			{
+				title: "Body",
+				name: "body",
+				type: "array",
+				of: [
+					{ type: "block" },
+					{
+						type: "image",
+						options: { hotspot: true }
+					},
+					{ type: "youtube" },
+					{ type: "iframe" }
+				]
+			},
+			(lang, Rule) => (lang.isDefault ? Rule.required() : undefined)
+		)
 	],
 	preview: {
 		prepare: () => ({ title: "Livestream" })

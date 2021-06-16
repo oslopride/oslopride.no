@@ -255,12 +255,9 @@ export type SanityLivePage = SanityDocument<
 	{
 		title: Locale<string>;
 		subtitle: Locale<string>;
-		body: Locale<string>;
+		body: Locale<SanityObjectArray<SanityBlock>>;
 		header: SanityPageHeader;
 		image: SanityImage;
-		youtube: {
-			url: string;
-		};
 	}
 >;
 

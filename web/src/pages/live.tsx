@@ -1,7 +1,7 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import { urlFor } from "../sanity";
-import { SanityLivePage } from "../sanity/models";
+import { SanityLivePage, SanitySimpleEventList } from "../sanity/models";
 import Hero from "../components/hero";
 import { css } from "@emotion/core";
 import theme from "../utils/theme";
@@ -45,10 +45,11 @@ const Live: React.FC<Props> = () => {
 	const { data: live, error } = useSWR<SanityLivePage>(
 		`*[_type == "livestream"][0]`
 	);
-	console.log(live);
+
 	if (error) return <Error error={JSON.stringify(error)} />;
 	if (live === undefined) return <Loading />;
 	if (live === null) return <NotFound />;
+
 	return (
 		<>
 			<Hero
@@ -65,8 +66,9 @@ const Live: React.FC<Props> = () => {
 				<h2>{live?.title.no}</h2>
 				<p>{live?.subtitle.no}</p>
 			</Hero>
+
 			<div css={body}>
-				<p>{live.body.no}</p>
+				<SanityProtableText blocks={live.body?.no} />
 			</div>
 
 			<Seo
