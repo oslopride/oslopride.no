@@ -161,8 +161,6 @@ const descriptionContainer = css`
 const SimpleEventCard: React.FC<EventCardProps> = props => {
 	const { content } = props;
 
-	console.log(content);
-
 	const date = new Date(content.startTime).toLocaleDateString("nb-NO", {
 		weekday: "long",
 		day: "numeric",

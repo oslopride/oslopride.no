@@ -43,7 +43,7 @@ const YoutubeEmbed: React.FC<Props> = ({ node }) => {
 				height="315"
 				src={embedUrl}
 				frameBorder="0"
-				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"
 			/>
 		</div>
 	);
