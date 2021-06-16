@@ -112,8 +112,6 @@ const Live: React.FC<Props> = () => {
 			? upcomingEvents.shift()
 			: undefined;
 
-	console.log(currentEvent?.description?.no);
-
 	return (
 		<>
 			<Hero
