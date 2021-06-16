@@ -125,7 +125,7 @@ const EventCard: React.FC<{ event: SanitySimpleEvent }> = ({ event }) => (
 			<img
 				src={
 					urlFor(event.image)
-						.width(window.innerWidth)
+						.width(500)
 						.url() || ""
 				}
 				alt={event.title.no}
