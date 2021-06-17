@@ -217,11 +217,11 @@ const categoryFilters: Filter[] = [
 ];
 
 const accessibilityFilters: Filter[] = [
-	// {
-	// 	value: "liveStream",
-	// 	label: "Strømmes",
-	// 	predicate: event => event.liveStream
-	// },
+	{
+		value: "liveStream",
+		label: "Strømmes",
+		predicate: event => event.liveStream
+	},
 	{
 		value: "wheelChairFriendly",
 		label: "Rullestolvennlig",
