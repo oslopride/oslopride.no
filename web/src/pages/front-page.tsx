@@ -106,6 +106,7 @@ const FrontPage: React.FC<Props> = () => {
 						.url() || ""
 				}
 				css={hero}
+				centerContent
 			>
 				<h1 css={subHeading}>{data.header.no.subHeading}</h1>
 				<h2>{data.header.no.title}</h2>
