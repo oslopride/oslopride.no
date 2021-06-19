@@ -19,7 +19,8 @@ export default {
 				{ type: "frontPage" },
 				{ type: "articleArchive" },
 				{ type: "eventOverview" },
-				{ type: "partnerOverview" }
+				{ type: "partnerOverview" },
+				{ type: "livestream" }
 			],
 			validation: Rule => Rule.required()
 		}
