@@ -192,7 +192,7 @@ const Live: React.FC<Props> = () => {
 					type: "article",
 					title: page.title?.no || "Oslo Pride",
 					description: page.subtitle?.no || "Oslo Pride",
-					url: `https://www.oslopride.no/page`,
+					url: `https://www.oslopride.no/live`,
 					locale: "nb_NO",
 					publishedAt: page._createdAt || "",
 					modifiedAt: page._updatedAt || "",
