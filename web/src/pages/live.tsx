@@ -80,7 +80,7 @@ const eventPreview = css`
 type Props = { slug?: string } & RouteComponentProps;
 const Live: React.FC<Props> = () => {
 	const { data: events } = useSWR<SanitySimpleEventList>(
-		`*[_type == "simpleEvent" && liveStream == true && official == true] | order(startTime asc)`
+		`*[_type == "simpleEvent" && liveStream == true] | order(startTime asc)`
 	);
 	const { data: page, error } = useSWR<SanityLivePage>(
 		`*[_id in ["global_livestream", "drafts.global_livestream"]] | order(_updatedAt desc) [0]`
