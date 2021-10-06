@@ -69,6 +69,7 @@ const Partner: React.FC<Props> = props => {
 	const { data: partner, error } = useSWR<SanityPartner>(
 		`*[_type == "partner" && type !="Supporter" && slug.current == "${props.slug}"] {
       _id,
+	  heroImage,
       image,
       name,
       url,
@@ -108,7 +109,11 @@ const Partner: React.FC<Props> = props => {
 		<>
 			<Hero
 				color={[theme.color.main.purple]}
-				imageUrl=""
+				imageUrl={
+					urlFor(partner.heroImage)
+						.width(window.innerWidth)
+						.url() || ""
+				}
 				css={hero}
 				centerContent
 				displayScrollButton
