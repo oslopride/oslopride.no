@@ -7,6 +7,14 @@ export default {
 	type: "document",
 	fields: [
 		{
+			name: "heroImage",
+			title: "Hero image",
+			type: "image",
+			options: {
+				hotspot: false
+			}
+		},
+		{
 			name: "name",
 			title: "Name",
 			type: "string",
