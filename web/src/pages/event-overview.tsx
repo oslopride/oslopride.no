@@ -15,8 +15,8 @@ import {
 import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
-import Select from "react-select";
 import { LinkButton } from "../components/link";
+import FilterEvent from "../components/filter-event";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -419,26 +419,29 @@ const EventOverview: React.FC<Props> = () => {
 
 			<h3 css={filterHeader}>Filtrering</h3>
 			<section css={filter}>
-				<Select
-					placeholder="Arena"
-					onChange={setArenaFilters}
-					options={arenaFilters}
-					isSearchable={false}
-					isMulti
+				<FilterEvent
+					underlineColor="#FF4FA4"
+					bgColor="#FFC8E3"
+					filterTitle="Arrangementsted"
+					filterOptions={arenaFilters}
+					selectedFilters={selectedArenaFilters}
+					setFilters={setArenaFilters}
 				/>
-				<Select
-					placeholder="Programtype"
-					onChange={setCategoryFilters}
-					options={categoryFilters}
-					isSearchable={false}
-					isMulti
+				<FilterEvent
+					underlineColor="#008D61"
+					bgColor="#BEE0D6"
+					filterTitle="Programtype"
+					filterOptions={categoryFilters}
+					selectedFilters={selectedCategoryFilters}
+					setFilters={setCategoryFilters}
 				/>
-				<Select
-					placeholder="Tilgjengelighet"
-					onChange={setAccessibilityFilters}
-					options={accessibilityFilters}
-					isSearchable={false}
-					isMulti
+				<FilterEvent
+					underlineColor="#FF510D"
+					bgColor="#FFC7AD"
+					filterTitle="Filtrer"
+					filterOptions={accessibilityFilters}
+					selectedFilters={selectedAccessibilityFilters}
+					setFilters={setAccessibilityFilters}
 				/>
 			</section>
 
