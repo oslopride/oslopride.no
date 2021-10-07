@@ -282,6 +282,7 @@ export type SanityPartner = SanityDocument<
 	"partner",
 	{
 		name: string;
+		heroImage: SanityImage;
 		type: string;
 		description: SanityBlockContent;
 		url: string;
