@@ -1,4 +1,5 @@
-import React from "react";
+import React, { ReactNode } from "react";
+import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 import * as S from "./styles";
 import WhiteLogo from "../../assets/logo-white.svg";
 import useConfig from "../../utils/use-config";
@@ -15,18 +16,49 @@ const netlifyLink = css`
 	}
 `;
 
+const someIcons = css`
+	display: inline-flex;
+	gap: 0.5em;
+	margin: 0;
+
+	a {
+		background-color: ${theme.color.background.pink};
+		border-radius: 50%;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 1.4em;
+		width: 1.4em;
+		font-size: 0.9em;
+		color: ${theme.color.main.purple};
+		&:hover,
+		&:focus {
+			color: ${theme.color.main.purple};
+		}
+	}
+`;
+
 type Props = {};
 
 const Footer: React.FC<Props> = () => {
 	const { footer, date } = useConfig();
 
-	const socialLinks: { name: string; url: string }[] = [];
-	if (footer?.facebook)
-		socialLinks.push({ name: "Facebook", url: footer.facebook });
-	if (footer?.instagram)
-		socialLinks.push({ name: "Instagram", url: footer.instagram });
-	if (footer?.twitter)
-		socialLinks.push({ name: "Twitter", url: footer.twitter });
+	const socialLinks: Array<{ name: string; url: string; icon: ReactNode }> = [];
+
+	if (footer?.instagram) {
+		socialLinks.push({
+			name: "Instagram",
+			url: footer.instagram,
+			icon: <FaInstagram />
+		});
+	}
+	if (footer?.facebook) {
+		socialLinks.push({
+			name: "Facebook",
+			url: footer.facebook,
+			icon: <FaFacebookSquare />
+		});
+	}
 
 	return (
 		<S.StickyFooter>
@@ -36,10 +68,12 @@ const Footer: React.FC<Props> = () => {
 					<h3>{date}</h3>
 
 					{socialLinks.length > 0 && (
-						<ul>
+						<ul css={someIcons}>
 							{socialLinks.map(link => (
 								<li key={link.name}>
-									<a href={link.url}>{link.name}</a>
+									<a href={link.url} aria-label={`${link.name} icon`}>
+										{link.icon}
+									</a>
 								</li>
 							))}
 						</ul>
