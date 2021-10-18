@@ -45,6 +45,10 @@ export const Image = styled.div`
 		width: 10rem;
 		fill: ${theme.color.text.white};
 		margin-left: -1rem;
+
+		@media screen and (max-width: 720px) {
+			margin-left: 0;
+		}
 	}
 	h3 {
 		text-transform: uppercase;

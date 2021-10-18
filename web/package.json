@@ -32,6 +32,7 @@
     "react-ga": "^2.7.0",
     "react-helmet": "^6.0.0",
     "react-hot-loader": "^4.12.19",
+    "react-icons": "^4.3.1",
     "react-select": "^4.3.1",
     "swr": "^0.1.18",
     "webfontloader": "^1.6.28"

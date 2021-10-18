@@ -310,7 +310,6 @@ export type SanityConfiguration = SanityDocument<
 		navigationBar?: SanityObjectArray<SanityInternalLink | SanityExternalLink>;
 		redirects?: SanityObjectArray<SanityReadirect>;
 		footer?: {
-			twitter?: string;
 			instagram?: string;
 			facebook?: string;
 			links?: SanityObjectArray<SanityExternalLink | SanityInternalLink>;

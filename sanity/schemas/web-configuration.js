@@ -22,11 +22,6 @@ export default {
 			],
 			fields: [
 				{
-					name: "twitter",
-					type: "url",
-					fieldset: "social"
-				},
-				{
 					name: "instagram",
 					type: "url",
 					fieldset: "social"
