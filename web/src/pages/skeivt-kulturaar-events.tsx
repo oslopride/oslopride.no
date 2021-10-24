@@ -370,7 +370,13 @@ const EventOverview: React.FC<Props> = () => {
 					name="submit-skeivt-kulturaar-event"
 					method="POST"
 					data-netlify="true"
+					data-netlify-honeypot="bot-field"
 				>
+					<input
+						type="hidden"
+						name="form-name"
+						value="submit-skeivt-kulturaar-event"
+					/>
 					<p>
 						<label>
 							Kontaktperson: <input type="text" name="name" />
