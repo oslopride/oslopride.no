@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="no">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <script async defer data-domain="oslopride.no" src="https://plausible.io/js/plausible.js"></script>
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <script async defer data-domain="oslopride.no" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <form name="submit-skeivt-kulturaar-event" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="submit-skeivt-kulturaar-event" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <textarea name="message" />
+  </form>
+</body>
+
 </html>

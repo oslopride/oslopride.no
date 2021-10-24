@@ -295,6 +295,7 @@ const EventOverview: React.FC<Props> = () => {
 		: upcommingEvents;
 
 	const handleSubmit = (e: any) => {
+		console.log(e);
 		const encode = (data: any) => {
 			return Object.keys(data)
 				.map(
