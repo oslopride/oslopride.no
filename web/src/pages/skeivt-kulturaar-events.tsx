@@ -294,6 +294,27 @@ const EventOverview: React.FC<Props> = () => {
 		? [...oldEvent, ...upcommingEvents]
 		: upcommingEvents;
 
+	const handleSubmit = (e: any) => {
+		const encode = (data: any) => {
+			return Object.keys(data)
+				.map(
+					key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+				)
+				.join("&");
+		};
+
+		e.preventDefault();
+		const newMessage = {};
+
+		fetch("/", {
+			method: "POST",
+			headers: { "Content-Type": "application/x-www-form-urlencoded" },
+			body: encode({ "form-name": "submit-skeivt-kulturaar-event", newMessage })
+		})
+			.then(() => console.log("Submitted form"))
+			.catch(error => console.log(error));
+	};
+
 	return (
 		<>
 			<Hero
@@ -366,12 +387,7 @@ const EventOverview: React.FC<Props> = () => {
 			</div>
 
 			<div>
-				<form
-					name="submit-skeivt-kulturaar-event"
-					method="POST"
-					data-netlify="true"
-					data-netlify-honeypot="bot-field"
-				>
+				<form name="submit-skeivt-kulturaar-event" onSubmit={handleSubmit}>
 					<input
 						type="hidden"
 						name="form-name"
