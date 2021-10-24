@@ -22,6 +22,7 @@ import {
 import ErrorPage from "./pages/error";
 import Partner from "./pages/partner";
 import Live from "./pages/live";
+import SkeivtKulturAarEvents from "./pages/skeivt-kulturaar-events";
 
 const App: React.FC = () => {
 	const { data, error } = useSWR<
@@ -67,6 +68,7 @@ const App: React.FC = () => {
 						<Article path="/a/:slug" />
 						<ArticleOverview path="/articles" />
 						<EventOverview path="/events" />
+						<SkeivtKulturAarEvents path="/skeivt-kulturaar" />
 						<Live path="/live" />
 						<Event path="/event/:slug" />
 						<PartnerOverview path="/partners" />

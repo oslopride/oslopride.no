@@ -4,12 +4,17 @@
   "author": "Oslo Pride <teknologi@oslopride.no>",
   "license": "MPL-2.0",
   "workspaces": [
-    "web",
-    "sanity"
+    "sanity",
+    "web"
   ],
   "scripts": {
     "sanity": "yarn workspace @oslopride/sanity",
     "web": "yarn workspace @oslopride/web"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "@netlify/functions": "^0.7.2",
+    "@types/node": "^14.17.29",
+    "typescript": "^4.4.4"
+  }
 }
