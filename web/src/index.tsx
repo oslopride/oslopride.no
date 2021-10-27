@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import WebFont from "webfontloader";
-import * as Sentry from "@sentry/browser";
 import { Global, css } from "@emotion/core";
 import { normalize } from "polished";
 import { hot } from "react-hot-loader/root";
@@ -86,13 +85,6 @@ const ConfiguredApp = hot(() => (
 		</SWRConfig>
 	</>
 ));
-
-if (process.env.NODE_ENV === "production") {
-	Sentry.init({
-		dsn:
-			"https://785a889b53d9402c93bfea0bd999401d@o152756.ingest.sentry.io/1475905"
-	});
-}
 
 const rootElement = document.getElementById("app");
 ReactDOM.render(<ConfiguredApp />, rootElement);
