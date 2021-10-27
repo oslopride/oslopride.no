@@ -294,8 +294,8 @@ const EventOverview: React.FC<Props> = () => {
 		? [...oldEvent, ...upcommingEvents]
 		: upcommingEvents;
 
-	const handleSubmit = (e: any) => {
-		console.log(e);
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		console.log(event);
 		const encode = (data: any) => {
 			return Object.keys(data)
 				.map(
@@ -304,7 +304,7 @@ const EventOverview: React.FC<Props> = () => {
 				.join("&");
 		};
 
-		e.preventDefault();
+		event.preventDefault();
 		const newMessage = {};
 
 		fetch("/", {
