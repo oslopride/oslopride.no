@@ -1,9 +1,25 @@
 import { Handler } from "@netlify/functions";
+import { createHmac } from "crypto";
+
+function verifySignature(received, payloadBody) {
+  const secret = process.env.TYPEFORM_WEBHOOK_SECRET;
+  console.log(secret);
+  const b64hmac = createHmac("sha256", secret)
+    .update(payloadBody)
+    .digest("base64");
+  const signature = "sha256=" + b64hmac;
+  console.log({ received, signature });
+  return received === signature;
+}
 
 export const handler: Handler = (event, context, callback) => {
-  const body = JSON.parse(event.body || "")?.payload;
+  const body = JSON.parse(event.body);
 
-  console.log(event);
+  console.log(body);
+  console.log(body.HTTP_TYPEFORM_SIGNATURE);
+
+  const isVerified = verifySignature(body.HTTP_TYPEFORM_SIGNATURE, event.body);
+  console.log({ isVerified });
 
   return callback(null, {
     statusCode: 200,
