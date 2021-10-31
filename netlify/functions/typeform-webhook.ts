@@ -13,11 +13,10 @@ function verifySignature(received, payloadBody) {
 }
 
 export const handler: Handler = async (event, context) => {
+  console.log(event);
   const headers = JSON.parse(event.headers);
   const body = JSON.parse(event.body);
   const receivedSignature = headers["Typeform-Signature"];
-
-  console.log(event);
 
   const isVerified = verifySignature(receivedSignature, event.body.toString());
   console.log({ isVerified });
