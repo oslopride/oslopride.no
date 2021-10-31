@@ -3,16 +3,15 @@ import { createHmac } from "crypto";
 
 function verifySignature(received, payloadBody) {
   const secret = process.env.TYPEFORM_WEBHOOK_SECRET;
-  console.log(secret);
   const b64hmac = createHmac("sha256", secret)
     .update(payloadBody)
     .digest("base64");
   const signature = "sha256=" + b64hmac;
-  console.log({ received, signature });
+  console.debug({ received, signature });
   return received === signature;
 }
 
-export const handler: Handler = async (event, context) => {
+export const handler: Handler = async (event: any) => {
   console.log(event);
   const body = JSON.parse(event.body);
   const receivedSignature = event.headers["typeform-signature"];
