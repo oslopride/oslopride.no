@@ -12,19 +12,17 @@ function verifySignature(received, payloadBody) {
   return received === signature;
 }
 
-export const handler: Handler = (event, context, callback) => {
-  const body = JSON.parse(event.body);
+export const handler: Handler = async (event, context) => {
+  const receivedSignature = event.headers["Typeform-Signature"];
+  const eventAsJSON = JSON.parse(event);
 
-  console.log(body);
+  console.log(event);
 
-  const isVerified = verifySignature(
-    body["typeform-signature"],
-    event.body.toString()
-  );
+  const isVerified = verifySignature(receivedSignature, event.body.toString());
   console.log({ isVerified });
 
-  return callback(null, {
+  return {
     statusCode: 200,
     body: "Beep, boop, you just got serverless."
-  });
+  };
 };
