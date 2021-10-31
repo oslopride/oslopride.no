@@ -16,9 +16,11 @@ export const handler: Handler = (event, context, callback) => {
   const body = JSON.parse(event.body);
 
   console.log(body);
-  console.log(body.HTTP_TYPEFORM_SIGNATURE);
 
-  const isVerified = verifySignature(body.HTTP_TYPEFORM_SIGNATURE, event.body);
+  const isVerified = verifySignature(
+    body["typeform-signature"],
+    event.body.toString()
+  );
   console.log({ isVerified });
 
   return callback(null, {
