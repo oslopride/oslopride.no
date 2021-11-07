@@ -21,7 +21,7 @@ export default {
 			name: "eventDate",
 			title: "Event date",
 			description: "The date that this event will happen",
-			type: "string"
+			type: "datetime"
 		},
 		{
 			name: "eventEmail",
