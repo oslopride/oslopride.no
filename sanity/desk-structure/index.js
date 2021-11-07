@@ -10,6 +10,7 @@ import livestream from "./livestream";
 import configuration from "./configuration";
 import events from "./events";
 import eventOverview from "./event-overview";
+import externalEvents from "./external-event-request";
 
 import JSONpreview from "./previews/json-preview";
 import articleArchive from "./article-archive";
@@ -30,7 +31,8 @@ const hiddenDocTypes = listItem =>
 		"venue",
 		"arena",
 		"partnerOverview",
-		"livestream"
+		"livestream",
+		"externalEventRequest"
 	].includes(listItem.getId());
 
 export default () =>
@@ -47,6 +49,7 @@ export default () =>
 			partners,
 			configuration,
 			livestream,
+			externalEvents,
 			...S.documentTypeListItems().filter(hiddenDocTypes)
 		]);
 
