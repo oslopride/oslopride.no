@@ -14,7 +14,9 @@ export default S.listItem()
 					.child(
 						S.documentTypeList("externalEventRequest")
 							.title("Events")
-							.filter("approved == false")
+							.filter(
+								"_type == 'externalEventRequest' && _id in path('drafts.**')"
+							)
 					),
 				S.listItem()
 					.title("Accepted")

@@ -20,7 +20,8 @@ export const handler: Handler = async (event, context) => {
     eventName: "Test lambda",
     eventDescription: "Test",
     eventDate: new Date().toISOString(),
-    eventEmail: "testmail"
+    eventEmail: "testmail",
+    _id: "drafts."
   };
 
   const docRes = await client.create(doc);
