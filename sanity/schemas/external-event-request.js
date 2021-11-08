@@ -34,5 +34,14 @@ export default {
 			title: "Er denne forespørselen allerede godkjent",
 			type: "boolean"
 		}
-	]
+	],
+	preview: {
+		select: {
+			title: "eventName"
+		},
+		prepare: ({ title }) => ({
+			title: title,
+			subtitle: "test"
+		})
+	}
 };

@@ -1,21 +1,5 @@
 {
-  "name": "@oslopride/sanity",
-  "private": true,
-  "version": "1.0.0",
-  "description": "Headless CMS for Oslo Pride",
-  "main": "package.json",
   "author": "Oslo Pride <teknologi@oslopride.no>",
-  "license": "MPL-2.0",
-  "scripts": {
-    "dev": "SANITY_STUDIO_API_DATASET=development sanity start",
-    "lint": "eslint --quiet . --ext js --ext jsx",
-    "lint:fix": "yarn lint --fix",
-    "test": "sanity check",
-    "build": "sanity build"
-  },
-  "keywords": [
-    "sanity"
-  ],
   "dependencies": {
     "@sanity/base": "^1.149.3",
     "@sanity/components": "^1.149.3",
@@ -31,8 +15,10 @@
     "react-frame-component": "^4.1.1",
     "react-icons": "^3.10.0"
   },
+  "description": "Headless CMS for Oslo Pride",
   "devDependencies": {
     "@sanity/cli": "^1.149.2",
+    "cross-env": "^7.0.3",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
     "eslint-config-standard": "^14.1.0",
@@ -44,5 +30,20 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
     "prettier": "^1.19.1"
-  }
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "license": "MPL-2.0",
+  "main": "package.json",
+  "name": "@oslopride/sanity",
+  "private": true,
+  "scripts": {
+    "build": "sanity build",
+    "dev": "cross-env SANITY_STUDIO_API_DATASET=development sanity start",
+    "lint": "eslint --quiet . --ext js --ext jsx",
+    "lint:fix": "yarn lint --fix",
+    "test": "sanity check"
+  },
+  "version": "1.0.0"
 }

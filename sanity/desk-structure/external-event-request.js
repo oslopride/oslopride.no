@@ -14,10 +14,9 @@ export default S.listItem()
 					.child(
 						S.documentTypeList("externalEventRequest")
 							.title("Events")
-							.filter(
-								"_type == 'externalEventRequest' && _id in path('drafts.**')"
-							)
+							.filter("_id in path('drafts.**')")
 					),
+				S.divider(),
 				S.listItem()
 					.title("Accepted")
 					.icon(MdEventAvailable)
