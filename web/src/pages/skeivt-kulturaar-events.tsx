@@ -60,6 +60,10 @@ const body = css`
 
 const FormSection = styled.fieldset`
 	border: none;
+
+	small {
+		color: ${theme.color.text.grey};
+	}
 `;
 
 const FormSectionHeader = styled.h2`
@@ -69,6 +73,7 @@ const FormSectionHeader = styled.h2`
 	font-weight: bold;
 	font-size: 24px;
 	line-height: 30px;
+	margin-bottom: 0;
 `;
 
 const FormSectionHeaderIcon = styled.figure`
@@ -83,10 +88,12 @@ const FormSectionHeaderIcon = styled.figure`
 `;
 
 const Label = styled.label`
+	display: inline-block;
 	font-weight: bold;
 	font-size: 16px;
 	line-height: 24px;
 	color: ${theme.color.text.black};
+	margin-top: 1.5em;
 
 	&[aria-required]::after {
 		content: "*";
@@ -183,32 +190,26 @@ const EventOverview: React.FC<Props> = () => {
 							</FormSectionHeaderIcon>
 							Arrangementinformasjon
 						</FormSectionHeader>
-						<p>
-							<Label htmlFor="name" aria-required="true">
-								Navn på arrangementet
-							</Label>
-							<Input name="name" required placeholder="Navn på arrangementet" />
-						</p>
-						<p>
-							<label>
-								Kontaktepost
-								<input type="email" name="email" />
-							</label>
-						</p>
-						<p>
-							<label>
-								Your Role:{" "}
-								<select name="role[]" multiple>
-									<option value="leader">Leader</option>
-									<option value="follower">Follower</option>
-								</select>
-							</label>
-						</p>
-						<p>
-							<label>
-								Message: <textarea name="message" />
-							</label>
-						</p>
+
+						<Label htmlFor="name" aria-required="true">
+							Navn på arrangementet
+						</Label>
+						<Input name="name" required placeholder="Navn på arrangementet" />
+
+						<Label htmlFor="organizer-name" aria-required="true">
+							Arrangørnavn
+						</Label>
+						<Input name="organizer-name" required placeholder="Arrangørnavn" />
+
+						<Label htmlFor="event-link">Lenke til arrangementet</Label>
+						<Input
+							name="event-link"
+							placeholder="URL"
+							aria-describedby="event-link-help-text"
+						/>
+						<small id="event-link-help-text">
+							Lenke til Facebook arrangement f.eks.
+						</small>
 					</FormSection>
 					<p>
 						<button type="submit">Send</button>
