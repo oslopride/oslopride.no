@@ -6,8 +6,7 @@ export const Button = styled.button`
 	align-items: center;
 	border-radius: 50px;
 	padding: 24px 64px;
-	background-color: ${props =>
-		props.color === "pink" ? theme.color.main.pink : theme.color.main.blue};
+	background-color: #ff4fa4;
 	text-transform: uppercase;
 	text-align: center;
 	display: inline-block;
@@ -15,7 +14,7 @@ export const Button = styled.button`
 	padding: 1rem 1.75rem;
 	text-decoration: none;
 	cursor: pointer;
-	color: ${props => (props.color === "pink" ? "#2b193c" : "#ffffff")};
+	color: #2b193c;
 	font-weight: bold;
 	transition: color 0.3s, background 0.3s;
 	border: none;

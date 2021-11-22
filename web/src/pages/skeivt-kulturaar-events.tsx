@@ -19,6 +19,7 @@ import Error from "./error";
 import Select from "react-select";
 import EventCard from "../components/event-card";
 import { ReactComponent as Calendar } from "../assets/calendar.svg";
+import { ReactComponent as Location } from "../assets/location.svg";
 import { Button } from "../components/button";
 
 type Props = { slug?: string } & RouteComponentProps;
@@ -44,19 +45,16 @@ const body = css`
 		width: 90vw;
 	}
 
-	p {
-		margin-bottom: 0;
-		color: ${theme.color.text.grey};
-
-		a {
-			color: ${theme.color.main.pink};
-		}
-	}
-
 	h3 {
 		margin: 1rem 0 0 0;
 		font-size: 1.5rem;
 	}
+`;
+
+const paragraph = css`
+	font-size: 16px;
+	line-height: 24px;
+	color: ${theme.color.text.black};
 `;
 
 const FormSection = styled.fieldset`
@@ -95,6 +93,7 @@ const Label = styled.label`
 	line-height: 24px;
 	color: ${theme.color.text.black};
 	margin-top: 1.5em;
+	margin-bottom: 0.3em;
 
 	&[aria-required]::after {
 		content: "*";
@@ -103,7 +102,7 @@ const Label = styled.label`
 	}
 `;
 
-const Input = styled.input`
+const inputStyle = css`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -123,6 +122,22 @@ const Input = styled.input`
 	&:active {
 		border-color: ${theme.color.main.purple};
 		outline: none;
+	}
+`;
+
+const textareaStyle = css`
+	${inputStyle};
+	min-height: 8em;
+`;
+
+const ContactGrid = styled.div`
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 3;
+	column-gap: 2em;
+
+	.grid-span {
+		grid-column-start: span 2;
 	}
 `;
 
@@ -195,15 +210,26 @@ const EventOverview: React.FC<Props> = () => {
 						<Label htmlFor="name" aria-required="true">
 							Navn på arrangementet
 						</Label>
-						<Input name="name" required placeholder="Navn på arrangementet" />
+						<input
+							css={inputStyle}
+							name="name"
+							required
+							placeholder="Navn på arrangementet"
+						/>
 
 						<Label htmlFor="organizer-name" aria-required="true">
 							Arrangørnavn
 						</Label>
-						<Input name="organizer-name" required placeholder="Arrangørnavn" />
+						<input
+							css={inputStyle}
+							name="organizer-name"
+							required
+							placeholder="Arrangørnavn"
+						/>
 
 						<Label htmlFor="event-link">Lenke til arrangementet</Label>
-						<Input
+						<input
+							css={inputStyle}
 							name="event-link"
 							placeholder="URL"
 							aria-describedby="event-link-help-text"
@@ -211,6 +237,62 @@ const EventOverview: React.FC<Props> = () => {
 						<small id="event-link-help-text">
 							Lenke til Facebook arrangement f.eks.
 						</small>
+					</FormSection>
+					<FormSection>
+						<FormSectionHeader>
+							<FormSectionHeaderIcon>
+								<Location />
+							</FormSectionHeaderIcon>
+							Kontaktperson
+						</FormSectionHeader>
+						<p css={paragraph}>
+							Ved spørsmål så trenger redaktør kontaktinformasjon til
+							arrangement. Dette vil ikke bli synlig i kalenderen.
+						</p>
+						<ContactGrid>
+							<div>
+								<Label htmlFor="contact-name" aria-required>
+									Fullt navn
+								</Label>
+								<input
+									css={inputStyle}
+									name="contact-name"
+									placeholder="Fullt navn"
+									required
+								/>
+							</div>
+							<div>
+								<Label htmlFor="pronoun">Pronomen</Label>
+								<input css={inputStyle} name="pronoun" placeholder="Pronomen" />
+							</div>
+							<div>
+								<Label htmlFor="phone-number" aria-required>
+									Telefonnummer
+								</Label>
+								<input
+									css={inputStyle}
+									name="phone-number"
+									placeholder="Telefonnummer"
+									required
+								/>
+							</div>
+							<div>
+								<Label htmlFor="contact-email">E-postaddresse</Label>
+								<input
+									css={inputStyle}
+									name="contact-email"
+									placeholder="E-postaddresse"
+								/>
+							</div>
+							<div className="grid-span">
+								<Label htmlFor="contact-info">Informasjon til redaktør</Label>
+								<textarea
+									css={textareaStyle}
+									name="contact-info"
+									placeholder="Informasjon til redaktør"
+								/>
+							</div>
+						</ContactGrid>
 					</FormSection>
 					<p>
 						<Button type="submit" color="pink">
