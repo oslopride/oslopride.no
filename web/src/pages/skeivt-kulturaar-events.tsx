@@ -19,6 +19,7 @@ import Error from "./error";
 import Select from "react-select";
 import EventCard from "../components/event-card";
 import { ReactComponent as Calendar } from "../assets/calendar.svg";
+import { Button } from "../components/button";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -212,7 +213,9 @@ const EventOverview: React.FC<Props> = () => {
 						</small>
 					</FormSection>
 					<p>
-						<button type="submit">Send</button>
+						<Button type="submit" color="pink">
+							Send inn arrangement
+						</Button>
 					</p>
 				</form>
 			</div>
