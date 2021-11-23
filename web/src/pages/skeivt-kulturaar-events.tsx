@@ -60,6 +60,10 @@ const paragraph = css`
 const FormSection = styled.fieldset`
 	border: none;
 
+	& + & {
+		margin-top: 1em;
+	}
+
 	small {
 		color: ${theme.color.text.grey};
 	}
@@ -130,10 +134,9 @@ const textareaStyle = css`
 	min-height: 8em;
 `;
 
-const ContactGrid = styled.div`
+const Grid = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 3;
 	column-gap: 2em;
 
 	.grid-span {
@@ -241,6 +244,50 @@ const EventOverview: React.FC<Props> = () => {
 					<FormSection>
 						<FormSectionHeader>
 							<FormSectionHeaderIcon>
+								<Calendar />
+							</FormSectionHeaderIcon>
+							Dato og klokkeslett
+						</FormSectionHeader>
+						<Grid>
+							<div>
+								<Label htmlFor="start-date" aria-required="true">
+									Startdato
+								</Label>
+								<input
+									css={inputStyle}
+									name="start-date"
+									required
+									type="date"
+								/>
+							</div>
+							<div>
+								<Label htmlFor="end-date" aria-required="true">
+									Sluttdato
+								</Label>
+								<input css={inputStyle} name="end-date" required type="date" />
+							</div>
+							<div>
+								<Label htmlFor="start-time" aria-required="true">
+									Klokkeslett: starttidspunkt
+								</Label>
+								<input
+									css={inputStyle}
+									name="start-time"
+									required
+									type="time"
+								/>
+							</div>
+							<div>
+								<Label htmlFor="end-time" aria-required="true">
+									Klokkeslett: sluttidspunkt
+								</Label>
+								<input css={inputStyle} name="end-time" required type="time" />
+							</div>
+						</Grid>
+					</FormSection>
+					<FormSection>
+						<FormSectionHeader>
+							<FormSectionHeaderIcon>
 								<Location />
 							</FormSectionHeaderIcon>
 							Kontaktperson
@@ -249,7 +296,7 @@ const EventOverview: React.FC<Props> = () => {
 							Ved spørsmål så trenger redaktør kontaktinformasjon til
 							arrangement. Dette vil ikke bli synlig i kalenderen.
 						</p>
-						<ContactGrid>
+						<Grid>
 							<div>
 								<Label htmlFor="contact-name" aria-required>
 									Fullt navn
@@ -292,7 +339,7 @@ const EventOverview: React.FC<Props> = () => {
 									placeholder="Informasjon til redaktør"
 								/>
 							</div>
-						</ContactGrid>
+						</Grid>
 					</FormSection>
 					<p>
 						<Button type="submit" color="pink">
