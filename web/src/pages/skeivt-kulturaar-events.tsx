@@ -160,10 +160,12 @@ const EventOverview: React.FC<Props> = () => {
 	);
 
 	const formRef = useRef<HTMLFormElement>(null);
-	const onDrop = useCallback(acceptedFiles => {
-		// Do something with the files
-	}, []);
-	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+	const {
+		acceptedFiles,
+		getRootProps,
+		getInputProps,
+		isDragActive
+	} = useDropzone();
 
 	if (error) return <Error error={JSON.stringify(error)} />;
 	if (page === undefined || events === undefined) return <Loading />;
@@ -175,6 +177,10 @@ const EventOverview: React.FC<Props> = () => {
 
 		if (formRef.current) {
 			const formData = new FormData(formRef.current);
+			for (const file of acceptedFiles) {
+				console.log(file);
+				formData.set("image", file, file.name);
+			}
 
 			fetch("/", {
 				method: "POST",
