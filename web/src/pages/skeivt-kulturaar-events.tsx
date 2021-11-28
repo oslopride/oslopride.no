@@ -178,7 +178,6 @@ const EventOverview: React.FC<Props> = () => {
 		if (formRef.current) {
 			const formData = new FormData(formRef.current);
 			for (const file of acceptedFiles) {
-				console.log(file);
 				formData.set("image", file, file.name);
 			}
 

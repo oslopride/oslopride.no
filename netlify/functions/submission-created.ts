@@ -16,19 +16,19 @@ export const handler: Handler = async (event, context) => {
   console.log(context);
   console.log(DATASET);
   const body = JSON.parse(event.body || "")?.payload;
-  console.log(JSON.parse(event.body));
+  console.log(body);
 
-  const doc = {
-    _type: "externalEventRequest",
-    eventName: "Test lambda",
-    eventDescription: "Test",
-    eventDate: new Date().toISOString(),
-    eventEmail: "testmail",
-    _id: "drafts."
-  };
+  // const doc = {
+  //   _type: "externalEventRequest",
+  //   eventName: "Test lambda",
+  //   eventDescription: "Test",
+  //   eventDate: new Date().toISOString(),
+  //   eventEmail: "testmail",
+  //   _id: "drafts."
+  // };
 
-  const docRes = await client.create(doc);
-  console.log(docRes._id);
+  // const docRes = await client.create(doc);
+  // console.log(docRes._id);
 
   return {
     statusCode: 200,
