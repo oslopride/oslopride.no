@@ -172,7 +172,6 @@ const EventOverview: React.FC<Props> = () => {
 	if (page === null) return <NotFound />;
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-		console.log(event);
 		event.preventDefault();
 
 		if (formRef.current) {
@@ -185,7 +184,7 @@ const EventOverview: React.FC<Props> = () => {
 				method: "POST",
 				headers: { "Content-Type": "multipart/form-data" },
 				// typescript is dumb?
-				body: new URLSearchParams(formData as any).toString()
+				body: formData
 			})
 				.then(() => console.log("Submitted form"))
 				.catch(error => console.log(error));
