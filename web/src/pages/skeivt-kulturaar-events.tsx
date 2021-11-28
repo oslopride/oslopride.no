@@ -182,6 +182,7 @@ const EventOverview: React.FC<Props> = () => {
 
 			fetch("/", {
 				method: "POST",
+				headers: { "Content-Type": "multipart/form-data" },
 				// typescript is dumb?
 				body: new URLSearchParams(formData as any).toString()
 			})
