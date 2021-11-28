@@ -29,8 +29,8 @@ export const handler: Handler = async (event, context) => {
           })
           .then(res => resolve(res));
       });
-      console.log(assetDocument);
     });
+    console.log(assetDocument);
   }
 
   // const doc = {
