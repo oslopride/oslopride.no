@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 import { RouteComponentProps } from "@reach/router";
 import differenceInHours from "date-fns/differenceInHours";
 import endOfDay from "date-fns/endOfDay";
@@ -21,6 +21,7 @@ import EventCard from "../components/event-card";
 import { ReactComponent as Calendar } from "../assets/calendar.svg";
 import { ReactComponent as Location } from "../assets/location.svg";
 import { Button } from "../components/button";
+import { useDropzone } from "react-dropzone";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -129,6 +130,11 @@ const inputStyle = css`
 	}
 `;
 
+const DropZone = styled.div`
+	border: 1px dotted black;
+	padding: 1em;
+`;
+
 const textareaStyle = css`
 	${inputStyle};
 	min-height: 8em;
@@ -153,30 +159,32 @@ const EventOverview: React.FC<Props> = () => {
 		`*[_type == "eventOverview"] | order(_updatedAt desc) [0]`
 	);
 
+	const formRef = useRef<HTMLFormElement>(null);
+	const onDrop = useCallback(acceptedFiles => {
+		// Do something with the files
+	}, []);
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
 	if (error) return <Error error={JSON.stringify(error)} />;
 	if (page === undefined || events === undefined) return <Loading />;
 	if (page === null) return <NotFound />;
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		console.log(event);
-		const encode = (data: any) => {
-			return Object.keys(data)
-				.map(
-					key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-				)
-				.join("&");
-		};
-
 		event.preventDefault();
-		const newMessage = {};
 
-		fetch("/", {
-			method: "POST",
-			headers: { "Content-Type": "application/x-www-form-urlencoded" },
-			body: encode({ "form-name": "submit-skeivt-kulturaar-event", newMessage })
-		})
-			.then(() => console.log("Submitted form"))
-			.catch(error => console.log(error));
+		if (formRef.current) {
+			const formData = new FormData(formRef.current);
+
+			fetch("/", {
+				method: "POST",
+				headers: { "Content-Type": "multipart/form-data" },
+				// typescript is dumb?
+				body: new URLSearchParams(formData as any).toString()
+			})
+				.then(() => console.log("Submitted form"))
+				.catch(error => console.log(error));
+		}
 	};
 
 	return (
@@ -196,7 +204,12 @@ const EventOverview: React.FC<Props> = () => {
 			</Hero>
 
 			<div css={body}>
-				<form name="submit-skeivt-kulturaar-event" onSubmit={handleSubmit}>
+				<form
+					id="submit-skeivt-kulturaar-event"
+					name="submit-skeivt-kulturaar-event"
+					onSubmit={handleSubmit}
+					ref={formRef}
+				>
 					<input
 						type="hidden"
 						name="form-name"
@@ -284,6 +297,16 @@ const EventOverview: React.FC<Props> = () => {
 								<input css={inputStyle} name="end-time" required type="time" />
 							</div>
 						</Grid>
+					</FormSection>
+					<FormSection>
+						<DropZone {...getRootProps()}>
+							<input {...getInputProps({ name: "image" })} />
+							{isDragActive ? (
+								<p>Drop the files here ...</p>
+							) : (
+								<p>Drag 'n' drop some files here, or click to select files</p>
+							)}
+						</DropZone>
 					</FormSection>
 					<FormSection>
 						<FormSectionHeader>

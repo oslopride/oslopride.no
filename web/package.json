@@ -29,6 +29,7 @@
     "polished": "^3.4.4",
     "react": "^16.13.1",
     "react-dom": "^16.12.0",
+    "react-dropzone": "^11.4.2",
     "react-ga": "^2.7.0",
     "react-helmet": "^6.0.0",
     "react-hot-loader": "^4.12.19",

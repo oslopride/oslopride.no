@@ -30,6 +30,15 @@ export default {
 			type: "string"
 		},
 		{
+			name: "image",
+			title: "Image",
+			description: "Image for event",
+			type: "image",
+			options: {
+				hotspot: true
+			}
+		},
+		{
 			name: "approved",
 			title: "Er denne forespørselen allerede godkjent",
 			type: "boolean"
