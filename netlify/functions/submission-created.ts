@@ -19,8 +19,9 @@ export const handler: Handler = async (event, context) => {
   console.log(body);
 
   if (body.data.image) {
-    const assetDocument = await client.assets.upload("image", body.data.image);
-    console.log(assetDocument);
+    // const assetDocument = await client.assets.upload("image", body.data.image);
+    // console.log(assetDocument);
+    console.log(body.data.image instanceof Blob);
   }
 
   // const doc = {
