@@ -15,7 +15,7 @@ const client = sanityClient({
 export const handler: Handler = async (event, context) => {
   console.log(context);
   console.log(DATASET);
-  const body = JSON.parse(event.body || "")?.payload;
+  const body = JSON.parse(event.body);
   console.log(body);
 
   // const doc = {
