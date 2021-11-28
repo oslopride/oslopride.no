@@ -1,5 +1,6 @@
 import { Handler } from "@netlify/functions";
 import sanityClient from "@sanity/client";
+import https from "https";
 
 const SANITY_TOKEN = process.env.SK2022_SUBMISSION_SANITY_TOKEN;
 const PROJECT_ID = "2ger3rla";
@@ -17,13 +18,19 @@ export const handler: Handler = async (event, context) => {
   // console.log(DATASET);
   const body = JSON.parse(event.body || "")?.payload;
   console.log(body);
-
-  if (body.data.image) {
-    // const assetDocument = await client.assets.upload("image", body.data.image);
-    // console.log(assetDocument);
-    for (const prop in body.data.image) {
-      console.log(prop);
-    }
+  const image = body.data.image;
+  if (image) {
+    const assetDocument = await new Promise(resolve => {
+      https.get(image.url, stream => {
+        client.assets
+          .upload("image", stream as any, {
+            contentType: image.type,
+            filename: image.filename
+          })
+          .then(res => resolve(res));
+      });
+      console.log(assetDocument);
+    });
   }
 
   // const doc = {
