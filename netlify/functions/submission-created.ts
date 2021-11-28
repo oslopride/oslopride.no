@@ -19,8 +19,7 @@ export const handler: Handler = async (event, context) => {
   console.log(body);
 
   if (body.data.image) {
-    console.log(body.data.image.content);
-    console.log(body.data.image.toString());
+    console.log(body.data.image instanceof File);
     // const assetDocument = client.assets
     // .upload('file', file)
     // .then((document) => {
