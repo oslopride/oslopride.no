@@ -21,7 +21,9 @@ export const handler: Handler = async (event, context) => {
   if (body.data.image) {
     // const assetDocument = await client.assets.upload("image", body.data.image);
     // console.log(assetDocument);
-    console.log(body.data.image instanceof Blob);
+    for (const prop in body.data.image) {
+      console.log(prop);
+    }
   }
 
   // const doc = {
