@@ -184,7 +184,7 @@ const EventOverview: React.FC<Props> = () => {
 				method: "POST",
 				headers: { "Content-Type": "multipart/form-data" },
 				// typescript is dumb?
-				body: new URLSearchParams(formData as any).toString()
+				body: formData
 			})
 				.then(() => console.log("Submitted form"))
 				.catch(error => console.log(error));
