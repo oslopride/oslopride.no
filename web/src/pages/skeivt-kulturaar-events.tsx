@@ -177,12 +177,11 @@ const EventOverview: React.FC<Props> = () => {
 		if (formRef.current) {
 			const formData = new FormData(formRef.current);
 			if (imageFile) {
-				formData.set("image", imageFile, imageFile?.name);
+				formData.set("image", imageFile);
 			}
 
 			fetch("/", {
 				method: "POST",
-				headers: { "Content-Type": "multipart/form-data" },
 				// typescript is dumb?
 				body: formData
 			})
