@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { RouteComponentProps } from "@reach/router";
 import differenceInHours from "date-fns/differenceInHours";
 import endOfDay from "date-fns/endOfDay";
@@ -159,13 +159,13 @@ const EventOverview: React.FC<Props> = () => {
 		`*[_type == "eventOverview"] | order(_updatedAt desc) [0]`
 	);
 
+	const [imageFile, setImageFile] = useState<File | null>(null);
 	const formRef = useRef<HTMLFormElement>(null);
-	const {
-		acceptedFiles,
-		getRootProps,
-		getInputProps,
-		isDragActive
-	} = useDropzone();
+	const onDrop = useCallback(acceptedFiles => {
+		setImageFile(acceptedFiles[0]);
+	}, []);
+
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
 	if (error) return <Error error={JSON.stringify(error)} />;
 	if (page === undefined || events === undefined) return <Loading />;
@@ -176,15 +176,14 @@ const EventOverview: React.FC<Props> = () => {
 
 		if (formRef.current) {
 			const formData = new FormData(formRef.current);
-			for (const file of acceptedFiles) {
-				formData.set("image", file, file.name);
+			if (imageFile) {
+				formData.set("image", imageFile, imageFile?.name);
 			}
 
 			fetch("/", {
 				method: "POST",
-				headers: { "Content-Type": "multipart/form-data" },
 				// typescript is dumb?
-				body: formData
+				body: new URLSearchParams(formData as any).toString()
 			})
 				.then(() => console.log("Submitted form"))
 				.catch(error => console.log(error));
