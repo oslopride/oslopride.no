@@ -16,6 +16,7 @@ export const handler: Handler = async (event, context) => {
   console.log(context);
   console.log(DATASET);
   const body = JSON.parse(event.body || "")?.payload;
+  console.log(JSON.parse(event.body));
 
   const doc = {
     _type: "externalEventRequest",
