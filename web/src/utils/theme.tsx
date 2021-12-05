@@ -7,7 +7,10 @@ const theme = {
 			pink: "#f7acb3",
 			purple: "#bfb4d3",
 			lightPurple: "#ebe7f1",
-			lightYellow: "#ffecac"
+			lightYellow: "#ffecac",
+			lightBlue: "#A7C3E8",
+			lightGreen: "#BEE0D6",
+			lightPink: "#FFC8E3"
 		}
 	}
 };

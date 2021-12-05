@@ -22,7 +22,8 @@ import {
 import ErrorPage from "./pages/error";
 import Partner from "./pages/partner";
 import Live from "./pages/live";
-import SkeivtKulturAarEvents from "./pages/skeivt-kulturaar-events";
+import SkeivtKulturAarEvents from "./pages/skeivt-kulturaar/events";
+import SkeivtKulturAarSubmission from "./pages/skeivt-kulturaar/event-submission";
 
 const App: React.FC = () => {
 	const { data, error } = useSWR<
@@ -68,7 +69,8 @@ const App: React.FC = () => {
 						<Article path="/a/:slug" />
 						<ArticleOverview path="/articles" />
 						<EventOverview path="/events" />
-						<SkeivtKulturAarEvents path="/skeivt-kulturaar" />
+						<SkeivtKulturAarEvents path="/skeivt-kulturaar-events" />
+						<SkeivtKulturAarSubmission path="/skeivt-kulturaar-innmelding" />
 						<Live path="/live" />
 						<Event path="/event/:slug" />
 						<PartnerOverview path="/partners" />

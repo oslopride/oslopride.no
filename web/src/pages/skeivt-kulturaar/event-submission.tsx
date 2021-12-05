@@ -2,25 +2,25 @@ import React, { useCallback, useRef, useState } from "react";
 import { RouteComponentProps } from "@reach/router";
 import differenceInHours from "date-fns/differenceInHours";
 import endOfDay from "date-fns/endOfDay";
-import Hero from "../components/hero";
-import theme from "../utils/theme";
+import Hero from "../../components/hero";
+import theme from "../../utils/theme";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
-import { urlFor } from "../sanity";
+import { urlFor } from "../../sanity";
 import useSWR from "swr";
 import {
 	SanityEventPage,
 	SanitySimpleEvent,
 	SanitySimpleEventList
-} from "../sanity/models";
-import Loading from "../components/loading";
-import NotFound from "./not-found";
-import Error from "./error";
+} from "../../sanity/models";
+import Loading from "../../components/loading";
+import NotFound from "../not-found";
+import Error from "../error";
 import Select from "react-select";
-import EventCard from "../components/event-card";
-import { ReactComponent as Calendar } from "../assets/calendar.svg";
-import { ReactComponent as Location } from "../assets/location.svg";
-import { Button } from "../components/button";
+import EventCard from "../../components/event-card";
+import { ReactComponent as Calendar } from "../../assets/calendar.svg";
+import { ReactComponent as Location } from "../../assets/location.svg";
+import { Button } from "../../components/button";
 import { useDropzone } from "react-dropzone";
 
 type Props = { slug?: string } & RouteComponentProps;
