@@ -59,6 +59,32 @@ const EventCard = styled.li`
 	flex-direction: column;
 	max-width: 400px;
 	flex: 1;
+	position: relative;
+`;
+
+const EventDateOverlay = styled.time`
+	position: absolute;
+	top: 16px;
+	left: 16px;
+	display: flex;
+	width: 80px;
+	height: 80px;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	font-weight: bold;
+	font-size: 32px;
+	line-height: 36px;
+	text-align: center;
+	background-color: ${theme.color.main.purple};
+	color: ${theme.color.text.white};
+
+	span {
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+	}
 `;
 
 const EventImage = styled.img`
@@ -93,7 +119,7 @@ const EventContent = styled.div`
 	p {
 		font-size: 14px;
 		line-height: 24px;
-		margin: 4px 0 0;
+		margin: 4px 0 15px;
 	}
 
 	a:link,
@@ -122,7 +148,7 @@ const EventContent = styled.div`
 const TagList = styled.ul`
 	display: flex;
 	flex-wrap: wrap;
-	margin: 24px 0 0;
+	margin: 16px 0 0;
 	gap: 8px;
 	padding: 0;
 `;
@@ -176,6 +202,9 @@ const EventOverview: React.FC<Props> = () => {
 			<div css={body}>
 				<EventList>
 					<EventCard>
+						<EventDateOverlay>
+							21<span>nov</span>
+						</EventDateOverlay>
 						<EventImage
 							src="https://via.placeholder.com/650x950"
 							alt={`Event ${""}`}
@@ -183,12 +212,20 @@ const EventOverview: React.FC<Props> = () => {
 						<EventContent>
 							<time>time</time>
 							<h2>Event name</h2>
-							<p>Location</p>
+							<p>
+								Arrangør -{" "}
+								<a href="/" target="_blank">
+									Google maps link
+								</a>
+							</p>
 							<Link to="/" className="facebook">
 								Facebook link
 							</Link>
 							<Link to="/">Event link</Link>
 							<TagList>
+								<Tag>Tag</Tag>
+								<Tag>More tags</Tag>
+								<Tag>Another one</Tag>
 								<Tag>Tag</Tag>
 							</TagList>
 						</EventContent>
