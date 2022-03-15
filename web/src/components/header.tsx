@@ -207,16 +207,18 @@ const Header: React.FC<Props> = () => {
 					</a>
 				</h1>
 				<p>{date}</p>
-				<button
-					css={buttonStyle}
-					onClick={toggleNavigation}
-					aria-haspopup="menu"
-					aria-controls="menu"
-					aria-expanded={navigationVisible}
-					ref={openMenu}
-				>
-					<span css={hidden}>Open Menu</span>
-				</button>
+				<nav>
+					<button
+						css={buttonStyle}
+						onClick={toggleNavigation}
+						aria-haspopup="menu"
+						aria-controls="menu"
+						aria-expanded={navigationVisible}
+						ref={openMenu}
+					>
+						<span css={hidden}>Open Menu</span>
+					</button>
+				</nav>
 			</header>
 			<div
 				id="menu"
