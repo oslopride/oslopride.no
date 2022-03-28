@@ -125,7 +125,6 @@ const FrontPage: React.FC<Props> = () => {
 					))}
 				</ul>
 			</Hero>
-
 			<div css={body}>
 				{data.body?.no && (
 					<SanityPortableText blocks={data.body.no} css={bodyText} />

@@ -309,10 +309,10 @@ const EventOverview: React.FC<Props> = () => {
 				<h2>{page.title.no}</h2>
 				<p>{page.subtitle && page.subtitle.no}</p>
 			</Hero>
-
 			<h3 css={filterHeader}>Filtrering</h3>
 			<section css={filter}>
 				<Select
+					aria-label="Arena"
 					placeholder="Arena"
 					onChange={setArenaFilters}
 					options={arenaFilters}
@@ -320,6 +320,7 @@ const EventOverview: React.FC<Props> = () => {
 					isMulti
 				/>
 				<Select
+					aria-label="Programtype"
 					placeholder="Programtype"
 					onChange={setCategoryFilters}
 					options={categoryFilters}
@@ -327,6 +328,7 @@ const EventOverview: React.FC<Props> = () => {
 					isMulti
 				/>
 				<Select
+					aria-label="Tilgjengelighet"
 					placeholder="Tilgjengelighet"
 					onChange={setAccessibilityFilters}
 					options={accessibilityFilters}
@@ -334,7 +336,6 @@ const EventOverview: React.FC<Props> = () => {
 					isMulti
 				/>
 			</section>
-
 			<div css={body}>
 				{oldEvent.length > 0 && !showOldEevnts ? (
 					<div css={oldEventButtonContainer}>
