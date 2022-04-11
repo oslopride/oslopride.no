@@ -138,6 +138,7 @@ export default {
 					{ title: "Pride Park", value: "park" },
 					{ title: "Pride House", value: "house" },
 					{ title: "Pride Parade", value: "parade" },
+					{ title: "Pride square", value: "square" },
 					{ title: "External", value: "external" },
 					{ title: "Other", value: "other" }
 				]
@@ -152,8 +153,9 @@ export default {
 				list: [
 					{ title: "Hovedscenen", value: "stage1" },
 					{ title: "BamseScenen", value: "stage2" },
-					{ title: "Youngs", value: "youngs" },
-					{ title: "Melahuset", value: "melahuset" },
+					{ title: "Kulturhuset", value: "kultur" },
+					{ title: "Pride Box", value: "box" },
+					{ title: "Loud ‘n’ Proud", value: "loudproud" },
 					{ title: "Online", value: "online" }
 				]
 			},
