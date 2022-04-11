@@ -174,8 +174,8 @@ export type SanitySimpleEvent = SanityDocument<
 		endTime: string;
 		blurb: Locale<string>;
 		category: "concert" | "debate" | "talk" | "party" | "other";
-		arena: "park" | "house" | "parade" | "external" | "other";
-		venue?: "stage1" | "stage2" | "youngs" | "melahuset" | "online";
+		arena: "park" | "house" | "parade" | "external" | "square" | "other";
+		venue?: "stage1" | "stage2" | "loudproud" | "box" | "kultur" | "online";
 		address?: string;
 		signLanguageInterpreted: boolean;
 		wheelchairFriendly: boolean;
