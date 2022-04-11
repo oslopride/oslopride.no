@@ -190,6 +190,11 @@ const arenaFilters: Filter[] = [
 		value: "parade",
 		label: "Pride Parade",
 		predicate: event => event.arena === "parade"
+	},
+	{
+		value: "square",
+		label: "Pride Square",
+		predicate: event => event.arena === "square"
 	}
 ];
 

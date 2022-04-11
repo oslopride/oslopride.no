@@ -128,10 +128,12 @@ const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
 			return "Hovedscenen";
 		case "stage2":
 			return "BamseScenen";
-		case "youngs":
-			return "Youngs";
-		case "melahuset":
-			return "Melahuset";
+		case "kultur":
+			return "Kulturhuset";
+		case "loudproud":
+			return "Loud ‘n’ Proud";
+		case "box":
+			return "Pride Box";
 		case "online":
 			return "Digitalt";
 		default:
