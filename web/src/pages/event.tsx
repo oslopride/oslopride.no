@@ -115,6 +115,8 @@ const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
 			return "Pride House";
 		case "parade":
 			return "Pride Parade";
+		case "square":
+			return "Pride Square";
 		case "external":
 			return "Eksternt arrangement";
 		default:
