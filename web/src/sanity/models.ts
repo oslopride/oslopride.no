@@ -173,7 +173,16 @@ export type SanitySimpleEvent = SanityDocument<
 		startTime: string;
 		endTime: string;
 		blurb: Locale<string>;
-		category: "concert" | "debate" | "talk" | "party" | "other";
+		category:
+			| "concert"
+			| "debate"
+			| "talk"
+			| "party"
+			| "drag"
+			| "teater"
+			| "minipride"
+			| "dans"
+			| "other";
 		arena: "park" | "house" | "parade" | "external" | "square" | "other";
 		venue?: "stage1" | "stage2" | "loudproud" | "box" | "kultur" | "online";
 		address?: string;
