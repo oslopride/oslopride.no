@@ -31,6 +31,7 @@ const FlexBox = styled.div`
 	flex-direction: row;
 	margin: 2rem 0;
 	align-items: center;
+	width: 100%;
 	@media (max-width: 599px) {
 		flex-direction: column;
 		align-items: flex-start;
