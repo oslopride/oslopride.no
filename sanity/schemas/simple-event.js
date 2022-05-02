@@ -125,6 +125,10 @@ export default {
 					{ title: "Debate", value: "debate" },
 					{ title: "Talk", value: "talk" },
 					{ title: "Party", value: "party" },
+					{ title: "Dans", value: "dans" },
+					{ title: "Teater", value: "teater" },
+					{ title: "Drag", value: "drag" },
+					{ title: "Mini Pride", value: "minipride" },
 					{ title: "Other", value: "other" }
 				]
 			},

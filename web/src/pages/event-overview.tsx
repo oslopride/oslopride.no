@@ -218,6 +218,26 @@ const categoryFilters: Filter[] = [
 		value: "party",
 		label: "Fest",
 		predicate: event => event.category === "party"
+	},
+	{
+		value: "dans",
+		label: "Dans",
+		predicate: event => event.category === "dans"
+	},
+	{
+		value: "drag",
+		label: "Drag",
+		predicate: event => event.category === "drag"
+	},
+	{
+		value: "teater",
+		label: "Teater",
+		predicate: event => event.category === "teater"
+	},
+	{
+		value: "minipride",
+		label: "Mini Pride",
+		predicate: event => event.category === "minipride"
 	}
 ];
 
