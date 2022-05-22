@@ -67,19 +67,14 @@ const oldEventButtonContainer = css`
 	}
 `;
 
-const dateGroupHeader = css`
-	text-transform: capitalize;
-	flex: 1 1 100%;
-	font-size: 1.75rem;
-	margin: 2rem 0;
-	text-align: center;
-`;
-
-const articleGroup = css`
+const eventList = css`
 	display: grid;
 	grid-template-columns: 1fr;
 	justify-items: center;
 	gap: 1.35rem 1rem;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 
 	@media (min-width: 650px) {
 		grid-template-columns: 1fr 1fr;
@@ -240,18 +235,18 @@ const EventOverview: React.FC<Props> = () => {
 
 	const [showOldEvents, setShowOldEvents] = React.useState(false);
 
-	const eventsToDisplay = useMemo(() => {
-		let eventsToDisplay: SanitySimpleEventList = [];
+	const futureEvents = useMemo(() => {
+		let futureEvents: SanitySimpleEventList = [];
 		if (events) {
 			// just filter out old events by checking if they are in the future.
 			const now = new Date();
-			eventsToDisplay = events.filter(event => {
+			futureEvents = events.filter(event => {
 				const eventEnd = new Date(event.endTime);
 				// return isAfter(eventEnd, now);
 				return true;
 			});
 		}
-		return eventsToDisplay;
+		return futureEvents;
 	}, [events]);
 
 	const oldEvents = useMemo(() => {
@@ -270,27 +265,35 @@ const EventOverview: React.FC<Props> = () => {
 	if (page === undefined || events === undefined) return <Loading />;
 	if (page === null) return <NotFound />;
 
-	const filteredEvents =
-		events &&
-		events.filter(e => {
-			return (
-				(selectedArenaFilters.length < 1 ||
-					selectedArenaFilters.reduce<boolean>(
-						(prev, filter) => prev || filter.predicate(e),
-						false
-					)) &&
-				(selectedCategoryFilters.length < 1 ||
-					selectedCategoryFilters.reduce<boolean>(
-						(prev, filter) => prev || filter.predicate(e),
-						false
-					)) &&
-				(selectedAccessibilityFilters.length < 1 ||
-					selectedAccessibilityFilters.reduce<boolean>(
-						(prev, filter) => prev && filter.predicate(e),
-						true
-					))
-			);
-		});
+	const filteredEvents = useMemo(() => {
+		// events.filter(e => {
+		// 	return (
+		// 		(selectedArenaFilters.length < 1 ||
+		// 			selectedArenaFilters.reduce<boolean>(
+		// 				(prev, filter) => prev || filter.predicate(e),
+		// 				false
+		// 			)) &&
+		// 		(selectedCategoryFilters.length < 1 ||
+		// 			selectedCategoryFilters.reduce<boolean>(
+		// 				(prev, filter) => prev || filter.predicate(e),
+		// 				false
+		// 			)) &&
+		// 		(selectedAccessibilityFilters.length < 1 ||
+		// 			selectedAccessibilityFilters.reduce<boolean>(
+		// 				(prev, filter) => prev && filter.predicate(e),
+		// 				true
+		// 			))
+		// 	);
+		// });
+		return futureEvents;
+	}, [
+		futureEvents,
+		oldEvents,
+		selectedArenaFilters,
+		selectedAccessibilityFilters,
+		selectedCategoryFilters,
+		showOldEvents
+	]);
 
 	return (
 		<>
@@ -334,18 +337,31 @@ const EventOverview: React.FC<Props> = () => {
 					isMulti
 				/>
 			</section>
+			<ul>
+				{[
+					...selectedAccessibilityFilters,
+					...selectedArenaFilters,
+					...selectedCategoryFilters
+				].map(filter => (
+					<li key={filter.label}>{filter.label}</li>
+				))}
+			</ul>
 			<div css={body}>
-				{eventsToDisplay.length > 0 ? (
-					<ul css={articleGroup}>
-						{eventsToDisplay.map(event => (
+				{futureEvents.length > 0 && (
+					<p>
+						Viser {filteredEvents.length} av {futureEvents.length} arrangement
+					</p>
+				)}
+				{filteredEvents.length > 0 && (
+					<ul css={eventList}>
+						{filteredEvents.map(event => (
 							<li key={event._id}>
 								<EventCard event={event} />
 							</li>
 						))}
 					</ul>
-				) : (
-					<p>Ingen eventer enda</p>
 				)}
+				{futureEvents.length === 0 && <p>Ingen eventer enda</p>}
 			</div>
 		</>
 	);
