@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { RouteComponentProps } from "@reach/router";
-import differenceInHours from "date-fns/differenceInHours";
-import endOfDay from "date-fns/endOfDay";
 import Hero from "../components/hero";
 import theme from "../utils/theme";
 import { css } from "@emotion/core";
@@ -17,6 +15,7 @@ import NotFound from "./not-found";
 import Error from "./error";
 import Select from "react-select";
 import EventCard from "../components/event-card";
+import { isBefore } from "date-fns";
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -120,54 +119,6 @@ const filterHeader = css`
 	text-align: center;
 	margin-top: 2rem;
 `;
-
-const groupEventsByDay = (events: SanitySimpleEventList) => {
-	if (events.length === 0) {
-		return [];
-	}
-
-	const groupedEvents = [[events[0]]];
-
-	events.slice(1).forEach(event => {
-		const lastGroup = groupedEvents[groupedEvents.length - 1];
-		const lastEvent = lastGroup[lastGroup.length - 1];
-
-		const lastEventStart = new Date(lastEvent.startTime);
-		const currentEventStart = new Date(event.startTime);
-
-		if (
-			lastEventStart.toLocaleDateString("nb-NO", {
-				year: "numeric",
-				month: "numeric",
-				day: "numeric"
-			}) ===
-			currentEventStart.toLocaleDateString("nb-NO", {
-				year: "numeric",
-				month: "numeric",
-				day: "numeric"
-			})
-		) {
-			lastGroup.push(event);
-		} else {
-			groupedEvents.push([event]);
-		}
-	});
-
-	const upcommingEvents: typeof groupedEvents = [];
-	const oldEvents: typeof groupedEvents = [];
-	const currentDate = new Date();
-
-	groupedEvents.forEach(group => {
-		const groupDate = new Date(group[0].startTime);
-		if (differenceInHours(currentDate, endOfDay(groupDate)) >= 5) {
-			oldEvents.push(group);
-		} else {
-			upcommingEvents.push(group);
-		}
-	});
-
-	return [oldEvents, upcommingEvents];
-};
 
 type Filter = {
 	value: string;
@@ -287,7 +238,33 @@ const EventOverview: React.FC<Props> = () => {
 		setAccessibilityFilters
 	] = React.useState<Filter[]>([]);
 
-	const [showOldEevnts, setShowOldEvents] = React.useState(false);
+	const [showOldEvents, setShowOldEvents] = React.useState(false);
+
+	const eventsToDisplay = useMemo(() => {
+		let eventsToDisplay: SanitySimpleEventList = [];
+		if (events) {
+			// just filter out old events by checking if they are in the future.
+			const now = new Date();
+			eventsToDisplay = events.filter(event => {
+				const eventEnd = new Date(event.endTime);
+				// return isAfter(eventEnd, now);
+				return true;
+			});
+		}
+		return eventsToDisplay;
+	}, [events]);
+
+	const oldEvents = useMemo(() => {
+		let oldEvents: SanitySimpleEventList = [];
+		if (events) {
+			const now = new Date();
+			oldEvents = events.filter(event => {
+				const eventEnd = new Date(event.endTime);
+				return isBefore(eventEnd, now);
+			});
+		}
+		return oldEvents;
+	}, [events, showOldEvents]);
 
 	if (error) return <Error error={JSON.stringify(error)} />;
 	if (page === undefined || events === undefined) return <Loading />;
@@ -314,15 +291,6 @@ const EventOverview: React.FC<Props> = () => {
 					))
 			);
 		});
-
-	const [oldEvent, upcommingEvents] =
-		filteredEvents && filteredEvents.length > 0
-			? groupEventsByDay(filteredEvents)
-			: [[], []];
-
-	const displayEvents = showOldEevnts
-		? [...oldEvent, ...upcommingEvents]
-		: upcommingEvents;
 
 	return (
 		<>
@@ -367,30 +335,14 @@ const EventOverview: React.FC<Props> = () => {
 				/>
 			</section>
 			<div css={body}>
-				{oldEvent.length > 0 && !showOldEevnts ? (
-					<div css={oldEventButtonContainer}>
-						<button onClick={() => setShowOldEvents(true)}>
-							Vis tidligere eventer
-						</button>
-					</div>
-				) : null}
-				{displayEvents && displayEvents.length > 0 ? (
-					displayEvents.map(group => (
-						<React.Fragment key={group[0].startTime}>
-							<h2 css={dateGroupHeader}>
-								{new Date(group[0].startTime).toLocaleDateString("nb-NO", {
-									weekday: "long",
-									day: "numeric",
-									month: "long"
-								})}
-							</h2>
-							<div css={articleGroup}>
-								{group?.map(event => (
-									<EventCard key={event._id} event={event} />
-								))}
-							</div>
-						</React.Fragment>
-					))
+				{eventsToDisplay.length > 0 ? (
+					<ul css={articleGroup}>
+						{eventsToDisplay.map(event => (
+							<li key={event._id}>
+								<EventCard event={event} />
+							</li>
+						))}
+					</ul>
 				) : (
 					<p>Ingen eventer enda</p>
 				)}
