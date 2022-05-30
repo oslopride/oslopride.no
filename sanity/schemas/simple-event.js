@@ -160,7 +160,8 @@ export default {
 					{ title: "Kulturhuset", value: "kultur" },
 					{ title: "Pride Box", value: "box" },
 					{ title: "Loud ‘n’ Proud", value: "loudproud" },
-					{ title: "Online", value: "online" }
+					{ title: "Online", value: "online" },
+					{ title: "Youngs", value: "youngs" }
 				]
 			},
 			fieldset: "location"
