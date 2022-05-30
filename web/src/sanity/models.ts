@@ -184,7 +184,14 @@ export type SanitySimpleEvent = SanityDocument<
 			| "dans"
 			| "other";
 		arena: "park" | "house" | "parade" | "external" | "square" | "other";
-		venue?: "stage1" | "stage2" | "loudproud" | "box" | "kultur" | "online";
+		venue?:
+			| "stage1"
+			| "stage2"
+			| "loudproud"
+			| "box"
+			| "kultur"
+			| "online"
+			| "youngs";
 		address?: string;
 		signLanguageInterpreted: boolean;
 		wheelchairFriendly: boolean;
