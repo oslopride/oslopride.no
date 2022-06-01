@@ -190,6 +190,7 @@ export type SanitySimpleEvent = SanityDocument<
 			| "loudproud"
 			| "box"
 			| "kultur"
+			| "minipride"
 			| "online"
 			| "youngs";
 		address?: string;

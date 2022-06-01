@@ -21,6 +21,8 @@ const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
 			return "Digitalt";
 		case "youngs":
 			return "Youngs";
+		case "minipride":
+			return "Mini Pride";
 		default:
 			return "Annet";
 	}
