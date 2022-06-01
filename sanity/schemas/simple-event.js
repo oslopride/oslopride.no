@@ -158,6 +158,7 @@ export default {
 					{ title: "Hovedscenen", value: "stage1" },
 					{ title: "BamseScenen", value: "stage2" },
 					{ title: "Kulturhuset", value: "kultur" },
+					{ title: "Mini Pride", value: "minipride" },
 					{ title: "Pride Box", value: "box" },
 					{ title: "Loud ‘n’ Proud", value: "loudproud" },
 					{ title: "Online", value: "online" },
