@@ -177,6 +177,7 @@ export type SanitySimpleEvent = SanityDocument<
 			| "concert"
 			| "debate"
 			| "talk"
+			| "lecture"
 			| "party"
 			| "drag"
 			| "teater"

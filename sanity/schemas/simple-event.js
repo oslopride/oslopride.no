@@ -124,6 +124,7 @@ export default {
 					{ title: "Concert", value: "concert" },
 					{ title: "Debate", value: "debate" },
 					{ title: "Talk", value: "talk" },
+					{ title: "Lecture", value: "lecture" },
 					{ title: "Party", value: "party" },
 					{ title: "Dans", value: "dans" },
 					{ title: "Teater", value: "teater" },
