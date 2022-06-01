@@ -206,8 +206,13 @@ const categoryFilters: Filter[] = [
 	},
 	{
 		value: "talk",
-		label: "Foredrag",
+		label: "Samtale",
 		predicate: event => event.category === "talk"
+	},
+	{
+		value: "lecture",
+		label: "Foredrag",
+		predicate: event => event.category === "lecture"
 	},
 	{
 		value: "debate",
