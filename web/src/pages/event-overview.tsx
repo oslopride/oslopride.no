@@ -50,18 +50,6 @@ const body = css`
 	}
 `;
 
-const oldEventButtonContainer = css`
-	display: flex;
-	justify-content: flex-end;
-
-	& > button {
-		border: none;
-		background: inherit;
-		text-decoration: underline;
-		cursor: pointer;
-	}
-`;
-
 const eventsShownCount = css`
 	text-align: center;
 	color: ${theme.color.text.black};
@@ -263,26 +251,29 @@ const EventOverview: React.FC<Props> = () => {
 	}, [events, showOldEvents]);
 
 	const filteredEvents = useMemo(() => {
-		// events.filter(e => {
-		// 	return (
-		// 		(selectedArenaFilters.length < 1 ||
-		// 			selectedArenaFilters.reduce<boolean>(
-		// 				(prev, filter) => prev || filter.predicate(e),
-		// 				false
-		// 			)) &&
-		// 		(selectedCategoryFilters.length < 1 ||
-		// 			selectedCategoryFilters.reduce<boolean>(
-		// 				(prev, filter) => prev || filter.predicate(e),
-		// 				false
-		// 			)) &&
-		// 		(selectedAccessibilityFilters.length < 1 ||
-		// 			selectedAccessibilityFilters.reduce<boolean>(
-		// 				(prev, filter) => prev && filter.predicate(e),
-		// 				true
-		// 			))
-		// 	);
-		// });
-		return futureEvents;
+		const eventsToFilterFrom = showOldEvents
+			? [...futureEvents, ...oldEvents]
+			: futureEvents;
+
+		return eventsToFilterFrom.filter(e => {
+			return (
+				(selectedArenaFilters.length < 1 ||
+					selectedArenaFilters.reduce<boolean>(
+						(prev, filter) => prev || filter.predicate(e),
+						false
+					)) &&
+				(selectedCategoryFilters.length < 1 ||
+					selectedCategoryFilters.reduce<boolean>(
+						(prev, filter) => prev || filter.predicate(e),
+						false
+					)) &&
+				(selectedAccessibilityFilters.length < 1 ||
+					selectedAccessibilityFilters.reduce<boolean>(
+						(prev, filter) => prev && filter.predicate(e),
+						true
+					))
+			);
+		});
 	}, [
 		futureEvents,
 		oldEvents,
