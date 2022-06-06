@@ -6,6 +6,8 @@ import {
 } from "downshift";
 import { css } from "@emotion/core";
 import { FiChevronDown } from "react-icons/fi";
+import { MdClose } from "react-icons/md";
+import theme from "../utils/theme";
 
 const menu = css`
 	position: absolute;
@@ -13,13 +15,30 @@ const menu = css`
 	list-style-type: none;
 	top: 100%;
 	width: 100%;
+	z-index: 2;
+	margin: 0;
+	background-color: #e6ddef;
+	font-size: 0.9rem;
+	font-weight: 500;
 
-	.highlighted {
-		background-color: red;
+	li {
+		cursor: pointer;
+		padding: 15px 21px 15px 15px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		line-height: 1;
+
+		svg {
+			width: 1rem;
+			height: 1rem;
+		}
 	}
 
+	.highlighted {
+		background-color: #c5b6d5;
+	}
 	.selected {
-		background-color: green;
 	}
 `;
 
@@ -36,10 +55,15 @@ const container = css`
 		height: 100%;
 		background-color: #e6ddef;
 		border: none;
+		cursor: pointer;
+		font-weight: 700;
+		font-size: 0.9rem;
 
 		svg {
 			transition: transform 150ms ease-in-out;
 			margin-left: auto;
+			width: 1.2rem;
+			height: 1.2rem;
 		}
 
 		&[aria-expanded="true"] svg {
@@ -81,7 +105,7 @@ export function MultiSelect<T>({
 		getDropdownProps,
 		addSelectedItem,
 		removeSelectedItem
-	} = useMultipleSelection({ onSelectedItemsChange });
+	} = useMultipleSelection({ onSelectedItemsChange, selectedItems });
 
 	const {
 		isOpen,
@@ -139,17 +163,21 @@ export function MultiSelect<T>({
 			</button>
 			<ul {...getMenuProps()} css={menu}>
 				{isOpen &&
-					items.map((item, index) => (
-						<li
-							className={`${highlightedIndex === index ? "highlighted" : ""} ${
-								selectedItems.includes(item) ? "selected" : ""
-							}`}
-							key={`${displayFormat(item)}${index}`}
-							{...getItemProps({ item, index })}
-						>
-							{displayFormat(item)}
-						</li>
-					))}
+					items.map((item, index) => {
+						const isSelected = selectedItems.includes(item);
+						const isHighlighted = highlightedIndex === index;
+						return (
+							<li
+								className={`${isHighlighted ? "highlighted" : ""} ${
+									isSelected ? "selected" : ""
+								}`}
+								key={`${displayFormat(item)}${index}`}
+								{...getItemProps({ item, index })}
+							>
+								{displayFormat(item)} {isSelected && <MdClose />}
+							</li>
+						);
+					})}
 			</ul>
 		</div>
 	);

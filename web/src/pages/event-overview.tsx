@@ -20,7 +20,6 @@ import {
 import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
-import Select from "react-select";
 import EventCard from "../components/event-card";
 import { isAfter, isBefore, isSameDay } from "date-fns";
 import { BiCalendar } from "react-icons/bi";
@@ -51,6 +50,11 @@ const activeFilterList = css`
 	list-style-type: none;
 	padding: 0;
 	gap: 12px;
+	min-height: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin: 0 0 40px;
 `;
 
 const body = css`
@@ -128,7 +132,7 @@ const filter = css`
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 1rem;
-	margin: 6rem 0 2rem;
+	margin: 6rem 0 1rem;
 	max-width: 1000px;
 
 	@media (min-width: 650px) {
@@ -148,6 +152,14 @@ const filterInput = css`
 	padding: 20px;
 	background-color: #e6ddef;
 	border: none;
+	cursor: pointer;
+	font-weight: 700;
+	font-size: 0.9rem;
+
+	svg {
+		width: 1.2rem;
+		height: 1.2rem;
+	}
 `;
 
 type Filter = {
@@ -270,6 +282,13 @@ const EventOverview: React.FC<Props> = () => {
 	const handleDateClick = e => {
 		e.preventDefault();
 		setDateIsOpen(prev => !prev);
+	};
+
+	const removeFilter = (
+		setFn: React.Dispatch<React.SetStateAction<Filter[]>>,
+		label: string
+	) => {
+		setFn(prev => prev.filter(item => item.label !== label));
 	};
 
 	const handleOutsideDateClick = (
@@ -399,7 +418,7 @@ const EventOverview: React.FC<Props> = () => {
 							onClick={handleDateClick}
 							ref={dateBtnRef}
 						>
-							Date <BiCalendar />
+							Dato <BiCalendar />
 						</button>
 						{dateIsOpen && (
 							<div style={{ position: "absolute", zIndex: 3 }}>
@@ -422,29 +441,17 @@ const EventOverview: React.FC<Props> = () => {
 						onChange={items => items && setArenaFilters(items)}
 						placeholder="Arena"
 					/>
-					<Select
-						aria-label="Arena"
-						placeholder="Arena"
-						onChange={setArenaFilters}
-						options={arenaFilters}
-						isSearchable={false}
-						isMulti
-					/>
-					<Select
-						aria-label="Programtype"
+					<MultiSelect
+						items={categoryFilters}
+						selectedItems={selectedCategoryFilters}
+						onChange={items => items && setCategoryFilters(items)}
 						placeholder="Programtype"
-						onChange={setCategoryFilters}
-						options={categoryFilters}
-						isSearchable={false}
-						isMulti
 					/>
-					<Select
-						aria-label="Tilgjengelighet"
+					<MultiSelect
+						items={accessibilityFilters}
+						selectedItems={selectedAccessibilityFilters}
+						onChange={items => items && setAccessibilityFilters(items)}
 						placeholder="Tilgjengelighet"
-						onChange={setAccessibilityFilters}
-						options={accessibilityFilters}
-						isSearchable={false}
-						isMulti
 					/>
 				</section>
 				<ul css={activeFilterList}>
@@ -462,12 +469,40 @@ const EventOverview: React.FC<Props> = () => {
 							</button>
 						</li>
 					)}
-					{[
-						...selectedAccessibilityFilters,
-						...selectedArenaFilters,
-						...selectedCategoryFilters
-					].map(filter => (
-						<li key={filter.label}>{filter.label}</li>
+					{selectedArenaFilters.map(filter => (
+						<li key={filter.label}>
+							<button
+								css={removeFilterTag}
+								onClick={() => removeFilter(setArenaFilters, filter.label)}
+							>
+								<MdClose />
+								{filter.label}
+							</button>
+						</li>
+					))}
+					{selectedCategoryFilters.map(filter => (
+						<li key={filter.label}>
+							<button
+								css={removeFilterTag}
+								onClick={() => removeFilter(setCategoryFilters, filter.label)}
+							>
+								<MdClose />
+								{filter.label}
+							</button>
+						</li>
+					))}
+					{selectedAccessibilityFilters.map(filter => (
+						<li key={filter.label}>
+							<button
+								css={removeFilterTag}
+								onClick={() =>
+									removeFilter(setAccessibilityFilters, filter.label)
+								}
+							>
+								<MdClose />
+								{filter.label}
+							</button>
+						</li>
 					))}
 				</ul>
 				{futureEvents.length > 0 && (
