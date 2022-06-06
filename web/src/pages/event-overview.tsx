@@ -34,19 +34,14 @@ const hero = css`
 const body = css`
 	margin: 5vh auto 3rem auto;
 	width: 95vw;
-	max-width: 1200px;
+	max-width: 1250px;
 
 	@media (min-width: 800px) {
 		width: 90vw;
 	}
 
-	p {
-		margin-bottom: 0;
-		color: ${theme.color.text.grey};
-
-		a {
-			color: ${theme.color.main.pink};
-		}
+	a {
+		color: ${theme.color.main.pink};
 	}
 
 	h3 {
@@ -67,11 +62,18 @@ const oldEventButtonContainer = css`
 	}
 `;
 
+const eventsShownCount = css`
+	text-align: center;
+	color: ${theme.color.text.black};
+	font-weight: 700;
+	font-size: 1rem;
+`;
+
 const eventList = css`
 	display: grid;
 	grid-template-columns: 1fr;
 	justify-items: center;
-	gap: 1.35rem 1rem;
+	gap: 48px 32px;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -83,13 +85,17 @@ const eventList = css`
 	@media (min-width: 1200px) {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
+
+	& > li {
+		width: 100%;
+	}
 `;
 
 const filter = css`
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 1rem;
-	margin: 0 auto 2rem;
+	margin: 6rem auto 2rem;
 	padding: 0 1rem;
 	max-width: 1000px;
 
@@ -108,11 +114,6 @@ const filter = css`
 			grid-column-end: span 1;
 		}
 	}
-`;
-
-const filterHeader = css`
-	text-align: center;
-	margin-top: 2rem;
 `;
 
 type Filter = {
@@ -261,10 +262,6 @@ const EventOverview: React.FC<Props> = () => {
 		return oldEvents;
 	}, [events, showOldEvents]);
 
-	if (error) return <Error error={JSON.stringify(error)} />;
-	if (page === undefined || events === undefined) return <Loading />;
-	if (page === null) return <NotFound />;
-
 	const filteredEvents = useMemo(() => {
 		// events.filter(e => {
 		// 	return (
@@ -295,6 +292,10 @@ const EventOverview: React.FC<Props> = () => {
 		showOldEvents
 	]);
 
+	if (error) return <Error error={JSON.stringify(error)} />;
+	if (page === undefined || events === undefined) return <Loading />;
+	if (page === null) return <NotFound />;
+
 	return (
 		<>
 			<Hero
@@ -306,11 +307,11 @@ const EventOverview: React.FC<Props> = () => {
 				}
 				css={hero}
 				centerContent
+				displayScrollButton
 			>
 				<h2>{page.title.no}</h2>
 				<p>{page.subtitle && page.subtitle.no}</p>
 			</Hero>
-			<h3 css={filterHeader}>Filtrering</h3>
 			<section css={filter}>
 				<Select
 					aria-label="Arena"
@@ -348,7 +349,7 @@ const EventOverview: React.FC<Props> = () => {
 			</ul>
 			<div css={body}>
 				{futureEvents.length > 0 && (
-					<p>
+					<p css={eventsShownCount}>
 						Viser {filteredEvents.length} av {futureEvents.length} arrangement
 					</p>
 				)}

@@ -3,7 +3,7 @@ import React from "react";
 import { urlFor } from "../sanity";
 import { SanitySimpleEvent } from "../sanity/models";
 import theme from "../utils/theme";
-import { LinkButton } from "./link";
+import Link from "./link";
 
 const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
 	switch (venue) {
@@ -53,6 +53,7 @@ const style = css`
 	.imageWrapper {
 		padding-bottom: 56.2%;
 		position: relative;
+		height: 270px;
 	}
 
 	img {
@@ -77,22 +78,29 @@ const style = css`
 		flex-direction: column;
 	}
 
-	.timeAndPlace {
-		display: flex;
-		justify-content: space-between;
-
-		time {
-			color: #656781;
-		}
-
-		span {
-			background: ${theme.color.background.lightYellow};
-		}
+	.time {
+		color: ${theme.color.text.grey};
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		font-size: 0.8rem;
 	}
 
-	h3 {
+	h3,
+	h3 a:link,
+	h3 a:visited {
 		font-size: 1.3rem;
 		line-height: 1.4;
+		font-weight: 700;
+		color: #40147e;
+		margin-top: 8px;
+		text-decoration: none;
+	}
+
+	.eventLocation {
+		font-size: 0.9rem;
+		color: ${theme.color.text.black};
+		font-weight: 700;
 	}
 
 	ul {
@@ -125,52 +133,49 @@ const style = css`
 	}
 `;
 
-const EventCard: React.FC<{ event: SanitySimpleEvent }> = ({ event }) => (
-	<article css={style}>
-		<div className="imageWrapper">
-			<img
-				src={
-					urlFor(event.image)
-						.width(500)
-						.url() || ""
-				}
-				alt={event.title.no}
-			/>
-		</div>
-
-		{!event.official && <div className="external">Eksternt arrangement</div>}
-
-		<div className="contentWrapper">
-			<div className="timeAndPlace">
-				<time dateTime={event.startTime}>
-					{new Date(event.startTime).toLocaleTimeString("nb-NO", {
-						hour: "2-digit",
-						minute: "2-digit"
-					})}
-					{event.venue ? `, ${getVenueName(event.venue)}` : ""}
-				</time>
-				{getArenaName(event.arena) && (
-					<span className="tag">{getArenaName(event.arena)}</span>
-				)}
+const EventCard: React.FC<{ event: SanitySimpleEvent }> = ({ event }) => {
+	const eventDate = new Date(event.startTime);
+	const eventDateFormatted = eventDate.toLocaleDateString("nb-NO", {
+		day: "2-digit",
+		month: "long",
+		year: "numeric"
+	});
+	const timeFormatted = eventDate.toLocaleTimeString("nb-NO", {
+		hour: "2-digit",
+		minute: "2-digit"
+	});
+	const dateFormatted = `${eventDateFormatted} - kl. ${timeFormatted}`;
+	return (
+		<article css={style}>
+			<div className="imageWrapper">
+				<img
+					src={
+						urlFor(event.image)
+							.width(500)
+							.url() || ""
+					}
+					alt={event.title.no}
+				/>
 			</div>
-			<h3>{event.title.no}</h3>
-			<ul>
-				{event.liveStream && <li className="tag">strømmes</li>}
-				{event.alcoholFree && <li className="tag">rusfritt</li>}
-				{event.wheelchairFriendly && <li className="tag">rullestolvennlig</li>}
-				{event.signLanguageInterpreted && (
-					<li className="tag">tegnspråktolket</li>
-				)}
-			</ul>
-			<LinkButton
-				link={{
-					_type: "internalInternalLink",
-					text: "Se detaljer",
-					url: `/event/${event.slug.current}`
-				}}
-			/>
-		</div>
-	</article>
-);
+			<div className="contentWrapper">
+				<time dateTime={event.startTime} className="time">
+					{dateFormatted}
+				</time>
+				<h3>
+					<Link
+						link={{
+							_type: "internalInternalLink",
+							url: `/event/${event.slug.current}`
+						}}
+					>
+						{event.title.no}
+					</Link>
+				</h3>
+				<p className="eventLocation">{getArenaName(event.arena)}</p>
+				<span className="tag">{event.category}</span>
+			</div>
+		</article>
+	);
+};
 
 export default EventCard;
