@@ -76,6 +76,8 @@ const eventList = css`
 
 	& > li {
 		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 `;
 
