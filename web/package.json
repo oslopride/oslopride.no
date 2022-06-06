@@ -13,6 +13,7 @@
     "@types/react-datepicker": "^4.4.2",
     "date-fns": "^2.14.0",
     "dayjs": "^1.11.3",
+    "downshift": "^6.1.7",
     "get-youtube-id": "^1.0.1",
     "polished": "^3.4.4",
     "react": "^16.13.1",

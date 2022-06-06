@@ -26,6 +26,7 @@ import { isAfter, isBefore, isSameDay } from "date-fns";
 import { BiCalendar } from "react-icons/bi";
 import "dayjs/locale/nb";
 import { MdClose } from "react-icons/md";
+import { MultiSelect } from "../components/multiselect";
 
 registerLocale("nb", nb);
 setDefaultLocale("nb");
@@ -78,12 +79,6 @@ const eventsShownCount = css`
 	font-size: 1rem;
 `;
 
-const datePickerBtn = css`
-	display: flex;
-	width: 100%;
-	justify-content: space-between;
-`;
-
 const eventList = css`
 	display: grid;
 	grid-template-columns: 1fr;
@@ -134,7 +129,6 @@ const filter = css`
 	grid-template-columns: 1fr;
 	gap: 1rem;
 	margin: 6rem 0 2rem;
-	padding: 0 1rem;
 	max-width: 1000px;
 
 	@media (min-width: 650px) {
@@ -144,6 +138,16 @@ const filter = css`
 	@media (min-width: 900px) {
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 	}
+`;
+
+const filterInput = css`
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	background-color: #e6ddef;
+	border: none;
 `;
 
 type Filter = {
@@ -272,7 +276,10 @@ const EventOverview: React.FC<Props> = () => {
 		e: React.MouseEvent<HTMLDivElement, MouseEvent>
 	) => {
 		// avoid closing and opening when clicking button
-		if (e.target !== dateBtnRef.current) {
+		if (
+			e.target !== dateBtnRef.current &&
+			!dateBtnRef.current?.contains(e.target as Node)
+		) {
 			setDateIsOpen(false);
 		}
 	};
@@ -388,7 +395,7 @@ const EventOverview: React.FC<Props> = () => {
 				<section css={filter}>
 					<div>
 						<button
-							css={datePickerBtn}
+							css={filterInput}
 							onClick={handleDateClick}
 							ref={dateBtnRef}
 						>
@@ -409,13 +416,12 @@ const EventOverview: React.FC<Props> = () => {
 							</div>
 						)}
 					</div>
-					{/* <DatePicker
-					locale="nb"
-					minDate={minDate}
-					maxDate={maxDate}
-					icon={<BiCalendar />}
-					placeholder="Dato"
-				/> */}
+					<MultiSelect
+						items={arenaFilters}
+						selectedItems={selectedArenaFilters}
+						onChange={items => items && setArenaFilters(items)}
+						placeholder="Arena"
+					/>
 					<Select
 						aria-label="Arena"
 						placeholder="Arena"
