@@ -4,28 +4,19 @@ import { urlFor } from "../sanity";
 import { SanitySimpleEvent } from "../sanity/models";
 import theme from "../utils/theme";
 import Link from "./link";
+import { MdLocationPin } from "react-icons/md";
 
-const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
-	switch (venue) {
-		case "stage1":
-			return "Hovedscenen";
-		case "stage2":
-			return "BamseScenen";
-		case "kultur":
-			return "Kulturhuset";
-		case "loudproud":
-			return "Loud ‘n’ Proud";
-		case "box":
-			return "Pride Box";
-		case "online":
-			return "Digitalt";
-		case "youngs":
-			return "Youngs";
-		case "minipride":
-			return "Mini Pride";
-		default:
-			return "Annet";
-	}
+const EVENT_CATEGORIES = {
+	concert: "Konsert",
+	talk: "Samtale",
+	lecture: "Foredrag",
+	debate: "Debatt",
+	party: "Fest",
+	dans: "Dans",
+	drag: "Drag",
+	teater: "Teater",
+	minipride: "Mini Pride",
+	other: "Annen"
 };
 
 const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
@@ -63,13 +54,6 @@ const style = css`
 		object-fit: cover;
 	}
 
-	.external {
-		text-align: center;
-		padding: 0.5em;
-		background: ${theme.color.background.lightYellow};
-		font-weight: bold;
-	}
-
 	.contentWrapper {
 		background: #f7f8fa;
 		padding: 24px;
@@ -101,35 +85,23 @@ const style = css`
 		font-size: 0.9rem;
 		color: ${theme.color.text.black};
 		font-weight: 700;
-	}
-
-	ul {
-		flex: 1;
-		list-style: none;
-		padding: 0;
 		display: flex;
-		flex-flow: row wrap;
-		justify-content: space-evenly;
 		align-items: center;
-		margin-bottom: 0;
-
-		li {
-			margin: 8px;
-		}
+		gap: 8px;
+		margin: 8px 0 0;
 	}
 
 	.tag {
 		padding: 8px 16px;
-		background: #ebe7f1;
+		background: #bee0d6;
 		border-radius: 50px;
-		font-size: 0.75rem;
+		font-size: 0.8rem;
 		line-height: 1.2;
-		font-weight: bold;
-	}
-
-	a {
-		margin-top: 1rem;
-		width: 100%;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		align-self: flex-start;
+		margin-top: 16px;
 	}
 `;
 
@@ -171,8 +143,13 @@ const EventCard: React.FC<{ event: SanitySimpleEvent }> = ({ event }) => {
 						{event.title.no}
 					</Link>
 				</h3>
-				<p className="eventLocation">{getArenaName(event.arena)}</p>
-				<span className="tag">{event.category}</span>
+				{getArenaName(event.arena) && (
+					<p className="eventLocation">
+						<MdLocationPin />
+						{getArenaName(event.arena)}
+					</p>
+				)}
+				<span className="tag">{EVENT_CATEGORIES[event.category]}</span>
 			</div>
 		</article>
 	);
