@@ -1,10 +1,17 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { RouteComponentProps } from "@reach/router";
 import Hero from "../components/hero";
 import theme from "../utils/theme";
 import { css } from "@emotion/core";
 import { urlFor } from "../sanity";
 import useSWR from "swr";
+import ReactDatePicker, {
+	registerLocale,
+	setDefaultLocale
+} from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+import nb from "date-fns/locale/nb";
 import {
 	SanityEventPage,
 	SanitySimpleEvent,
@@ -15,7 +22,13 @@ import NotFound from "./not-found";
 import Error from "./error";
 import Select from "react-select";
 import EventCard from "../components/event-card";
-import { isBefore } from "date-fns";
+import { isAfter, isBefore, isSameDay } from "date-fns";
+import { BiCalendar } from "react-icons/bi";
+import "dayjs/locale/nb";
+import { MdClose } from "react-icons/md";
+
+registerLocale("nb", nb);
+setDefaultLocale("nb");
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -29,6 +42,14 @@ const hero = css`
 	p {
 		margin: 0 auto;
 	}
+`;
+
+const activeFilterList = css`
+	width: 95vw;
+	max-width: 1200px;
+	list-style-type: none;
+	padding: 0;
+	gap: 12px;
 `;
 
 const body = css`
@@ -57,6 +78,12 @@ const eventsShownCount = css`
 	font-size: 1rem;
 `;
 
+const datePickerBtn = css`
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+`;
+
 const eventList = css`
 	display: grid;
 	grid-template-columns: 1fr;
@@ -81,28 +108,41 @@ const eventList = css`
 	}
 `;
 
+const removeFilterTag = css`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 8px 16px;
+	gap: 8px;
+	background-color: ${theme.color.main.purple};
+	border-radius: 100px;
+	color: #e6ddef;
+	line-height: 20px;
+	font-size: 16px;
+	font-weight: 500;
+	border: 0;
+	cursor: pointer;
+
+	svg {
+		height: 1.2rem;
+		width: 1.2rem;
+	}
+`;
+
 const filter = css`
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 1rem;
-	margin: 6rem auto 2rem;
+	margin: 6rem 0 2rem;
 	padding: 0 1rem;
 	max-width: 1000px;
 
 	@media (min-width: 650px) {
 		grid-template-columns: 1fr 1fr;
-
-		div:last-of-type {
-			grid-column-end: span 2;
-		}
 	}
 
 	@media (min-width: 900px) {
-		grid-template-columns: 1fr 1fr 1fr;
-
-		div:last-of-type {
-			grid-column-end: span 1;
-		}
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 	}
 `;
 
@@ -215,6 +255,27 @@ const EventOverview: React.FC<Props> = () => {
 		`*[_type == "eventOverview"] | order(_updatedAt desc) [0]`
 	);
 
+	const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+	const [dateIsOpen, setDateIsOpen] = useState(false);
+	const dateBtnRef = useRef<HTMLButtonElement>(null);
+
+	const handleDateChange = e => {
+		setDateIsOpen(false);
+		setSelectedDate(e);
+	};
+	const handleDateClick = e => {
+		e.preventDefault();
+		setDateIsOpen(prev => !prev);
+	};
+
+	const handleOutsideDateClick = (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>
+	) => {
+		// avoid closing and opening when clicking button
+		if (e.target !== dateBtnRef.current) {
+			setDateIsOpen(false);
+		}
+	};
 	const [selectedArenaFilters, setArenaFilters] = React.useState<Filter[]>([]);
 	const [selectedCategoryFilters, setCategoryFilters] = React.useState<
 		Filter[]
@@ -240,6 +301,21 @@ const EventOverview: React.FC<Props> = () => {
 		return futureEvents;
 	}, [events]);
 
+	const [minDate, maxDate] = useMemo(() => {
+		let minDate = new Date();
+		let maxDate = new Date();
+		for (const event of futureEvents) {
+			const eventDate = new Date(event.startTime);
+			if (isBefore(eventDate, minDate)) {
+				minDate = eventDate;
+			}
+			if (isAfter(eventDate, minDate)) {
+				maxDate = eventDate;
+			}
+		}
+		return [minDate, maxDate];
+	}, [futureEvents]);
+
 	const oldEvents = useMemo(() => {
 		let oldEvents: SanitySimpleEventList = [];
 		if (events) {
@@ -258,7 +334,9 @@ const EventOverview: React.FC<Props> = () => {
 			: futureEvents;
 
 		return eventsToFilterFrom.filter(e => {
+			const eventDate = new Date(e.startTime);
 			return (
+				(selectedDate ? isSameDay(selectedDate, eventDate) : true) &&
 				(selectedArenaFilters.length < 1 ||
 					selectedArenaFilters.reduce<boolean>(
 						(prev, filter) => prev || filter.predicate(e),
@@ -282,6 +360,7 @@ const EventOverview: React.FC<Props> = () => {
 		selectedArenaFilters,
 		selectedAccessibilityFilters,
 		selectedCategoryFilters,
+		selectedDate,
 		showOldEvents
 	]);
 
@@ -305,42 +384,86 @@ const EventOverview: React.FC<Props> = () => {
 				<h2>{page.title.no}</h2>
 				<p>{page.subtitle && page.subtitle.no}</p>
 			</Hero>
-			<section css={filter}>
-				<Select
-					aria-label="Arena"
-					placeholder="Arena"
-					onChange={setArenaFilters}
-					options={arenaFilters}
-					isSearchable={false}
-					isMulti
-				/>
-				<Select
-					aria-label="Programtype"
-					placeholder="Programtype"
-					onChange={setCategoryFilters}
-					options={categoryFilters}
-					isSearchable={false}
-					isMulti
-				/>
-				<Select
-					aria-label="Tilgjengelighet"
-					placeholder="Tilgjengelighet"
-					onChange={setAccessibilityFilters}
-					options={accessibilityFilters}
-					isSearchable={false}
-					isMulti
-				/>
-			</section>
-			<ul>
-				{[
-					...selectedAccessibilityFilters,
-					...selectedArenaFilters,
-					...selectedCategoryFilters
-				].map(filter => (
-					<li key={filter.label}>{filter.label}</li>
-				))}
-			</ul>
 			<div css={body}>
+				<section css={filter}>
+					<div>
+						<button
+							css={datePickerBtn}
+							onClick={handleDateClick}
+							ref={dateBtnRef}
+						>
+							Date <BiCalendar />
+						</button>
+						{dateIsOpen && (
+							<div style={{ position: "absolute", zIndex: 3 }}>
+								<ReactDatePicker
+									onChange={handleDateChange}
+									minDate={minDate}
+									maxDate={maxDate}
+									selected={selectedDate}
+									showPopperArrow={false}
+									inline
+									onClickOutside={handleOutsideDateClick}
+									onSelect={() => setDateIsOpen(false)}
+								/>
+							</div>
+						)}
+					</div>
+					{/* <DatePicker
+					locale="nb"
+					minDate={minDate}
+					maxDate={maxDate}
+					icon={<BiCalendar />}
+					placeholder="Dato"
+				/> */}
+					<Select
+						aria-label="Arena"
+						placeholder="Arena"
+						onChange={setArenaFilters}
+						options={arenaFilters}
+						isSearchable={false}
+						isMulti
+					/>
+					<Select
+						aria-label="Programtype"
+						placeholder="Programtype"
+						onChange={setCategoryFilters}
+						options={categoryFilters}
+						isSearchable={false}
+						isMulti
+					/>
+					<Select
+						aria-label="Tilgjengelighet"
+						placeholder="Tilgjengelighet"
+						onChange={setAccessibilityFilters}
+						options={accessibilityFilters}
+						isSearchable={false}
+						isMulti
+					/>
+				</section>
+				<ul css={activeFilterList}>
+					{selectedDate && (
+						<li>
+							<button
+								css={removeFilterTag}
+								onClick={() => setSelectedDate(null)}
+							>
+								<MdClose />
+								{selectedDate.toLocaleDateString("nb-NO", {
+									day: "2-digit",
+									month: "long"
+								})}
+							</button>
+						</li>
+					)}
+					{[
+						...selectedAccessibilityFilters,
+						...selectedArenaFilters,
+						...selectedCategoryFilters
+					].map(filter => (
+						<li key={filter.label}>{filter.label}</li>
+					))}
+				</ul>
 				{futureEvents.length > 0 && (
 					<p css={eventsShownCount}>
 						Viser {filteredEvents.length} av {futureEvents.length} arrangement
