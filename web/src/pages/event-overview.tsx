@@ -144,6 +144,36 @@ const filter = css`
 	}
 `;
 
+const datePicker = css`
+	.react-datepicker {
+		border: none;
+		border-radius: 0;
+		background-color: #e6ddef;
+	}
+
+	.react-datepicker__header {
+		background-color: #c5b6d5;
+	}
+
+	.react-datepicker__day {
+		font-weight: 600;
+
+		&:hover {
+			background-color: #c5b6d5;
+		}
+	}
+
+	.react-datepicker__day--keyboard-selected {
+		background-color: #c5b6d5;
+		color: ${theme.color.text.black};
+	}
+
+	.react-datepicker__day--disabled {
+		color: ${theme.color.text.grey};
+		font-weight: 400;
+	}
+`;
+
 const filterInput = css`
 	width: 100%;
 	display: flex;
@@ -275,11 +305,12 @@ const EventOverview: React.FC<Props> = () => {
 	const [dateIsOpen, setDateIsOpen] = useState(false);
 	const dateBtnRef = useRef<HTMLButtonElement>(null);
 
-	const handleDateChange = e => {
+	const handleDateChange = (date: Date | null) => {
 		setDateIsOpen(false);
-		setSelectedDate(e);
+		setSelectedDate(date);
 	};
-	const handleDateClick = e => {
+
+	const handleDateClick: React.MouseEventHandler<HTMLButtonElement> = e => {
 		e.preventDefault();
 		setDateIsOpen(prev => !prev);
 	};
@@ -302,6 +333,7 @@ const EventOverview: React.FC<Props> = () => {
 			setDateIsOpen(false);
 		}
 	};
+
 	const [selectedArenaFilters, setArenaFilters] = React.useState<Filter[]>([]);
 	const [selectedCategoryFilters, setCategoryFilters] = React.useState<
 		Filter[]
@@ -412,7 +444,7 @@ const EventOverview: React.FC<Props> = () => {
 			</Hero>
 			<div css={body}>
 				<section css={filter}>
-					<div>
+					<div css={datePicker}>
 						<button
 							css={filterInput}
 							onClick={handleDateClick}
