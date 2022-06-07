@@ -158,7 +158,7 @@ const datePicker = css`
 	.react-datepicker__day {
 		font-weight: 600;
 
-		&:hover {
+		&:not([aria-disabled="true"]):hover {
 			background-color: #c5b6d5;
 		}
 	}
