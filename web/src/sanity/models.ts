@@ -239,6 +239,31 @@ export type SanityArticle = SanityDocument<
 	}
 >;
 
+export type SanityNewArticle = SanityDocument<
+	"newArticle",
+	{
+		// slug: { current: string };
+		title: Locale<string>;
+		// publishedAt: string;
+		articleContent: Locale<
+			SanityObjectArray<
+				| SanityBlock
+				| SanityObject<
+						"quotes",
+						{
+							title: string;
+						}
+				  >
+			>
+		>;
+
+		// image: SanityImage;
+		// summary: Locale<string>;
+		// body: Locale<SanityObjectArray<SanityBlock>>;
+		// credits: Locale<string>;
+	}
+>;
+
 export type SanityArticleList = Array<SanityArticle>;
 
 export type SanityArchive = SanityDocument<
