@@ -71,7 +71,7 @@ const body = css`
 
 const bodyText = css`
 	max-width: clamp(20rem, 60%, 40rem);
-	margin: 6rem auto;
+	margin: 2rem auto;
 `;
 
 type Props = {} & RouteComponentProps;
