@@ -39,7 +39,6 @@ const style = css`
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
-	border-radius: 8px;
 
 	.imageWrapper {
 		padding-bottom: 56.2%;
@@ -120,14 +119,21 @@ const EventCard: React.FC<{ event: SanitySimpleEvent }> = ({ event }) => {
 	return (
 		<article css={style}>
 			<div className="imageWrapper">
-				<img
-					src={
-						urlFor(event.image)
-							.width(500)
-							.url() || ""
-					}
-					alt={event.title.no}
-				/>
+				<Link
+					link={{
+						_type: "internalInternalLink",
+						url: `/event/${event.slug.current}`
+					}}
+				>
+					<img
+						src={
+							urlFor(event.image)
+								.width(500)
+								.url() || ""
+						}
+						alt={event.title.no}
+					/>
+				</Link>
 			</div>
 			<div className="contentWrapper">
 				<time dateTime={event.startTime} className="time">

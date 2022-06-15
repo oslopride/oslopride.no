@@ -21,7 +21,7 @@ import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
 import EventCard from "../components/event-card";
-import { isAfter, isBefore, isSameDay } from "date-fns";
+import { isAfter, isBefore, isSameDay, isThisYear } from "date-fns";
 import { BiCalendar } from "react-icons/bi";
 import "dayjs/locale/nb";
 import { MdClose } from "react-icons/md";
@@ -345,24 +345,22 @@ const EventOverview: React.FC<Props> = () => {
 
 	const [showOldEvents, setShowOldEvents] = React.useState(false);
 
-	const futureEvents = useMemo(() => {
-		let futureEvents: SanitySimpleEventList = [];
+	const thisYearsEvents = useMemo(() => {
+		let thisYearsEvents: SanitySimpleEventList = [];
 		if (events) {
-			// just filter out old events by checking if they are in the future.
-			const now = new Date();
-			futureEvents = events.filter(event => {
-				const eventEnd = new Date(event.endTime);
-				// return isAfter(eventEnd, now);
-				return true;
+			// just filter out old events by checking if they are before this year.
+			thisYearsEvents = events.filter(event => {
+				const eventStart = new Date(event.startTime);
+				return isThisYear(eventStart);
 			});
 		}
-		return futureEvents;
+		return thisYearsEvents;
 	}, [events]);
 
 	const [minDate, maxDate] = useMemo(() => {
 		let minDate = new Date();
 		let maxDate = new Date();
-		for (const event of futureEvents) {
+		for (const event of thisYearsEvents) {
 			const eventDate = new Date(event.startTime);
 			if (isBefore(eventDate, minDate)) {
 				minDate = eventDate;
@@ -372,7 +370,7 @@ const EventOverview: React.FC<Props> = () => {
 			}
 		}
 		return [minDate, maxDate];
-	}, [futureEvents]);
+	}, [thisYearsEvents]);
 
 	const oldEvents = useMemo(() => {
 		let oldEvents: SanitySimpleEventList = [];
@@ -388,8 +386,8 @@ const EventOverview: React.FC<Props> = () => {
 
 	const filteredEvents = useMemo(() => {
 		const eventsToFilterFrom = showOldEvents
-			? [...futureEvents, ...oldEvents]
-			: futureEvents;
+			? [...thisYearsEvents, ...oldEvents]
+			: thisYearsEvents;
 
 		return eventsToFilterFrom.filter(e => {
 			const eventDate = new Date(e.startTime);
@@ -413,7 +411,7 @@ const EventOverview: React.FC<Props> = () => {
 			);
 		});
 	}, [
-		futureEvents,
+		thisYearsEvents,
 		oldEvents,
 		selectedArenaFilters,
 		selectedAccessibilityFilters,
@@ -537,9 +535,10 @@ const EventOverview: React.FC<Props> = () => {
 						</li>
 					))}
 				</ul>
-				{futureEvents.length > 0 && (
+				{thisYearsEvents.length > 0 && (
 					<p css={eventsShownCount}>
-						Viser {filteredEvents.length} av {futureEvents.length} arrangement
+						Viser {filteredEvents.length} av {thisYearsEvents.length}{" "}
+						arrangement
 					</p>
 				)}
 				{filteredEvents.length > 0 && (
@@ -551,7 +550,7 @@ const EventOverview: React.FC<Props> = () => {
 						))}
 					</ul>
 				)}
-				{futureEvents.length === 0 && <p>Ingen eventer enda</p>}
+				{thisYearsEvents.length === 0 && <p>Ingen eventer enda</p>}
 			</div>
 		</>
 	);
