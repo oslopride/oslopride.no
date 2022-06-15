@@ -3,29 +3,20 @@ import React from "react";
 import { urlFor } from "../sanity";
 import { SanitySimpleEvent } from "../sanity/models";
 import theme from "../utils/theme";
-import { LinkButton } from "./link";
+import Link from "./link";
+import { MdLocationPin } from "react-icons/md";
 
-const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
-	switch (venue) {
-		case "stage1":
-			return "Hovedscenen";
-		case "stage2":
-			return "BamseScenen";
-		case "kultur":
-			return "Kulturhuset";
-		case "loudproud":
-			return "Loud ‘n’ Proud";
-		case "box":
-			return "Pride Box";
-		case "online":
-			return "Digitalt";
-		case "youngs":
-			return "Youngs";
-		case "minipride":
-			return "Mini Pride";
-		default:
-			return "Annet";
-	}
+const EVENT_CATEGORIES = {
+	concert: "Konsert",
+	talk: "Samtale",
+	lecture: "Foredrag",
+	debate: "Debatt",
+	party: "Fest",
+	dans: "Dans",
+	drag: "Drag",
+	teater: "Teater",
+	minipride: "Mini Pride",
+	other: "Annen"
 };
 
 const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
@@ -48,11 +39,11 @@ const style = css`
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
-	border-radius: 8px;
 
 	.imageWrapper {
 		padding-bottom: 56.2%;
 		position: relative;
+		height: 270px;
 	}
 
 	img {
@@ -60,13 +51,6 @@ const style = css`
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-	}
-
-	.external {
-		text-align: center;
-		padding: 0.5em;
-		background: ${theme.color.background.lightYellow};
-		font-weight: bold;
 	}
 
 	.contentWrapper {
@@ -77,100 +61,104 @@ const style = css`
 		flex-direction: column;
 	}
 
-	.timeAndPlace {
-		display: flex;
-		justify-content: space-between;
-
-		time {
-			color: #656781;
-		}
-
-		span {
-			background: ${theme.color.background.lightYellow};
-		}
+	.time {
+		color: ${theme.color.text.grey};
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		font-size: 0.8rem;
 	}
 
-	h3 {
+	h3,
+	h3 a:link,
+	h3 a:visited {
 		font-size: 1.3rem;
 		line-height: 1.4;
+		font-weight: 700;
+		color: #40147e;
+		margin-top: 8px;
+		text-decoration: none;
 	}
 
-	ul {
-		flex: 1;
-		list-style: none;
-		padding: 0;
+	.eventLocation {
+		font-size: 0.9rem;
+		color: ${theme.color.text.black};
+		font-weight: 700;
 		display: flex;
-		flex-flow: row wrap;
-		justify-content: space-evenly;
 		align-items: center;
-		margin-bottom: 0;
-
-		li {
-			margin: 8px;
-		}
+		gap: 8px;
+		margin: 8px 0 0;
 	}
 
 	.tag {
 		padding: 8px 16px;
-		background: #ebe7f1;
+		background: #bee0d6;
 		border-radius: 50px;
-		font-size: 0.75rem;
+		font-size: 0.8rem;
 		line-height: 1.2;
-		font-weight: bold;
-	}
-
-	a {
-		margin-top: 1rem;
-		width: 100%;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		align-self: flex-start;
+		margin-top: 16px;
 	}
 `;
 
-const EventCard: React.FC<{ event: SanitySimpleEvent }> = ({ event }) => (
-	<article css={style}>
-		<div className="imageWrapper">
-			<img
-				src={
-					urlFor(event.image)
-						.width(500)
-						.url() || ""
-				}
-				alt={event.title.no}
-			/>
-		</div>
-
-		{!event.official && <div className="external">Eksternt arrangement</div>}
-
-		<div className="contentWrapper">
-			<div className="timeAndPlace">
-				<time dateTime={event.startTime}>
-					{new Date(event.startTime).toLocaleTimeString("nb-NO", {
-						hour: "2-digit",
-						minute: "2-digit"
-					})}
-					{event.venue ? `, ${getVenueName(event.venue)}` : ""}
-				</time>
-				{getArenaName(event.arena) && (
-					<span className="tag">{getArenaName(event.arena)}</span>
-				)}
+const EventCard: React.FC<{ event: SanitySimpleEvent }> = ({ event }) => {
+	const eventDate = new Date(event.startTime);
+	const eventDateFormatted = eventDate.toLocaleDateString("nb-NO", {
+		day: "2-digit",
+		month: "long",
+		year: "numeric"
+	});
+	const timeFormatted = eventDate.toLocaleTimeString("nb-NO", {
+		hour: "2-digit",
+		minute: "2-digit"
+	});
+	const dateFormatted = `${eventDateFormatted} - kl. ${timeFormatted}`;
+	return (
+		<article css={style}>
+			<div className="imageWrapper">
+				<Link
+					link={{
+						_type: "internalInternalLink",
+						url: `/event/${event.slug.current}`
+					}}
+				>
+					<img
+						src={
+							urlFor(event.image)
+								.width(500)
+								.url() || ""
+						}
+						alt={event.title.no}
+					/>
+				</Link>
 			</div>
-			<h3>{event.title.no}</h3>
-			<ul>
-				{event.liveStream && <li className="tag">strømmes</li>}
-				{event.alcoholFree && <li className="tag">rusfritt</li>}
-				{event.wheelchairFriendly && <li className="tag">rullestolvennlig</li>}
-				{event.signLanguageInterpreted && (
-					<li className="tag">tegnspråktolket</li>
+			<div className="contentWrapper">
+				<time dateTime={event.startTime} className="time">
+					{dateFormatted}
+				</time>
+				<h3>
+					<Link
+						link={{
+							_type: "internalInternalLink",
+							url: `/event/${event.slug.current}`
+						}}
+					>
+						{event.title.no}
+					</Link>
+				</h3>
+				{getArenaName(event.arena) && (
+					<p className="eventLocation">
+						<MdLocationPin />
+						{getArenaName(event.arena)}
+					</p>
 				)}
-			</ul>
-			<LinkButton
-				link={{
-					_type: "internalInternalLink",
-					text: "Se detaljer",
-					url: `/event/${event.slug.current}`
-				}}
-			/>
-		</div>
-	</article>
-);
+				<span className="tag">{EVENT_CATEGORIES[event.category]}</span>
+			</div>
+		</article>
+	);
+};
 
 export default EventCard;

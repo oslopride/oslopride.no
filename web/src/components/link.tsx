@@ -24,7 +24,7 @@ const base = css`
 type InternalInternalLink = {
 	_type: "internalInternalLink";
 	url: string;
-	text: string;
+	text?: string;
 };
 
 type Props = {
@@ -39,7 +39,7 @@ type Props = {
 >;
 
 const Link: React.FC<Props> = props => {
-	const { link, className, ...anchorProps } = props;
+	const { link, className, children, ...anchorProps } = props;
 	const { data, error } = useSWR<
 		| SanityPage
 		| SanityFrontPage
@@ -64,7 +64,7 @@ const Link: React.FC<Props> = props => {
 				rel="noopener noreferrer"
 				{...anchorProps}
 			>
-				{link.text}
+				{link.text || children}
 			</a>
 		);
 	}
@@ -77,7 +77,7 @@ const Link: React.FC<Props> = props => {
 				to={link.url}
 				{...anchorProps}
 			>
-				{link.text}
+				{link.text || children}
 			</RouterLink>
 		);
 	}
@@ -88,7 +88,7 @@ const Link: React.FC<Props> = props => {
 	if (data === undefined) {
 		return (
 			<a className={className} css={base} href="#" {...anchorProps}>
-				{link.text}
+				{link.text || children}
 			</a>
 		);
 	}
@@ -121,7 +121,7 @@ const Link: React.FC<Props> = props => {
 
 	return (
 		<RouterLink className={className} css={base} to={url} {...anchorProps}>
-			{link.text}
+			{link.text || children}
 		</RouterLink>
 	);
 };

@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { RouteComponentProps } from "@reach/router";
-import differenceInHours from "date-fns/differenceInHours";
-import endOfDay from "date-fns/endOfDay";
 import Hero from "../components/hero";
 import theme from "../utils/theme";
 import { css } from "@emotion/core";
 import { urlFor } from "../sanity";
 import useSWR from "swr";
+import ReactDatePicker, {
+	registerLocale,
+	setDefaultLocale
+} from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+import nb from "date-fns/locale/nb";
 import {
 	SanityEventPage,
 	SanitySimpleEvent,
@@ -15,8 +20,15 @@ import {
 import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
-import Select from "react-select";
 import EventCard from "../components/event-card";
+import { isAfter, isBefore, isSameDay, isThisYear } from "date-fns";
+import { BiCalendar } from "react-icons/bi";
+import "dayjs/locale/nb";
+import { MdClose } from "react-icons/md";
+import { MultiSelect } from "../components/multiselect";
+
+registerLocale("nb", nb);
+setDefaultLocale("nb");
 
 type Props = { slug?: string } & RouteComponentProps;
 
@@ -32,22 +44,30 @@ const hero = css`
 	}
 `;
 
+const activeFilterList = css`
+	width: 95vw;
+	max-width: 1200px;
+	list-style-type: none;
+	padding: 0;
+	gap: 12px;
+	min-height: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin: 0 0 40px;
+`;
+
 const body = css`
 	margin: 5vh auto 3rem auto;
 	width: 95vw;
-	max-width: 1200px;
+	max-width: 1250px;
 
 	@media (min-width: 800px) {
 		width: 90vw;
 	}
 
-	p {
-		margin-bottom: 0;
-		color: ${theme.color.text.grey};
-
-		a {
-			color: ${theme.color.main.pink};
-		}
+	a {
+		color: ${theme.color.main.pink};
 	}
 
 	h3 {
@@ -56,31 +76,21 @@ const body = css`
 	}
 `;
 
-const oldEventButtonContainer = css`
-	display: flex;
-	justify-content: flex-end;
-
-	& > button {
-		border: none;
-		background: inherit;
-		text-decoration: underline;
-		cursor: pointer;
-	}
-`;
-
-const dateGroupHeader = css`
-	text-transform: capitalize;
-	flex: 1 1 100%;
-	font-size: 1.75rem;
-	margin: 2rem 0;
+const eventsShownCount = css`
 	text-align: center;
+	color: ${theme.color.text.black};
+	font-weight: 700;
+	font-size: 1rem;
 `;
 
-const articleGroup = css`
+const eventList = css`
 	display: grid;
 	grid-template-columns: 1fr;
 	justify-items: center;
-	gap: 1.35rem 1rem;
+	gap: 48px 32px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 
 	@media (min-width: 650px) {
 		grid-template-columns: 1fr 1fr;
@@ -89,85 +99,98 @@ const articleGroup = css`
 	@media (min-width: 1200px) {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
+
+	& > li {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+`;
+
+const removeFilterTag = css`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 8px 16px;
+	gap: 8px;
+	background-color: ${theme.color.main.purple};
+	border-radius: 100px;
+	color: #e6ddef;
+	line-height: 20px;
+	font-size: 16px;
+	font-weight: 500;
+	border: 0;
+	cursor: pointer;
+
+	svg {
+		height: 1.2rem;
+		width: 1.2rem;
+	}
 `;
 
 const filter = css`
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 1rem;
-	margin: 0 auto 2rem;
-	padding: 0 1rem;
+	margin: 6rem 0 1rem;
 	max-width: 1000px;
 
 	@media (min-width: 650px) {
 		grid-template-columns: 1fr 1fr;
-
-		div:last-of-type {
-			grid-column-end: span 2;
-		}
 	}
 
 	@media (min-width: 900px) {
-		grid-template-columns: 1fr 1fr 1fr;
-
-		div:last-of-type {
-			grid-column-end: span 1;
-		}
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 	}
 `;
 
-const filterHeader = css`
-	text-align: center;
-	margin-top: 2rem;
-`;
-
-const groupEventsByDay = (events: SanitySimpleEventList) => {
-	if (events.length === 0) {
-		return [];
+const datePicker = css`
+	.react-datepicker {
+		border: none;
+		border-radius: 0;
+		background-color: #e6ddef;
 	}
 
-	const groupedEvents = [[events[0]]];
+	.react-datepicker__header {
+		background-color: #c5b6d5;
+	}
 
-	events.slice(1).forEach(event => {
-		const lastGroup = groupedEvents[groupedEvents.length - 1];
-		const lastEvent = lastGroup[lastGroup.length - 1];
+	.react-datepicker__day {
+		font-weight: 600;
 
-		const lastEventStart = new Date(lastEvent.startTime);
-		const currentEventStart = new Date(event.startTime);
-
-		if (
-			lastEventStart.toLocaleDateString("nb-NO", {
-				year: "numeric",
-				month: "numeric",
-				day: "numeric"
-			}) ===
-			currentEventStart.toLocaleDateString("nb-NO", {
-				year: "numeric",
-				month: "numeric",
-				day: "numeric"
-			})
-		) {
-			lastGroup.push(event);
-		} else {
-			groupedEvents.push([event]);
+		&:not([aria-disabled="true"]):hover {
+			background-color: #c5b6d5;
 		}
-	});
+	}
 
-	const upcommingEvents: typeof groupedEvents = [];
-	const oldEvents: typeof groupedEvents = [];
-	const currentDate = new Date();
+	.react-datepicker__day--keyboard-selected {
+		background-color: #c5b6d5;
+		color: ${theme.color.text.black};
+	}
 
-	groupedEvents.forEach(group => {
-		const groupDate = new Date(group[0].startTime);
-		if (differenceInHours(currentDate, endOfDay(groupDate)) >= 5) {
-			oldEvents.push(group);
-		} else {
-			upcommingEvents.push(group);
-		}
-	});
+	.react-datepicker__day--disabled {
+		color: ${theme.color.text.grey};
+		font-weight: 400;
+	}
+`;
 
-	return [oldEvents, upcommingEvents];
-};
+const filterInput = css`
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	background-color: #e6ddef;
+	border: none;
+	cursor: pointer;
+	font-weight: 700;
+	font-size: 0.9rem;
+
+	svg {
+		width: 1.2rem;
+		height: 1.2rem;
+	}
+`;
 
 type Filter = {
 	value: string;
@@ -278,6 +301,39 @@ const EventOverview: React.FC<Props> = () => {
 		`*[_type == "eventOverview"] | order(_updatedAt desc) [0]`
 	);
 
+	const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+	const [dateIsOpen, setDateIsOpen] = useState(false);
+	const dateBtnRef = useRef<HTMLButtonElement>(null);
+
+	const handleDateChange = (date: Date | null) => {
+		setDateIsOpen(false);
+		setSelectedDate(date);
+	};
+
+	const handleDateClick: React.MouseEventHandler<HTMLButtonElement> = e => {
+		e.preventDefault();
+		setDateIsOpen(prev => !prev);
+	};
+
+	const removeFilter = (
+		setFn: React.Dispatch<React.SetStateAction<Filter[]>>,
+		label: string
+	) => {
+		setFn(prev => prev.filter(item => item.label !== label));
+	};
+
+	const handleOutsideDateClick = (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>
+	) => {
+		// avoid closing and opening when clicking button
+		if (
+			e.target !== dateBtnRef.current &&
+			!dateBtnRef.current?.contains(e.target as Node)
+		) {
+			setDateIsOpen(false);
+		}
+	};
+
 	const [selectedArenaFilters, setArenaFilters] = React.useState<Filter[]>([]);
 	const [selectedCategoryFilters, setCategoryFilters] = React.useState<
 		Filter[]
@@ -287,16 +343,56 @@ const EventOverview: React.FC<Props> = () => {
 		setAccessibilityFilters
 	] = React.useState<Filter[]>([]);
 
-	const [showOldEevnts, setShowOldEvents] = React.useState(false);
+	const [showOldEvents, setShowOldEvents] = React.useState(false);
 
-	if (error) return <Error error={JSON.stringify(error)} />;
-	if (page === undefined || events === undefined) return <Loading />;
-	if (page === null) return <NotFound />;
+	const thisYearsEvents = useMemo(() => {
+		let thisYearsEvents: SanitySimpleEventList = [];
+		if (events) {
+			// just filter out old events by checking if they are before this year.
+			thisYearsEvents = events.filter(event => {
+				const eventStart = new Date(event.startTime);
+				return isThisYear(eventStart);
+			});
+		}
+		return thisYearsEvents;
+	}, [events]);
 
-	const filteredEvents =
-		events &&
-		events.filter(e => {
+	const [minDate, maxDate] = useMemo(() => {
+		let minDate = new Date();
+		let maxDate = new Date();
+		for (const event of thisYearsEvents) {
+			const eventDate = new Date(event.startTime);
+			if (isBefore(eventDate, minDate)) {
+				minDate = eventDate;
+			}
+			if (isAfter(eventDate, minDate)) {
+				maxDate = eventDate;
+			}
+		}
+		return [minDate, maxDate];
+	}, [thisYearsEvents]);
+
+	const oldEvents = useMemo(() => {
+		let oldEvents: SanitySimpleEventList = [];
+		if (events) {
+			const now = new Date();
+			oldEvents = events.filter(event => {
+				const eventEnd = new Date(event.endTime);
+				return isBefore(eventEnd, now);
+			});
+		}
+		return oldEvents;
+	}, [events, showOldEvents]);
+
+	const filteredEvents = useMemo(() => {
+		const eventsToFilterFrom = showOldEvents
+			? [...thisYearsEvents, ...oldEvents]
+			: thisYearsEvents;
+
+		return eventsToFilterFrom.filter(e => {
+			const eventDate = new Date(e.startTime);
 			return (
+				(selectedDate ? isSameDay(selectedDate, eventDate) : true) &&
 				(selectedArenaFilters.length < 1 ||
 					selectedArenaFilters.reduce<boolean>(
 						(prev, filter) => prev || filter.predicate(e),
@@ -314,15 +410,19 @@ const EventOverview: React.FC<Props> = () => {
 					))
 			);
 		});
+	}, [
+		thisYearsEvents,
+		oldEvents,
+		selectedArenaFilters,
+		selectedAccessibilityFilters,
+		selectedCategoryFilters,
+		selectedDate,
+		showOldEvents
+	]);
 
-	const [oldEvent, upcommingEvents] =
-		filteredEvents && filteredEvents.length > 0
-			? groupEventsByDay(filteredEvents)
-			: [[], []];
-
-	const displayEvents = showOldEevnts
-		? [...oldEvent, ...upcommingEvents]
-		: upcommingEvents;
+	if (error) return <Error error={JSON.stringify(error)} />;
+	if (page === undefined || events === undefined) return <Loading />;
+	if (page === null) return <NotFound />;
 
 	return (
 		<>
@@ -335,65 +435,122 @@ const EventOverview: React.FC<Props> = () => {
 				}
 				css={hero}
 				centerContent
+				displayScrollButton
 			>
 				<h2>{page.title.no}</h2>
 				<p>{page.subtitle && page.subtitle.no}</p>
 			</Hero>
-			<h3 css={filterHeader}>Filtrering</h3>
-			<section css={filter}>
-				<Select
-					aria-label="Arena"
-					placeholder="Arena"
-					onChange={setArenaFilters}
-					options={arenaFilters}
-					isSearchable={false}
-					isMulti
-				/>
-				<Select
-					aria-label="Programtype"
-					placeholder="Programtype"
-					onChange={setCategoryFilters}
-					options={categoryFilters}
-					isSearchable={false}
-					isMulti
-				/>
-				<Select
-					aria-label="Tilgjengelighet"
-					placeholder="Tilgjengelighet"
-					onChange={setAccessibilityFilters}
-					options={accessibilityFilters}
-					isSearchable={false}
-					isMulti
-				/>
-			</section>
 			<div css={body}>
-				{oldEvent.length > 0 && !showOldEevnts ? (
-					<div css={oldEventButtonContainer}>
-						<button onClick={() => setShowOldEvents(true)}>
-							Vis tidligere eventer
+				<section css={filter}>
+					<div css={datePicker}>
+						<button
+							css={filterInput}
+							onClick={handleDateClick}
+							ref={dateBtnRef}
+						>
+							Dato <BiCalendar />
 						</button>
+						{dateIsOpen && (
+							<div style={{ position: "absolute", zIndex: 3 }}>
+								<ReactDatePicker
+									onChange={handleDateChange}
+									minDate={minDate}
+									maxDate={maxDate}
+									selected={selectedDate}
+									showPopperArrow={false}
+									inline
+									onClickOutside={handleOutsideDateClick}
+									onSelect={() => setDateIsOpen(false)}
+								/>
+							</div>
+						)}
 					</div>
-				) : null}
-				{displayEvents && displayEvents.length > 0 ? (
-					displayEvents.map(group => (
-						<React.Fragment key={group[0].startTime}>
-							<h2 css={dateGroupHeader}>
-								{new Date(group[0].startTime).toLocaleDateString("nb-NO", {
-									weekday: "long",
-									day: "numeric",
+					<MultiSelect
+						items={arenaFilters}
+						selectedItems={selectedArenaFilters}
+						onChange={items => items && setArenaFilters(items)}
+						placeholder="Arena"
+					/>
+					<MultiSelect
+						items={categoryFilters}
+						selectedItems={selectedCategoryFilters}
+						onChange={items => items && setCategoryFilters(items)}
+						placeholder="Programtype"
+					/>
+					<MultiSelect
+						items={accessibilityFilters}
+						selectedItems={selectedAccessibilityFilters}
+						onChange={items => items && setAccessibilityFilters(items)}
+						placeholder="Tilgjengelighet"
+					/>
+				</section>
+				<ul css={activeFilterList}>
+					{selectedDate && (
+						<li>
+							<button
+								css={removeFilterTag}
+								onClick={() => setSelectedDate(null)}
+							>
+								<MdClose />
+								{selectedDate.toLocaleDateString("nb-NO", {
+									day: "2-digit",
 									month: "long"
 								})}
-							</h2>
-							<div css={articleGroup}>
-								{group?.map(event => (
-									<EventCard key={event._id} event={event} />
-								))}
-							</div>
-						</React.Fragment>
-					))
-				) : (
-					<p>Ingen eventer enda</p>
+							</button>
+						</li>
+					)}
+					{selectedArenaFilters.map(filter => (
+						<li key={filter.label}>
+							<button
+								css={removeFilterTag}
+								onClick={() => removeFilter(setArenaFilters, filter.label)}
+							>
+								<MdClose />
+								{filter.label}
+							</button>
+						</li>
+					))}
+					{selectedCategoryFilters.map(filter => (
+						<li key={filter.label}>
+							<button
+								css={removeFilterTag}
+								onClick={() => removeFilter(setCategoryFilters, filter.label)}
+							>
+								<MdClose />
+								{filter.label}
+							</button>
+						</li>
+					))}
+					{selectedAccessibilityFilters.map(filter => (
+						<li key={filter.label}>
+							<button
+								css={removeFilterTag}
+								onClick={() =>
+									removeFilter(setAccessibilityFilters, filter.label)
+								}
+							>
+								<MdClose />
+								{filter.label}
+							</button>
+						</li>
+					))}
+				</ul>
+				{thisYearsEvents.length > 0 && (
+					<p css={eventsShownCount}>
+						Viser {filteredEvents.length} av {thisYearsEvents.length}{" "}
+						arrangement
+					</p>
 				)}
+				{filteredEvents.length > 0 && (
+					<ul css={eventList}>
+						{filteredEvents.map(event => (
+							<li key={event._id}>
+								<EventCard event={event} />
+							</li>
+						))}
+					</ul>
+				)}
+				{thisYearsEvents.length === 0 && <p>Ingen eventer enda</p>}
 			</div>
 		</>
 	);
