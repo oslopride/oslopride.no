@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 import * as S from "./styles";
 import WhiteLogo from "../../assets/logo-white.svg";
+import Tilgjengelighet from "../../assets/tilgjengelighetsmerket.svg";
 import useConfig from "../../utils/use-config";
 import Link from "../link";
 import { css } from "@emotion/core";
@@ -66,7 +67,6 @@ const Footer: React.FC<Props> = () => {
 				<S.Image>
 					<img src={`${WhiteLogo}`} alt="Oslo Pride logo" />
 					<h3>{date}</h3>
-
 					{socialLinks.length > 0 && (
 						<ul css={someIcons}>
 							{socialLinks.map(link => (
@@ -78,6 +78,13 @@ const Footer: React.FC<Props> = () => {
 							))}
 						</ul>
 					)}
+					<a href="https://www.tilgjengelighetsmerket.no/">
+						<S.TilgjengelighetImg
+							src={`${Tilgjengelighet}`}
+							alt="Tilgjengelighetsmerket"
+							height={30}
+						/>
+					</a>
 				</S.Image>
 
 				<S.Info>

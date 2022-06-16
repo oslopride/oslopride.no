@@ -81,3 +81,5 @@ export const Shortcuts = styled.div`
 		}
 	}
 `;
+
+export const TilgjengelighetImg = styled.img``;
