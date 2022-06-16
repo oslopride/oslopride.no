@@ -64,28 +64,26 @@ const Footer: React.FC<Props> = () => {
 	return (
 		<S.StickyFooter>
 			<S.Footer>
-				<S.Image>
-					<img src={`${WhiteLogo}`} alt="Oslo Pride logo" />
-					<h3>{date}</h3>
-					{socialLinks.length > 0 && (
-						<ul css={someIcons}>
-							{socialLinks.map(link => (
-								<li key={link.name}>
-									<a href={link.url} aria-label={`${link.name} icon`}>
-										{link.icon}
-									</a>
-								</li>
-							))}
-						</ul>
-					)}
+				<div>
+					<S.Image>
+						<img src={`${WhiteLogo}`} alt="Oslo Pride logo" />
+						<h3>{date}</h3>
+						{socialLinks.length > 0 && (
+							<ul css={someIcons}>
+								{socialLinks.map(link => (
+									<li key={link.name}>
+										<a href={link.url} aria-label={`${link.name} icon`}>
+											{link.icon}
+										</a>
+									</li>
+								))}
+							</ul>
+						)}
+					</S.Image>
 					<a href="https://www.tilgjengelighetsmerket.no/">
-						<S.TilgjengelighetImg
-							src={`${Tilgjengelighet}`}
-							alt="Tilgjengelighetsmerket"
-							height={30}
-						/>
+						<img src={`${Tilgjengelighet}`} alt="Tilgjengelighetsmerket" />
 					</a>
-				</S.Image>
+				</div>
 
 				<S.Info>
 					<h3>Oslo Pride as</h3>
