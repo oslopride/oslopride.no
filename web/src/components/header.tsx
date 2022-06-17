@@ -92,7 +92,7 @@ const navigationStyle = css`
 			color: white;
 			text-decoration: none;
 			width: 100%;
-			padding-left: 4rem;
+			margin-left: 4rem;
 			display: block;
 		}
 
@@ -105,7 +105,7 @@ const navigationStyle = css`
 				height: 4px;
 				background-color: ${theme.color.main.pink};
 				position: absolute;
-				left: -0.5em;
+				left: -1em;
 				top: 0.9em;
 			}
 		}
@@ -123,7 +123,7 @@ const navigationStyle = css`
 			font-size: 1.25rem;
 
 			a {
-				padding-left: 0;
+				margin-left: 2rem;
 
 				&:hover {
 					:before {
