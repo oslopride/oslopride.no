@@ -82,7 +82,7 @@ const navigationStyle = css`
 
 	li {
 		list-style: none;
-		font-size: 2.5rem;
+		font-size: 1.5rem;
 		line-height: 2em;
 		font-weight: 600;
 		letter-spacing: 0.5px;
@@ -120,7 +120,7 @@ const navigationStyle = css`
 		padding: 8rem 0rem;
 
 		li {
-			font-size: 2rem;
+			font-size: 1.25rem;
 
 			a {
 				padding-left: 0;
