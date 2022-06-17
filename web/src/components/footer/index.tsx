@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 import * as S from "./styles";
 import WhiteLogo from "../../assets/logo-white.svg";
+import Tilgjengelighet from "../../assets/tilgjengelighetsmerket.svg";
 import useConfig from "../../utils/use-config";
 import Link from "../link";
 import { css } from "@emotion/core";
@@ -63,22 +64,26 @@ const Footer: React.FC<Props> = () => {
 	return (
 		<S.StickyFooter>
 			<S.Footer>
-				<S.Image>
-					<img src={`${WhiteLogo}`} alt="Oslo Pride logo" />
-					<h3>{date}</h3>
-
-					{socialLinks.length > 0 && (
-						<ul css={someIcons}>
-							{socialLinks.map(link => (
-								<li key={link.name}>
-									<a href={link.url} aria-label={`${link.name} icon`}>
-										{link.icon}
-									</a>
-								</li>
-							))}
-						</ul>
-					)}
-				</S.Image>
+				<div>
+					<S.Image>
+						<img src={`${WhiteLogo}`} alt="Oslo Pride logo" />
+						<h3>{date}</h3>
+						{socialLinks.length > 0 && (
+							<ul css={someIcons}>
+								{socialLinks.map(link => (
+									<li key={link.name}>
+										<a href={link.url} aria-label={`${link.name} icon`}>
+											{link.icon}
+										</a>
+									</li>
+								))}
+							</ul>
+						)}
+					</S.Image>
+					<a href="https://www.tilgjengelighetsmerket.no/">
+						<img src={`${Tilgjengelighet}`} alt="Tilgjengelighetsmerket" />
+					</a>
+				</div>
 
 				<S.Info>
 					<h3>Oslo Pride as</h3>
