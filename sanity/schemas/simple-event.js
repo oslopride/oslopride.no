@@ -143,6 +143,7 @@ export default {
 					{ title: "Pride Park", value: "park" },
 					{ title: "Pride House", value: "house" },
 					{ title: "Pride Parade", value: "parade" },
+					{ title: "Mini Pride", value: "minipride" },
 					{ title: "Pride square", value: "square" },
 					{ title: "External", value: "external" },
 					{ title: "Other", value: "other" }

@@ -218,6 +218,16 @@ const arenaFilters: Filter[] = [
 		value: "square",
 		label: "Pride Square",
 		predicate: event => event.arena === "square"
+	},
+	{
+		value: "minipride",
+		label: "Mini Pride",
+		predicate: event => event.arena === "external"
+	},
+	{
+		value: "external",
+		label: "Ekstern",
+		predicate: event => event.arena === "external"
 	}
 ];
 
