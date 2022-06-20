@@ -181,7 +181,6 @@ export type SanitySimpleEvent = SanityDocument<
 			| "party"
 			| "drag"
 			| "teater"
-			| "minipride"
 			| "dans"
 			| "other";
 		arena:

@@ -15,7 +15,6 @@ const EVENT_CATEGORIES = {
 	dans: "Dans",
 	drag: "Drag",
 	teater: "Teater",
-	minipride: "Mini Pride",
 	other: "Annen"
 };
 

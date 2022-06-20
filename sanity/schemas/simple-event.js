@@ -129,7 +129,6 @@ export default {
 					{ title: "Dans", value: "dans" },
 					{ title: "Teater", value: "teater" },
 					{ title: "Drag", value: "drag" },
-					{ title: "Mini Pride", value: "minipride" },
 					{ title: "Other", value: "other" }
 				]
 			},

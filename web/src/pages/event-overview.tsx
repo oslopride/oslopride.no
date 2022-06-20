@@ -271,11 +271,6 @@ const categoryFilters: Filter[] = [
 		value: "teater",
 		label: "Teater",
 		predicate: event => event.category === "teater"
-	},
-	{
-		value: "minipride",
-		label: "Mini Pride",
-		predicate: event => event.category === "minipride"
 	}
 ];
 
