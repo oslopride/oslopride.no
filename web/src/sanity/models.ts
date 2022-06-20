@@ -184,7 +184,14 @@ export type SanitySimpleEvent = SanityDocument<
 			| "minipride"
 			| "dans"
 			| "other";
-		arena: "park" | "house" | "parade" | "external" | "square" | "other";
+		arena:
+			| "park"
+			| "house"
+			| "parade"
+			| "external"
+			| "square"
+			| "other"
+			| "minipride";
 		venue?:
 			| "stage1"
 			| "stage2"
