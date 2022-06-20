@@ -222,7 +222,7 @@ const arenaFilters: Filter[] = [
 	{
 		value: "minipride",
 		label: "Mini Pride",
-		predicate: event => event.arena === "external"
+		predicate: event => event.arena === "minipride"
 	},
 	{
 		value: "external",
