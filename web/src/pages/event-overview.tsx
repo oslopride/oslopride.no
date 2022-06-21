@@ -357,7 +357,7 @@ const EventOverview: React.FC<Props> = () => {
 			const now = new Date();
 			thisYearsEvents = events.filter(event => {
 				const eventEnd = new Date(event.endTime);
-				return isBefore(eventEnd, now);
+				return !isBefore(eventEnd, now);
 			});
 		}
 		return thisYearsEvents;
