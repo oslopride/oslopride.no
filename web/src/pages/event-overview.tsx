@@ -21,7 +21,7 @@ import Loading from "../components/loading";
 import NotFound from "./not-found";
 import Error from "./error";
 import EventCard from "../components/event-card";
-import { isAfter, isBefore, isSameDay, isThisYear } from "date-fns";
+import { isAfter, isBefore, isSameDay } from "date-fns";
 import { BiCalendar } from "react-icons/bi";
 import "dayjs/locale/nb";
 import { MdClose } from "react-icons/md";
@@ -353,10 +353,11 @@ const EventOverview: React.FC<Props> = () => {
 	const thisYearsEvents = useMemo(() => {
 		let thisYearsEvents: SanitySimpleEventList = [];
 		if (events) {
-			// just filter out old events by checking if they are before this year.
+			// just filter out old events by checking if the end time is before now.
+			const now = new Date();
 			thisYearsEvents = events.filter(event => {
-				const eventStart = new Date(event.startTime);
-				return isThisYear(eventStart);
+				const eventEnd = new Date(event.endTime);
+				return isBefore(eventEnd, now);
 			});
 		}
 		return thisYearsEvents;
