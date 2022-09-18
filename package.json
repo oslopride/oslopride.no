@@ -4,12 +4,10 @@
   "author": "Oslo Pride <teknologi@oslopride.no>",
   "license": "MPL-2.0",
   "workspaces": [
-    "components",
     "sanity",
     "web"
   ],
   "scripts": {
-    "components": "yarn workspace @oslopride/components",
     "sanity": "yarn workspace @oslopride/sanity",
     "web": "yarn workspace @oslopride/web"
   },

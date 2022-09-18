@@ -1,4 +1,4 @@
-import { Button } from '@oslopride/components'
+import { Button } from '../components'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
