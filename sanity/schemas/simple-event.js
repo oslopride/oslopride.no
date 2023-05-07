@@ -9,8 +9,11 @@ export default {
 	initialValue: {
 		official: true,
 		signLanguageInterpreted: false,
+		simultaneousTexting: false,
+		inductionLoop: false,
 		wheelchairFriendly: false,
-		liveStream: false
+		liveStream: false,
+		english: false
 	},
 	fieldsets: [
 		{
@@ -125,10 +128,13 @@ export default {
 					{ title: "Debate", value: "debate" },
 					{ title: "Talk", value: "talk" },
 					{ title: "Lecture", value: "lecture" },
+					{ title: "Workshop", value: "workshop" },
 					{ title: "Party", value: "party" },
 					{ title: "Dans", value: "dans" },
+					{ title: "Performance", value: "performance" },
 					{ title: "Teater", value: "teater" },
 					{ title: "Drag", value: "drag" },
+					{ title: "Activity for children", value: "children" },
 					{ title: "Other", value: "other" }
 				]
 			},
@@ -185,6 +191,18 @@ export default {
 			validation: Rule => Rule.required()
 		},
 		{
+			name: "simultaneousTexting",
+			type: "boolean",
+			fieldset: "accessibility",
+			validation: Rule => Rule.required()
+		},
+		{
+			name: "inductionLoop",
+			type: "boolean",
+			fieldset: "accessibility",
+			validation: Rule => Rule.required()
+		},
+		{
 			name: "wheelchairFriendly",
 			type: "boolean",
 			fieldset: "accessibility",
@@ -194,6 +212,12 @@ export default {
 			name: "liveStream",
 			description:
 				"This indicates that the event will be streamed on the official Oslo Pride live stream",
+			type: "boolean",
+			fieldset: "accessibility",
+			validation: Rule => Rule.required()
+		},
+		{
+			name: "english",
 			type: "boolean",
 			fieldset: "accessibility",
 			validation: Rule => Rule.required()
