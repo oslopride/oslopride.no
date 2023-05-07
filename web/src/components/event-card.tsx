@@ -8,14 +8,17 @@ import { MdLocationPin } from "react-icons/md";
 
 const EVENT_CATEGORIES = {
 	concert: "Konsert",
+	debate: "Debatt",
 	talk: "Samtale",
 	lecture: "Foredrag",
-	debate: "Debatt",
+	workshop: "Workshop",
 	party: "Fest",
 	dans: "Dans",
-	drag: "Drag",
+	performance: "Performance",
 	teater: "Teater",
-	other: "Annen"
+	drag: "Drag",
+	children: "Aktivitet for barn/unge",
+	other: "Annet"
 };
 
 const getArenaName = (arena: SanitySimpleEvent["arena"]) => {

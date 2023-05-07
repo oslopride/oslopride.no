@@ -254,12 +254,24 @@ const Event: React.FC<Props> = props => {
 						<span>{event.signLanguageInterpreted ? "Ja" : "Nei"}</span>
 					</li>
 					<li>
+						<span>Simultanteksting</span>
+						<span>{event.simultaneousTexting ? "Ja" : "Nei"}</span>
+					</li>
+					<li>
+						<span>Teleslynge</span>
+						<span>{event.inductionLoop ? "Ja" : "Nei"}</span>
+					</li>
+					<li>
 						<span>Rusfritt</span>
 						<span>{event.alcoholFree ? "Ja" : "Nei"}</span>
 					</li>
 					<li>
 						<span>Strømmes</span>
 						<span>{event.liveStream ? "Ja" : "Nei"}</span>
+					</li>
+					<li>
+						<span>In English</span>
+						<span>{event.english ? "Ja" : "Nei"}</span>
 					</li>
 					{event.eventLink && (
 						<li>

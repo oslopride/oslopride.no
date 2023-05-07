@@ -178,10 +178,13 @@ export type SanitySimpleEvent = SanityDocument<
 			| "debate"
 			| "talk"
 			| "lecture"
+			| "workshop"
 			| "party"
-			| "drag"
-			| "teater"
 			| "dans"
+			| "performance"
+			| "teater"
+			| "drag"
+			| "children"
 			| "other";
 		arena:
 			| "park"
@@ -207,8 +210,11 @@ export type SanitySimpleEvent = SanityDocument<
 			| "youngs";
 		address?: string;
 		signLanguageInterpreted: boolean;
+		simultaneousTexting: boolean;
+		inductionLoop: boolean;
 		wheelchairFriendly: boolean;
 		liveStream: boolean;
+		english: boolean;
 		alcoholFree: boolean;
 		eventLink?: string;
 		organizer: string;
