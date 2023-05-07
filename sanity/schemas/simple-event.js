@@ -143,9 +143,10 @@ export default {
 					{ title: "Pride House", value: "house" },
 					{ title: "Pride Parade", value: "parade" },
 					{ title: "Mini Pride", value: "minipride" },
-					{ title: "Pride square", value: "square" },
+					{ title: "Salt", value: "salt" },
 					{ title: "External", value: "external" },
-					{ title: "Other", value: "other" }
+					{ title: "Other", value: "other" },
+					{ title: "Pride square", value: "square" }
 				]
 			},
 			fieldset: "location",
@@ -157,8 +158,12 @@ export default {
 			options: {
 				list: [
 					{ title: "Hovedscenen", value: "stage1" },
-					{ title: "BamseScenen", value: "stage2" },
-					{ title: "Kulturhuset", value: "kultur" },
+					{ title: "Bamsescenen", value: "stage2" },
+					{ title: "Kulturscenen", value: "kultur" },
+					{ title: "Eyr", value: "eyr" },
+					{ title: "Hippokrates", value: "hippo" },
+					{ title: "Bjerget", value: "bjerget" },
+					{ title: "Schjelderup", value: "schjelderup" },
 					{ title: "Mini Pride", value: "minipride" },
 					{ title: "Pride Box", value: "box" },
 					{ title: "Loud ‘n’ Proud", value: "loudproud" },

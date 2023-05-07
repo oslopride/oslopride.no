@@ -115,6 +115,8 @@ const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
 			return "Pride House";
 		case "parade":
 			return "Pride Parade";
+		case "salt":
+			return "Salt";
 		case "square":
 			return "Pride Square";
 		case "external":
@@ -129,9 +131,17 @@ const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
 		case "stage1":
 			return "Hovedscenen";
 		case "stage2":
-			return "BamseScenen";
+			return "Bamsescenen";
 		case "kultur":
-			return "Kulturhuset";
+			return "Kulturscenen";
+		case "eyr":
+			return "Eyr";
+		case "hippo":
+			return "Hippokrates";
+		case "bjerget":
+			return "Bjerget";
+		case "schjelderup":
+			return "Schjelderup";
 		case "loudproud":
 			return "Loud ‘n’ Proud";
 		case "box":

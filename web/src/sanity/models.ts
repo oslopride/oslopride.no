@@ -188,6 +188,7 @@ export type SanitySimpleEvent = SanityDocument<
 			| "house"
 			| "parade"
 			| "external"
+			| "salt"
 			| "square"
 			| "other"
 			| "minipride";
@@ -197,6 +198,10 @@ export type SanitySimpleEvent = SanityDocument<
 			| "loudproud"
 			| "box"
 			| "kultur"
+			| "eyr"
+			| "hippo"
+			| "bjerget"
+			| "schjelderup"
 			| "minipride"
 			| "online"
 			| "youngs";
