@@ -29,6 +29,10 @@ const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
 			return "Pride House";
 		case "parade":
 			return "Pride Parade";
+		case "salt":
+			return "Salt";
+		case "minipride":
+			return "Mini Pride";
 		default:
 			return undefined;
 	}
