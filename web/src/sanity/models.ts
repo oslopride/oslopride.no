@@ -178,16 +178,20 @@ export type SanitySimpleEvent = SanityDocument<
 			| "debate"
 			| "talk"
 			| "lecture"
+			| "workshop"
 			| "party"
-			| "drag"
-			| "teater"
 			| "dans"
+			| "performance"
+			| "teater"
+			| "drag"
+			| "children"
 			| "other";
 		arena:
 			| "park"
 			| "house"
 			| "parade"
 			| "external"
+			| "salt"
 			| "square"
 			| "other"
 			| "minipride";
@@ -197,13 +201,20 @@ export type SanitySimpleEvent = SanityDocument<
 			| "loudproud"
 			| "box"
 			| "kultur"
+			| "eyr"
+			| "hippo"
+			| "bjerget"
+			| "schjelderup"
 			| "minipride"
 			| "online"
 			| "youngs";
 		address?: string;
 		signLanguageInterpreted: boolean;
+		simultaneousTexting: boolean;
+		inductionLoop: boolean;
 		wheelchairFriendly: boolean;
 		liveStream: boolean;
+		english: boolean;
 		alcoholFree: boolean;
 		eventLink?: string;
 		organizer: string;
