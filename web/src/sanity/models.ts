@@ -194,7 +194,8 @@ export type SanitySimpleEvent = SanityDocument<
 			| "salt"
 			| "square"
 			| "other"
-			| "minipride";
+			| "minipride"
+			| "scener";
 		venue?:
 			| "stage1"
 			| "stage2"
@@ -204,10 +205,12 @@ export type SanitySimpleEvent = SanityDocument<
 			| "eyr"
 			| "hippo"
 			| "bjerget"
+			| "isachsen"
 			| "schjelderup"
 			| "minipride"
 			| "online"
-			| "youngs";
+			| "youngs"
+			| "scener";
 		address?: string;
 		signLanguageInterpreted: boolean;
 		simultaneousTexting: boolean;

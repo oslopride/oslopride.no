@@ -152,7 +152,8 @@ export default {
 					{ title: "Salt", value: "salt" },
 					{ title: "External", value: "external" },
 					{ title: "Other", value: "other" },
-					{ title: "Pride square", value: "square" }
+					{ title: "Pride square", value: "square" },
+					{ title: "Skeive Scener", value: "scener" }
 				]
 			},
 			fieldset: "location",
@@ -169,12 +170,14 @@ export default {
 					{ title: "Eyr", value: "eyr" },
 					{ title: "Hippokrates", value: "hippo" },
 					{ title: "Bjerget", value: "bjerget" },
+					{ title: "Isachsen", value: "isachsen" },
 					{ title: "Schjelderup", value: "schjelderup" },
 					{ title: "Mini Pride", value: "minipride" },
 					{ title: "Pride Box", value: "box" },
 					{ title: "Loud ‘n’ Proud", value: "loudproud" },
 					{ title: "Online", value: "online" },
-					{ title: "Youngs", value: "youngs" }
+					{ title: "Youngs", value: "youngs" },
+					{ title: "Skeive Scener", value: "scener" }
 				]
 			},
 			fieldset: "location"
