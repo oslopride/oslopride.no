@@ -178,11 +178,13 @@ export type SanitySimpleEvent = SanityDocument<
 			| "debate"
 			| "talk"
 			| "lecture"
+			| "literature"
 			| "workshop"
 			| "party"
 			| "dans"
 			| "performance"
 			| "teater"
+			| "cinema"
 			| "drag"
 			| "children"
 			| "other";
