@@ -253,6 +253,11 @@ const categoryFilters: Filter[] = [
 		predicate: event => event.category === "lecture"
 	},
 	{
+		value: "literature",
+		label: "Litteratur",
+		predicate: event => event.category === "literature"
+	},
+	{
 		value: "workshop",
 		label: "Workshop",
 		predicate: event => event.category === "workshop"
@@ -276,6 +281,11 @@ const categoryFilters: Filter[] = [
 		value: "teater",
 		label: "Teater",
 		predicate: event => event.category === "teater"
+	},
+	{
+		value: "cinema",
+		label: "Kino",
+		predicate: event => event.category === "cinema"
 	},
 	{
 		value: "drag",

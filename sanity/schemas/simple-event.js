@@ -128,11 +128,13 @@ export default {
 					{ title: "Debate", value: "debate" },
 					{ title: "Talk", value: "talk" },
 					{ title: "Lecture", value: "lecture" },
+					{ title: "Litteratur", value: "literature" },
 					{ title: "Workshop", value: "workshop" },
 					{ title: "Party", value: "party" },
 					{ title: "Dans", value: "dans" },
 					{ title: "Performance", value: "performance" },
 					{ title: "Teater", value: "teater" },
+					{ title: "Kino", value: "cinema" },
 					{ title: "Drag", value: "drag" },
 					{ title: "Activity for children", value: "children" },
 					{ title: "Other", value: "other" }
