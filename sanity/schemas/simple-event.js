@@ -178,8 +178,7 @@ export default {
 					{ title: "Pride Box", value: "box" },
 					{ title: "Loud ‘n’ Proud", value: "loudproud" },
 					{ title: "Online", value: "online" },
-					{ title: "Youngs", value: "youngs" },
-					{ title: "Skeive Scener", value: "scener" }
+					{ title: "Youngs", value: "youngs" }
 				]
 			},
 			fieldset: "location"
