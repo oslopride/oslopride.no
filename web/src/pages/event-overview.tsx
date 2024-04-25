@@ -225,6 +225,11 @@ const arenaFilters: Filter[] = [
 		predicate: event => event.arena === "minipride"
 	},
 	{
+		value: "scener",
+		label: "Skeive Scener",
+		predicate: event => event.arena === "scener"
+	},
+	{
 		value: "external",
 		label: "Ekstern",
 		predicate: event => event.arena === "external"

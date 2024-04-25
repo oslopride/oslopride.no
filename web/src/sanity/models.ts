@@ -211,8 +211,7 @@ export type SanitySimpleEvent = SanityDocument<
 			| "schjelderup"
 			| "minipride"
 			| "online"
-			| "youngs"
-			| "scener";
+			| "youngs";
 		address?: string;
 		signLanguageInterpreted: boolean;
 		simultaneousTexting: boolean;

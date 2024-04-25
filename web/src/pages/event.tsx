@@ -158,8 +158,6 @@ const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
 			return "Youngs";
 		case "minipride":
 			return "Mini Pride";
-		case "scener":
-			return "Skeive Scener";
 		default:
 			return "Annet";
 	}
