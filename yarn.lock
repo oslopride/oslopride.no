@@ -1913,7 +1913,7 @@
     lodash "^4.17.15"
     nano-pubsub "^1.0.2"
     nanoid "^3.1.9"
-    observable-callback "^1.0.1"
+    observable-callback "1.0.2"
     oneline "^1.0.3"
     promise-props "^1.0.0"
     react-fast-compare "^2.0.2"
