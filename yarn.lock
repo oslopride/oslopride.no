@@ -9981,9 +9981,9 @@ object.values@^1.1.0, object.values@^1.1.6, object.values@^1.1.7:
     define-properties "^1.2.1"
     es-object-atoms "^1.0.0"
 
-observable-callback@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/observable-callback/-/observable-callback-1.0.3.tgz#c062c614d04f7adda9b42c40e56ffd0418f3d8ef"
+observable-callback@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/observable-callback/-/observable-callback-1.0.2.tgz#c062c614d04f7adda9b42c40e56ffd0418f3d8ef"
   integrity sha512-VlS275UyPnwdMtzxDgr/lCiOUyq9uXNll3vdwzDcJ6PB/LuO7gLmxAQopcCA3JoFwwujBwyA7/tP5TXZwWSXew==
 
 observable-props@^2.0.0:
