@@ -8,14 +8,23 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - uses: actions/checkout@v4
+    - name: Set up Python
+        # This is the version of the action for setting up Python, not the Python version.
+        uses: actions/setup-python@v4
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.x'
+
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 15
+        node-version: 16
 
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
-      run: echo "KEY=name (yarn cache dir)" >> $GITHUB_OUTPUT
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      
     - name: Cache dependencies
       uses: actions/cache@v2
       id: yarn-cache
