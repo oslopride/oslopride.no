@@ -7,20 +7,16 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      
-    - name: Set up Python 
-      uses: actions/checkout@v4
 
-        # This is the version of the action for setting up Python, not the Python version.
-        uses: actions/setup-python@v4
-        with:
-          # Semantic version range syntax or exact version of a Python version
-          python-version: '3.x'
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
 
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 16
+        node-version: 14
 
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
