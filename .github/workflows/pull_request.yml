@@ -16,7 +16,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 14
+        node-version: 20
 
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
@@ -32,7 +32,7 @@ jobs:
           ${{ runner.os }}-yarn-
 
     - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      run: yarn install
 
     - name: Lint
       run: yarn web lint
