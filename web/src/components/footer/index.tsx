@@ -80,15 +80,13 @@ const Footer: React.FC<Props> = () => {
 							</ul>
 						)}
 					</S.Image>
-					<a href="https://www.tilgjengelighetsmerket.no/">
+					<a href="https://www.oslopride.no/p/tilgjengelighet">
 						<img src={`${Tilgjengelighet}`} alt="Tilgjengelighetsmerket" />
 					</a>
 				</div>
 
 				<S.Info>
-					<h3>Oslo Pride as</h3>
-					<p>c/o Foreningen FRI,</p>
-					<p>Mariboes gate 13, 0183 OSLO</p>
+					<h3>Oslo Pride AS</h3>
 					<p>
 						Org.nr:{" "}
 						<a href="https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=986625860">
