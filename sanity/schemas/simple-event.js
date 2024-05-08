@@ -9,8 +9,11 @@ export default {
 	initialValue: {
 		official: true,
 		signLanguageInterpreted: false,
+		simultaneousTexting: false,
+		inductionLoop: false,
 		wheelchairFriendly: false,
-		liveStream: false
+		liveStream: false,
+		english: false
 	},
 	fieldsets: [
 		{
@@ -125,10 +128,15 @@ export default {
 					{ title: "Debate", value: "debate" },
 					{ title: "Talk", value: "talk" },
 					{ title: "Lecture", value: "lecture" },
+					{ title: "Litteratur", value: "literature" },
+					{ title: "Workshop", value: "workshop" },
 					{ title: "Party", value: "party" },
 					{ title: "Dans", value: "dans" },
+					{ title: "Performance", value: "performance" },
 					{ title: "Teater", value: "teater" },
+					{ title: "Kino", value: "cinema" },
 					{ title: "Drag", value: "drag" },
+					{ title: "Activity for children", value: "children" },
 					{ title: "Other", value: "other" }
 				]
 			},
@@ -143,9 +151,11 @@ export default {
 					{ title: "Pride House", value: "house" },
 					{ title: "Pride Parade", value: "parade" },
 					{ title: "Mini Pride", value: "minipride" },
-					{ title: "Pride square", value: "square" },
+					{ title: "Salt", value: "salt" },
 					{ title: "External", value: "external" },
-					{ title: "Other", value: "other" }
+					{ title: "Other", value: "other" },
+					{ title: "Pride square", value: "square" },
+					{ title: "Skeive Scener", value: "scener" }
 				]
 			},
 			fieldset: "location",
@@ -157,8 +167,13 @@ export default {
 			options: {
 				list: [
 					{ title: "Hovedscenen", value: "stage1" },
-					{ title: "BamseScenen", value: "stage2" },
-					{ title: "Kulturhuset", value: "kultur" },
+					{ title: "Bamsescenen", value: "stage2" },
+					{ title: "Kulturscenen", value: "kultur" },
+					{ title: "Eyr", value: "eyr" },
+					{ title: "Hippokrates", value: "hippo" },
+					{ title: "Bjerget", value: "bjerget" },
+					{ title: "Isachsen", value: "isachsen" },
+					{ title: "Schjelderup", value: "schjelderup" },
 					{ title: "Mini Pride", value: "minipride" },
 					{ title: "Pride Box", value: "box" },
 					{ title: "Loud ‘n’ Proud", value: "loudproud" },
@@ -180,6 +195,18 @@ export default {
 			validation: Rule => Rule.required()
 		},
 		{
+			name: "simultaneousTexting",
+			type: "boolean",
+			fieldset: "accessibility",
+			validation: Rule => Rule.required()
+		},
+		{
+			name: "inductionLoop",
+			type: "boolean",
+			fieldset: "accessibility",
+			validation: Rule => Rule.required()
+		},
+		{
 			name: "wheelchairFriendly",
 			type: "boolean",
 			fieldset: "accessibility",
@@ -189,6 +216,12 @@ export default {
 			name: "liveStream",
 			description:
 				"This indicates that the event will be streamed on the official Oslo Pride live stream",
+			type: "boolean",
+			fieldset: "accessibility",
+			validation: Rule => Rule.required()
+		},
+		{
+			name: "english",
 			type: "boolean",
 			fieldset: "accessibility",
 			validation: Rule => Rule.required()

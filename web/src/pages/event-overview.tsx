@@ -215,14 +215,19 @@ const arenaFilters: Filter[] = [
 		predicate: event => event.arena === "parade"
 	},
 	{
-		value: "square",
-		label: "Pride Square",
-		predicate: event => event.arena === "square"
+		value: "salt",
+		label: "Salt",
+		predicate: event => event.arena === "salt"
 	},
 	{
 		value: "minipride",
 		label: "Mini Pride",
 		predicate: event => event.arena === "minipride"
+	},
+	{
+		value: "scener",
+		label: "Skeive Scener",
+		predicate: event => event.arena === "scener"
 	},
 	{
 		value: "external",
@@ -238,6 +243,11 @@ const categoryFilters: Filter[] = [
 		predicate: event => event.category === "concert"
 	},
 	{
+		value: "debate",
+		label: "Debatt",
+		predicate: event => event.category === "debate"
+	},
+	{
 		value: "talk",
 		label: "Samtale",
 		predicate: event => event.category === "talk"
@@ -248,9 +258,14 @@ const categoryFilters: Filter[] = [
 		predicate: event => event.category === "lecture"
 	},
 	{
-		value: "debate",
-		label: "Debatt",
-		predicate: event => event.category === "debate"
+		value: "literature",
+		label: "Litteratur",
+		predicate: event => event.category === "literature"
+	},
+	{
+		value: "workshop",
+		label: "Workshop",
+		predicate: event => event.category === "workshop"
 	},
 	{
 		value: "party",
@@ -263,14 +278,34 @@ const categoryFilters: Filter[] = [
 		predicate: event => event.category === "dans"
 	},
 	{
-		value: "drag",
-		label: "Drag",
-		predicate: event => event.category === "drag"
+		value: "performance",
+		label: "Performance",
+		predicate: event => event.category === "performance"
 	},
 	{
 		value: "teater",
 		label: "Teater",
 		predicate: event => event.category === "teater"
+	},
+	{
+		value: "cinema",
+		label: "Kino",
+		predicate: event => event.category === "cinema"
+	},
+	{
+		value: "drag",
+		label: "Drag",
+		predicate: event => event.category === "drag"
+	},
+	{
+		value: "children",
+		label: "Aktivitet for barn/unge",
+		predicate: event => event.category === "children"
+	},
+	{
+		value: "other",
+		label: "Annet",
+		predicate: event => event.category === "other"
 	}
 ];
 
@@ -291,9 +326,24 @@ const accessibilityFilters: Filter[] = [
 		predicate: event => event.signLanguageInterpreted
 	},
 	{
+		value: "simultaneousTexting",
+		label: "Simultanteksting",
+		predicate: event => event.simultaneousTexting
+	},
+	{
+		value: "inductionLoop",
+		label: "Teleslynge",
+		predicate: event => event.inductionLoop
+	},
+	{
 		value: "alcoholFree",
 		label: "Rusfritt",
 		predicate: event => event.alcoholFree
+	},
+	{
+		value: "english",
+		label: "In English",
+		predicate: event => event.english
 	}
 ];
 

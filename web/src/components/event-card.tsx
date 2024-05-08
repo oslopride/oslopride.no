@@ -8,14 +8,19 @@ import { MdLocationPin } from "react-icons/md";
 
 const EVENT_CATEGORIES = {
 	concert: "Konsert",
+	debate: "Debatt",
 	talk: "Samtale",
 	lecture: "Foredrag",
-	debate: "Debatt",
+	literature: "Litteratur",
+	workshop: "Workshop",
 	party: "Fest",
 	dans: "Dans",
-	drag: "Drag",
+	performance: "Performance",
 	teater: "Teater",
-	other: "Annen"
+	cinema: "Kino",
+	drag: "Drag",
+	children: "Aktivitet for barn/unge",
+	other: "Annet"
 };
 
 const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
@@ -26,6 +31,10 @@ const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
 			return "Pride House";
 		case "parade":
 			return "Pride Parade";
+		case "salt":
+			return "Salt";
+		case "minipride":
+			return "Mini Pride";
 		default:
 			return undefined;
 	}
