@@ -115,10 +115,16 @@ const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
 			return "Pride House";
 		case "parade":
 			return "Pride Parade";
+		case "salt":
+			return "Salt";
 		case "square":
 			return "Pride Square";
 		case "external":
 			return "Eksternt arrangement";
+		case "minipride":
+			return "Mini Pride";
+		case "scener":
+			return "Skeive Scener";
 		default:
 			return "Annet";
 	}
@@ -129,9 +135,19 @@ const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
 		case "stage1":
 			return "Hovedscenen";
 		case "stage2":
-			return "BamseScenen";
+			return "Bamsescenen";
 		case "kultur":
-			return "Kulturhuset";
+			return "Kulturscenen";
+		case "eyr":
+			return "Eyr";
+		case "hippo":
+			return "Hippokrates";
+		case "bjerget":
+			return "Bjerget";
+		case "isachsen":
+			return "Isachsen";
+		case "schjelderup":
+			return "Schjelderup";
 		case "loudproud":
 			return "Loud ‘n’ Proud";
 		case "box":
@@ -244,12 +260,24 @@ const Event: React.FC<Props> = props => {
 						<span>{event.signLanguageInterpreted ? "Ja" : "Nei"}</span>
 					</li>
 					<li>
+						<span>Simultanteksting</span>
+						<span>{event.simultaneousTexting ? "Ja" : "Nei"}</span>
+					</li>
+					<li>
+						<span>Teleslynge</span>
+						<span>{event.inductionLoop ? "Ja" : "Nei"}</span>
+					</li>
+					<li>
 						<span>Rusfritt</span>
 						<span>{event.alcoholFree ? "Ja" : "Nei"}</span>
 					</li>
 					<li>
 						<span>Strømmes</span>
 						<span>{event.liveStream ? "Ja" : "Nei"}</span>
+					</li>
+					<li>
+						<span>In English</span>
+						<span>{event.english ? "Ja" : "Nei"}</span>
 					</li>
 					{event.eventLink && (
 						<li>
