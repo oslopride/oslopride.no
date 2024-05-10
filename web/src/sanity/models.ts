@@ -178,11 +178,13 @@ export type SanitySimpleEvent = SanityDocument<
 			| "debate"
 			| "talk"
 			| "lecture"
+			| "literature"
 			| "workshop"
 			| "party"
 			| "dans"
 			| "performance"
 			| "teater"
+			| "cinema"
 			| "drag"
 			| "children"
 			| "other";
@@ -194,7 +196,8 @@ export type SanitySimpleEvent = SanityDocument<
 			| "salt"
 			| "square"
 			| "other"
-			| "minipride";
+			| "minipride"
+			| "scener";
 		venue?:
 			| "stage1"
 			| "stage2"
@@ -204,6 +207,7 @@ export type SanitySimpleEvent = SanityDocument<
 			| "eyr"
 			| "hippo"
 			| "bjerget"
+			| "isachsen"
 			| "schjelderup"
 			| "minipride"
 			| "online"

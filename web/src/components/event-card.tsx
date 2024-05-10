@@ -11,11 +11,13 @@ const EVENT_CATEGORIES = {
 	debate: "Debatt",
 	talk: "Samtale",
 	lecture: "Foredrag",
+	literature: "Litteratur",
 	workshop: "Workshop",
 	party: "Fest",
 	dans: "Dans",
 	performance: "Performance",
 	teater: "Teater",
+	cinema: "Kino",
 	drag: "Drag",
 	children: "Aktivitet for barn/unge",
 	other: "Annet"

@@ -128,11 +128,13 @@ export default {
 					{ title: "Debate", value: "debate" },
 					{ title: "Talk", value: "talk" },
 					{ title: "Lecture", value: "lecture" },
+					{ title: "Litteratur", value: "literature" },
 					{ title: "Workshop", value: "workshop" },
 					{ title: "Party", value: "party" },
 					{ title: "Dans", value: "dans" },
 					{ title: "Performance", value: "performance" },
 					{ title: "Teater", value: "teater" },
+					{ title: "Kino", value: "cinema" },
 					{ title: "Drag", value: "drag" },
 					{ title: "Activity for children", value: "children" },
 					{ title: "Other", value: "other" }
@@ -152,7 +154,8 @@ export default {
 					{ title: "Salt", value: "salt" },
 					{ title: "External", value: "external" },
 					{ title: "Other", value: "other" },
-					{ title: "Pride square", value: "square" }
+					{ title: "Pride square", value: "square" },
+					{ title: "Skeive Scener", value: "scener" }
 				]
 			},
 			fieldset: "location",
@@ -169,6 +172,7 @@ export default {
 					{ title: "Eyr", value: "eyr" },
 					{ title: "Hippokrates", value: "hippo" },
 					{ title: "Bjerget", value: "bjerget" },
+					{ title: "Isachsen", value: "isachsen" },
 					{ title: "Schjelderup", value: "schjelderup" },
 					{ title: "Mini Pride", value: "minipride" },
 					{ title: "Pride Box", value: "box" },

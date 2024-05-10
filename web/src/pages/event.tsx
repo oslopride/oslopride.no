@@ -123,6 +123,8 @@ const getArenaName = (arena: SanitySimpleEvent["arena"]) => {
 			return "Eksternt arrangement";
 		case "minipride":
 			return "Mini Pride";
+		case "scener":
+			return "Skeive Scener";
 		default:
 			return "Annet";
 	}
@@ -142,6 +144,8 @@ const getVenueName = (venue: SanitySimpleEvent["venue"]) => {
 			return "Hippokrates";
 		case "bjerget":
 			return "Bjerget";
+		case "isachsen":
+			return "Isachsen";
 		case "schjelderup":
 			return "Schjelderup";
 		case "loudproud":
