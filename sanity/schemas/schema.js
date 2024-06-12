@@ -35,6 +35,7 @@ import externalLink from "./types/external-link";
 import internalLink from "./types/internal-link";
 import youtube from "./types/youtube";
 import iframe from "./types/iframe";
+import articleNew from "./article-new";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -70,6 +71,7 @@ export default createSchema({
 		internalLink,
 		externalLink,
 		youtube,
-		iframe
+		iframe,
+		articleNew
 	])
 });
